@@ -5,7 +5,7 @@ export interface ReactJewishDatePickerProps {
 
 }
 
-export const ReactJewishDatePicker: React.FC<any> = (props: any) => {
+export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (props: ReactJewishDatePickerProps) => {
     return (
         <div className={"reactJewishDatePicker"}>
             Date Picker
