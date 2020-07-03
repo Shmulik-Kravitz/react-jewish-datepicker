@@ -2,6 +2,7 @@
     "private": true,
     "scripts": {
         "build": "yarn workspaces run build",
+        "test": "echo test",
         "clean": "rm -rf node_modules"
     },
     "workspaces": [
