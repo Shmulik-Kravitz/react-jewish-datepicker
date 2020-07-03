@@ -6,6 +6,9 @@ export interface ReactJewishDatePickerProps {
 }
 
 export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (props: ReactJewishDatePickerProps) => {
+    const monthDays = [
+
+    ];
     return (
         <div className={"reactJewishDatePicker"}>
             Date Picker
