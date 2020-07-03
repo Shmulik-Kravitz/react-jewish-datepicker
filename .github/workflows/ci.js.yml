@@ -1,19 +1,23 @@
-name: CI
+name: Node CI
 on: [push]
+
 jobs:
   build:
-    name: Test
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: install # will run `yarn install` command
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: build # will run `yarn build` command
-      - name: yarn install, build, and test
-        run: |
-          yarn install
-          yarn run build
-          yarn test
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install -g yarn # Extra Step:  
+    - name: yarn install, build, and test
+      run: |
+        yarn install
+        yarn run build
+        yarn test
