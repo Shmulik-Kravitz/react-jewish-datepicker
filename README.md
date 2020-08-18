@@ -1,26 +1,7 @@
 # react-jewish-datepicker
 
-TypeScript example:
-```js
-import * as React from 'react';
-import { BasicJewishDay } from 'react-jewish-datepicker';
+[![npm](https://img.shields.io/npm/v/react-jewish-datepicker.svg)](https://www.npmjs.com/package/react-jewish-datepicker)
+![CI](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/workflows/CI/badge.svg?branch=master)
 
-export interface ReactJewishDatePickerExampleProps {
-    basicJewishDay?: BasicJewishDay;
-    displayIsHebrew: boolean;
-    setDisplayIsHebrew: (displayIsHebrew: boolean) => void;
-}
 
-export const ReactJewishDatePickerExample: React.FC<ReactJewishDatePickerExampleProps> = (props: ReactJewishDatePickerExampleProps) => {
-    return (
-        <div className="ReactJewishDatePickerExample">
-            {props.basicJewishDay ? <div>Day value:</div> : null}
-            <pre >{JSON.stringify(props.basicJewishDay, null, 2)}</pre>
-            <label className="switch">
-                <input type="checkbox" value="true" onChange={() => props.setDisplayIsHebrew(!props.displayIsHebrew)} />
-                Hebrew View:
-            </label>
-        </div>
-    )
-};
-```
+# [documentation](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/tree/master/packages/reactJewishDatePicker)

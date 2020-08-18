@@ -5,7 +5,8 @@
   "main": "build/index.js",
   "module": "build/index.es.js",
   "files": [
-    "build"
+    "build",
+    "README.md"
   ],
   "repository": "https://github.com/Shmulik-Kravitz/react-jewish-datepicker.git",
   "author": "Shmulik Kravitz <29735690+Shmulik-Kravitz@users.noreply.github.com>",
