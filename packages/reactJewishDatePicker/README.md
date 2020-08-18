@@ -44,7 +44,7 @@ import { ReactJewishDatePicker, BasicJewishDay } from 'react-jewish-datepicker';
 export function Example() {
   const [basicJewishDay, setBasicJewishDay] = React.useState();
   return (
-    <ReactJewishDatePicker onClick={(day: BasicJewishDay) => {
+    <ReactJewishDatePicker isHebrew onClick={(day) => {
       setBasicJewishDay(day);
     }} />
   );
