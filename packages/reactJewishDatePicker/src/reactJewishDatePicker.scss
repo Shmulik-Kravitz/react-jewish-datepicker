@@ -1,3 +1,126 @@
 .reactJewishDatePicker {
-    color: cornflowerblue;
+  --color: #333;
+  --backgroundColor: #e6e6e6;
+
+  border: 1px solid var(--color);
+  height: 25px;
+  z-index: 1;
+  position: absolute;
+  width: 400px;
+  display: grid;
+  font-family: arial;
+
+  .selectedDay {
+    align-items: center;
+    text-align: right;
+    padding: 3px 10px;
+  }
+
+  .monthWrapper {
+    border: 1px solid #d6d9dd;
+    position: absolute;
+    top: 27px;
+    right: 0;
+    display: none;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+
+    &.open {
+      display: grid;
+    }
+  }
+
+  .navigation {
+    display: grid;
+    grid-template-columns: 22px 138px 22px;
+    justify-content: space-between;
+    height: 22px;
+
+    .arrowRight,
+    .arrowLeft {
+      display: grid;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        border: solid black;
+        border-width: 0 2px 2px 0;
+        padding: 1px;
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        cursor: pointer;
+        width: 6px;
+        height: 6px;
+      }
+    }
+
+    .arrowRight:hover,
+    .arrowLeft:hover {
+      background-color: var(--backgroundColor);
+    }
+
+    .arrowLeft {
+      span {
+        transform: rotate(135deg);
+        -webkit-transform: rotate(135deg);
+      }
+    }
+
+    .monthYearSelection {
+      display: grid;
+      grid-template-columns: auto auto;
+      select {
+        border: 0px;
+        outline: 0px;
+      }
+      select:hover {
+        cursor: pointer;
+        background-color: var(--backgroundColor);
+      }
+      option {
+        background-color: #fff;
+      }
+      // option:hover {
+      //   background-color: #fff;
+      // }
+    }
+  }
+
+  .month {
+    color: var(--color);
+    grid-template-columns: repeat(7, 1fr);
+    z-index: 2;
+    background-color: white;
+    display: grid;
+    width: 250px;
+    height: 210px;
+  }
+
+  .weekday,
+  .day {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+
+  .day:hover {
+    background-color: var(--backgroundColor);
+  }
+
+  .weekday {
+    color: #000;
+    font-weight: bold;
+  }
+
+  .otherMonth {
+    background: #fff;
+    color: #777;
+  }
+
+  .selectedDayFlag {
+    background: cornflowerblue;
+    color: #fff;
+  }
 }

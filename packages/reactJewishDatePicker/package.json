@@ -1,13 +1,13 @@
 {
   "name": "react-jewish-datepicker",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "React jewish datepicker",
   "main": "build/index.js",
   "module": "build/index.es.js",
   "files": ["build"],
   "repository": "https://github.com/Shmulik-Kravitz/react-jewish-datepicker.git",
   "author": "Shmulik Kravitz <29735690+Shmulik-Kravitz@users.noreply.github.com>",
-  "license": "LGPL-3.0",
+  "license": "GPL-3.0+",
   "scripts": {
     "build": "rollup --config"
   },
@@ -16,11 +16,14 @@
     "react-dom":"^16.0.0"
   },
   "dependencies": {
-
+    "dayjs": "^1.8.29",
+    "hebrew-date": "^1.0.5",
+    "hebcal": "^2.3.2",
+    "gematriya": "^2.0.0"
   },
   "devDependencies": {
-    "@types/react": "^16.9.35",
-    "@types/react-dom": "^16.9.8",
+    "@types/gematriya": "^2.0.1",
+
     "rollup-plugin-copy":"^3.3.0",
     "rollup-plugin-sass":"^1.2.2",
 
@@ -32,6 +35,5 @@
     "rollup": "^2.13.1",
     "rollup-plugin-typescript2":"^0.27.1",
     "tslib":"^2.0.0"
-  }
-  
+  }  
 }

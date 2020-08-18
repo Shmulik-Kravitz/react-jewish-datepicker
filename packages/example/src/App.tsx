@@ -1,28 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import { ReactJewishDatePicker } from 'react-jewish-datepicker';
-import './App.css';
+import * as React from 'react';
+import { ReactJewishDatePicker, BasicJewishDay } from 'react-jewish-datepicker';
+import {ReactJewishDatePickerExample} from './reactJewishDatePickerExample';
 
-function App() {
+export function App() {
+  const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
+  const [displayIsHebrew, setDisplayIsHebrew] = React.useState<boolean>(false);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <ReactJewishDatePicker />
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ReactJewishDatePicker isHebrew={displayIsHebrew} onClick={(day: BasicJewishDay) => {
+        setBasicJewishDay(day);
+      }} />
+
+      <ReactJewishDatePickerExample basicJewishDay={basicJewishDay} displayIsHebrew={displayIsHebrew} setDisplayIsHebrew={setDisplayIsHebrew}/>
     </div>
   );
 }
-
-export default App;
+ 
