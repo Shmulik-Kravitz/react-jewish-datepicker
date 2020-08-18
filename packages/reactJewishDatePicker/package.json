@@ -1,6 +1,6 @@
 {
   "name": "react-jewish-datepicker",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "React jewish datepicker",
   "main": "build/index.js",
   "module": "build/index.es.js",
