@@ -51,3 +51,7 @@ export function Example() {
 }
 ```
 [![Edit react-jewish-datepicker-javascript-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/pedantic-gagarin-rdeov?fontsize=14&hidenavigation=1&theme=dark)
+
+## Contributors
+<div>Shmuilik Kravitz</div>
+<div>Sagi Tawil</div>
