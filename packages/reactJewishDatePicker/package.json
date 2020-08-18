@@ -1,6 +1,6 @@
 {
   "name": "react-jewish-datepicker",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "React jewish datepicker",
   "main": "build/index.js",
   "module": "build/index.es.js",
@@ -36,5 +36,12 @@
     "rollup-plugin-sass": "^1.2.2",
     "rollup-plugin-typescript2": "^0.27.1",
     "tslib": "^2.0.0"
-  }
+  },
+  "keywords": [
+    "jewish",
+    "hebrew",
+    "date",
+    "luach",
+    "calendar"
+  ]
 }
