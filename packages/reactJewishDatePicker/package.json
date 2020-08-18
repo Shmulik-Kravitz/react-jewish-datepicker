@@ -1,6 +1,6 @@
 {
   "name": "react-jewish-datepicker",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "React jewish datepicker",
   "main": "build/index.js",
   "module": "build/index.es.js",
@@ -8,7 +8,7 @@
     "build",
     "README.md"
   ],
-  "repository": "https://github.com/Shmulik-Kravitz/react-jewish-datepicker.git",
+  "repository": "https://github.com/Shmulik-Kravitz/react-jewish-datepicker/tree/master/packages/reactJewishDatePicker",
   "author": "Shmulik Kravitz <29735690+Shmulik-Kravitz@users.noreply.github.com>",
   "license": "GPL-3.0+",
   "scripts": {
