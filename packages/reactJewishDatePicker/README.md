@@ -9,6 +9,15 @@
 ![open issues](https://badgen.net/github/open-issues/Shmulik-Kravitz/react-jewish-datepicker)
 ![watchers](https://badgen.net/github/watchers/Shmulik-Kravitz/react-jewish-datepicker)
 
+
+
+![npm](https://raw.githubusercontent.com/Shmulik-Kravitz/react-jewish-datepicker/master/images/snapshot_hebrew.png)
+
+![npm](https://raw.githubusercontent.com/Shmulik-Kravitz/react-jewish-datepicker/master/images/snapshot_english.png)
+
+
+
+
 ## Demo:
 https://react-jewish-datepicker-app.web.app/
 
@@ -59,5 +68,5 @@ export function Example() {
 [![Edit react-jewish-datepicker-javascript-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/pedantic-gagarin-rdeov?fontsize=14&hidenavigation=1&theme=dark)
 
 ## Contributors
-<div>Shmuilik Kravitz</div>
+<div>Shmulik Kravitz</div>
 <div>Sagi Tawil</div>

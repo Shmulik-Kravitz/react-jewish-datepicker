@@ -12,8 +12,15 @@
     "devDependencies": {
         "@types/react": "^16.9.0",
         "@types/react-dom": "^16.9.0",
+        "@babel/core": "^7.11.1",
+        "babel-loader": "^8.1.0",
+        "react-is": "^16.13.1",
+        "@storybook/addon-actions": "^6.0.13",
+        "@storybook/addon-essentials": "^6.0.13",
+        "@storybook/addon-links": "^6.0.13",
+        "@storybook/react": "^6.0.13",
         "react":"^16.13.1",
         "react-dom":"^16.13.1",
-        "typescript": "^3.9.7"
+        "typescript": "^3.9.7"        
     }
 }

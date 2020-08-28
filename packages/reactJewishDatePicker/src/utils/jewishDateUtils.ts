@@ -16,7 +16,7 @@ export const isMeubar = (year) => {
 }
 
 export const getHebWeekdays = () => {
-    return ['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ז'];
+    return ['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ש'];
 };
 
 export const getEngWeekdays = () => {
@@ -156,7 +156,17 @@ export const getJewishMonths = (year: number, isHebrew?: boolean) => {
     if (isMeubar(year)) {
         return months;
     } else {
-        return months.filter(month => month.id !== 'AdarII')
+        return months.filter(month => month.id !== 'AdarII').map(month => {
+            if(month.id == 'AdarI') {
+                return {
+                    id: 'AdarI',
+                    text: isHebrew ? 'אדר' : 'Adar',
+                }
+            
+            } else {
+                return month;
+            }
+        })
     }
 };
 
@@ -256,7 +266,7 @@ export const getJewishMonth = (date: Date) => {
     const jewishMonth: JewishMonth = { jewishMonth: jewishMonthInfo.jewishMonth, jewishYear: jewishMonthInfo.jewishDate.year, jewishMonthString: jewishMonthInfo.jewishDate.monthName, days: [] };
     let currentDate = jewishMonthInfo.sundayStartOfTheMonth;
 
-    for (let i = 0; i < 35; i++) {
+    for (let i = 0; i < 42; i++) {
 
         const jewishDate: JewishDate = getJewishDate(currentDate.toDate());
         const day: JewishDay = {
@@ -268,8 +278,12 @@ export const getJewishMonth = (date: Date) => {
             date: currentDate.toDate(),
             isCurrentMonth: jewishMonth.jewishMonth === jewishDate.month
         }
-        jewishMonth.days.push(day);
-        currentDate = currentDate.add(1, 'day');
+        
+        if(i < 7 || day.isCurrentMonth || day.date.getDay() > 0) {
+            jewishMonth.days.push(day);
+            currentDate = currentDate.add(1, 'day');
+        }
+        
     }
 
     return jewishMonth;

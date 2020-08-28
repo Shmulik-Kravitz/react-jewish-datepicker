@@ -2,25 +2,27 @@
   --color: #333;
   --backgroundColor: #e6e6e6;
 
-  border: 1px solid var(--color);
+
   height: 25px;
-  z-index: 1;
-  position: absolute;
-  width: 400px;
+
+  position: relative;
   display: grid;
   font-family: arial;
+  margin-bottom: 5px;
+
 
   .selectedDay {
-    align-items: center;
-    text-align: right;
     padding: 3px 10px;
+    border: 1px solid var(--color);
   }
 
   .monthWrapper {
+    background-color: #fff;
     border: 1px solid #d6d9dd;
     position: absolute;
-    top: 27px;
+    top: 25px;
     right: 0;
+    z-index: 1;
     display: none;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 
@@ -28,7 +30,13 @@
       display: grid;
     }
   }
-
+  &.isHebrew {
+    direction: rtl;
+    .monthWrapper {
+      right: auto;
+      left: 0;
+    }
+  }
   .navigation {
     display: grid;
     grid-template-columns: 22px 138px 22px;
@@ -68,20 +76,43 @@
     .monthYearSelection {
       display: grid;
       grid-template-columns: auto auto;
+
       select {
         border: 0px;
         outline: 0px;
       }
+
       select:hover {
         cursor: pointer;
         background-color: var(--backgroundColor);
       }
+
       option {
         background-color: #fff;
       }
+
       // option:hover {
       //   background-color: #fff;
       // }
+    }
+  }
+
+  &.isHebrew {
+    .navigation {
+      .arrowLeft {
+        span {
+          transform: rotate(-45deg);
+          -webkit-transform: rotate(-45deg);
+
+        }
+      }
+
+      .arrowRight {
+        span {
+          transform: rotate(135deg);
+          -webkit-transform: rotate(135deg);
+        }
+      }
     }
   }
 

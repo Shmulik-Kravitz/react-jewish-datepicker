@@ -8,11 +8,14 @@
     "build",
     "README.md"
   ],
-  "repository": "https://github.com/Shmulik-Kravitz/react-jewish-datepicker/tree/master/packages/reactJewishDatePicker",
+  "repository": "https://github.com/Shmulik-Kravitz/react-jewish-datepicker",
   "author": "Shmulik Kravitz <29735690+Shmulik-Kravitz@users.noreply.github.com>",
   "license": "GPL-3.0+",
   "scripts": {
-    "build": "rollup --config"
+    "build": "cp README.md ../../ && rollup --config",
+    "dev": "rollup -c -w",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "peerDependencies": {
     "react": "^16.0.0",
@@ -25,6 +28,7 @@
     "hebrew-date": "^1.0.5"
   },
   "devDependencies": {
+    
     "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-html": "^0.2.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
