@@ -19,7 +19,7 @@
 
 
 ## Demo:
-https://react-jewish-datepicker-app.web.app/
+https://react-jewish-datepicker.js.org/
 
 ### Installation
 

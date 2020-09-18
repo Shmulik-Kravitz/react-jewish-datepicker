@@ -1,44 +1,45 @@
 import * as hebrewDateN from 'hebrew-date';
 import * as heDate from 'hebcal';
 import gematriya from 'gematriya';
-
-// import { HDate } from '@hebcal/core';
-
 import * as Dayjs from 'dayjs';
-import { JewishDate, JewishDay, JewishMonthInfo, JewishMonth, BasicJewishMonthInfo } from '../interfaces';
+import { JewishDate, JewishDay, JewishMonthInfo, JewishMonth, BasicJewishMonthInfo, IdText, BasicJewishDate } from './interfaces';
 const dayjs = Dayjs.default;
 const HeDate = heDate.default;
 const hebrewDate = hebrewDateN.default;
 
-export const isMeubar = (year) => {
+export function isValidDate(date: Date | BasicJewishDate): date is Date {
+    return date && Object.prototype.toString.call(date) === "[object Date]";
+  }
+
+export const isMeubar = (year): boolean => {
     const yearindex = year % 19;
     return (yearindex === 0 || yearindex === 3 || yearindex === 6 || yearindex === 8 || yearindex === 11 || yearindex === 14 || yearindex === 17);
 }
 
-export const getHebWeekdays = () => {
+export const getHebWeekdays = (): string[] => {
     return ['א', 'ב', 'ג', 'ד', 'ה', 'ו', 'ש'];
 };
 
-export const getEngWeekdays = () => {
+export const getEngWeekdays = (): string[] => {
     return ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 };
 
-export const getWeekdays = (isHebrew: boolean) => {
+export const getWeekdays = (isHebrew: boolean): string[] => {
     return isHebrew ? getHebWeekdays() : getEngWeekdays();
 };
 
-export const convertToHebrew = (num: number, addGeresh = true, addPunctuate = true) => {
+export const convertToHebrew = (num: number, addGeresh = true, addPunctuate = true): string => {
     return gematriya(num, { geresh: addGeresh, punctuate: addPunctuate });
 }
 
-export const getHebJewishMonthById = (monthId: string) => {
+export const getHebJewishMonthById = (monthId: string): string => {
     const months = getHebJewishMonths();
     const monthIndex = months.map((month) => month.id).indexOf(monthId);
-    
+
     return months[monthIndex].text;
 };
 
-export const getHebJewishMonths = () => {
+export const getHebJewishMonths = (): IdText[] => {
 
     return [{
         id: 'Tishri',
@@ -94,7 +95,7 @@ export const getHebJewishMonths = () => {
     }];
 };
 
-export const getEngJewishMonths = () => {
+export const getEngJewishMonths = (): IdText[] => {
 
     return [{
         id: 'Tishri',
@@ -150,19 +151,19 @@ export const getEngJewishMonths = () => {
     }];
 };
 
-export const getJewishMonths = (year: number, isHebrew?: boolean) => {
+export const getJewishMonths = (year: number, isHebrew?: boolean): IdText[] => {
     const months = isHebrew ? getHebJewishMonths() : getEngJewishMonths();
 
     if (isMeubar(year)) {
         return months;
     } else {
         return months.filter(month => month.id !== 'AdarII').map(month => {
-            if(month.id == 'AdarI') {
+            if (month.id == 'AdarI') {
                 return {
                     id: 'AdarI',
                     text: isHebrew ? 'אדר' : 'Adar',
                 }
-            
+
             } else {
                 return month;
             }
@@ -170,7 +171,7 @@ export const getJewishMonths = (year: number, isHebrew?: boolean) => {
     }
 };
 
-export const getJewishYears = (year: number = 5780) => {
+export const getJewishYears = (year: number = 5780): number[] => {
     const years: number[] = [];
     for (let i = 100; i > 0; i--) {
         const element = year - i;
@@ -221,32 +222,32 @@ export const getNextMonth = (basicJewishMonthInfo: BasicJewishMonthInfo): BasicJ
     return result;
 };
 
-export const getGregDate = (jewishMonth: string, jewishYear: number) => {
-    if (jewishMonth === '' || jewishYear < 1) {
+export const getGregDate = (props: BasicJewishDate): Date => {
+    if (!props || props.monthName === '' || props.year < 1 || props.day < 1) {
         return new Date();
     }
-    if (jewishMonth === 'Heshvan') {
-        jewishMonth = 'Cheshvan';
+    if (props.monthName === 'Heshvan') {
+        props.monthName = 'Cheshvan';
     }
-    const day = new HeDate.HDate(1, jewishMonth, jewishYear);
+    const day = new HeDate.HDate(props.day, props.monthName, props.year);
 
     return day.greg();
 }
 
 export const getJewishMonthInfo = (date: Date): JewishMonthInfo => {
     const jewishDate: JewishDate = getJewishDate(date);
-    const startOfJewishMonth = dayjs(date).subtract(jewishDate.date - 1, 'day');
+    const startOfJewishMonth = dayjs(date).subtract(jewishDate.day - 1, 'day');
     const dayOfWeek: number = Number(startOfJewishMonth.format("d"));
     const sundayStartOfTheMonth = startOfJewishMonth.subtract(dayOfWeek, 'day');
     return { jewishDate, jewishMonth: jewishDate.month, startOfJewishMonth, sundayStartOfTheMonth }
 }
 
-export const formatJewishDate = (jewishDate: JewishDate) => {
-    return `${jewishDate.date} ${jewishDate.monthName} ${jewishDate.year}`;
+export const formatJewishDate = (jewishDate: JewishDate): string => {
+    return `${jewishDate.day} ${jewishDate.monthName} ${jewishDate.year}`;
 }
 
-export const formatJewishDateHebrew = (jewishDate: JewishDate) => {
-    return `${convertToHebrew(jewishDate.date)} ${getHebJewishMonthById(jewishDate.monthName)} ${convertToHebrew(jewishDate.year)}`;
+export const formatJewishDateHebrew = (jewishDate: JewishDate): string => {
+    return `${convertToHebrew(jewishDate.day)} ${getHebJewishMonthById(jewishDate.monthName)} ${convertToHebrew(jewishDate.year)}`;
 }
 
 export const getJewishDate = (date: Date): JewishDate => {
@@ -255,35 +256,40 @@ export const getJewishDate = (date: Date): JewishDate => {
     return {
         year: hebDate.year,
         month: hebDate.month,
-        date: hebDate.date,
+        day: hebDate.date,
         monthName: hebDate.month_name
     }
 }
+export const IsJewishDatesEqual = (jewishDate1: JewishDate, jewishDate2: JewishDate): boolean => {
+    return jewishDate1 && jewishDate2 && jewishDate1.day === jewishDate2.day && jewishDate1.month === jewishDate2.month && jewishDate1.year === jewishDate2.year;
+}
 
-export const getJewishMonth = (date: Date) => {
+export const getJewishMonth = (date: Date): JewishMonth => {
     const jewishMonthInfo = getJewishMonthInfo(date);
 
-    const jewishMonth: JewishMonth = { jewishMonth: jewishMonthInfo.jewishMonth, jewishYear: jewishMonthInfo.jewishDate.year, jewishMonthString: jewishMonthInfo.jewishDate.monthName, days: [] };
+    const jewishMonth: JewishMonth = { selectedDay: null,  jewishMonth: jewishMonthInfo.jewishMonth, jewishYear: jewishMonthInfo.jewishDate.year, jewishMonthString: jewishMonthInfo.jewishDate.monthName, days: [] };
     let currentDate = jewishMonthInfo.sundayStartOfTheMonth;
 
     for (let i = 0; i < 42; i++) {
 
         const jewishDate: JewishDate = getJewishDate(currentDate.toDate());
         const day: JewishDay = {
-            day: jewishDate.date,
-            fullJewishDateString: formatJewishDate(jewishDate),
-            fullHebrewJewishDateString: formatJewishDateHebrew(jewishDate),
+            day: jewishDate.day,
+            jewishDateStr: formatJewishDate(jewishDate),
+            jewishDateStrHebrew: formatJewishDateHebrew(jewishDate),
             jewishDate: jewishDate,
             dayjsDate: currentDate,
             date: currentDate.toDate(),
             isCurrentMonth: jewishMonth.jewishMonth === jewishDate.month
         }
-        
-        if(i < 7 || day.isCurrentMonth || day.date.getDay() > 0) {
+        if (IsJewishDatesEqual(jewishMonthInfo.jewishDate, jewishDate)) {
+            jewishMonth.selectedDay = day;
+        }
+        if (i < 7 || day.isCurrentMonth || day.date.getDay() > 0) {
             jewishMonth.days.push(day);
             currentDate = currentDate.add(1, 'day');
         }
-        
+
     }
 
     return jewishMonth;

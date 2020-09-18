@@ -10,3 +10,16 @@ html {
   padding: 10px;
 }
 
+.app {
+  display: grid;
+  grid-template-columns: repeat(2, 40%);
+  max-width: 770px;
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 600px) {
+  .app {
+    grid-template-columns: 100%;
+    max-width: 100%;
+  }
+}

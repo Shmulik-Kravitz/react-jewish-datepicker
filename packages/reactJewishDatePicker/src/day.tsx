@@ -1,20 +1,19 @@
 import * as React from 'react';
 import "./reactJewishDatePicker.scss";
-import { JewishDay, BasicJewishDay } from './interfaces';
-import { convertToHebrew } from './utils/jewishDateUtils';
+import { JewishDay, BasicJewishDay, convertToHebrew, JewishDate, IsJewishDatesEqual } from '@sk/jewish-dates-core';
 
 export interface DayProps extends JewishDay {
     isHebrew?: boolean;
-    value: string;
+    selectedDay: BasicJewishDay;
     onClick: (day: BasicJewishDay) => void;
 }
 
 export const Day: React.FC<DayProps> = (props: DayProps) => {
     const otherMonthClass = (!props.isCurrentMonth ? "otherMonth" : "");
-    const selectedDayClass = (props.fullJewishDateString === props.value ? "selectedDayFlag" : "");
+    const selectedDayClass = props.selectedDay && (IsJewishDatesEqual(props.jewishDate, props.selectedDay.jewishDate) ? "selectedDayFlag" : "");
 
     const handleClick = () => {
-        const { isHebrew, value, isCurrentMonth, day, dayjsDate, ...basicJewishDay } = props;
+        const { isHebrew, selectedDay, isCurrentMonth, day, dayjsDate, ...basicJewishDay } = props;
         props?.onClick(basicJewishDay);
     };
 

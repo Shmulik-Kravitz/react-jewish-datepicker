@@ -11,15 +11,13 @@
 
 
 
-![npm](https://raw.githubusercontent.com/Shmulik-Kravitz/react-jewish-datepicker/master/images/snapshot_hebrew.png)
-
-![npm](https://raw.githubusercontent.com/Shmulik-Kravitz/react-jewish-datepicker/master/images/snapshot_english.png)
+![npm](https://raw.githubusercontent.com/Shmulik-Kravitz/react-jewish-datepicker/master/images/snapshot.png)
 
 
 
 
 ## Demo:
-https://react-jewish-datepicker-app.web.app/
+https://react-jewish-datepicker.js.org/
 
 ### Installation
 

@@ -6,6 +6,7 @@
         "clean": "rm -rf node_modules"
     },
     "workspaces": [
+        "packages/jewishDatesCore",
         "packages/reactJewishDatePicker",
         "packages/example"
     ],

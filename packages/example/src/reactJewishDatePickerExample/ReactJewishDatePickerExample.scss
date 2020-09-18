@@ -1,5 +1,12 @@
-.ReactJewishDatePickerExample {
-  position: relative;
-  top: 50px;
+.reactJewishDatePickerExample {}
+
+.switch {
+  display: grid;
+  grid-template-columns: 24px auto;
+  margin-bottom: 20px;
+  align-items: end;
+}
+
+.basicJewishDayInfo {
   font-weight: bold;
 }
