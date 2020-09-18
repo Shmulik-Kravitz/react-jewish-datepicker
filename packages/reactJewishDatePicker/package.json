@@ -1,6 +1,6 @@
 {
   "name": "react-jewish-datepicker",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "React jewish datepicker",
   "main": "build/index.js",
   "module": "build/index.es.js",
@@ -13,7 +13,7 @@
   "license": "GPL-3.0+",
   "scripts": {
     "build": "cp README.md ../../ && rollup --config",
-    "dev": "rollup -c -w",
+    "start": "rollup -c -w",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -22,6 +22,7 @@
     "react-dom": "^16.0.0"
   },
   "dependencies": {
+    "@sk/jewish-dates-core": "*",
     "dayjs": "^1.8.29",
     "gematriya": "^2.0.0",
     "hebcal": "^2.3.2",
