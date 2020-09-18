@@ -1,0 +1,50 @@
+{
+  "name": "jewish-dates-core",
+  "version": "1.0.1",
+  "description": "React jewish datepicker",
+  "main": "build/index.js",
+  "module": "build/index.es.js",
+  "files": [
+    "build",
+    "README.md"
+  ],
+  "repository": "https://github.com/Shmulik-Kravitz/react-jewish-datepicker",
+  "author": "Shmulik Kravitz <29735690+Shmulik-Kravitz@users.noreply.github.com>",
+  "license": "GPL-3.0+",
+  "scripts": {
+    "build": "rollup --config",
+    "start": "rollup -c -w",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  },
+  "dependencies": {
+    "dayjs": "^1.8.29",
+    "gematriya": "^2.0.0",
+    "hebcal": "^2.3.2",
+    "hebrew-date": "^1.0.5"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^15.0.0",
+    "@rollup/plugin-html": "^0.2.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@types/gematriya": "^2.0.1",
+    "@types/react": "^16.9.0",
+    "rollup": "^2.13.1",
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-peer-deps-external": "^2.2.2",
+    "rollup-plugin-sass": "^1.2.2",
+    "rollup-plugin-typescript2": "^0.27.1",
+    "tslib": "^2.0.0"
+  },
+  "keywords": [
+    "jewish",
+    "hebrew",
+    "date",
+    "luach",
+    "calendar"
+  ]
+}
