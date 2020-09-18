@@ -65,6 +65,7 @@ export default function App() {
   );
 }
 
+
 ```
 [![Edit react-jewish-datepicker-typescript-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-jewish-datepicker-typescript-example-1myb0?fontsize=14&hidenavigation=1&theme=dark)
 
@@ -85,6 +86,7 @@ export default function App() {
     />
   );
 }
+
 
 
 ```
