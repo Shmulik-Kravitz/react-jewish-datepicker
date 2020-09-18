@@ -1,6 +1,6 @@
 import * as React from 'react';
 import "./reactJewishDatePicker.scss";
-import { getJewishMonths, getJewishYears, getPrevMonth, getNextMonth, convertToHebrew } from '@sk/jewish-dates-core';
+import { getJewishMonths, getJewishYears, getPrevMonth, getNextMonth, convertToHebrew } from 'jewish-dates-core';
 
 
 export interface NavigationProps {

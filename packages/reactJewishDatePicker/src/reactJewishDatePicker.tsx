@@ -1,6 +1,6 @@
 import * as React from 'react';
 import "./reactJewishDatePicker.scss";
-import { getJewishMonth, getWeekdays, getGregDate, BasicJewishDay, BasicJewishDate, isValidDate } from '@sk/jewish-dates-core';
+import { getJewishMonth, getWeekdays, getGregDate, BasicJewishDay, BasicJewishDate, isValidDate } from 'jewish-dates-core';
 
 import { Day } from './day';
 import { Weekday } from './weekday';

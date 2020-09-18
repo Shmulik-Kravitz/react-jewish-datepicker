@@ -1,6 +1,6 @@
 import * as React from 'react';
 import "./reactJewishDatePicker.scss";
-import { JewishDay, BasicJewishDay, convertToHebrew, JewishDate, IsJewishDatesEqual } from '@sk/jewish-dates-core';
+import { JewishDay, BasicJewishDay, convertToHebrew, JewishDate, IsJewishDatesEqual } from 'jewish-dates-core';
 
 export interface DayProps extends JewishDay {
     isHebrew?: boolean;
