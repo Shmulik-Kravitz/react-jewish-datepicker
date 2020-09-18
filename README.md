@@ -34,15 +34,34 @@ npm install react-jewish-datepicker --save
 
 ## TypeScript example:
 ```js
-import * as React from 'react';
-import { ReactJewishDatePicker, BasicJewishDay } from 'react-jewish-datepicker';
+import * as React from "react";
+import {
+  ReactJewishDatePicker,
+  BasicJewishDay,
+  BasicJewishDate
+} from "react-jewish-datepicker";
 
-export const Example: React.FC<{}> = (props: {}) => {
+export default function App() {
   const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
+  const basicJewishDate: BasicJewishDate = {
+    day: 13,
+    monthName: "Elul",
+    year: 5788
+  };
+
   return (
-    <ReactJewishDatePicker isHebrew onClick={(day: BasicJewishDay) => {
-      setBasicJewishDay(day);
-    }} />
+    <>
+      <div>
+        Hebrew:
+        <ReactJewishDatePicker
+          value={basicJewishDate}
+          isHebrew
+          onClick={(day: BasicJewishDay) => {
+            setBasicJewishDay(day);
+          }}
+        />
+      </div>
+    </>
   );
 }
 
@@ -51,17 +70,23 @@ export const Example: React.FC<{}> = (props: {}) => {
 
 ## JavaScript example:
 ```js
-import * as React from 'react';
-import { ReactJewishDatePicker, BasicJewishDay } from 'react-jewish-datepicker';
+import * as React from "react";
+import { ReactJewishDatePicker, BasicJewishDay } from "react-jewish-datepicker";
 
-export function Example() {
+export default function App() {
   const [basicJewishDay, setBasicJewishDay] = React.useState();
   return (
-    <ReactJewishDatePicker isHebrew onClick={(day) => {
-      setBasicJewishDay(day);
-    }} />
+    <ReactJewishDatePicker
+      value={new Date()}
+      isHebrew
+      onClick={(day) => {
+        setBasicJewishDay(day);
+      }}
+    />
   );
 }
+
+
 ```
 [![Edit react-jewish-datepicker-javascript-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/pedantic-gagarin-rdeov?fontsize=14&hidenavigation=1&theme=dark)
 
