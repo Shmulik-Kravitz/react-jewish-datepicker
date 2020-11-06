@@ -5,6 +5,7 @@
 ![license](https://badgen.net/npm/license/react-jewish-datepicker)
 ![size](https://badgen.net/bundlephobia/min/react-jewish-datepicker)
 ![size minzip](https://badgen.net/bundlephobia/minzip/react-jewish-datepicker)
+![downloads](https://badgen.net/npm/dt/react-jewish-datepicker)
 ![stars](https://badgen.net/github/stars/Shmulik-Kravitz/react-jewish-datepicker)
 ![open issues](https://badgen.net/github/open-issues/Shmulik-Kravitz/react-jewish-datepicker)
 ![watchers](https://badgen.net/github/watchers/Shmulik-Kravitz/react-jewish-datepicker)

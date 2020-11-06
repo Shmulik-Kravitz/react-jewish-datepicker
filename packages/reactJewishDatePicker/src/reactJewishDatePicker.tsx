@@ -5,6 +5,7 @@ import { getJewishMonth, getWeekdays, getGregDate, BasicJewishDay, BasicJewishDa
 import { Day } from './day';
 import { Weekday } from './weekday';
 import { Navigation } from './navigation';
+import { getTestID } from './utils';
 
 export interface ReactJewishDatePickerProps {
     // jewishDate?: string;
@@ -18,29 +19,47 @@ export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (prop
         throw new Error("ReactJewishDatePicker: The value can be BasicJewishDate or Date. for Dates use 'value={new Date()}' not 'value={Date()}");
     }
     // const month = getJewishMonth(new Date("2020-05-24"));
-    const date = isValidDate(props.value) ? props.value : getGregDate(props.value);
+    const dateInit = isValidDate(props.value) ? props.value : getGregDate(props.value);
+    const [date, setDate] = React.useState(dateInit);
     const jewishMonth = getJewishMonth(date);
 
     const [selectedDay, setSelectedDay] = React.useState<BasicJewishDay>(props.value && jewishMonth.selectedDay);
-    const [month, setMonth] = React.useState(jewishMonth.jewishMonthString);
-    const [year, setYear] = React.useState<number>(jewishMonth.jewishYear);
     const [isOpen, setOpen] = React.useState(false);
 
     const handleClick = (day: BasicJewishDay) => {
         const fullDate = props.isHebrew ? day.jewishDateStrHebrew : day.jewishDateStr;
 
         setSelectedDay(day);
-        props?.onClick(day);
+        props?.onClick(day); 
         setOpen(!isOpen)
     };
+
+    const setBasicJewishDate = (basicJewishDate: BasicJewishDate) => {
+        const gregDate = getGregDate(basicJewishDate);
+        setDate(gregDate);
+    }; 
+
+    const handleMonthClick = (month: string) => {
+        const basicJewishDate: BasicJewishDate = { year: jewishMonth.jewishYear, monthName: month, day: jewishMonth.selectedDay.day } ;
+        setBasicJewishDate(basicJewishDate);
+    }; 
+    const handleYearClick = (year: number) => {
+        const basicJewishDate: BasicJewishDate = { year: year, monthName: jewishMonth.jewishMonthString, day: jewishMonth.selectedDay.day } ;
+        setBasicJewishDate(basicJewishDate);
+    }; 
+
+    const handleNavigationClick = (month: string, year: number) => {
+        const basicJewishDate: BasicJewishDate = { year: year, monthName: month, day: jewishMonth.selectedDay.day } ;
+        setBasicJewishDate(basicJewishDate);
+    }; 
 
     const classNames = `reactJewishDatePicker${props.isHebrew ? ` isHebrew` : ''}`;
     const selectedDayClass = selectedDay && (props.isHebrew ? selectedDay.jewishDateStrHebrew : selectedDay.jewishDateStr);
     return (
         <div className={classNames}>
-            <div onClick={() => setOpen(!isOpen)} className={`selectedDay`}>{selectedDayClass}</div>
+            <div  data-testid={getTestID('selectedDate')} onClick={() => setOpen(!isOpen)} className={`selectedDate`}>{selectedDayClass}</div>
             <div className={`monthWrapper ${isOpen ? `open` : ``}`}>
-                <Navigation setMonth={setMonth} setYear={setYear} month={month} year={year} isHebrew={props.isHebrew} />
+                <Navigation month={jewishMonth.jewishMonthString} year={jewishMonth.jewishYear} isHebrew={props.isHebrew} onClick={handleNavigationClick} />
                 <div className={`month`}>
                     {getWeekdays(props.isHebrew).map((weekday, index) => {
                         return <Weekday key={index} value={weekday} />

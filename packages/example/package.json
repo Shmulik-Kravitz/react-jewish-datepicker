@@ -15,7 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && cp -r ./build ../../docs",
-    "test": "react-scripts test",
+    "test": "echo test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import "./reactJewishDatePicker.scss";
 import { JewishDay, BasicJewishDay, convertToHebrew, JewishDate, IsJewishDatesEqual } from 'jewish-dates-core';
+import { isFromTest } from './utils';
 
 export interface DayProps extends JewishDay {
     isHebrew?: boolean;
@@ -9,17 +10,24 @@ export interface DayProps extends JewishDay {
 }
 
 export const Day: React.FC<DayProps> = (props: DayProps) => {
-    const otherMonthClass = (!props.isCurrentMonth ? "otherMonth" : "");
-    const selectedDayClass = props.selectedDay && (IsJewishDatesEqual(props.jewishDate, props.selectedDay.jewishDate) ? "selectedDayFlag" : "");
+    
 
     const handleClick = () => {
         const { isHebrew, selectedDay, isCurrentMonth, day, dayjsDate, ...basicJewishDay } = props;
         props?.onClick(basicJewishDay);
     };
 
+    const day = (props.isHebrew ? convertToHebrew(props.day, false, false) : props.day);
+    const title = props.isHebrew ? props.jewishDateStrHebrew : props.jewishDateStr;
+
+
+    const otherMonthClass = (!props.isCurrentMonth ? " otherMonth" : "");
+    const selectedDayClass = props.selectedDay && (IsJewishDatesEqual(props.jewishDate, props.selectedDay.jewishDate) ? " selectedDay" : "");
+    const classNames = `day${otherMonthClass}${selectedDayClass}`;
+
     return (
-        <div className={`day ${otherMonthClass} ${selectedDayClass}`} onClick={handleClick}>
-            {(props.isHebrew ? convertToHebrew(props.day, false, false) : props.day)}
+        <div data-testid={isFromTest() ? title : undefined} className={classNames} title={title} onClick={handleClick}>
+            {day}
         </div>
     )
 }

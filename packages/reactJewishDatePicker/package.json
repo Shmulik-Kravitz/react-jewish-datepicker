@@ -14,6 +14,7 @@
   "scripts": {
     "build": "cp README.md ../../ && rollup --config",
     "start": "rollup -c -w",
+    "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -22,10 +23,6 @@
     "react-dom": "^16.0.0"
   },
   "dependencies": {
-    "dayjs": "^1.8.29",
-    "gematriya": "^2.0.0",
-    "hebcal": "^2.3.2",
-    "hebrew-date": "^1.0.5",
     "jewish-dates-core": "*"
   },
   "devDependencies": {
