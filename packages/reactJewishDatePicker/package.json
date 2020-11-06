@@ -1,6 +1,6 @@
 {
   "name": "react-jewish-datepicker",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "React jewish datepicker",
   "main": "build/index.js",
   "module": "build/index.es.js",
@@ -15,6 +15,7 @@
     "build": "cp README.md ../../ && rollup --config",
     "start": "rollup -c -w",
     "test": "jest",
+    "pub": "yarn publish --no-git-tag-version",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },

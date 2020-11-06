@@ -3,6 +3,8 @@
     "scripts": {
         "build": "yarn workspaces run build",
         "test": "yarn workspaces run test",
+        "pub": "yarn workspaces run pub && yarn run tag",
+        "tag": "git tag v1.0.4",
         "clean": "rm -rf node_modules"
     },
     "workspaces": [

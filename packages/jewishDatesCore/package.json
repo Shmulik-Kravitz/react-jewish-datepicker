@@ -1,6 +1,6 @@
 {
   "name": "jewish-dates-core",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Jewish dates core",
   "main": "build/index.js",
   "module": "build/index.es.js",
@@ -15,6 +15,7 @@
     "build": "rollup --config",
     "start": "rollup -c -w",
     "test": "echo test",
+    "pub": "yarn publish --no-git-tag-version",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -36,8 +37,8 @@
     "@types/react": "^16.9.0",
     "rollup": "^2.13.1",
     "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-node-externals": "^2.2.0",
     "rollup-plugin-peer-deps-external": "^2.2.2",
-    "rollup-plugin-node-externals":"^2.2.0",
     "rollup-plugin-sass": "^1.2.2",
     "rollup-plugin-typescript2": "^0.27.1",
     "tslib": "^2.0.0"
