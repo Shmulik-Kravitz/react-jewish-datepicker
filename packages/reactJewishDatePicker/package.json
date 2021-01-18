@@ -1,6 +1,6 @@
 {
   "name": "react-jewish-datepicker",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "React jewish datepicker",
   "main": "build/index.js",
   "module": "build/index.es.js",
@@ -24,7 +24,7 @@
     "react-dom": "^16.0.0"
   },
   "dependencies": {
-    "jewish-dates-core": "^1.0.7",
+    "jewish-dates-core": "^1.0.8",
     "tslib": "^2.1.0"
   },
   "devDependencies": {
