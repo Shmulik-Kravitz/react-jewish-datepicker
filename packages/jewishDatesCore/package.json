@@ -1,6 +1,6 @@
 {
   "name": "jewish-dates-core",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Jewish dates core",
   "main": "build/index.js",
   "module": "build/index.es.js",
@@ -28,7 +28,7 @@
     "gematriya": "^2.0.0",
     "hebcal": "^2.3.2",
     "hebrew-date": "^1.0.5",
-    "tslib": "^2.0.1"
+    "tslib": "^2.1.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^15.0.0",
