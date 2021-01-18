@@ -8,7 +8,7 @@ import { Navigation } from './navigation';
 import { getTestID } from './utils';
 
 export interface ReactJewishDatePickerProps {
-    // jewishDate?: string;
+    className?: string;
     onClick: (day: BasicJewishDay) => void;
     value?: BasicJewishDate | Date;
     isHebrew: boolean;
@@ -53,7 +53,7 @@ export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (prop
         setBasicJewishDate(basicJewishDate);
     }; 
 
-    const classNames = `reactJewishDatePicker${props.isHebrew ? ` isHebrew` : ''}`;
+    const classNames = `reactJewishDatePicker${props.isHebrew ? ` isHebrew` : ''} ${props.className || ''}`;
     const selectedDayClass = selectedDay && (props.isHebrew ? selectedDay.jewishDateStrHebrew : selectedDay.jewishDateStr);
     return (
         <div className={classNames}>
