@@ -1,6 +1,6 @@
 {
   "name": "jewish-dates-core",
-  "version": "1.0.9",
+  "version": "1.0.18",
   "description": "Jewish dates core",
   "main": "build/index.js",
   "module": "build/index.es.js",
@@ -15,13 +15,11 @@
     "build": "rollup --config",
     "start": "rollup -c -w",
     "test": "echo test",
-    "pub": "yarn publish --no-git-tag-version",
+    "inc": "yarn version patch",
+    "pub": "yarn npm publish",
+    "np": "np patch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
-  },
-  "peerDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
   },
   "dependencies": {
     "dayjs": "^1.8.29",

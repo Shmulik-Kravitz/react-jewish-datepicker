@@ -93,6 +93,10 @@ export default function App() {
 ```
 [![Edit react-jewish-datepicker-javascript-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/pedantic-gagarin-rdeov?fontsize=14&hidenavigation=1&theme=dark)
 
+
+
+https://stackblitz.com/edit/react-jewish-datepicker-typescript-example
+
 ## Contributors
 <div>Shmulik Kravitz</div>
 <div>Sagi Tawil</div>

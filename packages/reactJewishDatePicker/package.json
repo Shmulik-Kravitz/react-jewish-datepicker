@@ -1,6 +1,6 @@
 {
   "name": "react-jewish-datepicker",
-  "version": "1.0.9",
+  "version": "1.0.18",
   "description": "React jewish datepicker",
   "main": "build/index.js",
   "module": "build/index.es.js",
@@ -15,16 +15,18 @@
     "build": "cp README.md ../../ && rollup --config",
     "start": "rollup -c -w",
     "test": "jest",
-    "pub": "yarn publish --no-git-tag-version",
+    "inc": "yarn version patch",
+    "pub": "yarn npm publish",
+    "np": "np patch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
   "peerDependencies": {
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react": "16 || 17",
+    "react-dom": "16 || 17"
   },
   "dependencies": {
-    "jewish-dates-core": "^1.0.9",
+    "jewish-dates-core": "workspace:*",
     "tslib": "^2.1.0"
   },
   "devDependencies": {
@@ -32,6 +34,7 @@
     "@rollup/plugin-html": "^0.2.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@types/gematriya": "^2.0.1",
+    "@types/node": "^14.14.31",
     "@types/react": "^16.9.0",
     "rollup": "^2.13.1",
     "rollup-plugin-copy": "^3.3.0",

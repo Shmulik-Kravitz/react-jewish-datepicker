@@ -1,21 +1,22 @@
 {
   "name": "example",
-  "version": "0.1.0",
+  "version": "1.0.21",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.3",
     "@testing-library/react": "^10.4.8",
     "@testing-library/user-event": "^12.1.1",
     "@types/jest": "^26.0.10",
-    "@types/node": "^12.0.0",
+    "@types/node": "^14.14.31",
     "lodash": "^4.17.21",
-    "react-jewish-datepicker": "*",
+    "react-jewish-datepicker": "workspace:*",
     "react-scripts": "3.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && cp -R -a -f ./build/. ../../docs/ && echo copy to docs done",
     "test": "echo test",
+    "inc": "yarn version patch",
     "pub": "echo publish",
     "eject": "react-scripts eject"
   },
@@ -33,5 +34,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }  
+  }
 }
