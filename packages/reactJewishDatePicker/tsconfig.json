@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
       "declaration": true,
+      "types": ["@types/node", "@types/jest", "@testing-library/jest-dom"],
       "declarationDir": "build",
       "outDir": "dist",
       "module": "ESNext",

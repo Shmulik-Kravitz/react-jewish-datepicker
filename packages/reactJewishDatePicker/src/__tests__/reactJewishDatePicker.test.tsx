@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
 import { BasicJewishDate, BasicJewishDay, ReactJewishDatePicker } from '..'
 import { getEngJewishMonths } from 'jewish-dates-core';
-
 
 test('change month', async () => {
   const basicJewishDate: BasicJewishDate = {
