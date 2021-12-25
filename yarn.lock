@@ -5132,6 +5132,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"are-passive-events-supported@npm:^1.1.0":
+  version: 1.1.1
+  resolution: "are-passive-events-supported@npm:1.1.1"
+  checksum: 3295a7b3aeb026d26c1b256decdb5ded8bf26f6c02fd0b37c63c7dc9affd57b7474ee9b6230b5d5ac4f0fc624a19acdcfdd76c5155025d97cc7d8bb5dc83e61b
+  languageName: node
+  linkType: hard
+
 "are-we-there-yet@npm:~1.1.2":
   version: 1.1.5
   resolution: "are-we-there-yet@npm:1.1.5"
@@ -13719,7 +13726,6 @@ fsevents@^1.2.7:
     "@rollup/plugin-html": ^0.2.0
     "@rollup/plugin-node-resolve": ^9.0.0
     "@types/gematriya": ^2.0.1
-    "@types/react": ^16.9.0
     dayjs: ^1.8.29
     gematriya: ^2.0.0
     hebcal: ^2.3.2
@@ -13731,9 +13737,6 @@ fsevents@^1.2.7:
     rollup-plugin-sass: ^1.2.2
     rollup-plugin-typescript2: ^0.27.1
     tslib: ^2.1.0
-  peerDependencies:
-    react: ^16.0.0
-    react-dom: ^16.0.0
   languageName: unknown
   linkType: soft
 
@@ -18239,6 +18242,7 @@ fsevents@^1.2.7:
     rollup-plugin-sass: ^1.2.2
     rollup-plugin-typescript2: ^0.27.1
     tslib: ^2.1.0
+    use-onclickoutside: ^0.4.0
   peerDependencies:
     react: 16 || 17
     react-dom: 16 || 17
@@ -21793,6 +21797,18 @@ typescript@^3.9.7:
     "@types/react":
       optional: true
   checksum: d865c59cca002d53ebb16da4ca6198c5e40d513fb65816449a9507b70753b31b436bf90afab5ac55f3ffc65671d23a0bd48d1f4bcc35f6866313c1f9360c1f21
+  languageName: node
+  linkType: hard
+
+"use-onclickoutside@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "use-onclickoutside@npm:0.4.0"
+  dependencies:
+    are-passive-events-supported: ^1.1.0
+    use-latest: ^1.0.0
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0
+  checksum: bef953e5138736f6cb67ba8c7343ff6fc6bb25b758ad0e0a8776c5f2ec9b6818be50a67d7d24f15d06d521ad90fccb06c3acaabf1cafda64e4f546fd306122cc
   languageName: node
   linkType: hard
 

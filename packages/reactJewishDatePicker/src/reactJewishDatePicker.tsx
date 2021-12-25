@@ -1,4 +1,5 @@
 import * as React from 'react';
+import useOnClickOutside from 'use-onclickoutside';
 import "./reactJewishDatePicker.scss";
 import { getJewishMonth, getWeekdays, getGregDate, BasicJewishDay, BasicJewishDate, isValidDate } from 'jewish-dates-core';
 
@@ -25,6 +26,10 @@ export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (prop
 
     const [selectedDay, setSelectedDay] = React.useState<BasicJewishDay>(props.value && jewishMonth.selectedDay);
     const [isOpen, setOpen] = React.useState(false);
+    const ref = React.useRef(null)
+    useOnClickOutside(ref, () => {
+        setOpen(false);
+    });
 
     const handleClick = (day: BasicJewishDay) => {
         const fullDate = props.isHebrew ? day.jewishDateStrHebrew : day.jewishDateStr;
@@ -39,15 +44,6 @@ export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (prop
         setDate(gregDate);
     }; 
 
-    const handleMonthClick = (month: string) => {
-        const basicJewishDate: BasicJewishDate = { year: jewishMonth.jewishYear, monthName: month, day: jewishMonth.selectedDay.day } ;
-        setBasicJewishDate(basicJewishDate);
-    }; 
-    const handleYearClick = (year: number) => {
-        const basicJewishDate: BasicJewishDate = { year: year, monthName: jewishMonth.jewishMonthString, day: jewishMonth.selectedDay.day } ;
-        setBasicJewishDate(basicJewishDate);
-    }; 
-
     const handleNavigationClick = (month: string, year: number) => {
         const basicJewishDate: BasicJewishDate = { year: year, monthName: month, day: jewishMonth.selectedDay.day } ;
         setBasicJewishDate(basicJewishDate);
@@ -56,7 +52,7 @@ export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (prop
     const classNames = `reactJewishDatePicker${props.isHebrew ? ` isHebrew` : ''} ${props.className || ''}`;
     const selectedDayClass = selectedDay && (props.isHebrew ? selectedDay.jewishDateStrHebrew : selectedDay.jewishDateStr);
     return (
-        <div className={classNames}>
+        <div ref={ref} className={classNames}>
             <div  data-testid={getTestID('selectedDate')} onClick={() => setOpen(!isOpen)} className={`selectedDate`}>{selectedDayClass}</div>
             <div className={`monthWrapper ${isOpen ? `open` : ``}`}>
                 <Navigation month={jewishMonth.jewishMonthString} year={jewishMonth.jewishYear} isHebrew={props.isHebrew} onClick={handleNavigationClick} />
