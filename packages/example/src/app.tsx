@@ -1,7 +1,27 @@
-import * as React from 'react';
-import { ReactJewishDatePickerExample } from './reactJewishDatePickerExample';
-import './app.css';
-import { BasicJewishDate } from 'react-jewish-datepicker';
+import * as React from "react";
+import { ReactJewishDatePickerExample } from "./reactJewishDatePickerExample";
+import "./app.css";
+import { BasicJewishDate } from "react-jewish-datepicker";
+import { HiOutlineClipboard, HiOutlineClipboardCheck } from "react-icons/hi";
+
+import {
+  disableHolidays,
+  disableShabat,
+  disableShabatAndHolidays,
+  disableOutOfRange,
+  addDates,
+  subtractDates,
+} from "jewish-dates-core";
+
+import {
+  englishCode,
+  hebrewCode,
+  disableHolidayCode,
+  disableShabatCode,
+  disableShabatAndHolidaysCode,
+  SelectionWithinRangeCode,
+  rangeCode,
+} from "./code";
 
 export function App() {
   const date: Date = new Date();
@@ -9,12 +29,154 @@ export function App() {
   const basicJewishDate: BasicJewishDate = {
     day: 13,
     monthName: "Elul",
-    year: 5788
+    year: 5788,
   };
- return (
-    <div className="app">
-      <ReactJewishDatePickerExample value={date} />
-      <ReactJewishDatePickerExample value={basicJewishDate} isHebrew />
+
+  const handleAnchorClick = (e: React.MouseEvent<HTMLElement>, id: string) => {
+    e.preventDefault();
+    window.history.replaceState(null, document.title, `#${id}`);
+    document.getElementById(id)!.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const allowedSelectionRange = disableOutOfRange(subtractDates(date, 3), addDates(date, 5));
+  const [isCopied, setIsCopied] = React.useState(false);
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setIsCopied(true)
+    setTimeout(() => {
+      setIsCopied(false)
+    }, 1500);
+  }
+
+  return (
+    <div className="main">
+      <header>
+        <span>BH</span>
+        <h1>React Jewish Datepicker</h1>
+      </header>
+      <div className="meta">
+        <span>
+          <a href="https://www.npmjs.com/package/react-jewish-datepicker">
+            <img src="https://camo.githubusercontent.com/df2b275fd607a2b248dc1d7645f26cabf040c1afac1a2b8a50b24191635dcf8b/68747470733a2f2f62616467652e667572792e696f2f6a732f72656163742d6a65776973682d646174657069636b65722e737667" alt="" />
+          </a>
+        </span>
+        <span>
+          <img src="https://github.com/Shmulik-Kravitz/react-jewish-datepicker/workflows/CI/badge.svg?branch=master" alt="" />
+        </span>
+        <span>
+          <img src="https://camo.githubusercontent.com/1490f940d6bc796efc2edad780bf33f3fd01b86b194b1ae009d9a28fd6ac1dd9/68747470733a2f2f62616467656e2e6e65742f6e706d2f64742f72656163742d6a65776973682d646174657069636b6572" alt="" />
+        </span>
+        <span>
+          <img src="https://camo.githubusercontent.com/b61fde28036b7562db1cfc9091af9dab87a751a2d0f26fca916589d579f46a02/68747470733a2f2f62616467656e2e6e65742f6e706d2f6c6963656e73652f72656163742d6a65776973682d646174657069636b6572" alt="" />
+        </span>
+        <span>
+          <img src="https://camo.githubusercontent.com/942251b8989beb0a7757bca463a583d192bccf4977a310543e954130b601a5e5/68747470733a2f2f62616467656e2e6e65742f62756e646c6570686f6269612f6d696e2f72656163742d6a65776973682d646174657069636b6572" alt="" />
+        </span>
+        <span>
+          <img src="https://camo.githubusercontent.com/34f06db740d21cb30e977379926f55683184b380b2d4c7be1de21ffc029e30a8/68747470733a2f2f62616467656e2e6e65742f6769746875622f73746172732f53686d756c696b2d4b72617669747a2f72656163742d6a65776973682d646174657069636b6572" alt="" />
+        </span>
+      </div>
+      <div className="app">
+        <div>
+          <h2>Installation</h2>
+          <p>Install the package via Yarn:</p>
+          <code className="install">yarn add react-jewish-datepicker
+            <button
+              className="installCopy"
+              onClick={() => copyToClipboard('yarn add react-jewish-datepicker')}
+            >
+              {isCopied ? <HiOutlineClipboardCheck /> : <HiOutlineClipboard />}
+            </button>
+          </code> 
+          <p>Or via npm:</p>
+          <code className="install">
+            npm install react-jewish-datepicker --save
+            <button
+              className="installCopy"
+              onClick={() => copyToClipboard('npm install react-jewish-datepicker --save')}
+            >
+              {isCopied ? <HiOutlineClipboardCheck /> : <HiOutlineClipboard />}
+            </button>
+          </code>
+        </div>
+        <h2 className="examples-h2">Examples</h2>
+        <div className="examples">
+          <div>
+            <ul>
+              <li><a href="#english" onClick={(e) => handleAnchorClick(e, 'english')}>English View</a></li>
+              <li><a href="#hebrew" onClick={(e) => handleAnchorClick(e, 'hebrew')}>Hebrew View</a></li>
+              <li><a href="#holidays" onClick={(e) => handleAnchorClick(e, 'holidays')}>Holidays Selection Disabled</a></li>
+              <li><a href="#shabat" onClick={(e) => handleAnchorClick(e, 'shabat')}>Shabat Selection Disabled</a></li>
+              <li><a href="#shabatAndHolidays" onClick={(e) => handleAnchorClick(e, 'shabatAndHolidays')}>Shabat and Holidays Selection Disabled</a></li>
+              <li><a href="#outOfRange" onClick={(e) => handleAnchorClick(e, 'outOfRange')}>Selection Within Range</a></li>
+              <li><a href="#range" onClick={(e) => handleAnchorClick(e, 'range')}>Range datepicker</a></li>
+            </ul>
+          </div>
+          <div>
+            <div id="english">
+              <h3>English View</h3>
+              <ReactJewishDatePickerExample value={date} code={englishCode} />
+            </div>
+            <div id="hebrew">
+              <h3>Hebrew View</h3>
+              <ReactJewishDatePickerExample
+                value={basicJewishDate}
+                isHebrew
+                code={hebrewCode}
+              />
+            </div>
+            <div id="holidays">
+              <h3>Holidays Selection Disabled</h3>
+              <ReactJewishDatePickerExample
+                value={date}
+                isHebrew
+                canSelect={disableHolidays}
+                il
+                code={disableHolidayCode}
+              />
+            </div>
+            <div id="shabat">
+              <h3>Shabat Selection Disabled</h3>
+              <ReactJewishDatePickerExample
+                value={date}
+                isHebrew
+                canSelect={disableShabat}
+                il
+                code={disableShabatCode}
+              />
+            </div>
+            <div id="shabatAndHolidays">
+              <h3>Shabat and Holidays Selection Disabled</h3>
+              <ReactJewishDatePickerExample
+                value={date}
+                isHebrew
+                canSelect={disableShabatAndHolidays}
+                il
+                code={disableShabatAndHolidaysCode}
+              />
+            </div>
+            <div id="outOfRange">
+              <h3>Selection Within Range</h3>
+              <ReactJewishDatePickerExample
+                value={date}
+                isHebrew
+                canSelect={allowedSelectionRange}
+                code={SelectionWithinRangeCode}
+              />
+            </div>
+            <div id="range">
+              <h3>Range Datepicker</h3>
+              <ReactJewishDatePickerExample
+                value={date}
+                isHebrew
+                code={rangeCode}
+                rangePicker
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

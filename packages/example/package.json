@@ -8,9 +8,12 @@
     "@testing-library/user-event": "^12.1.1",
     "@types/jest": "^26.0.10",
     "@types/node": "^14.14.31",
+    "dayjs": "^1.10.7",
     "lodash": "^4.17.21",
+    "react-icons": "^4.3.1",
     "react-jewish-datepicker": "workspace:*",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "react-syntax-highlighter": "^15.4.5"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -22,6 +22,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@hebcal/core": "^3.31.1",
     "dayjs": "^1.8.29",
     "gematriya": "^2.0.0",
     "hebcal": "^2.3.2",

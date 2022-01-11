@@ -8,5 +8,75 @@
 }
 
 .basicJewishDayInfo {
-  font-weight: bold;
+  margin-top: 25%;
+
+  .isRange {
+    margin-top: 5%;
+  }
+}
+
+.demo {
+  display: grid;
+  grid-template-columns: 58% 42%;
+  justify-content: space-between;
+  line-height: 20px;
+  background-color: #ffffff;
+  border: 1px solid #d3d3d3;
+  border-radius: 0 0 5px 5px;
+  position: relative;
+  margin-bottom: 40px;
+
+  & > pre {
+    margin: 0;
+    border-right: 1px solid #d3e2ff;
+    padding: 10px 15px !important;
+    border-radius: 0 0 0 5px;
+  }
+}
+
+code, .exsample pre {
+  font-family: monospace !important;
+  font-size: 14px;
+  font-weight: 100;
+}
+
+.copy {
+  position: absolute;
+  top: 1%;
+  right: 43%;
+  padding: 5px 1px 2px 2px;
+  cursor: pointer;
+  border: 1px solid #fafafa;
+  border-radius: 3px;
+  transition: 0.2s ease-in-out;
+  color: #858585;
+  background-color: #fafafa;
+
+  &:hover {
+    color: #505050;
+  }
+  &:active {
+    transform: scale(1.01);
+  }
+}
+
+.example {
+  padding: 15px;
+  min-height: 280px;
+}
+
+@media only screen and (max-width: 870px) {
+  .demo {
+    grid-template-columns: 100%;
+
+    & > pre {
+      border-right: none;
+      border-bottom: 1px solid #d3e2ff;
+      border-radius: 0;
+    }
+  }
+
+  .copy {
+    right: 1%;
+  }
 }

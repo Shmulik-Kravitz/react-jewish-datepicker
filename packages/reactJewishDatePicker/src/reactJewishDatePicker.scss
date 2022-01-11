@@ -8,18 +8,35 @@
   margin-bottom: 5px;
   cursor: pointer;
 
-  .selectedDate {
-    padding: 1px 9px;
+  .selectedDate, .selectedRange {
+    padding: 2px 15px 2px 5px;
     border: 1px solid var(--color);
+    border-radius: 4px;
     user-select: none;
+    max-width: 125px;
+    min-height: 20px;
+    text-align: center;
+    position: relative;
+    font-size: smaller;
+  }
+
+  .selectedRange {
+    max-width: 230px;
+  }
+
+  .calendarIcon {
+    font-size: 16px;
+    position: absolute;
+    right: 5px;
+    top: 4px;
   }
 
   .monthWrapper {
     background-color: #fff;
     border: 1px solid #d6d9dd;
+    border-radius: 5px;
     position: absolute;
-    top: 25px;
-    right: 0;
+    top: 32px;
     z-index: 1;
     display: grid;
     transform: scaleY(0);    
@@ -27,7 +44,7 @@
     transition: transform 0.26s ease;
     transition: max-height 0.5s ease-out;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-    transition: all 0.5s ease-in-out;
+    transition: all 0.4s ease-in-out;
 
     &.open {
       transform: scaleY(1);
@@ -35,9 +52,18 @@
   }
   &.isHebrew {
     direction: rtl;
-    .monthWrapper {
-      right: auto;
-      left: 0;
+    .startDay {
+      background: cornflowerblue;
+      border-radius: 0 7px 7px 0;
+      color: #fff;
+      margin: 1px 0;
+    }
+  
+    .endDay {
+      background: cornflowerblue;
+      border-radius: 7px 0 0 7px;
+      color: #fff;
+      margin: 1px 0;
     }
   }
   .navigation {
@@ -45,6 +71,8 @@
     grid-template-columns: 22px 138px 22px;
     justify-content: space-between;
     height: 22px;
+    padding: 5px;
+
 
     .arrowRight,
     .arrowLeft {
@@ -125,12 +153,22 @@
     background-color: white;
     display: grid;
     width: 250px;
-    height: 210px;
+    height: 180px;
+    border-radius: 5px;
+    padding: 2px;
+  }
+
+  .weekdayWrapper {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: #001476;
+    padding: 2px;
   }
 
   .weekday,
   .day {
     display: grid;
+    margin: 1px;
     align-items: center;
     justify-content: center;
     user-select: none;
@@ -143,7 +181,7 @@
   }
 
   .weekday {
-    color: #000;
+    color: #fff;
     font-weight: bold;
   }
 
@@ -155,5 +193,35 @@
   .selectedDay {
     background: cornflowerblue;
     color: #fff;
+  }
+
+  .startDay {
+    background: cornflowerblue;
+    border-radius: 7px 0 0 7px;
+    color: #fff;
+    margin: 1px 0;
+  }
+
+  .isInRange {
+    background-color: rgb(145, 182, 250);
+    color: #fff;
+    border-radius: 0;
+    margin: 1px 0;
+  }
+
+  .endDay {
+    background: cornflowerblue;
+    border-radius: 0 7px 7px 0;
+    color: #fff;
+    margin: 1px 0;
+  }
+
+  .startDay:hover, .isInRange:hover, .endDay:hover {
+    background: cornflowerblue;
+  }
+
+  .noSelect {
+    pointer-events: none;
+    background-color: rgb(243, 243, 243);
   }
 }
