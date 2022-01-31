@@ -8,11 +8,8 @@
 }
 
 .basicJewishDayInfo {
-  margin-top: 25%;
-
-  .isRange {
-    margin-top: 5%;
-  }
+  margin-top: 5%;
+  direction: ltr;
 }
 
 .demo {
@@ -63,6 +60,22 @@ code, .exsample pre {
 .example {
   padding: 15px;
   min-height: 280px;
+  
+  &.isHebrew {
+    direction: rtl;
+  }
+
+  h4 {
+    margin: 5px;
+  }
+}
+
+.pickerWrapper {
+  max-width: 145px;
+
+  &.isRange {
+    max-width: 250px;
+  }
 }
 
 @media only screen and (max-width: 870px) {

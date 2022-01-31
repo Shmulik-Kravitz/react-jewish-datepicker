@@ -1,14 +1,15 @@
 import * as React from "react";
 import { ReactJewishDatePickerExample } from "./reactJewishDatePickerExample";
 import "./app.css";
-import { BasicJewishDate } from "react-jewish-datepicker";
-import { HiOutlineClipboard, HiOutlineClipboardCheck } from "react-icons/hi";
+import { BasicJewishDate, BasicJewishDay, BasicJewishDateRange, DateRange } from "react-jewish-datepicker";
+import { HiOutlineClipboard } from "@react-icons/all-files/hi/HiOutlineClipboard"; 
+import { HiOutlineClipboardCheck } from "@react-icons/all-files/hi/HiOutlineClipboardCheck";
 
 import {
-  disableHolidays,
-  disableShabat,
-  disableShabatAndHolidays,
-  disableOutOfRange,
+  dontSelectHolidays,
+  dontSelectShabat,
+  dontSelectShabatAndHolidays,
+  dontSelectOutOfRange,
   addDates,
   subtractDates,
 } from "jewish-dates-core";
@@ -16,12 +17,20 @@ import {
 import {
   englishCode,
   hebrewCode,
-  disableHolidayCode,
-  disableShabatCode,
-  disableShabatAndHolidaysCode,
-  SelectionWithinRangeCode,
+  dontSelectHolidayCode,
+  dontSelectShabatCode,
+  dontSelectShabatAndHolidaysCode,
+  selectionWithinRangeCode,
+  disableWithCustomFunctionCode,
   rangeCode,
 } from "./code";
+
+const dontSelectTuesdays = (day: BasicJewishDay): boolean => {
+  if (day.date.getDay() === 2) {
+    return false;
+  }
+  return true;
+}
 
 export function App() {
   const date: Date = new Date();
@@ -32,20 +41,36 @@ export function App() {
     year: 5788,
   };
 
+  const basicJewishDateRange: BasicJewishDateRange = {
+    startDate: {
+      day: 13,
+      monthName: "Elul",
+      year: 5788,
+    },
+    endDate: {
+      day: 18,
+      monthName: "Elul",
+      year: 5788,
+    },
+  };
+
   const handleAnchorClick = (e: React.MouseEvent<HTMLElement>, id: string) => {
     e.preventDefault();
     window.history.replaceState(null, document.title, `#${id}`);
     document.getElementById(id)!.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const allowedSelectionRange = disableOutOfRange(subtractDates(date, 3), addDates(date, 5));
-  const [isCopied, setIsCopied] = React.useState(false);
+  const excludeHolidays = dontSelectHolidays(true);
+  const excludeShabatAndHolidays = dontSelectShabatAndHolidays();
+  const allowedSelectionRange = dontSelectOutOfRange(subtractDates(date, 3), addDates(date, 5));
+  const [isYarnCopied, setIsYarnCopied] = React.useState(false);
+  const [isNpmCopied, setIsNpmCopied] = React.useState(false);
 
-  const copyToClipboard = (text: string) => {
+  const copyToClipboard = (text: string, id: string) => {
     navigator.clipboard.writeText(text);
-    setIsCopied(true)
+    id === 'yarn' ? setIsYarnCopied(true) : setIsNpmCopied(true);
     setTimeout(() => {
-      setIsCopied(false)
+      id === 'yarn' ? setIsYarnCopied(false) : setIsNpmCopied(false);
     }, 1500);
   }
 
@@ -84,9 +109,9 @@ export function App() {
           <code className="install">yarn add react-jewish-datepicker
             <button
               className="installCopy"
-              onClick={() => copyToClipboard('yarn add react-jewish-datepicker')}
+              onClick={() => copyToClipboard('yarn add react-jewish-datepicker', 'yarn')}
             >
-              {isCopied ? <HiOutlineClipboardCheck /> : <HiOutlineClipboard />}
+              {isYarnCopied ? <HiOutlineClipboardCheck /> : <HiOutlineClipboard />}
             </button>
           </code> 
           <p>Or via npm:</p>
@@ -94,9 +119,9 @@ export function App() {
             npm install react-jewish-datepicker --save
             <button
               className="installCopy"
-              onClick={() => copyToClipboard('npm install react-jewish-datepicker --save')}
+              onClick={() => copyToClipboard('npm install react-jewish-datepicker --save', 'npm')}
             >
-              {isCopied ? <HiOutlineClipboardCheck /> : <HiOutlineClipboard />}
+              {isNpmCopied ? <HiOutlineClipboardCheck /> : <HiOutlineClipboard />}
             </button>
           </code>
         </div>
@@ -106,11 +131,12 @@ export function App() {
             <ul>
               <li><a href="#english" onClick={(e) => handleAnchorClick(e, 'english')}>English View</a></li>
               <li><a href="#hebrew" onClick={(e) => handleAnchorClick(e, 'hebrew')}>Hebrew View</a></li>
-              <li><a href="#holidays" onClick={(e) => handleAnchorClick(e, 'holidays')}>Holidays Selection Disabled</a></li>
-              <li><a href="#shabat" onClick={(e) => handleAnchorClick(e, 'shabat')}>Shabat Selection Disabled</a></li>
-              <li><a href="#shabatAndHolidays" onClick={(e) => handleAnchorClick(e, 'shabatAndHolidays')}>Shabat and Holidays Selection Disabled</a></li>
-              <li><a href="#outOfRange" onClick={(e) => handleAnchorClick(e, 'outOfRange')}>Selection Within Range</a></li>
-              <li><a href="#range" onClick={(e) => handleAnchorClick(e, 'range')}>Range datepicker</a></li>
+              <li><a href="#disableHolidays" onClick={(e) => handleAnchorClick(e, 'disableHolidays')}>Holidays Selection Disabled</a></li>
+              <li><a href="#disableShabat" onClick={(e) => handleAnchorClick(e, 'disableShabat')}>Shabat Selection Disabled</a></li>
+              <li><a href="#disableShabatAndHolidays" onClick={(e) => handleAnchorClick(e, 'disableShabatAndHolidays')}>Shabat and Holidays Selection Disabled</a></li>
+              <li><a href="#selectionWithinRange" onClick={(e) => handleAnchorClick(e, 'selectionWithinRange')}>Selection Within Range</a></li>
+              <li><a href="#disableWithCustomFunction" onClick={(e) => handleAnchorClick(e, 'disableWithCustomFunction')}>Disable Days With Custom Function</a></li>
+              <li><a href="#rangePicker" onClick={(e) => handleAnchorClick(e, 'rangePicker')}>Range datepicker</a></li>
             </ul>
           </div>
           <div>
@@ -126,52 +152,58 @@ export function App() {
                 code={hebrewCode}
               />
             </div>
-            <div id="holidays">
+            <div id="disableHolidays">
               <h3>Holidays Selection Disabled</h3>
               <ReactJewishDatePickerExample
                 value={date}
                 isHebrew
-                canSelect={disableHolidays}
-                il
-                code={disableHolidayCode}
+                canSelect={excludeHolidays}
+                code={dontSelectHolidayCode}
               />
             </div>
-            <div id="shabat">
+            <div id="disableShabat">
               <h3>Shabat Selection Disabled</h3>
               <ReactJewishDatePickerExample
                 value={date}
                 isHebrew
-                canSelect={disableShabat}
-                il
-                code={disableShabatCode}
+                canSelect={dontSelectShabat}
+                code={dontSelectShabatCode}
               />
             </div>
-            <div id="shabatAndHolidays">
+            <div id="disableShabatAndHolidays">
               <h3>Shabat and Holidays Selection Disabled</h3>
               <ReactJewishDatePickerExample
                 value={date}
                 isHebrew
-                canSelect={disableShabatAndHolidays}
-                il
-                code={disableShabatAndHolidaysCode}
+                canSelect={excludeShabatAndHolidays}
+                code={dontSelectShabatAndHolidaysCode}
               />
             </div>
-            <div id="outOfRange">
+            <div id="selectionWithinRange">
               <h3>Selection Within Range</h3>
               <ReactJewishDatePickerExample
                 value={date}
                 isHebrew
                 canSelect={allowedSelectionRange}
-                code={SelectionWithinRangeCode}
+                code={selectionWithinRangeCode}
               />
             </div>
-            <div id="range">
-              <h3>Range Datepicker</h3>
+            <div id="disableWithCustomFunction">
+              <h3>Disable Days With Custom Function</h3>
               <ReactJewishDatePickerExample
                 value={date}
                 isHebrew
+                canSelect={dontSelectTuesdays}
+                code={disableWithCustomFunctionCode}
+              />
+            </div>
+            <div id="rangePicker">
+              <h3>Range Datepicker</h3>
+              <ReactJewishDatePickerExample
+                value={basicJewishDateRange}
+                isHebrew
                 code={rangeCode}
-                rangePicker
+                isRange
               />
             </div>
           </div>

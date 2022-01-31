@@ -2250,13 +2250,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hebcal/core@npm:^3.31.1":
-  version: 3.31.3
-  resolution: "@hebcal/core@npm:3.31.3"
-  checksum: 8c315f70e109a26a90e308a30b47bd4592fdcf5c5d6c0b030c69b946fbdd0ce46ac2d2956a85ad1b59367dcfb01e7e2218a2bf55dc963cebf243978456aa3bd7
-  languageName: node
-  linkType: hard
-
 "@icons/material@npm:^0.2.4":
   version: 0.2.4
   resolution: "@icons/material@npm:0.2.4"
@@ -2822,6 +2815,15 @@ __metadata:
     react: 15.x || 16.x || 16.4.0-alpha.0911da3
     react-dom: 15.x || 16.x || 16.4.0-alpha.0911da3
   checksum: f64372497e0464a9fdfd79283fec3f4fd01ee093f1599d8a8035e0a41fbce22113bfa46dcea63aa8b7b4e0796e916f134aa8e3fccd3974be397e7c19468de3c4
+  languageName: node
+  linkType: hard
+
+"@react-icons/all-files@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "@react-icons/all-files@npm:4.1.0"
+  peerDependencies:
+    react: "*"
+  checksum: c34c644650a144e4f2157c20b3106200ac1f76b3132dcda1a40f061e000a34c78df188266395afae571d5c85bf48365824db7b1bf8b7ae6229fdc148c941ab85
   languageName: node
   linkType: hard
 
@@ -9927,6 +9929,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example@workspace:packages/example"
   dependencies:
+    "@react-icons/all-files": ^4.1.0
     "@testing-library/jest-dom": ^5.11.3
     "@testing-library/react": ^10.4.8
     "@testing-library/user-event": ^12.1.1
@@ -9934,7 +9937,6 @@ __metadata:
     "@types/node": ^14.14.31
     dayjs: ^1.10.7
     lodash: ^4.17.21
-    react-icons: ^4.3.1
     react-jewish-datepicker: "workspace:*"
     react-scripts: 3.4.3
     react-syntax-highlighter: ^15.4.5
@@ -14216,7 +14218,6 @@ fsevents@^1.2.7:
   version: 0.0.0-use.local
   resolution: "jewish-dates-core@workspace:packages/jewishDatesCore"
   dependencies:
-    "@hebcal/core": ^3.31.1
     "@rollup/plugin-commonjs": ^15.0.0
     "@rollup/plugin-html": ^0.2.0
     "@rollup/plugin-node-resolve": ^9.0.0
@@ -18711,15 +18712,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"react-icons@npm:^4.3.1":
-  version: 4.3.1
-  resolution: "react-icons@npm:4.3.1"
-  peerDependencies:
-    react: "*"
-  checksum: 2cc608acdd3e906aa3aaee290b8398220639677c949382d86e554020e5dab6a9f1ed7484418aa5272cb5c5c018e1fc9a323d433d901697a76530029f9ecb1263
-  languageName: node
-  linkType: hard
-
 "react-inspector@npm:^5.0.1":
   version: 5.0.1
   resolution: "react-inspector@npm:5.0.1"
@@ -18751,6 +18743,7 @@ fsevents@^1.2.7:
   version: 0.0.0-use.local
   resolution: "react-jewish-datepicker@workspace:packages/reactJewishDatePicker"
   dependencies:
+    "@react-icons/all-files": ^4.1.0
     "@rollup/plugin-commonjs": ^15.0.0
     "@rollup/plugin-html": ^0.2.0
     "@rollup/plugin-node-resolve": ^9.0.0
@@ -18759,7 +18752,6 @@ fsevents@^1.2.7:
     "@types/react": ^16.9.0
     dayjs: ^1.10.7
     jewish-dates-core: "workspace:*"
-    react-icons: ^4.3.1
     rollup: ^2.13.1
     rollup-plugin-copy: ^3.3.0
     rollup-plugin-peer-deps-external: ^2.2.2

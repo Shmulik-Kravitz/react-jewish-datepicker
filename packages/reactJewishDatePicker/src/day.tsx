@@ -1,6 +1,6 @@
 import * as React from 'react';
 import "./reactJewishDatePicker.scss";
-import { JewishDay, BasicJewishDay, convertToHebrew, JewishDate, IsJewishDatesEqual, disableOutOfRange } from 'jewish-dates-core';
+import { JewishDay, BasicJewishDay, convertToHebrew, JewishDate, IsJewishDatesEqual } from 'jewish-dates-core';
 import { isFromTest } from './utils';
 import * as Dayjs from "dayjs";
 import isBetween from 'dayjs/plugin/isBetween';
@@ -13,9 +13,8 @@ export interface DayProps extends JewishDay {
     selectedDay: BasicJewishDay;
     onClick: ((day: BasicJewishDay) => void);
     onMouseOver?: (day: BasicJewishDay) => void;
-    canSelect?: (day: BasicJewishDay, il?: boolean) => boolean;
-    il?: boolean;
-    rangePicker?: boolean;
+    canSelect?: (day: BasicJewishDay) => boolean;
+    isRange?: boolean;
     startDay: BasicJewishDay;
     endDay: BasicJewishDay;
 }
@@ -49,7 +48,7 @@ const isEndDay = (date: Date, startDay: BasicJewishDay, endDay: BasicJewishDay):
 };
 
 export const Day: React.FC<DayProps> = (props: DayProps) => {
-    const { isHebrew, selectedDay, isCurrentMonth, day, dayjsDate, il, rangePicker, startDay, endDay, canSelect, onClick, onMouseOver, ...basicJewishDay } = props;
+    const { isHebrew, selectedDay, isCurrentMonth, day, dayjsDate, isRange, startDay, endDay, canSelect, onClick, onMouseOver, ...basicJewishDay } = props;
     
     const handleClick = () => {        
         props?.onClick(basicJewishDay);
@@ -64,7 +63,7 @@ export const Day: React.FC<DayProps> = (props: DayProps) => {
 
     const otherMonthClass = (!isCurrentMonth ? " otherMonth" : "");
     const selectedDayClass = selectedDay && (IsJewishDatesEqual(props.jewishDate, selectedDay.jewishDate) ? " selectedDay" : "");
-    const disableSelectClass = canSelect && !canSelect(basicJewishDay, il) ? " noSelect" : "";
+    const disableSelectClass = canSelect && !canSelect(basicJewishDay) ? " noSelect" : "";
     const isInRangClass = isInRange(props.date, startDay, endDay) ? " isInRange" : "";
     const isStartDayClass = isStartDay(props.date, startDay) ? " startDay" : "";
     const isEndDayClass = isEndDay(props.date, startDay, endDay) ? " endDay" : "";

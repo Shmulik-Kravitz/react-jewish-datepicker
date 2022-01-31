@@ -8,20 +8,15 @@
   margin-bottom: 5px;
   cursor: pointer;
 
-  .selectedDate, .selectedRange {
+  .selectedDate {
     padding: 2px 15px 2px 5px;
     border: 1px solid var(--color);
     border-radius: 4px;
     user-select: none;
-    max-width: 125px;
     min-height: 20px;
     text-align: center;
     position: relative;
     font-size: smaller;
-  }
-
-  .selectedRange {
-    max-width: 230px;
   }
 
   .calendarIcon {
@@ -64,6 +59,12 @@
       border-radius: 7px 0 0 7px;
       color: #fff;
       margin: 1px 0;
+    }
+
+    .weekday,
+    .day {
+      font-size: 16px;
+      padding: 0;
     }
   }
   .navigation {
@@ -156,6 +157,7 @@
     height: 180px;
     border-radius: 5px;
     padding: 2px;
+    text-align: center;
   }
 
   .weekdayWrapper {
@@ -169,11 +171,13 @@
   .day {
     display: grid;
     margin: 1px;
+    padding: 1px 1px 0 0;
     align-items: center;
     justify-content: center;
     user-select: none;
     border-radius: 7px;
     cursor: pointer;
+    font-size: 14px;
   }
 
   .day:hover {
@@ -221,7 +225,15 @@
   }
 
   .noSelect {
-    pointer-events: none;
+    cursor: not-allowed !important;
     background-color: rgb(243, 243, 243);
+
+    &:hover {
+      background-color: rgb(243, 243, 243);
+    }
+
+    &:active {
+      pointer-events: none;
+    }
   }
 }

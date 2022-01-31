@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { render, fireEvent, waitFor, screen } from '@testing-library/react';
-import { BasicJewishDate, BasicJewishDay, ReactJewishDatePicker } from '..'
-import { getEngJewishMonths } from 'jewish-dates-core';
+import { BasicJewishDate, BasicJewishDay, BasicJewishDateRange, ReactJewishDatePicker } from '..'
+import { getEngJewishMonths, dontSelectHolidays, dontSelectShabat } from 'jewish-dates-core';
+const excludeHolidays = dontSelectHolidays(true);
 
 test('change month', async () => {
   const basicJewishDate: BasicJewishDate = {
@@ -10,7 +11,7 @@ test('change month', async () => {
     year: 5781
   };
 
-  const { container, getByText } =render(<ReactJewishDatePicker isHebrew={false} value={basicJewishDate} onClick={(day: BasicJewishDay) => {
+  const { container, getByText } = render(<ReactJewishDatePicker isHebrew={false} value={basicJewishDate} onClick={(day: BasicJewishDay) => {
   }} />)
   
   await waitFor(() => {
@@ -77,4 +78,53 @@ test('select date', async () => {
     fireEvent.click(screen.getByTestId('16 Heshvan 5781'));
   });
   expect(screen.getByTestId('selectedDate')).toHaveTextContent('16 Heshvan 5781');
+});
+
+test('dont select holiday', async () => {
+  const basicJewishDate: BasicJewishDate = {
+    day: 21,
+    monthName: "Nisan",
+    year: 5782
+  };
+  render(<ReactJewishDatePicker isHebrew={false} value={basicJewishDate} canSelect={excludeHolidays} onClick={(day: BasicJewishDay) => {
+  }} />)
+
+  expect(screen.getByTestId('21 Nisan 5782')).toHaveClass('noSelect');
+});
+
+test('dont select shabat', async () => {
+  const basicJewishDate: BasicJewishDate = {
+    day: 20,
+    monthName: "Shevat",
+    year: 5782
+  };
+  render(<ReactJewishDatePicker isHebrew={false} value={basicJewishDate} canSelect={dontSelectShabat} onClick={(day: BasicJewishDay) => {
+  }} />)
+
+  expect(screen.getByTestId('20 Shevat 5782')).toHaveClass('noSelect');
+});
+
+test('select range', async () => {
+  const basicJewishDateRange: BasicJewishDateRange = {
+    startDate: {
+      day: 16,
+      monthName: "Elul",
+      year: 5788,
+    },
+    endDate: {
+      day: 20,
+      monthName: "Elul",
+      year: 5788,
+    },
+  };
+  render(<ReactJewishDatePicker isHebrew={false} isRange={true} value={basicJewishDateRange} onClick={(startDay: BasicJewishDay, endDay: BasicJewishDay) => {                
+  }} />)
+
+  await waitFor(() => {
+    () => {
+      fireEvent.click(screen.getByTestId('16 Elul 5788'));
+      fireEvent.click(screen.getByTestId('20 Elul 5788'));
+    }
+  });
+  expect(screen.getByTestId('selectedDate')).toHaveTextContent('16 Elul 5788 - 20 Elul 5788');
 });

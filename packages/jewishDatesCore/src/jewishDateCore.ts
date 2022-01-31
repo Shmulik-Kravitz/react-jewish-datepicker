@@ -1,9 +1,8 @@
 import * as hebrewDateN from "hebrew-date";
 import * as heDate from "hebcal";
-import { HebrewCalendar } from '@hebcal/core';
 
 import gematriya from "gematriya";
-import * as Dayjs from "dayjs";
+import Dayjs from "dayjs";
 import {
   JewishDate,
   JewishDay,
@@ -14,7 +13,7 @@ import {
   BasicJewishDate,
   BasicJewishDay,
 } from "./interfaces";
-const dayjs = Dayjs.default
+// const dayjs = Dayjs.default
 const HeDate = heDate.default;
 const hebrewDate = hebrewDateN.default;
 
@@ -207,13 +206,14 @@ export const getJewishYears = (year: number = 5780): number[] => {
   for (let i = 1; i <= 100; i++) {
     const element = year + i;
     years.push(element);
-  }
+  }  
   return years;
 };
 
 export const getPrevMonth = (
   basicJewishMonthInfo: BasicJewishMonthInfo
 ): BasicJewishMonthInfo => {
+  
   const result = { ...basicJewishMonthInfo };
   const months = getJewishMonths(
     basicJewishMonthInfo.year,
@@ -232,6 +232,7 @@ export const getPrevMonth = (
       result.month = months[monthIndex - 1].id;
     }
   }
+  
   return result;
 };
 
@@ -252,6 +253,7 @@ export const getNextMonth = (
       result.month = months[monthIndex + 1].id;
     }
   }
+  
   return result;
 };
 
@@ -267,12 +269,13 @@ export const getGregDate = (props: BasicJewishDate): Date => {
   return day.greg();
 };
 
-export const getJewishMonthInfo = (date: Date): JewishMonthInfo => {
+export const getJewishMonthInfo = (date: Date): JewishMonthInfo => {  
   const jewishDate: JewishDate = getJewishDate(date);
-  const startOfJewishMonth = dayjs(date).subtract(jewishDate.day - 1, "day");
+  const startOfJewishMonth = Dayjs(date).subtract(jewishDate.day - 1, "day");
 
   const dayOfWeek: number = Number(startOfJewishMonth.format("d"));
   const sundayStartOfTheMonth = startOfJewishMonth.subtract(dayOfWeek, "day");
+  
   return {
     jewishDate,
     jewishMonth: jewishDate.month,
@@ -301,6 +304,7 @@ export const getJewishDate = (date: Date): JewishDate => {
     monthName: hebDate.month_name,
   };
 };
+
 export const IsJewishDatesEqual = (
   jewishDate1: JewishDate,
   jewishDate2: JewishDate
@@ -313,6 +317,21 @@ export const IsJewishDatesEqual = (
     jewishDate1.year === jewishDate2.year
   );
 };
+
+export const getJewishDay = (dayjsDate: Dayjs.Dayjs): JewishDay => {
+  const jewishDate: JewishDate = getJewishDate(dayjsDate.toDate());
+  const day: JewishDay = {
+    day: jewishDate.day,
+    jewishDateStr: formatJewishDate(jewishDate),
+    jewishDateStrHebrew: formatJewishDateHebrew(jewishDate),
+    jewishDate: jewishDate,
+    dayjsDate: dayjsDate,
+    date: dayjsDate.toDate(),
+    isCurrentMonth: false,
+  };
+  
+  return day;
+}
 
 export const getJewishMonth = (date: Date): JewishMonth => {
   const jewishMonthInfo = getJewishMonthInfo(date);
@@ -327,29 +346,21 @@ export const getJewishMonth = (date: Date): JewishMonth => {
   let currentDate = jewishMonthInfo.sundayStartOfTheMonth;
 
   for (let i = 0; i < 42; i++) {
-    const jewishDate: JewishDate = getJewishDate(currentDate.toDate());
-    const day: JewishDay = {
-      day: jewishDate.day,
-      jewishDateStr: formatJewishDate(jewishDate),
-      jewishDateStrHebrew: formatJewishDateHebrew(jewishDate),
-      jewishDate: jewishDate,
-      dayjsDate: currentDate,
-      date: currentDate.toDate(),
-      isCurrentMonth: jewishMonth.jewishMonth === jewishDate.month,
-    };
-    if (IsJewishDatesEqual(jewishMonthInfo.jewishDate, jewishDate)) {
+    const day = getJewishDay(currentDate);
+    day.isCurrentMonth = jewishMonth.jewishMonth === day.jewishDate.month;
+    if (IsJewishDatesEqual(jewishMonthInfo.jewishDate, day.jewishDate)) {
       jewishMonth.selectedDay = day;
     }
     if (i < 7 || day.isCurrentMonth || day.date.getDay() > 0) {
       jewishMonth.days.push(day);
       currentDate = currentDate.add(1, "day");
     }
-  }
+  }  
 
   return jewishMonth;
 };
 
-const getHolidays = (il: boolean): string[] => {
+export const getHolidays = (isIsrael: boolean): string[] => {
   const holidays = [
     '1 Tishri',
     '2 Tishri',
@@ -360,34 +371,39 @@ const getHolidays = (il: boolean): string[] => {
     '21 Nisan',
     '6 Sivan',
   ];
-  if (!il) {
+  if (!isIsrael) {
     holidays.push('16 Tishri', '23 Tishri', '16 Nisan', '22 Nisan', '7 Sivan');
-  }
+  }  
+  
   return holidays;
 }
 
-export const disableHolidays = (day: BasicJewishDay, il?: boolean): boolean => {
-  const holidays = getHolidays(il);
+export const dontSelectHolidays = (isIsrael?: boolean): any => {
+  const holidays = getHolidays(isIsrael);
 
-  return !holidays.includes(`${day.jewishDate.day} ${day.jewishDate.monthName}`);
+  return (day: BasicJewishDay): boolean => {    
+    return !holidays.includes(`${day.jewishDate.day} ${day.jewishDate.monthName}`);
+  }
 }
 
-export const disableShabat = (day: BasicJewishDay): boolean => { 
+export const dontSelectShabat = (day: BasicJewishDay): boolean => { 
   const dayOfWeek = day.date.getDay();
 
   return dayOfWeek !== 6;
 }
 
-export const disableShabatAndHolidays = (day: BasicJewishDay, il?: boolean): boolean => { 
-  return disableShabat(day) && disableHolidays(day, il);
+export const dontSelectShabatAndHolidays = (isIsrael?: boolean): any => {  
+  return (day: BasicJewishDay): boolean => {
+    return dontSelectShabat(day) && dontSelectHolidays(isIsrael)(day);
+  }
 }
 
-export const disableOutOfRange = (minDate: Date | null, maxDate: Date | null): any => { 
-  const min = minDate && dayjs(minDate).subtract(1, 'day').startOf('date');
-  const max = maxDate && dayjs(maxDate).add(1, 'day').startOf('date');
+export const dontSelectOutOfRange = (minDate: Date | null, maxDate: Date | null): any => { 
+  const min = minDate && Dayjs(minDate).subtract(1, 'day').startOf('date');
+  const max = maxDate && Dayjs(maxDate).add(1, 'day').startOf('date');
 
   return (day: BasicJewishDay) => {
-    const date = dayjs(day.date).startOf('date');
+    const date = Dayjs(day.date).startOf('date');
 
     if (min && max) {
       return date.isAfter(min) && date.isBefore(max);
@@ -403,12 +419,12 @@ export const disableOutOfRange = (minDate: Date | null, maxDate: Date | null): a
 export const addDates = (date: BasicJewishDate | Date, numDays: number): Date => {
   const formatedDate = isValidDate(date) ? date : getGregDate(date);
 
-  return dayjs(formatedDate).add(numDays, 'day').toDate();
+  return Dayjs(formatedDate).add(numDays, 'day').toDate();
 }
 
 export const subtractDates = (date: BasicJewishDate | Date, numDays: number): Date => {
   const formatedDate = isValidDate(date) ? date : getGregDate(date);
 
-  return dayjs(formatedDate).subtract(numDays, 'day').toDate();
+  return Dayjs(formatedDate).subtract(numDays, 'day').toDate();
 }
 

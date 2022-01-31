@@ -4,20 +4,18 @@ import {
   ReactJewishDatePicker,
   BasicJewishDay,
   BasicJewishDate,
-  RangeDays,
+  BasicJewishDateRange,
+  DateRange,
 } from "react-jewish-datepicker";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { atomOneLight } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import { HiOutlineClipboard, HiOutlineClipboardCheck } from "react-icons/hi";
-
+import { HiOutlineClipboard } from "@react-icons/all-files/hi/HiOutlineClipboard"; 
+import { HiOutlineClipboardCheck } from "@react-icons/all-files/hi/HiOutlineClipboardCheck"; 
 export interface ReactJewishDatePickerExampleProps {
   isHebrew?: boolean;
-  value?: BasicJewishDate | Date;
-  canSelect?: (day: BasicJewishDay, il?: boolean) => boolean;
-  il?: boolean;
-  minDate?: Date;
-  maxDate?: Date;
-  rangePicker?: boolean;
+  value?: BasicJewishDate | Date | BasicJewishDateRange | DateRange;
+  canSelect?: (day: BasicJewishDay) => boolean;
+  isRange?: boolean;
   code: string;
 }
 
@@ -25,7 +23,8 @@ export const ReactJewishDatePickerExample: React.FC<ReactJewishDatePickerExample
   props: ReactJewishDatePickerExampleProps
 ) => {
   const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay | undefined>(undefined);
-  const [rangeDays, setRangeDays] = React.useState<RangeDays | undefined>(undefined);
+  const [startDay, setStartDay] = React.useState<BasicJewishDay | undefined>(undefined);
+  const [endDay, setEndDay] = React.useState<BasicJewishDay | undefined>(undefined);
   const [isCopied, setIsCopied] = React.useState(false);
 
   const copyToClipboard = () => {
@@ -53,24 +52,31 @@ export const ReactJewishDatePickerExample: React.FC<ReactJewishDatePickerExample
         >
           {props.code}
         </SyntaxHighlighter>
-        <div className="example">
-          <ReactJewishDatePicker
-            isHebrew={!!props.isHebrew}
-            value={props.value}
-            canSelect={props.canSelect}
-            rangePicker={props.rangePicker}
-            il={props.il}
-            onClick={!props.rangePicker ? ((day: BasicJewishDay) => {              
-              setBasicJewishDay(day);
-            }): ((range: RangeDays) => {
-              setRangeDays(range);
-            })}
-          ></ReactJewishDatePicker>
-          <div className={"basicJewishDayInfo" + props.rangePicker ? " isRange" : ""}>
+        <div className={`example${props.isHebrew ? " isHebrew" : ""}`}>
+          <div className={`pickerWrapper${props.isRange ? " isRange" : ""}`}>
+            <ReactJewishDatePicker
+              isHebrew={!!props.isHebrew}
+              value={props.value}
+              canSelect={props.canSelect}
+              isRange={props.isRange}
+              onClick={!props.isRange ? ((day: BasicJewishDay) => {              
+                setBasicJewishDay(day);
+              }): ((startDay: BasicJewishDay, endDay: BasicJewishDay) => {                
+                setStartDay(startDay);
+                setEndDay(endDay);
+              })}
+            ></ReactJewishDatePicker>
+          </div>
+          <div className={"basicJewishDayInfo"}>
             {basicJewishDay ? <h5>Day value:</h5> : null}
-            {rangeDays ? <h5>Range value:</h5> : null}
-            <pre>{JSON.stringify(basicJewishDay, null, 2)}</pre>
-            <pre>{JSON.stringify(rangeDays, null, 2)}</pre>
+            {startDay ? <h5>Range value:</h5> : null}
+            {startDay ? <pre>
+              <h4>start day:</h4>
+              {JSON.stringify(startDay, null, 2)}
+              <h4>end day:</h4>
+              {JSON.stringify(endDay, null, 2)}
+              </pre> :
+            <pre>{JSON.stringify(basicJewishDay, null, 2)}</pre>}
           </div>
         </div>
       </div>

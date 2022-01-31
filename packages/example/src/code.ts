@@ -48,24 +48,26 @@ export default function App() {
   );
 }`);
 
-export const disableHolidayCode = (`import * as React from "react";
+export const dontSelectHolidayCode = (`import * as React from "react";
 import {
   ReactJewishDatePicker,
   BasicJewishDay,
 } from "react-jewish-datepicker";
-import { disableHolidays } from "jewish-dates-core";
+import { dontSelectHolidays } from "jewish-dates-core";
 
 export default function App() {
   const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
   const date: Date = new Date();
 
+  const isIsrael: boolean = true;
+  const excludeHolidays = dontSelectHolidays(isIsrael);
+
   return (
       <div>
-        <ReactJewishDatePickerExample
+        <ReactJewishDatePicker
           value={date}
           isHebrew
-          canSelect={disableHolidays}
-          il
+          canSelect={excludeHolidays}
           onClick={(day: BasicJewishDay) => {
             setBasicJewishDay(day);
           }}
@@ -74,12 +76,12 @@ export default function App() {
   );
 }`);
 
-export const disableShabatCode = (`import * as React from "react";
+export const dontSelectShabatCode = (`import * as React from "react";
 import {
   ReactJewishDatePicker,
   BasicJewishDay,
 } from "react-jewish-datepicker";
-import { disableShabat } from "jewish-dates-core";
+import { dontSelectShabat } from "jewish-dates-core";
 
 export default function App() {
   const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
@@ -87,11 +89,10 @@ export default function App() {
 
   return (
       <div>
-        <ReactJewishDatePickerExample
+        <ReactJewishDatePicker
           value={date}
           isHebrew
-          canSelect={disableShabat}
-          il
+          canSelect={dontSelectShabat}
           onClick={(day: BasicJewishDay) => {
             setBasicJewishDay(day);
           }}
@@ -100,24 +101,24 @@ export default function App() {
   );
 }`);
 
-export const disableShabatAndHolidaysCode = (`import * as React from "react";
+export const dontSelectShabatAndHolidaysCode = (`import * as React from "react";
 import {
   ReactJewishDatePicker,
   BasicJewishDay,
 } from "react-jewish-datepicker";
-import { disableShabatAndHolidays } from "jewish-dates-core";
+import { dontSelectShabatAndHolidays } from "jewish-dates-core";
 
 export default function App() {
   const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
   const date: Date = new Date();
+  const excludeShabatAndHolidays = dontSelectShabatAndHolidays();
 
   return (
       <div>
-        <ReactJewishDatePickerExample
+        <ReactJewishDatePicker
           value={date}
           isHebrew
-          canSelect={disableShabatAndHolidays}
-          il
+          canSelect={excludeShabatAndHolidays}
           onClick={(day: BasicJewishDay) => {
             setBasicJewishDay(day);
           }}
@@ -126,13 +127,13 @@ export default function App() {
   );
 }`);
 
-export const SelectionWithinRangeCode = (`import * as React from "react";
+export const selectionWithinRangeCode = (`import * as React from "react";
 import {
   ReactJewishDatePicker,
   BasicJewishDay,
 } from "react-jewish-datepicker";
 import {
-  disableOutOfRange,
+  dontSelectOutOfRange,
   addDates,
   subtractDates
 } from "jewish-dates-core";
@@ -141,11 +142,11 @@ export default function App() {
   const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
   const date: Date = new Date();
 
-  const allowedSelectionRange = disableOutOfRange(subtractDates(date, 3), addDates(date, 5));
+  const allowedSelectionRange = dontSelectOutOfRange(subtractDates(date, 3), addDates(date, 5));
 
   return (
       <div>
-        <ReactJewishDatePickerExample
+        <ReactJewishDatePicker
           value={date}
           isHebrew
           canSelect={allowedSelectionRange}
@@ -157,24 +158,68 @@ export default function App() {
   );
 }`);
 
-export const rangeCode = (`import * as React from "react";
+export const disableWithCustomFunctionCode = (`import * as React from "react";
 import {
   ReactJewishDatePicker,
-  RangeDays
+  BasicJewishDay,
 } from "react-jewish-datepicker";
 
+const dontSelectTuesdays = (day: BasicJewishDay): boolean => {
+  if (day.date.getDay() === 2) {
+    return false;
+  }
+  return true;
+}
+
 export default function App() {
-  const [rangeDays, setRangeDays] = React.useState<RangeDays | undefined>(undefined);
+  const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
   const date: Date = new Date();
 
   return (
       <div>
-        <ReactJewishDatePickerExample
+        <ReactJewishDatePicker
           value={date}
           isHebrew
+          canSelect={dontSelectTuesdays}
+          onClick={(day: BasicJewishDay) => {
+            setBasicJewishDay(day);
+          }}
+        />
+      </div>
+  );
+}`);
+
+export const rangeCode = (`import * as React from "react";
+import {
+  ReactJewishDatePicker,
+  BasicJewishDateRange,
+} from "react-jewish-datepicker";
+
+export default function App() {
+  const [startDay, setStartDay] = React.useState<BasicJewishDay | undefined>(undefined);
+  const [endDay, setEndDay] = React.useState<BasicJewishDay | undefined>(undefined);
+  const basicJewishDateRange: BasicJewishDateRange = {
+    startDate: {
+      day: 13,
+      monthName: "Elul",
+      year: 5788,
+    },
+    endDate: {
+      day: 18,
+      monthName: "Elul",
+      year: 5788,
+    },
+  };
+
+  return (
+      <div>
+        <ReactJewishDatePicker
+          value={basicJewishDateRange}
+          isHebrew
           rangePicker
-          onClick={(range: RangeDays) => {
-            setRangeDays(range);
+          onClick={(startDay: BasicJewishDay, endDay: BasicJewishDay) => {
+            setStartDay(startDay);
+            setEndDay(endDay);
           }}
         />
       </div>

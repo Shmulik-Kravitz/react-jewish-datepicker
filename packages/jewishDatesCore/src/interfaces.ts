@@ -16,11 +16,6 @@ export interface BasicJewishDay {
     date: Date;
 }
 
-export interface RangeDays {
-    startDay: BasicJewishDay;
-    endDay: BasicJewishDay;
-}
-
 export interface JewishDay extends BasicJewishDay {
     day: number;
     isCurrentMonth: boolean;
