@@ -3,14 +3,17 @@
   "version": "1.0.22",
   "private": true,
   "dependencies": {
+    "@react-icons/all-files": "^4.1.0",
     "@testing-library/jest-dom": "^5.11.3",
     "@testing-library/react": "^10.4.8",
     "@testing-library/user-event": "^12.1.1",
     "@types/jest": "^26.0.10",
     "@types/node": "^14.14.31",
+    "dayjs": "^1.10.7",
     "lodash": "^4.17.21",
     "react-jewish-datepicker": "workspace:*",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "react-syntax-highlighter": "^15.4.5"
   },
   "scripts": {
     "start": "react-scripts start",

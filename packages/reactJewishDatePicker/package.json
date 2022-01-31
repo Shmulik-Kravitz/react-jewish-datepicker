@@ -26,6 +26,8 @@
     "react-dom": "16 || 17"
   },
   "dependencies": {
+    "@react-icons/all-files": "^4.1.0",
+    "dayjs": "^1.10.7",
     "jewish-dates-core": "workspace:*",
     "tslib": "^2.1.0",
     "use-onclickoutside": "^0.4.0"

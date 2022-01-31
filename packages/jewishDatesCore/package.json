@@ -14,7 +14,7 @@
   "scripts": {
     "build": "rollup --config",
     "start": "rollup -c -w",
-    "test": "echo test",
+    "test": "jest",
     "inc": "yarn version patch",
     "pub": "yarn npm publish",
     "np": "np patch",

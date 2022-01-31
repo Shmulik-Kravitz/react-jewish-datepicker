@@ -15,6 +15,7 @@ export interface BasicJewishDay {
     jewishDate: JewishDate;
     date: Date;
 }
+
 export interface JewishDay extends BasicJewishDay {
     day: number;
     isCurrentMonth: boolean;
