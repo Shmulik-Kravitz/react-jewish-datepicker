@@ -1,21 +1,20 @@
 import * as React from 'react';
 import useOnClickOutside from 'use-onclickoutside';
-import "./reactJewishDatePicker.scss";
+import Dayjs from "dayjs";
+import { MdDateRange } from "@react-icons/all-files/md/MdDateRange"; 
 import { getJewishMonth, getWeekdays, getGregDate, getJewishDay, BasicJewishDay, BasicJewishDate, isValidDate } from 'jewish-dates-core';
 import { BasicJewishDateRange, DateRange} from './interfaces';
-import { MdDateRange } from "@react-icons/all-files/md/MdDateRange"; 
-
 import { Day } from './day';
 import { Weekday } from './weekday';
 import { Navigation } from './navigation';
 import { getTestID } from './utils';
-import Dayjs from "dayjs";
 
+import "./reactJewishDatePicker.scss";
 export interface ReactJewishDatePickerProps {
     className?: string;
     onClick: (startDay: BasicJewishDay, endDay: BasicJewishDay) => void;
     value?: BasicJewishDate | Date | BasicJewishDateRange | DateRange;
-    isHebrew: boolean;
+    isHebrew?: boolean;
     canSelect?: (day: BasicJewishDay) => boolean;
     isRange?: boolean;
 }
@@ -149,3 +148,7 @@ export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (prop
         </div>
     );
 }
+
+ReactJewishDatePicker.defaultProps = {
+    isHebrew: false,
+};

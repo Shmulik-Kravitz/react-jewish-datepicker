@@ -1,9 +1,15 @@
 {
   "name": "jewish-dates-core",
-  "version": "1.0.19",
+  "version": "1.2.0",
   "description": "Jewish dates core",
   "main": "build/index.js",
   "module": "build/index.es.js",
+  "typings": "build/index.d.ts",
+  "exports": {
+    "require": "./build/index.js",
+    "import": "./build/index.es.js",
+    "default": "./build/index.es.js"
+  },
   "files": [
     "build",
     "README.md"
@@ -22,17 +28,17 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "dayjs": "^1.8.29",
+    "dayjs": "^1.10.7",
     "gematriya": "^2.0.0",
     "hebcal": "^2.3.2",
-    "hebrew-date": "^1.0.5",
-    "tslib": "^2.1.0"
+    "hebrew-date": "^1.0.6",
+    "tslib": "^2.3.1"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-html": "^0.2.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
-    "@types/gematriya": "^2.0.1",
+    "@types/gematriya": "^2.0.2",
     "rollup": "^2.13.1",
     "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-node-externals": "^2.2.0",

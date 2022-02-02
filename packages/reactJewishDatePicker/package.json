@@ -1,9 +1,15 @@
 {
   "name": "react-jewish-datepicker",
-  "version": "1.0.19",
+  "version": "1.2.0",
   "description": "React jewish datepicker",
   "main": "build/index.js",
   "module": "build/index.es.js",
+  "typings": "build/index.d.ts",
+  "exports": {
+    "require": "./build/index.js",
+    "import": "./build/index.es.js",
+    "default": "./build/index.es.js"
+  },
   "files": [
     "build",
     "README.md"
@@ -29,16 +35,16 @@
     "@react-icons/all-files": "^4.1.0",
     "dayjs": "^1.10.7",
     "jewish-dates-core": "workspace:*",
-    "tslib": "^2.1.0",
+    "tslib": "^2.3.1",
     "use-onclickoutside": "^0.4.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^15.0.0",
     "@rollup/plugin-html": "^0.2.0",
     "@rollup/plugin-node-resolve": "^9.0.0",
-    "@types/gematriya": "^2.0.1",
-    "@types/node": "^14.14.31",
-    "@types/react": "^16.9.0",
+    "@types/gematriya": "^2.0.2",
+    "@types/node": "^14.18.10",
+    "@types/react": "^17.0.38",
     "rollup": "^2.13.1",
     "rollup-plugin-copy": "^3.3.0",
     "rollup-plugin-peer-deps-external": "^2.2.2",

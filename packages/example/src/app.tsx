@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ReactJewishDatePickerExample } from "./reactJewishDatePickerExample";
 import "./app.css";
-import { BasicJewishDate, BasicJewishDay, BasicJewishDateRange, DateRange } from "react-jewish-datepicker";
+import { BasicJewishDate, BasicJewishDay, BasicJewishDateRange } from "react-jewish-datepicker";
 import { HiOutlineClipboard } from "@react-icons/all-files/hi/HiOutlineClipboard"; 
 import { HiOutlineClipboardCheck } from "@react-icons/all-files/hi/HiOutlineClipboardCheck";
 
