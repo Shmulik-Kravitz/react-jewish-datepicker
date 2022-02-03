@@ -29,8 +29,8 @@ const getDatesInOrder = (day1: BasicJewishDay, day2: BasicJewishDay): BasicJewis
 
 const getDateStringForSelectedDay = (isRange: boolean, isHebrew: boolean, selectedDay: BasicJewishDay, startDay: BasicJewishDay, endDay: BasicJewishDay): string => {
     if (isRange) {
-        if (startDay?.jewishDateStrHebrew ) {
-            return isHebrew ? `${startDay?.jewishDateStrHebrew} - ${endDay.jewishDateStrHebrew}` : `${startDay?.jewishDateStr} - ${endDay.jewishDateStr}`;
+        if (startDay?.jewishDateStrHebrew) {
+            return isHebrew ? `${startDay?.jewishDateStrHebrew} - ${endDay?.jewishDateStrHebrew || ''}` : `${startDay?.jewishDateStr} - ${endDay?.jewishDateStr || ''}`;
         } else {
             return isHebrew ? 'בחר תאריכים' : 'Pick Dates';;
         } 
