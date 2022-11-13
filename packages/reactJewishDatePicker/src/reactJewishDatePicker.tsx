@@ -63,6 +63,10 @@ export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (prop
     const endDateInit = isDateRange(value) && getDateInit(value.endDate);
 
     const [date, setDate] = React.useState(dateInit);
+    //If value prop changes, update internal date
+    useEffect(()=>{
+        setDate(value ? getDateInit(value) : new Date());
+    },[value])
     const jewishMonth = getJewishMonth(date);
 
     const [selectedDay, setSelectedDay] = React.useState<BasicJewishDay>(!isRange && value && jewishMonth.selectedDay);
