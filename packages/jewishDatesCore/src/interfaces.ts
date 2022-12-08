@@ -1,55 +1,53 @@
-import * as Dayjs from 'dayjs';
+import * as Dayjs from "dayjs";
+import {
+  BasicJewishDate as OrigBasicJewishDate,
+  JewishDate as OrigJewishDate,
+} from "jewish-date";
 
-export interface JewishDate {
-    //** day of month */
-    day: number;
-    month: number;
-    year: number;
-    monthName: string;
-}
-export type BasicJewishDate = Omit<JewishDate, "month">;
+export type BasicJewishDate = OrigBasicJewishDate;
+export type JewishDate = OrigJewishDate;
+
 
 export interface BasicJewishDay {
-    jewishDateStr: string;
-    jewishDateStrHebrew: string;
-    jewishDate: JewishDate;
-    date: Date;
+  jewishDateStr: string;
+  jewishDateStrHebrew: string;
+  jewishDate: JewishDate;
+  date: Date;
 }
 
 export interface JewishDay extends BasicJewishDay {
-    day: number;
-    isCurrentMonth: boolean;
-    dayjsDate: Dayjs.Dayjs;
+  day: number;
+  isCurrentMonth: boolean;
+  dayjsDate: Dayjs.Dayjs;
 }
 
 export interface Month {
-    id: string;
-    text: string;
+  id: string;
+  text: string;
 }
 
 export interface BasicJewishMonthInfo {
-    month: string;
-    year: number;
-    isHebrew?: boolean;
+  month: string;
+  year: number;
+  isHebrew?: boolean;
+}
+
+export interface JewishMonthMetadata {
+  jewishDate: JewishDate;
+  jewishMonth: number;
+  startOfJewishMonth: Dayjs.Dayjs;
+  sundayStartOfTheMonth: Dayjs.Dayjs;
 }
 
 export interface JewishMonthInfo {
-    jewishDate: JewishDate;
-    jewishMonth: number;
-    startOfJewishMonth: Dayjs.Dayjs;
-    sundayStartOfTheMonth: Dayjs.Dayjs;
-}
-
-
-export interface JewishMonth {
-    selectedDay: JewishDay
-    jewishYear: number;
-    jewishMonth: number;
-    jewishMonthString: string;
-    days: JewishDay[];
+  selectedDay: JewishDay;
+  jewishYear: number;
+  jewishMonth: number;
+  jewishMonthString: string;
+  days: JewishDay[];
 }
 
 export interface IdText {
-    id: string;
-    text: string;
+  id: string;
+  text: string;
 }

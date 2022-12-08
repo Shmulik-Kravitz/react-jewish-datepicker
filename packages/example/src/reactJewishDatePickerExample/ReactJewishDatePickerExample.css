@@ -23,14 +23,13 @@
   position: relative;
   margin-bottom: 40px;
 
-  & > pre {
-    margin: 0;
-    border-right: 1px solid #d3e2ff;
-    padding: 10px 15px !important;
-    border-radius: 0 0 0 5px;
-  }
 }
-
+.demo pre {
+  margin: 0;
+  border-right: 1px solid #d3e2ff;
+  padding: 10px 15px !important;
+  border-radius: 0 0 0 5px;
+}
 code, .exsample pre {
   font-family: monospace !important;
   font-size: 14px;
@@ -49,46 +48,44 @@ code, .exsample pre {
   color: #858585;
   background-color: #fafafa;
 
-  &:hover {
-    color: #505050;
-  }
-  &:active {
-    transform: scale(1.01);
-  }
+}
+
+.copy:hover {
+  color: #505050;
+}
+
+.copy:active {
+  transform: scale(1.01);
 }
 
 .example {
   padding: 15px;
-  min-height: 280px;
-  
-  &.isHebrew {
-    direction: rtl;
-  }
-
-  h4 {
-    margin: 5px;
-  }
+  min-height: 280px; 
+}
+.example.isHebrew {
+  direction: rtl;
 }
 
+.example h4 {
+  margin: 5px;
+}
 .pickerWrapper {
   max-width: 145px;
+}
 
-  &.isRange {
-    max-width: 250px;
-  }
+.pickerWrapper.isRange {
+  max-width: 250px;
 }
 
 @media only screen and (max-width: 870px) {
   .demo {
     grid-template-columns: 100%;
-
-    & > pre {
-      border-right: none;
-      border-bottom: 1px solid #d3e2ff;
-      border-radius: 0;
-    }
   }
-
+  .demo > pre {
+    border-right: none;
+    border-bottom: 1px solid #d3e2ff;
+    border-radius: 0;
+  }
   .copy {
     right: 1%;
   }

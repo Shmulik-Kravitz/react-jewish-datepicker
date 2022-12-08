@@ -1,5 +1,4 @@
 import * as React from 'react';
-import "./reactJewishDatePicker.scss";
 import { JewishDay, BasicJewishDay, convertToHebrew, JewishDate, IsJewishDatesEqual } from 'jewish-dates-core';
 import { isFromTest } from './utils';
 import * as Dayjs from "dayjs";

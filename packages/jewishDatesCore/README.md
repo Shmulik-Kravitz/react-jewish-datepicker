@@ -227,7 +227,7 @@ Returns an array of jewish months in hebrew.
 
 **example:**
 ```js
-getHebJewishMonths(); // ==> [{id: "Tishri", text: "תשרי"}, {id: "Heshvan", text: "חשון"} ...]
+getHebJewishMonths(); // ==> [{id: "Tishri", text: "תשרי"}, {id: "Cheshvan", text: "חשון"} ...]
 ```
 
 <a name="getEngJewishMonths"></a>
@@ -238,7 +238,7 @@ Returns an array of jewish months in english.
 
 **example:**
 ```js
-getEngJewishMonths(); // ==> [{id: "Tishri", text: "Tishri"}, {id: "Heshvan", text: "Heshvan"} ...]
+getEngJewishMonths(); // ==> [{id: "Tishri", text: "Tishri"}, {id: "Cheshvan", text: "Cheshvan"} ...]
 ```
 
 <a name="getJewishMonths"></a>

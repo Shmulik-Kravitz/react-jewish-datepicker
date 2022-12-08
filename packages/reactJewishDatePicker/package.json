@@ -2,14 +2,8 @@
   "name": "react-jewish-datepicker",
   "version": "1.2.1",
   "description": "React jewish datepicker",
-  "main": "build/index.js",
-  "module": "build/index.es.js",
-  "typings": "build/index.d.ts",
-  "exports": {
-    "require": "./build/index.js",
-    "import": "./build/index.es.js",
-    "default": "./build/index.es.js"
-  },
+  "main": "dist/index.js",
+  "typings": "lib/index.d.ts",
   "files": [
     "build",
     "README.md"
@@ -18,18 +12,16 @@
   "author": "Shmulik Kravitz <29735690+Shmulik-Kravitz@users.noreply.github.com>",
   "license": "GPL-3.0+",
   "scripts": {
-    "build": "cp README.md ../../ && rollup --config",
-    "start": "rollup -c -w",
-    "test": "jest",
+    "dev": "yarn g:dev",
+    "build": "yarn g:build",
+    "test": "yarn g:test",
     "inc": "yarn version patch",
     "pub": "yarn npm publish",
-    "np": "np patch",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "np": "np patch"
   },
   "peerDependencies": {
-    "react": "16 || 17",
-    "react-dom": "16 || 17"
+    "react": "*",
+    "react-dom": "*"
   },
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
@@ -39,17 +31,8 @@
     "use-onclickoutside": "^0.4.0"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^15.0.0",
-    "@rollup/plugin-html": "^0.2.0",
-    "@rollup/plugin-node-resolve": "^9.0.0",
-    "@types/gematriya": "^2.0.2",
-    "@types/node": "^14.18.10",
-    "@types/react": "^17.0.38",
-    "rollup": "^2.13.1",
-    "rollup-plugin-copy": "^3.3.0",
-    "rollup-plugin-peer-deps-external": "^2.2.2",
-    "rollup-plugin-sass": "^1.2.2",
-    "rollup-plugin-typescript2": "^0.27.1"
+    "esbuild": "^0.15.11",
+    "typescript": "^4.5.5"
   },
   "keywords": [
     "jewish",

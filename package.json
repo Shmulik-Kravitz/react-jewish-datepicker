@@ -7,7 +7,11 @@
     "pub1": "yarn workspaces foreach -vit run pub && yarn run tag",
     "inc": "yarn workspaces foreach -vit run inc",
     "tag": "git tag v1.2.1",
-    "clean": "rm -rf node_modules"
+    "clean": "rm -rf node_modules",
+    "g:dev": "cd $INIT_CWD && esr ../../config/build.ts --watch",
+    "g:build": "cd $INIT_CWD && yarn g:clean && esr ../../config/build.ts",
+    "g:test": "cd $INIT_CWD && vitest --config ./config/vitest.config.ts  --coverage",
+    "g:clean": "cd $INIT_CWD && rm -rf dist"
   },
   "workspaces": [
     "packages/jewishDatesCore",
@@ -15,33 +19,34 @@
     "packages/example"
   ],
   "devDependencies": {
-    "@babel/core": "^7.11.1",
-    "@jest/globals": "^27.4.4",
-    "@storybook/addon-actions": "^6.0.13",
-    "@storybook/addon-essentials": "^6.0.13",
-    "@storybook/addon-links": "^6.0.13",
-    "@storybook/react": "^6.0.13",
-    "@testing-library/dom": "^8.11.3",
-    "@testing-library/react": "^12.1.2",
+    "@testing-library/dom": "^8.19.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@types/gematriya": "^2.0.2",
     "@types/jest": "^27.4.0",
-    "@types/node": "^14.18.10",
-    "@types/react": "^17.0.38",
-    "@types/react-dom": "^17.0.11",
-    "babel-loader": "^8.2.3",
-    "builtin-modules": "^3.2.0",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^27.4.7",
-    "jest-environment-jsdom": "^27.4.6",
+    "@types/node": "^16.11.7",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
+    "@vitejs/plugin-react": "^2.2.0",
+    "@vitest/coverage-c8": "^0.24.3",
+    "esbuild": "^0.15.11",
+    "esbuild-node-externals": "^1.5.0",
+    "esbuild-runner": "^2.2.2",
+    "esprima": "^4.0.1",
+    "has-flag": "^5.0.1",
     "np": "^7.6.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "prettier": "^2.7.1",
+    "react": "18.2.0",
+    "react-dom": "^18.2.0",
     "react-is": "^17.0.2",
-    "ts-jest": "^27.1.3",
-    "ts-node": "^10.4.0",
-    "typescript": "^4.5.5"
+    "rimraf": "^3.0.2",
+    "tsc-prog": "^2.2.1",
+    "typescript": "^4.5.5",
+    "vite": "^3.1.8",
+    "vitest": "^0.24.3"
   },
   "resolutions": {
     "node-notifier": "8.0.1"
   },
-  "packageManager": "yarn@3.1.1"
+  "packageManager": "yarn@3.3.0"
 }

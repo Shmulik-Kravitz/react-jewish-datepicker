@@ -119,6 +119,17 @@ a:hover {
   background-color: #ccc;
 }
 
+.button {
+  background-color: #e7e7e7; /* Green */
+  border: none;
+  color: black;
+  padding: 5px 20px;
+  margin-bottom: 5px;
+  text-align: center;
+  cursor: pointer;
+  width: 200px;
+}
+
 .app h3{
   color: #000746;
   margin-bottom: 5px;

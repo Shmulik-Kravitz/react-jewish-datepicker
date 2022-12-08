@@ -1,5 +1,4 @@
 import * as React from 'react';
-import "./reactJewishDatePicker.scss";
 import { getJewishMonths, getJewishYears, getPrevMonth, getNextMonth, convertToHebrew } from 'jewish-dates-core';
 import { getTestID } from './utils';
 
