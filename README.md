@@ -182,3 +182,5 @@ To create a jewish date picker in vue.js or angular, see the [core dependency](h
 - [Shmulik Kravitz](https://github.com/Shmulik-Kravitz)
 - [Sagi Tawil](https://github.com/sagi770)
 - [Yochanan Sheinberger](https://github.com/yochanan-sheinberger)
+
+License: [MIT](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/blob/master/LICENSE).
