@@ -1,6 +1,6 @@
 {
   "name": "example",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "private": true,
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
