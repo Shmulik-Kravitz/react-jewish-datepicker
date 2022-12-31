@@ -25,9 +25,10 @@ import {
   subtractDates,
   BasicJewishDate,
   BasicJewishDay,
+  JewishMonth
 } from "../index";
 import Dayjs from "dayjs";
-import { JewishDate } from "../interfaces";
+import { BasicJewishMonthInfo, JewishDate } from "../interfaces";
 import { it, expect, describe } from "vitest";
 
 
@@ -212,15 +213,15 @@ describe("jewishDatesCore", () => {
     expect(getJewishYears(5785)[0]).toBe(5685);
   });
 
-  const tishriInfo = {
+  const tishriInfo: BasicJewishMonthInfo = {
     isHebrew: false,
-    month: "Tishri",
+    month: JewishMonth.Tishri,
     year: 5782,
   };
 
-  const elulInfo = {
+  const elulInfo: BasicJewishMonthInfo = {
     isHebrew: false,
-    month: "Elul",
+    month: JewishMonth.Elul,
     year: 5781,
   };
 
@@ -250,7 +251,7 @@ describe("jewishDatesCore", () => {
     day: 13,
     monthName: "Elul",
     year: 5781,
-    month: 13,
+    month: 12,
   };
 
 

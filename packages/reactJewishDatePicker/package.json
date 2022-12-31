@@ -1,6 +1,6 @@
 {
   "name": "react-jewish-datepicker",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "description": "React jewish datepicker",
   "main": "dist/index.js",
   "typings": "lib/index.d.ts",
@@ -10,10 +10,12 @@
   ],
   "repository": "https://github.com/Shmulik-Kravitz/react-jewish-datepicker",
   "author": "Shmulik Kravitz <29735690+Shmulik-Kravitz@users.noreply.github.com>",
-  "license": "GPL-3.0+",
+  "license": "MIT",
   "scripts": {
+    "start": "yarn g:start",
     "dev": "yarn g:dev",
-    "build": "yarn g:build",
+    "copy-md": "cp README.md ../../",
+    "build": "yarn g:build && yarn copy-md",
     "test": "yarn g:test",
     "inc": "yarn version patch",
     "pub": "yarn npm publish",
@@ -27,7 +29,6 @@
     "@react-icons/all-files": "^4.1.0",
     "dayjs": "^1.10.7",
     "jewish-dates-core": "workspace:*",
-    "tslib": "^2.3.1",
     "use-onclickoutside": "^0.4.0"
   },
   "devDependencies": {

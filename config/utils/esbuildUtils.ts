@@ -10,7 +10,7 @@ export const baseConfig: BuildOptions = {
   // splitting: true,
 };
 
-export const start = async (entryPoints: string, outfile: string) => {
+export const start = async (entryPoints: string[], outDir: string) => {
   const start = new Date().getTime();
   serve(
     {
@@ -23,8 +23,8 @@ export const start = async (entryPoints: string, outfile: string) => {
     {
       // plugins: [pnpPlugin()],
       ...baseConfig,
-      entryPoints: [entryPoints],
-      outfile: "./config/static/out.js",
+      entryPoints: entryPoints,
+      outdir: outDir,
     }
   ).then((server) => {
     console.log(`http://127.0.0.1:${server.port}/`);

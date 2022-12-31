@@ -3,12 +3,10 @@
 [![npm](https://badge.fury.io/js/react-jewish-datepicker.svg)](https://www.npmjs.com/package/react-jewish-datepicker)
 [![CI](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/workflows/CI/badge.svg?branch=master)](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/)
 ![license](https://badgen.net/npm/license/react-jewish-datepicker)
-![size](https://badgen.net/bundlephobia/min/react-jewish-datepicker)
-![size minzip](https://badgen.net/bundlephobia/minzip/react-jewish-datepicker)
+[![size minzip](https://img.shields.io/bundlephobia/minzip/react-jewish-datepicker.svg)](https://bundlephobia.com/package/react-jewish-datepicker)
 ![downloads](https://badgen.net/npm/dt/react-jewish-datepicker)
 [![stars](https://badgen.net/github/stars/Shmulik-Kravitz/react-jewish-datepicker)](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/)
-![open issues](https://badgen.net/github/open-issues/Shmulik-Kravitz/react-jewish-datepicker)
-![watchers](https://badgen.net/github/watchers/Shmulik-Kravitz/react-jewish-datepicker)
+
 
 ![npm](https://raw.githubusercontent.com/Shmulik-Kravitz/react-jewish-datepicker/master/images/snapshot.png)
 
@@ -184,3 +182,5 @@ To create a jewish date picker in vue.js or angular, see the [core dependency](h
 - [Shmulik Kravitz](https://github.com/Shmulik-Kravitz)
 - [Sagi Tawil](https://github.com/sagi770)
 - [Yochanan Sheinberger](https://github.com/yochanan-sheinberger)
+
+License: [MIT](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/blob/master/LICENSE).

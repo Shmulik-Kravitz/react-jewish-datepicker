@@ -1,23 +1,101 @@
-name: CI
-on: [push]
+name: CI/CD
+
+on: [push, pull_request]
 
 jobs:
-  build:
+  build-and-test:
+
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - uses: actions/checkout@v3
+    - name: Use Node.js
+      uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install -g yarn # Extra Step:  
-    - name: yarn install, build, and test
-      run: |
-        yarn install
-        yarn run build
-        yarn test
+        node-version: 18
+        cache: 'yarn'
+
+    - run: yarn
+    - run: yarn build
+    - run: yarn test
+    - name: Code Coverage Report
+      uses: irongut/CodeCoverageSummary@v1.3.0
+      with:
+        filename: coverage/**/cobertura-coverage.xml
+        badge: true
+        fail_below_min: true
+        format: markdown
+        hide_branch_rate: false
+        hide_complexity: true
+        indicators: true
+        output: both
+        thresholds: '60 80'
+
+    - name: Add Coverage PR Comment
+      uses: marocchino/sticky-pull-request-comment@v2
+      if: github.event_name == 'pull_request'
+      with:
+        recreate: true
+        path: code-coverage-results.md
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+       name: lib
+       path: lib
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: dist
+        path: dist
+
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: write
+      pull-requests: write
+      deployments: write
+    needs: [build-and-test]
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main')
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'yarn'
+
+      - run: yarn
+      
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: lib
+          path: lib
+      
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist
+
+      - run: yarn inc-version
+
+      - run: yarn npm publish --access public
+        env:
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      
+      - name: Set env $VERSION_TAG
+        run: echo "VERSION_TAG=$(yarn get-version)" >> $GITHUB_ENV
+        
+      - run: git tag v$VERSION_TAG
+
+      - name: Commit report
+        run: |
+          git config --global user.name 'Shmulik-Kravitz'
+          git config --global user.email '29735690+Shmulik-Kravitz@users.noreply.github.com'
+          git commit -am v$VERSION_TAG
+          git push
+          git push origin v$VERSION_TAG

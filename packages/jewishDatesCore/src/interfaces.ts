@@ -2,10 +2,12 @@ import * as Dayjs from "dayjs";
 import {
   BasicJewishDate as OrigBasicJewishDate,
   JewishDate as OrigJewishDate,
+  JewishMonthType as OrigJewishMonthType
 } from "jewish-date";
 
 export type BasicJewishDate = OrigBasicJewishDate;
 export type JewishDate = OrigJewishDate;
+export type JewishMonthType = OrigJewishMonthType;
 
 
 export interface BasicJewishDay {
@@ -27,7 +29,7 @@ export interface Month {
 }
 
 export interface BasicJewishMonthInfo {
-  month: string;
+  month: JewishMonthType;
   year: number;
   isHebrew?: boolean;
 }

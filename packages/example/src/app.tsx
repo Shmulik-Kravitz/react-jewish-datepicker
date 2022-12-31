@@ -17,6 +17,7 @@ import {
   dontSelectOutOfRange,
   addDates,
   subtractDates,
+  JewishMonth,
 } from "jewish-dates-core";
 
 import {
@@ -384,12 +385,12 @@ export function App() {
                     setDateRange({
                       startDate: {
                         day: 13,
-                        monthName: "Elul",
+                        monthName: JewishMonth.Elul,
                         year: 5788,
                       },
                       endDate: {
                         day: 18,
-                        monthName: "Elul",
+                        monthName: JewishMonth.Elul,
                         year: 5788,
                       },
                     });

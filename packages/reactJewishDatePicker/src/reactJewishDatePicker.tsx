@@ -9,7 +9,7 @@ import {
   getJewishDay,
   BasicJewishDay,
   BasicJewishDate,
-  JewishMonth
+  JewishMonth,
 } from "jewish-dates-core";
 import { BasicJewishDateRange, DateRange } from "./interfaces";
 import { Day } from "./day";
@@ -68,15 +68,14 @@ export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (
     setDate(date);
     const jewishMonth = getJewishMonth(date);
 
-    if(isRange && isDateRange(value)) {
-        setStartDay(jewishMonth.selectedDay);
-        const endDate = getDateInit(value.endDate);
-        setEndDay( getJewishDay(Dayjs(endDate)))
+    if (isRange && isDateRange(value)) {
+      setStartDay(jewishMonth.selectedDay);
+      const endDate = getDateInit(value.endDate);
+      setEndDay(getJewishDay(Dayjs(endDate)));
     } else {
-        setSelectedDay(jewishMonth.selectedDay);
+      setSelectedDay(jewishMonth.selectedDay);
     }
   }, [value]);
-  
 
   useOnClickOutside(ref, () => {
     setOpen(false);
@@ -110,14 +109,18 @@ export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (
     setDate(gregDate);
   };
 
-  const handleNavigationClick = (month: string, year: number) => {
-    const basicJewishDate: BasicJewishDate = {
-      year: year,
-      monthName: JewishMonth[month],
-      day: jewishMonthInfo.selectedDay.day,
-    };
-    setBasicJewishDate(basicJewishDate);
-  };
+  const handleNavigationClick = React.useCallback(
+    (month: string, year: number) => {
+      const basicJewishDate: BasicJewishDate = {
+        year: year,
+        monthName: JewishMonth[month],
+        day: jewishMonthInfo.selectedDay.day,
+      };
+      // console.log(basicJewishDate);
+      setBasicJewishDate(basicJewishDate);
+    },
+    [JewishMonth]
+  );
 
   const [start, end] = getDatesInOrder(startDay, hoveredDay);
 

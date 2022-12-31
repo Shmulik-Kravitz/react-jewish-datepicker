@@ -26,12 +26,15 @@ import {
   BasicJewishDay,
   BasicJewishDate
 } from "react-jewish-datepicker";
+import {
+  JewishMonth,
+} from "jewish-dates-core";
 
 export default function App() {
   const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
   const basicJewishDate: BasicJewishDate = {
     day: 13,
-    monthName: "Elul",
+    monthName: JewishMonth.Elul,
     year: 5788
   };
 
@@ -194,6 +197,9 @@ import {
   ReactJewishDatePicker,
   BasicJewishDateRange,
 } from "react-jewish-datepicker";
+import {
+  JewishMonth,
+} from "jewish-dates-core";
 
 export default function App() {
   const [startDay, setStartDay] = React.useState<BasicJewishDay | undefined>(undefined);
@@ -201,12 +207,12 @@ export default function App() {
   const basicJewishDateRange: BasicJewishDateRange = {
     startDate: {
       day: 13,
-      monthName: "Elul",
+      monthName: JewishMonth.Elul,
       year: 5788,
     },
     endDate: {
       day: 18,
-      monthName: "Elul",
+      monthName: JewishMonth.Elul,
       year: 5788,
     },
   };

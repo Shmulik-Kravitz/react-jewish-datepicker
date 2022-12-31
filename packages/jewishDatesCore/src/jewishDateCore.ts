@@ -6,7 +6,10 @@ import {
   JewishMonthType,
   JewishMonth as OrigJewishMonth,
   isLeapYear,
-  formatJewishDate
+  formatJewishDate,
+  JewishMonth,
+  getJewishMonthsInOrder,
+  getJewishMonthInHebrew,
 } from "jewish-date";
 import gematriya from "gematriya";
 import Dayjs from "dayjs";
@@ -160,24 +163,13 @@ export const getEngJewishMonths = (): IdText[] => {
 };
 
 export const getJewishMonths = (year: number, isHebrew?: boolean): IdText[] => {
-  const months = isHebrew ? getHebJewishMonths() : getEngJewishMonths();
-
-  if (isLeapYear(year)) {
-    return months;
-  } else {
-    return months
-      .filter((month) => month.id !== "AdarII")
-      .map((month) => {
-        if (month.id == "AdarI") {
-          return {
-            id: "AdarI",
-            text: isHebrew ? "אדר" : "Adar",
-          };
-        } else {
-          return month;
-        }
-      });
-  }
+  const months = getJewishMonthsInOrder(year);
+  return months.slice(1).map((month, i) => {
+    return {
+      id: month,
+      text: isHebrew ? getJewishMonthInHebrew(JewishMonth[month]) : month,
+    };
+  });
 };
 
 export const getJewishYears = (year: number = 5780): number[] => {
@@ -202,20 +194,17 @@ export const getPrevMonth = (
     basicJewishMonthInfo.year,
     basicJewishMonthInfo.isHebrew
   );
-
   const monthIndex = months
     .map((month) => month.id)
     .indexOf(basicJewishMonthInfo.month);
-
   if (monthIndex !== -1) {
     if (monthIndex === 0) {
-      result.month = months[months.length - 1].id;
+      result.month = JewishMonth[months[months.length - 1].id];
       result.year--;
     } else {
-      result.month = months[monthIndex - 1].id;
+      result.month = JewishMonth[months[monthIndex - 1].id];
     }
   }
-
   return result;
 };
 
@@ -230,10 +219,10 @@ export const getNextMonth = (
 
   if (monthIndex !== -1) {
     if (monthIndex === months.length - 1) {
-      result.month = months[0].id;
+      result.month = JewishMonth[months[0].id];
       result.year++;
     } else {
-      result.month = months[monthIndex + 1].id;
+      result.month = JewishMonth[months[monthIndex + 1].id];
     }
   }
 
@@ -241,7 +230,12 @@ export const getNextMonth = (
 };
 
 export const getGregDate = (props: BasicJewishDate): Date => {
-  if (!props || props.monthName === OrigJewishMonth.None || props.year < 1 || props.day < 1) {
+  if (
+    !props ||
+    props.monthName === OrigJewishMonth.None ||
+    props.year < 1 ||
+    props.day < 1
+  ) {
     return new Date();
   }
 
@@ -253,7 +247,6 @@ export const getGregDate = (props: BasicJewishDate): Date => {
     year: props.year,
   };
   const date = toGregorianDate(jewishDate);
-
   return date;
 };
 
@@ -273,17 +266,7 @@ export const getJewishMonthInfo = (date: Date): JewishMonthMetadata => {
 };
 
 export const getJewishDate = (date: Date): JewishDate => {
-  const hebDate = toJewishDate(date);
-
-  const months = getEngJewishMonths();
-
-  const month = months.findIndex((i) => i.id === hebDate.monthName) + 1;
-  return {
-    year: hebDate.year,
-    month: month,
-    day: hebDate.day,
-    monthName: hebDate.monthName,
-  };
+  return toJewishDate(date);
 };
 
 export const IsJewishDatesEqual = (
@@ -316,7 +299,6 @@ export const getJewishDay = (dayjsDate: Dayjs.Dayjs): JewishDay => {
 
 export const getJewishMonth = (date: Date): JewishMonthInfo => {
   const jewishMonthInfo = getJewishMonthInfo(date);
-
   const jewishMonth: JewishMonthInfo = {
     selectedDay: null,
     jewishMonth: jewishMonthInfo.jewishMonth,
@@ -419,5 +401,3 @@ export const subtractDates = (
 
   return Dayjs(formatedDate).subtract(numDays, "day").toDate();
 };
-
-

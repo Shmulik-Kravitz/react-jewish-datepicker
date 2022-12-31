@@ -1,6 +1,6 @@
 {
   "name": "jewish-dates-core",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "description": "Jewish dates core",
   "main": "dist/index.js",
   "typings": "lib/index.d.ts",
@@ -10,8 +10,9 @@
   ],
   "repository": "https://github.com/Shmulik-Kravitz/react-jewish-datepicker",
   "author": "Shmulik Kravitz <29735690+Shmulik-Kravitz@users.noreply.github.com>",
-  "license": "GPL-3.0+",
+  "license": "MIT",
   "scripts": {
+    "start": "yarn g:start",
     "dev": "yarn g:dev",
     "build": "yarn g:build",
     "test": "yarn g:test",
@@ -22,12 +23,11 @@
   "dependencies": {
     "dayjs": "^1.10.7",
     "gematriya": "^2.0.0",
-    "jewish-date": "1.0.2",
-    "tslib": "^2.3.1"
+    "jewish-date": "1.0.9"
   },
   "devDependencies": {
     "@types/gematriya": "^2.0.2",
-    "esbuild": "^0.15.11",
+    "esbuild": "^0.16.12",
     "typescript": "^4.5.5"
   },
   "keywords": [

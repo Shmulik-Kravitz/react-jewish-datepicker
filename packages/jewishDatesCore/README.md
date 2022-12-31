@@ -600,3 +600,5 @@ subtractDates(basicJewishDate, 4)) // => Tue Aug 17 2021 00:00:00 GMT+0300 (שע
 - [Shmulik Kravitz](https://github.com/Shmulik-Kravitz)
 - [Sagi Tawil](https://github.com/sagi770)
 - [Yochanan Sheinberger](https://github.com/yochanan-sheinberger)
+
+License: [MIT](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/blob/master/LICENSE).
