@@ -12,6 +12,7 @@
     "type": "git",
     "url": "https://github.com/Shmulik-Kravitz/react-jewish-datepicker"
   },
+  "homepage": "https://react-jewish-datepicker.js.org/",
   "author": "Shmulik Kravitz <29735690+Shmulik-Kravitz@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
