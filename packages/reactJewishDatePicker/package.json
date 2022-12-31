@@ -8,7 +8,10 @@
     "build",
     "README.md"
   ],
-  "repository": "https://github.com/Shmulik-Kravitz/react-jewish-datepicker",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Shmulik-Kravitz/react-jewish-datepicker"
+  },
   "author": "Shmulik Kravitz <29735690+Shmulik-Kravitz@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
