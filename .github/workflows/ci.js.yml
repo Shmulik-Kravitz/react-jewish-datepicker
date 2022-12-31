@@ -81,7 +81,8 @@ jobs:
 
       - run: yarn inc-version
 
-      - run: yarn npm publish --access public
+      # - run: yarn npm publish --access public
+      - run: yarn pub
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       

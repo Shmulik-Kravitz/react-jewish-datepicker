@@ -6,12 +6,12 @@
     "@react-icons/all-files": "^4.1.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^27.4.0",
-    "@types/node": "^14.18.10",
+    "@types/node": "^14.18.36",
     "@types/react-syntax-highlighter": "^15.5.5",
-    "dayjs": "^1.10.7",
+    "dayjs": "^1.11.7",
     "lodash": "^4.17.21",
     "react-jewish-datepicker": "workspace:*",
-    "react-scripts": "5.0.0",
+    "react-scripts": "5.0.1",
     "react-syntax-highlighter": "^15.5.0"
   },
   "scripts": {

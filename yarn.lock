@@ -3827,10 +3827,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^14.18.10":
-  version: 14.18.10
-  resolution: "@types/node@npm:14.18.10"
-  checksum: e722eec37be85dd7dddc4cfd26c501c66f1f2a7e0f603f57ff925348e65a5db603b06363fa27489cbecff44f0ae59812f22509923c4c45ffa5958604cc002401
+"@types/node@npm:^14.18.36":
+  version: 14.18.36
+  resolution: "@types/node@npm:14.18.36"
+  checksum: da7f479b3fc996d585e60b8329987c6e310ddbf051e14f2d900ce04f7768f42fa7b760f0eb376008d3eca130ce9431018fb5c9e44027dcb7bb139c547e44b9c5
   languageName: node
   linkType: hard
 
@@ -4786,7 +4786,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"are-passive-events-supported@npm:^1.1.0":
+"are-passive-events-supported@npm:^1.1.1":
   version: 1.1.1
   resolution: "are-passive-events-supported@npm:1.1.1"
   checksum: 3295a7b3aeb026d26c1b256decdb5ded8bf26f6c02fd0b37c63c7dc9affd57b7474ee9b6230b5d5ac4f0fc624a19acdcfdd76c5155025d97cc7d8bb5dc83e61b
@@ -6505,10 +6505,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dayjs@npm:^1.10.7":
-  version: 1.10.7
-  resolution: "dayjs@npm:1.10.7"
-  checksum: a0a4ca95abaa03d0702161dc2c35d16121188e342f5052b9c61cdf784dab68af766f477c04f87f71c6af666fd4d13db9b9853b87265850d6093b7b04e1bb1cd7
+"dayjs@npm:^1.11.7":
+  version: 1.11.7
+  resolution: "dayjs@npm:1.11.7"
+  checksum: 5003a7c1dd9ed51385beb658231c3548700b82d3548c0cfbe549d85f2d08e90e972510282b7506941452c58d32136d6362f009c77ca55381a09c704e9f177ebb
   languageName: node
   linkType: hard
 
@@ -7441,7 +7441,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.15.11, esbuild@npm:^0.15.9":
+"esbuild@npm:^0.15.9":
   version: 0.15.13
   resolution: "esbuild@npm:0.15.13"
   dependencies:
@@ -7670,9 +7670,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-react-app@npm:^7.0.0":
-  version: 7.0.0
-  resolution: "eslint-config-react-app@npm:7.0.0"
+"eslint-config-react-app@npm:^7.0.1":
+  version: 7.0.1
+  resolution: "eslint-config-react-app@npm:7.0.1"
   dependencies:
     "@babel/core": ^7.16.0
     "@babel/eslint-parser": ^7.16.3
@@ -7690,7 +7690,7 @@ __metadata:
     eslint-plugin-testing-library: ^5.0.1
   peerDependencies:
     eslint: ^8.0.0
-  checksum: dac130cfcb9689596ce3495692fecb25d913ba81de0e0c3e4b078ae79f0f0d20a77751f30823c5b3c09d66981c1df7f2836aa193f5c6c542faeb17761cd62019
+  checksum: a67e0821809e62308d6e419753fa2acfc7cd353659fab08cf34735f59c6c66910c0b6fda0471c4ec0d712ce762d65efc6431b39569f8d575e2d9bdfc384e0824
   languageName: node
   linkType: hard
 
@@ -8042,12 +8042,12 @@ __metadata:
     "@react-icons/all-files": ^4.1.0
     "@testing-library/user-event": ^14.4.3
     "@types/jest": ^27.4.0
-    "@types/node": ^14.18.10
+    "@types/node": ^14.18.36
     "@types/react-syntax-highlighter": ^15.5.5
-    dayjs: ^1.10.7
+    dayjs: ^1.11.7
     lodash: ^4.17.21
     react-jewish-datepicker: "workspace:*"
-    react-scripts: 5.0.0
+    react-scripts: 5.0.1
     react-syntax-highlighter: ^15.5.0
   languageName: unknown
   linkType: soft
@@ -10674,7 +10674,7 @@ __metadata:
   resolution: "jewish-dates-core@workspace:packages/jewishDatesCore"
   dependencies:
     "@types/gematriya": ^2.0.2
-    dayjs: ^1.10.7
+    dayjs: ^1.11.7
     esbuild: ^0.16.12
     gematriya: ^2.0.0
     jewish-date: 1.0.9
@@ -11960,9 +11960,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"np@npm:^7.6.0":
-  version: 7.6.0
-  resolution: "np@npm:7.6.0"
+"np@npm:^7.6.3":
+  version: 7.6.3
+  resolution: "np@npm:7.6.3"
   dependencies:
     "@samverschueren/stream-to-observable": ^0.3.1
     any-observable: ^0.5.1
@@ -12005,7 +12005,7 @@ __metadata:
     update-notifier: ^5.0.1
   bin:
     np: source/cli.js
-  checksum: 5f07a10ffdd8ec264ed821bb5201ef1fd37b6e27c2a0b46bf60815f1476617347686c9e3a22b1d450adf76edfb5c02efda927a205c82a3be02f48a902b7f42e1
+  checksum: e887adf79269640629400ffba2c21c19262d79431076508195f0ca7e3f0e3a9c4f50f058402d0bf05f63c9eac840015c0d20386f67a3498961a206051b3d2dcb
   languageName: node
   linkType: hard
 
@@ -13931,9 +13931,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dev-utils@npm:^12.0.0":
-  version: 12.0.0
-  resolution: "react-dev-utils@npm:12.0.0"
+"react-dev-utils@npm:^12.0.1":
+  version: 12.0.1
+  resolution: "react-dev-utils@npm:12.0.1"
   dependencies:
     "@babel/code-frame": ^7.16.0
     address: ^1.1.2
@@ -13954,12 +13954,12 @@ __metadata:
     open: ^8.4.0
     pkg-up: ^3.1.0
     prompts: ^2.4.2
-    react-error-overlay: ^6.0.10
+    react-error-overlay: ^6.0.11
     recursive-readdir: ^2.2.2
     shell-quote: ^1.7.3
     strip-ansi: ^6.0.1
     text-table: ^0.2.0
-  checksum: d3be371c8e1e10877956ef8ceba77e8cb0c47440695d92ad3ca1734fdde77a1aa27a6c15dea9d82c873c7e6817e47d3d7410dfbeaff5c34508ffa9f5378dd1d1
+  checksum: 2c6917e47f03d9595044770b0f883a61c6b660fcaa97b8ba459a1d57c9cca9aa374cd51296b22d461ff5e432105dbe6f04732dab128e52729c79239e1c23ab56
   languageName: node
   linkType: hard
 
@@ -13975,10 +13975,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-error-overlay@npm:^6.0.10":
-  version: 6.0.10
-  resolution: "react-error-overlay@npm:6.0.10"
-  checksum: e7384f086a0162eecac8e081fe3c79b32f4ac8690c56bde35ab6b6380d10e6c8375bbb689a450902b6615261fcf6c95ea016fc0b200934667089ca83536bc4a7
+"react-error-overlay@npm:^6.0.11":
+  version: 6.0.11
+  resolution: "react-error-overlay@npm:6.0.11"
+  checksum: ce7b44c38fadba9cedd7c095cf39192e632daeccf1d0747292ed524f17dcb056d16bc197ddee5723f9dd888f0b9b19c3b486c430319e30504289b9296f2d2c42
   languageName: node
   linkType: hard
 
@@ -14001,11 +14001,11 @@ __metadata:
   resolution: "react-jewish-datepicker@workspace:packages/reactJewishDatePicker"
   dependencies:
     "@react-icons/all-files": ^4.1.0
-    dayjs: ^1.10.7
-    esbuild: ^0.15.11
+    dayjs: ^1.11.7
+    esbuild: ^0.16.12
     jewish-dates-core: "workspace:*"
     typescript: ^4.5.5
-    use-onclickoutside: ^0.4.0
+    use-onclickoutside: ^0.4.1
   peerDependencies:
     react: "*"
     react-dom: "*"
@@ -14026,9 +14026,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-scripts@npm:5.0.0":
-  version: 5.0.0
-  resolution: "react-scripts@npm:5.0.0"
+"react-scripts@npm:5.0.1":
+  version: 5.0.1
+  resolution: "react-scripts@npm:5.0.1"
   dependencies:
     "@babel/core": ^7.16.0
     "@pmmmwh/react-refresh-webpack-plugin": ^0.5.3
@@ -14046,7 +14046,7 @@ __metadata:
     dotenv: ^10.0.0
     dotenv-expand: ^5.1.0
     eslint: ^8.3.0
-    eslint-config-react-app: ^7.0.0
+    eslint-config-react-app: ^7.0.1
     eslint-webpack-plugin: ^3.1.1
     file-loader: ^6.2.0
     fs-extra: ^10.0.0
@@ -14064,7 +14064,7 @@ __metadata:
     postcss-preset-env: ^7.0.1
     prompts: ^2.4.2
     react-app-polyfill: ^3.0.0
-    react-dev-utils: ^12.0.0
+    react-dev-utils: ^12.0.1
     react-refresh: ^0.11.0
     resolve: ^1.20.0
     resolve-url-loader: ^4.0.0
@@ -14089,7 +14089,7 @@ __metadata:
       optional: true
   bin:
     react-scripts: bin/react-scripts.js
-  checksum: 55ffad0d68ee6345326f5803c1925ae44b46cc33cb1cad9bcb68fd1784acfb3876bc12118b3079bc4d934834ae0197a9776baa0a06df0263831acc91ac42df29
+  checksum: 92afa2f245c7092ccc97d5609dc7a2130616262e34da7f15072d9442e2d2e1d4909a91022abd1faac1336eb17c5525a10d9bd43e1ae374c7ec941ca20addca68
   languageName: node
   linkType: hard
 
@@ -14715,7 +14715,7 @@ __metadata:
     esbuild-runner: ^2.2.2
     esprima: ^4.0.1
     has-flag: ^5.0.1
-    np: ^7.6.0
+    np: ^7.6.3
     prettier: ^2.8.1
     react: ^18.2.0
     react-dom: ^18.2.0
@@ -14723,7 +14723,7 @@ __metadata:
     tsc-prog: ^2.2.1
     turbo: ^1.6.3
     typescript: ^4.5.5
-    vite: ^3.1.8
+    vite: ^3.2.5
     vitest: ^0.26.2
   languageName: unknown
   linkType: soft
@@ -16577,41 +16577,41 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-isomorphic-layout-effect@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "use-isomorphic-layout-effect@npm:1.0.0"
+"use-isomorphic-layout-effect@npm:^1.1.1":
+  version: 1.1.2
+  resolution: "use-isomorphic-layout-effect@npm:1.1.2"
   peerDependencies:
-    react: ^16.8.0
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: ae47fd96ad5973208472490b9e769c0965b0bfedbc21696c1450b6e71745732129cbb66450b8f33c6f6ef65716fff4381cb97c9fb3d5d7a2622fe6c6f6d3e702
+  checksum: a6532f7fc9ae222c3725ff0308aaf1f1ddbd3c00d685ef9eee6714fd0684de5cb9741b432fbf51e61a784e2955424864f7ea9f99734a02f237b17ad3e18ea5cb
   languageName: node
   linkType: hard
 
-"use-latest@npm:^1.0.0":
-  version: 1.1.0
-  resolution: "use-latest@npm:1.1.0"
+"use-latest@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "use-latest@npm:1.2.1"
   dependencies:
-    use-isomorphic-layout-effect: ^1.0.0
+    use-isomorphic-layout-effect: ^1.1.1
   peerDependencies:
-    react: ^16.8.0
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: d865c59cca002d53ebb16da4ca6198c5e40d513fb65816449a9507b70753b31b436bf90afab5ac55f3ffc65671d23a0bd48d1f4bcc35f6866313c1f9360c1f21
+  checksum: ed3f2ddddf6f21825e2ede4c2e0f0db8dcce5129802b69d1f0575fc1b42380436e8c76a6cd885d4e9aa8e292e60fb8b959c955f33c6a9123b83814a1a1875367
   languageName: node
   linkType: hard
 
-"use-onclickoutside@npm:^0.4.0":
-  version: 0.4.0
-  resolution: "use-onclickoutside@npm:0.4.0"
+"use-onclickoutside@npm:^0.4.1":
+  version: 0.4.1
+  resolution: "use-onclickoutside@npm:0.4.1"
   dependencies:
-    are-passive-events-supported: ^1.1.0
-    use-latest: ^1.0.0
+    are-passive-events-supported: ^1.1.1
+    use-latest: ^1.2.1
   peerDependencies:
-    react: ^16.8.0 || ^17.0.0
-  checksum: bef953e5138736f6cb67ba8c7343ff6fc6bb25b758ad0e0a8776c5f2ec9b6818be50a67d7d24f15d06d521ad90fccb06c3acaabf1cafda64e4f546fd306122cc
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+  checksum: 198b8ff9b9239c75728d13795c7c641e6e3db8d1f751ff23d20a8f40914c715c1f265c593847292ef173a94d9aa2190a28b09f1856c48ef5dbe0631e54d0a586
   languageName: node
   linkType: hard
 
@@ -16773,9 +16773,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^3.1.8":
-  version: 3.2.3
-  resolution: "vite@npm:3.2.3"
+"vite@npm:^3.2.5":
+  version: 3.2.5
+  resolution: "vite@npm:3.2.5"
   dependencies:
     esbuild: ^0.15.9
     fsevents: ~2.3.2
@@ -16807,7 +16807,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 3c7c618f7fb471cdfaf7f8eb769cb5f4174447e1103cd6221cbc2ae1ea1102bc28dd6a621ead250e6aa42c1e9ee3c8092666ea81078e1d88d2325c484218fd0a
+  checksum: ad35b7008c2b62a167d1d1a82f0a0c60fa457733f1969e9eedf0b0077f67a7ac74b4c9477e75a397895150f09b6551f0c17841c5b05c34d9fe302bb0b5dc28a8
   languageName: node
   linkType: hard
 
