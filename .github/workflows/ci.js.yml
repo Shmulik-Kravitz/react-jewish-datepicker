@@ -41,14 +41,26 @@ jobs:
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-       name: lib
-       path: packages/*/lib
+       name: lib_core
+       path: packages/jewishDatesCore/lib
 
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
-        name: dist
-        path: packages/*/dist
+        name: dist_core
+        path: packages/jewishDatesCore/dist
+    
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+       name: lib_picker
+       path: packages/reactJewishDatePicker/lib
+
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: dist_picker
+        path: packages/reactJewishDatePicker/dist
 
   release:
     runs-on: ubuntu-latest
@@ -72,12 +84,27 @@ jobs:
       - name: Download build artifact
         uses: actions/download-artifact@v3
         with:
-          name: lib
+          name: lib_core
+          path: packages/jewishDatesCore/lib
       
       - name: Download build artifact
         uses: actions/download-artifact@v3
         with:
-          name: dist
+          name: dist_core
+          path: packages/jewishDatesCore/dist
+
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: lib_picker
+          path: packages/reactJewishDatePicker/lib
+      
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist_picker
+          path: packages/reactJewishDatePicker/dist
+
 
       - run: yarn inc-version
 

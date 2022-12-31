@@ -6,7 +6,7 @@
     "pub": "yarn workspaces foreach -vit run pub",
     "pub1": "yarn workspaces foreach -vit run pub && yarn run tag",
     "inc": "echo yarn workspaces foreach -vit run inc",
-    "inc-version": "echo yarn workspaces foreach version patch",
+    "inc-version": "yarn workspaces foreach version patch",
     "get-version": "node -p \"require('./packages/jewishDatesCore/package.json').version\"",
     "tag": "echo git tag v1.2.1",
     "clean": "rm -rf node_modules",

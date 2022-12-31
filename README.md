@@ -39,6 +39,7 @@ import {
   BasicJewishDay,
   BasicJewishDate
 } from "react-jewish-datepicker";
+import "react-jewish-datepicker/dist/index.css";
 
 export default function App() {
   const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
@@ -74,6 +75,7 @@ export default function App() {
 ```js
 import * as React from "react";
 import { ReactJewishDatePicker, BasicJewishDay } from "react-jewish-datepicker";
+import "react-jewish-datepicker/dist/index.css";
 
 export default function App() {
   const [basicJewishDay, setBasicJewishDay] = React.useState();

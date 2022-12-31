@@ -3,6 +3,7 @@ import {
   ReactJewishDatePicker,
   BasicJewishDay,
 } from "react-jewish-datepicker";
+import "react-jewish-datepicker/dist/index.css";
 
 export default function App() {
   const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
@@ -26,6 +27,7 @@ import {
   BasicJewishDay,
   BasicJewishDate
 } from "react-jewish-datepicker";
+import "react-jewish-datepicker/dist/index.css";
 import {
   JewishMonth,
 } from "jewish-dates-core";
@@ -56,6 +58,7 @@ import {
   ReactJewishDatePicker,
   BasicJewishDay,
 } from "react-jewish-datepicker";
+import "react-jewish-datepicker/dist/index.css";
 import { dontSelectHolidays } from "jewish-dates-core";
 
 export default function App() {
@@ -84,6 +87,7 @@ import {
   ReactJewishDatePicker,
   BasicJewishDay,
 } from "react-jewish-datepicker";
+import "react-jewish-datepicker/dist/index.css";
 import { dontSelectShabat } from "jewish-dates-core";
 
 export default function App() {
@@ -109,6 +113,7 @@ import {
   ReactJewishDatePicker,
   BasicJewishDay,
 } from "react-jewish-datepicker";
+import "react-jewish-datepicker/dist/index.css";
 import { dontSelectShabatAndHolidays } from "jewish-dates-core";
 
 export default function App() {
@@ -135,6 +140,7 @@ import {
   ReactJewishDatePicker,
   BasicJewishDay,
 } from "react-jewish-datepicker";
+import "react-jewish-datepicker/dist/index.css";
 import {
   dontSelectOutOfRange,
   addDates,
@@ -166,6 +172,7 @@ import {
   ReactJewishDatePicker,
   BasicJewishDay,
 } from "react-jewish-datepicker";
+import "react-jewish-datepicker/dist/index.css";
 
 const dontSelectTuesdays = (day: BasicJewishDay): boolean => {
   if (day.date.getDay() === 2) {
@@ -197,6 +204,7 @@ import {
   ReactJewishDatePicker,
   BasicJewishDateRange,
 } from "react-jewish-datepicker";
+import "react-jewish-datepicker/dist/index.css";
 import {
   JewishMonth,
 } from "jewish-dates-core";
