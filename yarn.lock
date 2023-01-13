@@ -3737,18 +3737,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jewish-dates-core@npm:^2.0.3":
-  version: 2.0.3
-  resolution: "jewish-dates-core@npm:2.0.3"
-  dependencies:
-    dayjs: ^1.11.7
-    gematriya: ^2.0.0
-    jewish-date: 1.0.9
-  checksum: 661c4d8b995e09ed7a6085cdf4d21f48477fd1bc078adcfbb66e10883a7c9d1bb22e088e290a12d30c3f1393e3f3bcf365f87250bb838b63f8aa212dd4b9a7ab
-  languageName: node
-  linkType: hard
-
-"jewish-dates-core@workspace:*, jewish-dates-core@workspace:packages/jewishDatesCore":
+"jewish-dates-core@^2.0.3, jewish-dates-core@workspace:*, jewish-dates-core@workspace:packages/jewishDatesCore":
   version: 0.0.0-use.local
   resolution: "jewish-dates-core@workspace:packages/jewishDatesCore"
   dependencies:

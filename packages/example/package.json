@@ -1,7 +1,7 @@
 {
   "name": "example",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "start": "yarn g:start-app",
     "build": "yarn g:build-app && cp -R -a -f ./config/static/. ./dist/ &&  yarn copy-to-docs",
