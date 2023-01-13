@@ -107,7 +107,10 @@ jobs:
 
 
       - run: yarn inc-version
-
+      - name: Set env $VERSION_TAG
+        run: echo "VERSION_TAG=$(yarn get-version)" >> $GITHUB_ENV
+        
+      - run: git tag v$VERSION_TAG
       - name: Commit version
         run: |
           git config --global user.name 'Shmulik-Kravitz'
@@ -119,10 +122,4 @@ jobs:
       - run: yarn pub
         env:
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      
-      - name: Set env $VERSION_TAG
-        run: echo "VERSION_TAG=$(yarn get-version)" >> $GITHUB_ENV
-        
-      - run: git tag v$VERSION_TAG
-
-      
+     
