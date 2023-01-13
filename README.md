@@ -40,12 +40,15 @@ import {
   BasicJewishDate
 } from "react-jewish-datepicker";
 import "react-jewish-datepicker/dist/index.css";
+import {
+  JewishMonth,
+} from "jewish-dates-core";
 
 export default function App() {
   const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
   const basicJewishDate: BasicJewishDate = {
     day: 13,
-    monthName: "Elul",
+    monthName: JewishMonth.Elul,
     year: 5788
   };
 

@@ -108,6 +108,13 @@ jobs:
 
       - run: yarn inc-version
 
+      - name: Commit version
+        run: |
+          git config --global user.name 'Shmulik-Kravitz'
+          git config --global user.email '29735690+Shmulik-Kravitz@users.noreply.github.com'
+          git commit -am v$VERSION_TAG
+          git push
+          git push origin v$VERSION_TAG
       # - run: yarn npm publish --access public
       - run: yarn pub
         env:
@@ -118,10 +125,4 @@ jobs:
         
       - run: git tag v$VERSION_TAG
 
-      - name: Commit report
-        run: |
-          git config --global user.name 'Shmulik-Kravitz'
-          git config --global user.email '29735690+Shmulik-Kravitz@users.noreply.github.com'
-          git commit -am v$VERSION_TAG
-          git push
-          git push origin v$VERSION_TAG
+      

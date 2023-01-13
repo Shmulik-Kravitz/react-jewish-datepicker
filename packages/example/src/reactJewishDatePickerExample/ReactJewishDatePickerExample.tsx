@@ -6,13 +6,13 @@ import {
   BasicJewishDateRange,
   DateRange,
 } from "react-jewish-datepicker";
+// import { LiveProvider, LiveEditor, LiveError, LivePreview } from "react-live";
 import { HiOutlineClipboard } from "@react-icons/all-files/hi/HiOutlineClipboard";
 import { HiOutlineClipboardCheck } from "@react-icons/all-files/hi/HiOutlineClipboardCheck";
 import { Code } from "./code";
 
 import "./ReactJewishDatePickerExample.css";
-import "react-jewish-datepicker/dist/index.css";
-
+import "../../../reactJewishDatePicker/dist/index.css";
 
 export interface ReactJewishDatePickerExampleProps {
   isHebrew?: boolean;
@@ -51,8 +51,14 @@ export const ReactJewishDatePickerExample: React.FC<
     }, 1500);
   };
 
+  // const scope = { ReactJewishDatePicker, BasicJewishDay, React };
   return (
     <div className="reactJewishDatePickerExample">
+      {/* <LiveProvider code={props.code} scope={scope} language={"tsx"}>
+        <LiveEditor />
+        <LiveError />
+        <LivePreview />
+      </LiveProvider> */}
       <div className="demo">
         <button className="copy" onClick={copyToClipboard}>
           {isCopied ? (

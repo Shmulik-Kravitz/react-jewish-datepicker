@@ -1,4 +1,6 @@
-.reactJewishDatePickerExample {}
+.reactJewishDatePickerExample {
+  text-align: start;
+}
 
 .switch {
   display: grid;
@@ -26,9 +28,12 @@
 }
 .demo pre {
   margin: 0;
-  border-right: 1px solid #d3e2ff;
+  border-left: 1px solid #d3e2ff;
   padding: 10px 15px !important;
   border-radius: 0 0 0 5px;
+}
+.demo pre:empty {
+  border-left: 1px solid transparent;
 }
 code, .exsample pre {
   font-family: monospace !important;

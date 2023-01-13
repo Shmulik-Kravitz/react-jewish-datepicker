@@ -1,0 +1,152 @@
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #fdfff4;
+}
+
+html {
+  height: 100%;
+}
+
+.main {
+  display: grid;
+}
+header {
+  min-height: 80px;
+  padding: 10px 10px 30px;
+  background-color: #03045e;
+  color: #fdfff4;
+}
+
+header span {
+  font-size: 13px;
+  color: #fdfff4;
+}
+
+h1 {
+  margin: 8px 0 0;
+  text-align: center;
+}
+
+.meta {
+  padding: 10px;
+  text-align: center;
+}
+
+.meta span {
+  display: inline-block;
+  margin: 0 5px 5px;
+}
+
+.meta a {
+  padding: 0;
+  display: inline;
+}
+
+.meta a:hover {
+  background-color: unset;
+}
+
+.examplesContainer {
+  margin: auto;
+  padding: 0 10px;
+}
+
+.install {
+  padding: 3px 22px 3px 6px;
+  border: 1px solid #ccc;
+  margin: 0;
+  font-size: 13px;
+  background-color: #e8e7e7;
+  border-radius: 3px;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  position: relative;
+}
+
+.installCopy {
+  font-size: 14px;
+  background-color: unset;
+  border: none;
+  position: absolute;
+  top: -5px;
+  right: -13px;
+  cursor: pointer;
+  color: #8d8d8d;
+}
+
+.installCopy:hover {
+  color: #616161;
+  transform: scale(1.1);
+}
+
+.examples-h2 {
+  margin: 45px 0 0;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+.examples {
+  display: grid;
+  grid-template-columns: 18% 80%;
+  justify-content: space-between;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  font-size: small;
+  border: 1px solid rgb(226, 226, 226);
+  background-color: whitesmoke;
+  border-radius: 5px;
+  max-height: 100vh;
+  position: sticky;
+  top: 10px;
+}
+
+li {
+  border-bottom: 1px solid rgb(226, 226, 226);
+}
+
+a {
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+  color: #03045e;
+}
+
+a:hover {
+  text-decoration: underline;
+  background-color: #ccc;
+}
+
+.button {
+  background-color: #e7e7e7; /* Green */
+  border: none;
+  color: black;
+  padding: 5px 20px;
+  margin-bottom: 5px;
+  text-align: center;
+  cursor: pointer;
+  width: 200px;
+}
+
+.examples h3 {
+  color: #000746;
+  margin-bottom: 5px;
+  padding: 2px 10px 5px;
+  font-weight: 500;
+  border-bottom: 1px solid #f0bfff;
+}
+
+@media only screen and (max-width: 650px) {
+  .examples {
+    display: grid;
+    grid-template-columns: 100%;
+  }
+
+  .install {
+    font-size: 12px;
+  }
+}

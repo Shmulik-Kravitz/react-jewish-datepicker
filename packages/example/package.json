@@ -1,40 +1,32 @@
 {
   "name": "example",
-  "version": "2.0.2",
   "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "start": "yarn g:start-app",
+    "build": "yarn g:build-app && cp -R -a -f ./config/static/. ./dist/ &&  yarn copy-to-docs",
+    "copy-to-docs": "cp -R -a -f ./dist/. ../../docs/ && echo copy to docs done",
+    "test": "echo test",
+    "inc": "echo inc",
+    "pub": "echo publish"
+  },
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
-    "@testing-library/user-event": "^14.4.3",
-    "@types/jest": "^27.4.0",
-    "@types/node": "^14.18.36",
-    "@types/react-syntax-highlighter": "^15.5.5",
+    "@types/react-syntax-highlighter": "^15.5.6",
     "dayjs": "^1.11.7",
-    "lodash": "^4.17.21",
+    "jewish-dates-core": "^2.0.3",
+    "prism-react-renderer": "^1.3.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-jewish-datepicker": "workspace:*",
-    "react-scripts": "5.0.1",
+    "react-live": "^3.1.1",
     "react-syntax-highlighter": "^15.5.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && cp -R -a -f ./build/. ../../docs/ && echo copy to docs done",
-    "test": "echo test",
-    "inc": "yarn version patch",
-    "pub": "echo publish",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "esbuild": "^0.16.17",
+    "esbuild-node-externals": "^1.6.0",
+    "has-flag": "4.0.0",
+    "tsc-prog": "^2.2.1",
+    "typescript": "^4.5.5"
   }
 }
