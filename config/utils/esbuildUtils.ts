@@ -2,6 +2,7 @@ import { build as esbuild, serve, BuildOptions } from "esbuild";
 import nodeExternalsPlugin from "esbuild-node-externals";
 import hasFlag from "has-flag";
 import path from "path";
+import fs from "fs";
 import { Colors } from "./colorsUtils";
 import { buildDeclarations } from "./tsUtils";
 
@@ -64,18 +65,25 @@ export const build = async (
   const buildCJS = esbuild({
     ...baseBuildConfig,
     format: "cjs",
-    outdir: outPath
+    outdir: outPath,
   });
   const outPathESM = path.resolve(outPath, "esm");
   const buildESM = esbuild({
     ...baseBuildConfig,
-    format: "cjs",
-    outdir: outPathESM
+    format: "esm",
+    outdir: outPathESM,
   });
+
   Promise.all([buildCJS, buildESM])
     .then(async () => {
       const endBuild = new Date().getTime();
       const timeBuild = endBuild - start;
+
+      const esmCssFilePath = path.resolve(outPathESM, "index.css");
+      const esmCssMapFilePath = esmCssFilePath + ".map";
+      // console.log({ esmCssFilePath, esmCssMapFilePath });
+      fs.rmSync(esmCssFilePath);
+      fs.rmSync(esmCssMapFilePath);
 
       console.log(
         Colors.FgGreen,
@@ -120,7 +128,7 @@ export const buildApp = async (
   const build = esbuild({
     ...baseBuildConfig,
     format: "cjs",
-    outdir: outPath
+    outdir: outPath,
   });
 
   build
@@ -154,4 +162,3 @@ export const buildApp = async (
       process.exit(1);
     });
 };
-

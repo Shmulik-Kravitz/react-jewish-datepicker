@@ -5,6 +5,8 @@
   "main": "dist/index.js",
   "typings": "lib/index.d.ts",
   "exports": {
+    "./package.json": "./package.json",
+    "./dist/index.css": "./dist/index.css",
     ".": {
       "require": "./dist/index.js",
       "import": "./dist/esm/index.js"
