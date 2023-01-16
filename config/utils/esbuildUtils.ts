@@ -82,8 +82,12 @@ export const build = async (
       const esmCssFilePath = path.resolve(outPathESM, "index.css");
       const esmCssMapFilePath = esmCssFilePath + ".map";
       // console.log({ esmCssFilePath, esmCssMapFilePath });
-      fs.rmSync(esmCssFilePath);
-      fs.rmSync(esmCssMapFilePath);
+      if (fs.existsSync(esmCssFilePath)) {
+        fs.rmSync(esmCssFilePath);
+      }
+      if (fs.existsSync(esmCssMapFilePath)) {
+        fs.rmSync(esmCssMapFilePath);
+      }
 
       console.log(
         Colors.FgGreen,
