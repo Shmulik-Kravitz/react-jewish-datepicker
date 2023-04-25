@@ -1,2 +1,2 @@
-export * from './reactJewishDatePicker';
-export * from './interfaces';
+export * from "./reactJewishDatePicker";
+export * from "./interfaces";

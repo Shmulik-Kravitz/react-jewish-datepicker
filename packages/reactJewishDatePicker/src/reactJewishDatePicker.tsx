@@ -38,7 +38,7 @@ export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (
   props: ReactJewishDatePickerProps
 ) => {
   const { className, value, isHebrew, isRange, onClick, canSelect } = props;
-  if (typeof value == "string") {
+  if (typeof value === "string") {
     throw new Error(
       "ReactJewishDatePicker: The value can be BasicJewishDate or Date. for Dates use 'value={new Date()}' not 'value={Date()}"
     );
@@ -124,7 +124,7 @@ export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (
 
   const [start, end] = getDatesInOrder(startDay, hoveredDay);
 
-  const classNames = `reactJewishDatePicker${isHebrew ? ` isHebrew` : ""} ${
+  const classNames = `reactJewishDatePicker${isHebrew ? " isHebrew" : ""} ${
     className || ""
   }`;
   const selectedDaysToDisplay = getDateStringForSelectedDay(
@@ -145,7 +145,7 @@ export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (
         <MdDateRange className="calendarIcon" />
         {selectedDaysToDisplay}
       </div>
-      <div className={`monthWrapper ${isOpen ? `open` : ``}`}>
+      <div className={`monthWrapper ${isOpen ? "open" : ``}`}>
         <Navigation
           month={jewishMonthInfo.jewishMonthString}
           year={jewishMonthInfo.jewishYear}
@@ -154,14 +154,14 @@ export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (
         />
         <div className="weekdayWrapper">
           {getWeekdays(isHebrew).map((weekday, index) => {
-            return <Weekday key={index} value={weekday} />;
+            return <Weekday key={weekday} value={weekday} />;
           })}
         </div>
-        <div className={`month`}>
+        <div className={"month"}>
           {jewishMonthInfo.days.map((day, index) => {
             return (
               <Day
-                key={index}
+                key={day.jewishDateStr}
                 {...day}
                 canSelect={canSelect}
                 onClick={handleClick}

@@ -11,7 +11,6 @@ import {
   getJewishMonthsInOrder,
   getJewishMonthInHebrew,
 } from "jewish-date";
-import gematriya from "gematriya";
 import Dayjs from "dayjs";
 import {
   JewishDate,
@@ -38,14 +37,6 @@ export const getEngWeekdays = (): string[] => {
 
 export const getWeekdays = (isHebrew: boolean): string[] => {
   return isHebrew ? getHebWeekdays() : getEngWeekdays();
-};
-
-export const convertToHebrew = (
-  num: number,
-  addGeresh = true,
-  addPunctuate = true
-): string => {
-  return gematriya(num, { geresh: addGeresh, punctuate: addPunctuate });
 };
 
 export const getHebJewishMonths = (): IdText[] => {

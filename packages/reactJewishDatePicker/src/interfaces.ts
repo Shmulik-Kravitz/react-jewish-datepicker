@@ -1,13 +1,16 @@
-import { BasicJewishDate as BasicJewishDateCore, BasicJewishDay as BasicJewishDayCore } from 'jewish-dates-core';
+import {
+	BasicJewishDate as BasicJewishDateCore,
+	BasicJewishDay as BasicJewishDayCore,
+} from "jewish-dates-core";
 
 export interface DateRange {
-  startDate: Date;
-  endDate: Date;
+	startDate: Date;
+	endDate: Date;
 }
 
 export interface BasicJewishDateRange {
-  startDate: BasicJewishDate;
-  endDate: BasicJewishDate;
+	startDate: BasicJewishDate;
+	endDate: BasicJewishDate;
 }
 
 export type BasicJewishDate = BasicJewishDateCore;

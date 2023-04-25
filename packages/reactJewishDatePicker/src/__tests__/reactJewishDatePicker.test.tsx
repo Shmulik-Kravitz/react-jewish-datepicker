@@ -1,6 +1,6 @@
 import * as React from "react";
 import { waitFor, screen } from "@testing-library/react";
-import { render, fireEvent } from './test-utils';
+import { render, fireEvent } from "./test-utils";
 import {
   BasicJewishDate,
   BasicJewishDay,
@@ -69,9 +69,9 @@ describe("jewishDatesCore", () => {
         isHebrew={false}
         value={basicJewishDate}
         onClick={(day: BasicJewishDay) => {}}
-      />, {
-      legacyRoot: true
-
+      />,
+      {
+        legacyRoot: true,
       }
     );
 

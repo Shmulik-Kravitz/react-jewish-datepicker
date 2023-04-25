@@ -33,11 +33,9 @@
   },
   "dependencies": {
     "dayjs": "^1.11.7",
-    "gematriya": "^2.0.0",
-    "jewish-date": "1.0.9"
+    "jewish-date": "^1.0.13"
   },
   "devDependencies": {
-    "@types/gematriya": "^2.0.2",
     "esbuild": "^0.16.17",
     "typescript": "^4.5.5"
   },

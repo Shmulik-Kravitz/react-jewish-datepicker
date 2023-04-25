@@ -1,9 +1,8 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-
 const customRender = (ui, options) =>
-  render(ui, { ...options, legacyRoot: true });
+  render(ui, { ...options });
 
 // re-export everything
 export * from "@testing-library/react";

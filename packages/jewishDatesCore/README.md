@@ -22,9 +22,6 @@ npm i jewish-dates-core --save
 <dt><a href="#isValidDate">isValidDate</a></dt>
 <dd><p>Returns whether a date is a Date object</p>
 </dd>
-<dt><a href="#isMeubar">isMeubar</a></dt>
-<dd><p>Returns whether a hebrew year is meubar (leap year)</p>
-</dd>
 <dt><a href="#getHebWeekdays">getHebWeekdays</a></dt>
 <dd><p>Returns an array of week days in hebrew</p>
 </dd>
@@ -33,12 +30,6 @@ npm i jewish-dates-core --save
 </dd>
 <dt><a href="#getWeekdays">getWeekdays</a></dt>
 <dd><p>Returns an array of week days</p>
-</dd>
-<dt><a href="#convertToHebrew">convertToHebrew</a></dt>
-<dd><p>Converts a numerical value to a string of Hebrew letters (gematriya)</p>
-</dd>
-<dt><a href="#getHebJewishMonthById">getHebJewishMonthById</a></dt>
-<dd><p>Takes a jewish month name in english and returns the name in hebrew</p>
 </dd>
 <dt><a href="#getHebJewishMonths">getHebJewishMonths</a></dt>
 <dd><p>Returns an array of jewish months in hebrew</p>
@@ -127,22 +118,6 @@ isValidDate(basicJewishDate); // ==> false
 isValidDate(new Date()); // ==> true
 ```
 
-<a name="isMeubar"></a>
-
-### isMeubar(year: `number`) ⇒ `boolean`
-
-Returns whether a hebrew year is meubar (leap year).
-
-| Param | Type     |
-| ----- | -------- |
-| year  | `number` |
-
-**example:**
-```js
-isMeubar(5781); // ==> false
-isMeubar(5782); // ==> true
-```
-
 <a name="getHebWeekdays"></a>
 
 ### getHebWeekdays() ⇒ `string[]`
@@ -181,28 +156,6 @@ getWeekdays(true); // ==> ["א", "ב", "ג", "ד", "ה", "ו", "ש"]
 getWeekdays(false); // ==> ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]
 ```
 
-<a name="convertToHebrew"></a>
-
-### convertToHebrew(num: `number`, [addGeresh: `boolean`, addPunctuate: `boolean`]) ⇒ `string`
-
-Converts a numerical value to a string of Hebrew letters (gematriya).
-
-Based on [gematriya](https://github.com/Scimonster/js-gematriya) library:
-
-> Setting false as the value for the punctuate key will remove double and single quotation marks in the returned string. Setting geresh to false will use ASCII single/double quotes instead of Hebrew geresh/gershayim Unicode characters. (see example bellow)
-
-| Param        | Type      | Default |
-| ------------ | --------- | ------- |
-| num          | `number`  | n/a     |
-| addGeresh    | `boolean` | `true`  |
-| addPunctuate | `boolean` | `true`  |
-
-**example:**
-```js
-convertToHebrew(5782); // ==> 'תשפ״ב'
-convertToHebrew(5782, false); // ==> 'תשפ"ב'
-convertToHebrew(5782, false, false); // ==> 'תשפב'
-```
 
 <a name="getHebJewishMonthById"></a>
 

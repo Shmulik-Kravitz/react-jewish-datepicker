@@ -3,7 +3,6 @@ import {
   getHebWeekdays,
   getEngWeekdays,
   getWeekdays,
-  convertToHebrew,
   getHebJewishMonths,
   getEngJewishMonths,
   getJewishMonths,
@@ -63,14 +62,6 @@ describe("jewishDatesCore", () => {
 
   it("get weekdays in english", async () => {
     expect(getWeekdays(false)).toEqual(engWeekdays);
-  });
-
-  it("convert to hebrew geresh and punctuate true", async () => {
-    expect(convertToHebrew(5789)).toBe("התשפ״ט");
-  });
-
-  it("convert to hebrew geresh and punctuate false", async () => {
-    expect(convertToHebrew(5789, false, false)).toBe("התשפט");
   });
 
 

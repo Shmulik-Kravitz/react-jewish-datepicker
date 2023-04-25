@@ -581,9 +581,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/dom@npm:^8.19.1, @testing-library/dom@npm:^8.5.0":
-  version: 8.19.1
-  resolution: "@testing-library/dom@npm:8.19.1"
+"@testing-library/dom@npm:^9.0.0, @testing-library/dom@npm:^9.2.0":
+  version: 9.2.0
+  resolution: "@testing-library/dom@npm:9.2.0"
   dependencies:
     "@babel/code-frame": ^7.10.4
     "@babel/runtime": ^7.12.5
@@ -591,9 +591,9 @@ __metadata:
     aria-query: ^5.0.0
     chalk: ^4.1.0
     dom-accessibility-api: ^0.5.9
-    lz-string: ^1.4.4
+    lz-string: ^1.5.0
     pretty-format: ^27.0.2
-  checksum: 0fb1f05fa199491795063eae5e892922851570717c85131776de6edd5477b1bfa528790401120a616ce4846584570d1436b0bce4649652ddb6ea9d67a1f00b19
+  checksum: b145f43cd06ff083012cf2503aff6ccba97ff80715fcb106fe64af690f5536557bf24d37b97e8d685bbe3803d7f71d685ce71426cb1b9e250c3611e4372dcfa9
   languageName: node
   linkType: hard
 
@@ -614,17 +614,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@testing-library/react@npm:^13.4.0":
-  version: 13.4.0
-  resolution: "@testing-library/react@npm:13.4.0"
+"@testing-library/react@npm:^14.0.0":
+  version: 14.0.0
+  resolution: "@testing-library/react@npm:14.0.0"
   dependencies:
     "@babel/runtime": ^7.12.5
-    "@testing-library/dom": ^8.5.0
+    "@testing-library/dom": ^9.0.0
     "@types/react-dom": ^18.0.0
   peerDependencies:
     react: ^18.0.0
     react-dom: ^18.0.0
-  checksum: 51ec548c1fdb1271089a5c63e0908f0166f2c7fcd9cacd3108ebbe0ce64cb4351812d885892020dc37608418cfb15698514856502b3cab0e5cc58d6cc1bd4a3e
+  checksum: 4a54c8f56cc4a39b50803205f84f06280bb76521d6d5d4b3b36651d760c7c7752ef142d857d52aaf4fad4848ed7a8be49afc793a5dda105955d2f8bef24901ac
   languageName: node
   linkType: hard
 
@@ -655,13 +655,6 @@ __metadata:
   version: 4.3.4
   resolution: "@types/chai@npm:4.3.4"
   checksum: 571184967beb03bf64c4392a13a7d44e72da9af5a1e83077ff81c39cf59c0fda2a5c78d2005084601cf8f3d11726608574d8b5b4a0e3e9736792807afd926cd0
-  languageName: node
-  linkType: hard
-
-"@types/gematriya@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "@types/gematriya@npm:2.0.2"
-  checksum: 29ea5afd95c9ba52fb335ace0022d594d27119d705837a264b670e73045baafa3a8734ca76c1f1d725cbaa6f237d36a29f69b0ffab16e46c07e981092d4a0486
   languageName: node
   linkType: hard
 
@@ -2520,12 +2513,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jewish-date@npm:1.0.9":
-  version: 1.0.9
-  resolution: "jewish-date@npm:1.0.9"
+"jewish-date@npm:^1.0.13":
+  version: 1.0.13
+  resolution: "jewish-date@npm:1.0.13"
   dependencies:
     gematriya: ^2.0.0
-  checksum: a0a7476176e3557b0232bb3e7663e813be9483f9588222192366768efd51d3e27bfa0b1daf34b78be62277213d99347e2ccbf48a428e582175f3ad30d8671880
+  checksum: a54473f8f0ccf1236c8576d7a9a1276c0d6a552a70b7c5fadebabf279dad1051660f585fa931a5427938ddd687c525fd7e2f0e08c6374fafd2921c5202f0d0d6
   languageName: node
   linkType: hard
 
@@ -2533,11 +2526,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "jewish-dates-core@workspace:packages/jewishDatesCore"
   dependencies:
-    "@types/gematriya": ^2.0.2
     dayjs: ^1.11.7
     esbuild: ^0.16.17
-    gematriya: ^2.0.0
-    jewish-date: 1.0.9
+    jewish-date: ^1.0.13
     typescript: ^4.5.5
   languageName: unknown
   linkType: soft
@@ -2708,12 +2699,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lz-string@npm:^1.4.4":
-  version: 1.4.4
-  resolution: "lz-string@npm:1.4.4"
+"lz-string@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "lz-string@npm:1.5.0"
   bin:
     lz-string: bin/bin.js
-  checksum: 54e31238a61a84d8f664d9860a9fba7310c5b97a52c444f80543069bc084815eff40b8d4474ae1d93992fdf6c252dca37cf27f6adbeb4dbc3df2f3ac773d0e61
+  checksum: 1ee98b4580246fd90dd54da6e346fb1caefcf05f677c686d9af237a157fdea3fd7c83a4bc58f858cd5b10a34d27afe0fdcbd0505a47e0590726a873dc8b8f65d
   languageName: node
   linkType: hard
 
@@ -3357,6 +3348,7 @@ __metadata:
     "@react-icons/all-files": ^4.1.0
     dayjs: ^1.11.7
     esbuild: ^0.16.17
+    jewish-date: ^1.0.13
     jewish-dates-core: "workspace:*"
     typescript: ^4.5.5
     use-onclickoutside: ^0.4.1
@@ -3534,10 +3526,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
-    "@testing-library/dom": ^8.19.1
+    "@testing-library/dom": ^9.2.0
     "@testing-library/jest-dom": ^5.16.5
-    "@testing-library/react": ^13.4.0
-    "@types/gematriya": ^2.0.2
+    "@testing-library/react": ^14.0.0
     "@types/node": ^16.18.11
     "@types/react": ^18.0.26
     "@types/react-dom": ^18.0.10

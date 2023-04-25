@@ -10,9 +10,9 @@
 
 ![npm](https://raw.githubusercontent.com/Shmulik-Kravitz/react-jewish-datepicker/master/images/snapshot.png)
 
-# ReactJewishDatePicker
+# React Jewish Date Picker
 
-General JewishDatePicker component.
+General Jewish Date Picker component that works with react and supports hebrew and english.
 
 See also [demo and documentation](https://react-jewish-datepicker.js.org/) page.
 
@@ -26,6 +26,18 @@ Or with npm
 
 ```console
 npm install react-jewish-datepicker --save
+```
+
+Import the css
+
+```JavaScript
+import "react-jewish-datepicker/dist/index.css";
+```
+
+or with css
+
+```JavaScript
+@import url("react-jewish-datepicker/dist/index.css");
 ```
 
 ## Usage
@@ -179,7 +191,11 @@ See example [here](https://react-jewish-datepicker.js.org/#selectionWithinRange)
 
 ### jewish-dates-core
 
-To create a jewish date picker in vue.js or angular, see the [core dependency](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/blob/master/packages/jewishDatesCore/README.md).
+To create a jewish date picker in vue.js or angular, see our [core dependency](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/blob/master/packages/jewishDatesCore/README.md).
+
+### jewish-date
+
+If you only need the hebrew date convertor without a date picker you can use [jewish-date](https://www.npmjs.com/package/jewish-date).
 
 
 ## Contributors
@@ -188,4 +204,4 @@ To create a jewish date picker in vue.js or angular, see the [core dependency](h
 - [Sagi Tawil](https://github.com/sagi770)
 - [Yochanan Sheinberger](https://github.com/yochanan-sheinberger)
 
-License: [MIT](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/blob/master/LICENSE).
+License: [MIT](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/blob/master/LICENSE)
