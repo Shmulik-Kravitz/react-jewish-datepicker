@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "2.0.11",
+  "version": "2.0.12",
   "scripts": {
     "build": "yarn workspaces foreach -vit run build",
     "test": "yarn workspaces foreach -vit run test",
