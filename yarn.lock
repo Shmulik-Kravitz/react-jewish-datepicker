@@ -2744,12 +2744,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jewish-date@npm:^1.0.13":
-  version: 1.0.13
-  resolution: "jewish-date@npm:1.0.13"
+"jewish-date@npm:^2.0.8":
+  version: 2.0.8
+  resolution: "jewish-date@npm:2.0.8"
   dependencies:
     gematriya: ^2.0.0
-  checksum: a54473f8f0ccf1236c8576d7a9a1276c0d6a552a70b7c5fadebabf279dad1051660f585fa931a5427938ddd687c525fd7e2f0e08c6374fafd2921c5202f0d0d6
+  checksum: bf93e2287da6cce03f65f1fb789bdcb91846724fd2ca3eb6c63e6053afbb3d2e85bb2065b54b9dbdbe351937e5585d0315672db48d08244e949c2800232b6fc4
   languageName: node
   linkType: hard
 
@@ -2759,7 +2759,7 @@ __metadata:
   dependencies:
     dayjs: ^1.11.7
     esbuild: ^0.16.17
-    jewish-date: ^1.0.13
+    jewish-date: ^2.0.8
     typescript: ^4.5.5
   languageName: unknown
   linkType: soft
@@ -3599,7 +3599,7 @@ __metadata:
     "@react-icons/all-files": ^4.1.0
     dayjs: ^1.11.7
     esbuild: ^0.16.17
-    jewish-date: ^1.0.13
+    jewish-date: ^2.0.8
     jewish-dates-core: "workspace:*"
     typescript: ^4.5.5
     use-onclickoutside: ^0.4.1
@@ -4278,11 +4278,11 @@ __metadata:
 
 "typescript@patch:typescript@^4.5.5#~builtin<compat/typescript>, typescript@patch:typescript@^4.9.3#~builtin<compat/typescript>":
   version: 4.9.4
-  resolution: "typescript@patch:typescript@npm%3A4.9.4#~builtin<compat/typescript>::version=4.9.4&hash=ad5954"
+  resolution: "typescript@patch:typescript@npm%3A4.9.4#~builtin<compat/typescript>::version=4.9.4&hash=289587"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 1caaea6cb7f813e64345190fddc4e6c924d0b698ab81189b503763c4a18f7f5501c69362979d36e19c042d89d936443e768a78b0675690b35eb663d19e0eae71
+  checksum: 2160f7ad975c59b2f5816817d3916be1d156c5688a7517602b3b640c5015e740f4ba933996ac85371d68f7bbdd41602150fb8b68334122ac637fdb5418085e7a
   languageName: node
   linkType: hard
 

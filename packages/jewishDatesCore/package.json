@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "dayjs": "^1.11.7",
-    "jewish-date": "^1.0.13"
+    "jewish-date": "^2.0.8"
   },
   "devDependencies": {
     "esbuild": "^0.16.17",

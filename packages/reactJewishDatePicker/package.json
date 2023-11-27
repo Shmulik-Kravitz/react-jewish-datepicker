@@ -41,7 +41,7 @@
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
     "dayjs": "^1.11.7",
-    "jewish-date": "^1.0.13",
+    "jewish-date": "^2.0.8",
     "jewish-dates-core": "workspace:*",
     "use-onclickoutside": "^0.4.1"
   },
