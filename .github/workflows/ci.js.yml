@@ -142,9 +142,9 @@ jobs:
         working-directory: packages/jewishDatesCore/
         run: yarn pack
         
-       - name: pack jewish-dates-core
-         working-directory: packages/reactJewishDatePicker/
-         run: yarn pack
+      - name: pack jewish-dates-core
+        working-directory: packages/reactJewishDatePicker/
+        run: yarn pack
 
       - name: npm-publish jewish-dates-core
         uses: JS-DevTools/npm-publish@v3
