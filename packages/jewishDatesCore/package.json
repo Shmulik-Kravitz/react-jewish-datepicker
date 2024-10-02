@@ -1,11 +1,19 @@
 {
   "name": "jewish-dates-core",
-  "version": "2.0.12",
+  "version": "2.0.13",
   "description": "Jewish dates core",
   "main": "dist/index.js",
   "typings": "lib/index.d.ts",
   "exports": {
     ".": {
+      "require": {
+        "default": "./dist/index.js",
+        "types": "./lib/index.d.ts"
+      },
+      "import": {
+        "default": "./dist/esm/index.js",
+        "types": "./lib/index.d.ts"
+      }
       "require": "./dist/index.js",
       "import": "./dist/mjs/index.js"
     }
