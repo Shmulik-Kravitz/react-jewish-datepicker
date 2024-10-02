@@ -1,47 +1,45 @@
-import { build as esbuild, serve, BuildOptions } from "esbuild";
+// import { build as esbuild, serve, BuildOptions } from "esbuild";
+import * as esbuild from "esbuild";
 import nodeExternalsPlugin from "esbuild-node-externals";
-import hasFlag from "has-flag";
 import path from "path";
-import fs from "fs";
 import { Colors } from "./colorsUtils";
 import { buildDeclarations } from "./tsUtils";
+import { getFiles } from "./filesUtils";
 
-export const baseConfig: BuildOptions = {
+export const baseConfig: esbuild.BuildOptions = {
   bundle: true,
   sourcemap: true,
   // splitting: true,
 };
 
-export const start = async (entryPoints: string[], outDir: string) => {
+export const start = async (entryPoints: string[], outdir: string) => {
   const start = new Date().getTime();
-  serve(
-    {
-      port: 8000,
-      servedir: "./config/static",
-      onRequest: (args) => {
-        // console.log(args);
-      },
-    },
-    {
-      // plugins: [pnpPlugin()],
-      ...baseConfig,
-      entryPoints: entryPoints,
-      outdir: outDir,
-    }
-  ).then((server) => {
-    console.log(`http://127.0.0.1:${server.port}/`);
-
-    const end = new Date().getTime();
-    const time = end - start;
-    console.log(
-      Colors.FgGreen,
-      `Started in ${(time / 1000).toFixed(5)} sec.`,
-      Colors.Reset
-    );
-
-    // Call "stop" on the web server to stop serving
-    // server.stop()
+  const ctx = await esbuild.context({
+    // plugins: [pnpPlugin()],
+    ...baseConfig,
+    entryPoints: entryPoints,
+    outdir: outdir
   });
+  const { host, port } = await ctx.serve({
+    port: 3000,
+    servedir: "./config/static",
+    onRequest: (args) => {
+      // console.log(args);
+    },
+
+  });
+  console.log(`http://${host}:${port}/`);
+  console.log(`http://127.0.0.1:${port}/`);
+
+  const end = new Date().getTime();
+  const time = end - start;
+  console.log(
+    Colors.FgGreen,
+    `Started in ${(time / 1000).toFixed(5)} sec.`,
+    Colors.Reset
+  );
+  // Call "stop" on the web server to stop serving
+  // server.stop()
 };
 
 export const build = async (
@@ -52,42 +50,40 @@ export const build = async (
   declarationsOutPath: string
 ) => {
   const start = new Date().getTime();
-  const baseBuildConfig = {
-    ...baseConfig,
-    plugins: [
-      // pnpPlugin(),
-      nodeExternalsPlugin(),
-    ],
-    entryPoints: ["./src/index.ts"],
-    watch: hasFlag("watch"),
-    minify: true,
-  };
-  const buildCJS = esbuild({
-    ...baseBuildConfig,
-    format: "cjs",
-    outdir: outPath,
-  });
-  const outPathESM = path.resolve(outPath, "esm");
-  const buildESM = esbuild({
-    ...baseBuildConfig,
-    format: "esm",
-    outdir: outPathESM,
-  });
+  const outPathEsm = path.resolve(outPath, "mjs");
+  const entryPoints = (await getFiles(path.join(process.cwd(), "src"))).map((file) => file.replace(process.cwd(), '.'));
 
-  Promise.all([buildCJS, buildESM])
+  // console.log(entryPoints);
+  Promise.all([
+    esbuild.build({
+      ...baseConfig,
+      plugins: [
+        // pnpPlugin(),
+        nodeExternalsPlugin(),
+      ],
+      entryPoints: ["./src/index.ts"],
+      outdir: outPath,
+      minify: true,
+      format: "cjs",
+    }),
+    esbuild.build({
+      ...baseConfig,
+      bundle: false,
+      plugins: [
+        // pnpPlugin(),
+        nodeExternalsPlugin(),
+      ],
+      entryPoints: entryPoints,
+      outdir: outPathEsm,
+      minify: true,
+      format: "esm",
+      target: "esnext",
+    }),
+  ])
+
     .then(async () => {
       const endBuild = new Date().getTime();
       const timeBuild = endBuild - start;
-
-      const esmCssFilePath = path.resolve(outPathESM, "index.css");
-      const esmCssMapFilePath = esmCssFilePath + ".map";
-      // console.log({ esmCssFilePath, esmCssMapFilePath });
-      if (fs.existsSync(esmCssFilePath)) {
-        fs.rmSync(esmCssFilePath);
-      }
-      if (fs.existsSync(esmCssMapFilePath)) {
-        fs.rmSync(esmCssMapFilePath);
-      }
 
       console.log(
         Colors.FgGreen,
@@ -116,6 +112,7 @@ export const build = async (
     });
 };
 
+
 export const buildApp = async (
   bashPath: string,
   tsconfigPath: string,
@@ -124,19 +121,16 @@ export const buildApp = async (
   declarationsOutPath: string
 ) => {
   const start = new Date().getTime();
-  const baseBuildConfig = {
+
+
+  // console.log(entryPoints);
+  esbuild.build({
     ...baseConfig,
     entryPoints: ["./src/index.tsx"],
-    minify: true,
-  };
-  const build = esbuild({
-    ...baseBuildConfig,
-    format: "cjs",
     outdir: outPath,
-  });
-
-  build
-    .then(async () => {
+    minify: true,
+    format: "iife",
+  }).then(async () => {
       const endBuild = new Date().getTime();
       const timeBuild = endBuild - start;
 

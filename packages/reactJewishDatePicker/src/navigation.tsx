@@ -1,4 +1,3 @@
-import React from "react";
 import {
   getJewishMonths,
   getJewishYears,
@@ -8,6 +7,7 @@ import {
 } from "jewish-dates-core";
 import { getTestID } from "./utils";
 import { convertNumberToHebrew } from "jewish-date";
+import { useCallback, memo } from "react";
 
 export interface NavigationProps {
   isHebrew?: boolean;
@@ -16,9 +16,9 @@ export interface NavigationProps {
   onClick: (month: string, year: number) => void;
 }
 
-export const Navigation: React.FC<NavigationProps> = React.memo(
+export const Navigation: React.FC<NavigationProps> = memo(
   (props: NavigationProps) => {
-    const handlePrevious = React.useCallback(() => {
+    const handlePrevious = useCallback(() => {
       const basicJewishMonthInfo = getPrevMonth({
         month: JewishMonth[props.month],
         year: props.year,
@@ -27,7 +27,7 @@ export const Navigation: React.FC<NavigationProps> = React.memo(
       props.onClick(basicJewishMonthInfo.month, basicJewishMonthInfo.year);
     }, [props, props.month, props.year, props.isHebrew]);
 
-    const handleNext = React.useCallback(() => {
+    const handleNext = useCallback(() => {
       const basicJewishMonthInfo = getNextMonth({
         month: JewishMonth[props.month],
         year: props.year,
@@ -36,7 +36,7 @@ export const Navigation: React.FC<NavigationProps> = React.memo(
       props.onClick(basicJewishMonthInfo.month, basicJewishMonthInfo.year);
     }, [props, props.month, props.year, props.isHebrew]);
 
-    const handleMonthChange = React.useCallback(
+    const handleMonthChange = useCallback(
       (e: React.SyntheticEvent<HTMLSelectElement>) => {
         const month = e.currentTarget.value;
         props.onClick(month, props.year);
@@ -44,7 +44,7 @@ export const Navigation: React.FC<NavigationProps> = React.memo(
       [props, props.month, props.year]
     );
 
-    const handleYearChange = React.useCallback(
+    const handleYearChange = useCallback(
       (e: React.SyntheticEvent<HTMLSelectElement>) => {
         const year = Number(e.currentTarget.value);
         props.onClick(props.month, year);

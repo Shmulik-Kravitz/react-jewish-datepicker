@@ -8,8 +8,7 @@ export const getConfig = () => defineConfig({
   test: {
     globals: true,
     watch: false,
-    // globalSetup: __dirname + '/vitest.setup.ts',
-    setupFiles: "@testing-library/jest-dom",
+    setupFiles: [__dirname + '/vitest.setup.ts'],
     environment: 'jsdom',
     coverage: {
       reporter: ['text', 'json', 'html', 'cobertura'],

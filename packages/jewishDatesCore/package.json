@@ -7,7 +7,7 @@
   "exports": {
     ".": {
       "require": "./dist/index.js",
-      "import": "./dist/esm/index.js"
+      "import": "./dist/mjs/index.js"
     }
   },
   "files": [
@@ -28,16 +28,16 @@
     "build": "yarn g:build",
     "test": "yarn g:test",
     "inc": "yarn version patch",
-    "pub": "yarn npm publish",
+    "pub": "npm publish --provenance --access public",
     "np": "np patch"
   },
   "dependencies": {
-    "dayjs": "^1.11.7",
-    "jewish-date": "^2.0.8"
+    "dayjs": "^1.11.13",
+    "jewish-date": "^2.0.12"
   },
   "devDependencies": {
-    "esbuild": "^0.16.17",
-    "typescript": "^4.5.5"
+    "esbuild": "^0.24.0",
+    "typescript": "^5.6.2"
   },
   "keywords": [
     "jewish",

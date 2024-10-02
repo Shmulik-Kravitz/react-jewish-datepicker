@@ -8,28 +8,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout
+      uses: actions/checkout@v4
+    
     - name: Use Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: 18
+        node-version: 20
         cache: 'yarn'
 
-    - run: yarn
-    - run: yarn build
-    - run: yarn test
-    # - name: Code Coverage Report
-    #   uses: irongut/CodeCoverageSummary@v1.3.0
-    #   with:
-    #     filename: coverage/**/cobertura-coverage.xml
-    #     badge: true
-    #     fail_below_min: true
-    #     format: markdown
-    #     hide_branch_rate: false
-    #     hide_complexity: true
-    #     indicators: true
-    #     output: both
-    #     thresholds: '60 80'
+    - name: Install
+      run: yarn
+
+    - name: Build
+      run: yarn build
+
+    - name: Test
+      run: yarn test
+
+    - name: Code Coverage Report
+      uses: irongut/CodeCoverageSummary@v1.3.0
+      with:
+        filename: coverage/**/cobertura-coverage.xml
+        badge: true
+        fail_below_min: true
+        format: markdown
+        hide_branch_rate: false
+        hide_complexity: true
+        indicators: true
+        output: both
+        thresholds: '60 80'
 
     # - name: Add Coverage PR Comment
     #   uses: marocchino/sticky-pull-request-comment@v2
@@ -39,25 +47,25 @@ jobs:
     #     path: code-coverage-results.md
 
     - name: Upload build artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
        name: lib_core
        path: packages/jewishDatesCore/lib
 
     - name: Upload build artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: dist_core
         path: packages/jewishDatesCore/dist
     
     - name: Upload build artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
        name: lib_picker
        path: packages/reactJewishDatePicker/lib
 
     - name: Upload build artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: dist_picker
         path: packages/reactJewishDatePicker/dist
@@ -69,38 +77,42 @@ jobs:
       contents: write
       pull-requests: write
       deployments: write
+      id-token: write
     needs: [build-and-test]
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      
       - name: Use Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: 'yarn'
 
-      - run: yarn
+      - name: Install
+        run: yarn
       
       - name: Download build artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: lib_core
           path: packages/jewishDatesCore/lib
       
       - name: Download build artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: dist_core
           path: packages/jewishDatesCore/dist
 
       - name: Download build artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: lib_picker
           path: packages/reactJewishDatePicker/lib
       
       - name: Download build artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: dist_picker
           path: packages/reactJewishDatePicker/dist

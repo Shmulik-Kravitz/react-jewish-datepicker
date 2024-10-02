@@ -69,10 +69,7 @@ describe("jewishDatesCore", () => {
         isHebrew={false}
         value={basicJewishDate}
         onClick={(day: BasicJewishDay) => {}}
-      />,
-      {
-        legacyRoot: true,
-      }
+      />
     );
 
     await waitFor(() => {

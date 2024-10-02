@@ -1,4 +1,5 @@
-import * as React from "react";
+import { useCallback, useState, useRef, useEffect } from "react";
+import type { FC } from "react";
 import useOnClickOutside from "use-onclickoutside";
 import Dayjs from "dayjs";
 import { MdDateRange } from "@react-icons/all-files/md/MdDateRange";
@@ -34,10 +35,9 @@ export interface ReactJewishDatePickerProps {
   isRange?: boolean;
 }
 
-export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (
-  props: ReactJewishDatePickerProps
+export const ReactJewishDatePicker: FC<ReactJewishDatePickerProps> = (
+  { className, value, isHebrew = false, isRange, onClick, canSelect }: ReactJewishDatePickerProps
 ) => {
-  const { className, value, isHebrew, isRange, onClick, canSelect } = props;
   if (typeof value === "string") {
     throw new Error(
       "ReactJewishDatePicker: The value can be BasicJewishDate or Date. for Dates use 'value={new Date()}' not 'value={Date()}"
@@ -47,23 +47,23 @@ export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (
   const dateInit = value ? getDateInit(value) : new Date();
   const endDateInit = isDateRange(value) && getDateInit(value.endDate);
 
-  const [date, setDate] = React.useState(dateInit);
+  const [date, setDate] = useState(dateInit);
   const jewishMonthInfo = getJewishMonth(date);
 
-  const [selectedDay, setSelectedDay] = React.useState<BasicJewishDay>(
+  const [selectedDay, setSelectedDay] = useState<BasicJewishDay>(
     !isRange && value && jewishMonthInfo.selectedDay
   );
-  const [startDay, setStartDay] = React.useState<BasicJewishDay>(
+  const [startDay, setStartDay] = useState<BasicJewishDay>(
     isRange && isDateRange(value) && jewishMonthInfo.selectedDay
   );
-  const [endDay, setEndDay] = React.useState<BasicJewishDay>(
+  const [endDay, setEndDay] = useState<BasicJewishDay>(
     isRange && isDateRange(value) && getJewishDay(Dayjs(endDateInit))
   );
-  const [isOpen, setOpen] = React.useState(false);
-  const [hoveredDay, setHoveredDay] = React.useState(null);
-  const ref = React.useRef(null);
+  const [isOpen, setOpen] = useState(false);
+  const [hoveredDay, setHoveredDay] = useState(null);
+  const ref = useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const date = getDateInit(value);
     setDate(date);
     const jewishMonth = getJewishMonth(date);
@@ -81,7 +81,7 @@ export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (
     setOpen(false);
   });
 
-  const handleClick = (day: BasicJewishDay) => {
+  const handleClick = useCallback((day: BasicJewishDay) => {
     if (isRange) {
       if (!startDay || endDay) {
         setStartDay(day);
@@ -90,26 +90,26 @@ export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (
         const [start, end] = getDatesInOrder(startDay, day);
         setStartDay(start);
         setEndDay(end);
-        props?.onClick(start, end);
+        onClick?.call(null, start, end);
         setOpen(!isOpen);
       }
     } else {
       setSelectedDay(day);
-      props?.onClick(day, undefined);
+      onClick?.call(null, day, undefined);
       setOpen(!isOpen);
     }
-  };
+  }, [isRange, startDay, endDay, isOpen]);
 
-  const handleMouseOver = (day: BasicJewishDay) => {
+  const handleMouseOver = useCallback((day: BasicJewishDay) => {
     setHoveredDay(day);
-  };
+  }, []);
 
   const setBasicJewishDate = (basicJewishDate: BasicJewishDate) => {
     const gregDate = getGregDate(basicJewishDate);
     setDate(gregDate);
   };
 
-  const handleNavigationClick = React.useCallback(
+  const handleNavigationClick = useCallback(
     (month: string, year: number) => {
       const basicJewishDate: BasicJewishDate = {
         year: year,
@@ -178,8 +178,4 @@ export const ReactJewishDatePicker: React.FC<ReactJewishDatePickerProps> = (
       </div>
     </div>
   );
-};
-
-ReactJewishDatePicker.defaultProps = {
-  isHebrew: false,
 };
