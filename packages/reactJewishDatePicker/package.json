@@ -8,8 +8,9 @@
     "./package.json": "./package.json",
     "./dist/index.css": "./dist/index.css",
     ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/mjs/index.js"
+      "types": "./lib/index.d.ts",
+      "import": "./dist/mjs/index.js",
+      "require": "./dist/index.js"
     }
   },
   "files": [
