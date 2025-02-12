@@ -24,7 +24,7 @@
     "react-syntax-highlighter": "^15.5.0"
   },
   "devDependencies": {
-    "esbuild": "^0.24.0",
+    "esbuild": "^0.25.0",
     "esbuild-node-externals": "^1.15.0",
     "has-flag": "5.0.1",
     "tsc-prog": "^2.3.0",

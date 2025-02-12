@@ -33,7 +33,7 @@
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.2",
     "@vitest/coverage-v8": "2.1.1",
-    "esbuild": "^0.24.0",
+    "esbuild": "^0.25.0",
     "esbuild-node-externals": "^1.15.0",
     "esbuild-runner": "^2.2.2",
     "esprima": "^4.0.1",
