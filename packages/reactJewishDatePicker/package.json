@@ -47,7 +47,7 @@
     "use-onclickoutside": "^0.4.1"
   },
   "devDependencies": {
-    "esbuild": "^0.24.0",
+    "esbuild": "^0.25.0",
     "typescript": "^5.6.2"
   },
   "keywords": [
