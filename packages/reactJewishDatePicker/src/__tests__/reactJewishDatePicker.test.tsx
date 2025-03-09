@@ -157,6 +157,30 @@ describe("jewishDatesCore", () => {
     expect(screen.getByTestId("20 Shevat 5782")).toHaveClass("noSelect");
   });
 
+  it("custome day class", async () => {
+    const basicJewishDate: BasicJewishDate = {
+      day: 20,
+      monthName: "Shevat",
+      year: 5782,
+    };
+    function customizeDayStyle(day: BasicJewishDay): string {
+      if (day.date.getDay() === 6) { 
+        return "customClass";
+      }
+      return "";  
+    }
+    render(
+      <ReactJewishDatePicker
+        isHebrew={false}
+        value={basicJewishDate}
+        customizeDayStyle={customizeDayStyle}
+        onClick={(day: BasicJewishDay) => {}}
+      />
+    );
+
+    expect(screen.getByTestId("20 Shevat 5782")).toHaveClass("customClass");
+  });
+
   it("select range", async () => {
     const basicJewishDateRange: BasicJewishDateRange = {
       startDate: {

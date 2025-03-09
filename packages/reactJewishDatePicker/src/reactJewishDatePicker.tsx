@@ -32,11 +32,12 @@ export interface ReactJewishDatePickerProps {
   value?: BasicJewishDate | Date | BasicJewishDateRange | DateRange;
   isHebrew?: boolean;
   canSelect?: (day: BasicJewishDay) => boolean;
+  customizeDayStyle?: (day: BasicJewishDay) => string;
   isRange?: boolean;
 }
 
 export const ReactJewishDatePicker: FC<ReactJewishDatePickerProps> = (
-  { className, value, isHebrew = false, isRange, onClick, canSelect }: ReactJewishDatePickerProps
+  { className, value, isHebrew = false, isRange, onClick, canSelect, customizeDayStyle }: ReactJewishDatePickerProps
 ) => {
   if (typeof value === "string") {
     throw new Error(
@@ -164,6 +165,7 @@ export const ReactJewishDatePicker: FC<ReactJewishDatePickerProps> = (
                 key={day.jewishDateStr}
                 {...day}
                 canSelect={canSelect}
+                customizeDayStyle={customizeDayStyle}
                 onClick={handleClick}
                 onMouseOver={isRange && handleMouseOver}
                 selectedDay={selectedDay}

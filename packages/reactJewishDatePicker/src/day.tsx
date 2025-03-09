@@ -18,6 +18,7 @@ export interface DayProps extends JewishDay {
   onClick: (day: BasicJewishDay) => void;
   onMouseOver?: (day: BasicJewishDay) => void;
   canSelect?: (day: BasicJewishDay) => boolean;
+  customizeDayStyle?: (day: BasicJewishDay) => string;
   isRange?: boolean;
   startDay: BasicJewishDay;
   endDay: BasicJewishDay;
@@ -71,6 +72,7 @@ export const Day: React.FC<DayProps> = (props: DayProps) => {
     canSelect,
     onClick,
     onMouseOver,
+    customizeDayStyle,
     ...basicJewishDay
   } = props;
 
@@ -102,10 +104,10 @@ export const Day: React.FC<DayProps> = (props: DayProps) => {
     : "";
   const isStartDayClass = isStartDay(props.date, startDay) ? " startDay" : "";
   const isEndDayClass = isEndDay(props.date, startDay, endDay) ? " endDay" : "";
+  const customeDayClass = customizeDayStyle ? ` ${customizeDayStyle(basicJewishDay)}` : "";
   const classNames = `day${otherMonthClass}${
     selectedDayClass || ""
-  }${disableSelectClass}${isInRangClass}${isStartDayClass}${isEndDayClass}`;
-
+  }${disableSelectClass}${isInRangClass}${isStartDayClass}${isEndDayClass}${customeDayClass}`;
   return (
     <div
       data-testid={isFromTest() ? title : undefined}

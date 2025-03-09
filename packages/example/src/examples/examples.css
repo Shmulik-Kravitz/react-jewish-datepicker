@@ -140,6 +140,10 @@ a:hover {
   border-bottom: 1px solid #f0bfff;
 }
 
+.tuesday {
+  background-color: #faf733;
+}
+
 @media only screen and (max-width: 650px) {
   .examples {
     display: grid;
