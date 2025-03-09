@@ -18,6 +18,7 @@ export interface ReactJewishDatePickerExampleProps {
   isHebrew?: boolean;
   value?: BasicJewishDate | Date | BasicJewishDateRange | DateRange;
   canSelect?: (day: BasicJewishDay) => boolean;
+  customizeDayStyle?: (day: BasicJewishDay) => string;
   isRange?: boolean;
   code: string;
   children?: JSX.Element | JSX.Element[];
@@ -74,6 +75,7 @@ export const ReactJewishDatePickerExample: React.FC<
               isHebrew={!!props.isHebrew}
               value={props.value}
               canSelect={props.canSelect}
+              customizeDayStyle={props.customizeDayStyle}
               isRange={props.isRange}
               onClick={
                 !props.isRange

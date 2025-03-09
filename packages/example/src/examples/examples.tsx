@@ -29,6 +29,7 @@ import {
   selectionWithinRangeCode,
   disableWithCustomFunctionCode,
   rangeCode,
+  customizeDayStyleCode,
 } from "../code";
 
 const dontSelectTuesdays = (day: BasicJewishDay): boolean => {
@@ -36,6 +37,13 @@ const dontSelectTuesdays = (day: BasicJewishDay): boolean => {
     return false;
   }
   return true;
+};
+
+const highlightTuesday = (day: BasicJewishDay): string => {
+  if (day.date.getDay() === 2) {
+    return 'tuesday';
+  }
+  return '';
 };
 
 export function Examples() {
@@ -263,6 +271,16 @@ export function Examples() {
               </li>
               <li>
                 <a
+                  href="#customizeDayStyle"
+                  onClick={(e) =>
+                    handleAnchorClick(e, "customizeDayStyle")
+                  }
+                >
+                  Customize Day Style
+                </a>
+              </li>
+              <li>
+                <a
                   href="#rangePicker"
                   onClick={(e) => handleAnchorClick(e, "rangePicker")}
                 >
@@ -352,6 +370,15 @@ export function Examples() {
                 isHebrew
                 canSelect={dontSelectTuesdays}
                 code={disableWithCustomFunctionCode}
+              />
+            </div>
+            <div id="customizeDayStyle">
+              <h3>Customize Day Style</h3>
+              <ReactJewishDatePickerExample
+                value={selectedDate}
+                isHebrew
+                customizeDayStyle={highlightTuesday}
+                code={customizeDayStyleCode}
               />
             </div>
             <div id="rangePicker">

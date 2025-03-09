@@ -199,6 +199,40 @@ export default function App() {
   );
 }`);
 
+
+export const customizeDayStyleCode = (`import * as React from "react";
+  import {
+    ReactJewishDatePicker,
+    BasicJewishDay,
+  } from "react-jewish-datepicker";
+  import "react-jewish-datepicker/dist/index.css";
+  
+  const highlightTuesday = (day: BasicJewishDay): string => {
+    if (day.date.getDay() === 2) {
+      return 'tuesday';
+    }
+    return '';
+  };
+  
+  export default function App() {
+    const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
+    const date: Date = new Date();
+  
+    return (
+        <div>
+          <ReactJewishDatePicker
+            value={date}
+            isHebrew
+            customizeDayStyle={highlightTuesday}
+            onClick={(day: BasicJewishDay) => {
+              setBasicJewishDay(day);
+            }}
+          />
+        </div>
+    );
+  }`);
+  
+
 export const rangeCode = (`import * as React from "react";
 import {
   ReactJewishDatePicker,
