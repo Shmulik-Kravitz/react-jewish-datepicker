@@ -104,10 +104,10 @@ export const Day: React.FC<DayProps> = (props: DayProps) => {
     : "";
   const isStartDayClass = isStartDay(props.date, startDay) ? " startDay" : "";
   const isEndDayClass = isEndDay(props.date, startDay, endDay) ? " endDay" : "";
-  const customeDayClass = customizeDayStyle ? ` ${customizeDayStyle(basicJewishDay)}` : "";
+  const customDayClass = customizeDayStyle ? ` ${customizeDayStyle(basicJewishDay)}` : "";
   const classNames = `day${otherMonthClass}${
     selectedDayClass || ""
-  }${disableSelectClass}${isInRangClass}${isStartDayClass}${isEndDayClass}${customeDayClass}`;
+  }${disableSelectClass}${isInRangClass}${isStartDayClass}${isEndDayClass}${customDayClass}`;
   return (
     <div
       data-testid={isFromTest() ? title : undefined}
