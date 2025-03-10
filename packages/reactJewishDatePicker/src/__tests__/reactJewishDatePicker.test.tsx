@@ -157,7 +157,7 @@ describe("jewishDatesCore", () => {
     expect(screen.getByTestId("20 Shevat 5782")).toHaveClass("noSelect");
   });
 
-  it("custome day class", async () => {
+  it("custom day class", async () => {
     const basicJewishDate: BasicJewishDate = {
       day: 20,
       monthName: "Shevat",
