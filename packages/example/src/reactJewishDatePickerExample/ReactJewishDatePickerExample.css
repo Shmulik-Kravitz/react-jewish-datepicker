@@ -82,6 +82,11 @@ code, .exsample pre {
   max-width: 250px;
 }
 
+.inlineWrapper {
+  width: 300px;
+  height: 290px;
+}
+
 @media only screen and (max-width: 870px) {
   .demo {
     grid-template-columns: 100%;

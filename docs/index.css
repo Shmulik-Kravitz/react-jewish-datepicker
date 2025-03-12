@@ -1,3 +1,180 @@
+/* ../../.yarn/__virtual__/react-jewish-datepicker-virtual-93c1bf2ecc/1/packages/reactJewishDatePicker/dist/mjs/month.css */
+.monthContainer {
+  --color: #333;
+  --backgroundColor: #e6e6e6;
+  font-family: arial;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  grid-template-rows: auto auto 1fr;
+  background-color: #fff;
+  border: 1px solid #d6d9dd;
+  border-radius: 5px;
+  display: grid;
+}
+.monthContainer.isHebrew {
+  direction: rtl;
+}
+.monthContainer.isHebrew .startDay {
+  background: #6495ed;
+  border-radius: 0 7px 7px 0;
+  color: #fff;
+  margin: 1px 0;
+}
+.monthContainer.isHebrew .endDay {
+  background: #6495ed;
+  border-radius: 7px 0 0 7px;
+  color: #fff;
+  margin: 1px 0;
+}
+.monthContainer.isHebrew .weekday,
+.monthContainer.isHebrew .day {
+  font-size: 16px;
+  padding: 0;
+}
+.monthContainer .navigation {
+  display: grid;
+  grid-template-columns: 22px 138px 22px;
+  justify-content: space-between;
+  min-height: 32px;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.monthContainer .navigation .arrowRight,
+.monthContainer .navigation .arrowLeft {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+.monthContainer .navigation .arrowRight span,
+.monthContainer .navigation .arrowLeft span {
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  padding: 1px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  cursor: pointer;
+  width: 6px;
+  height: 6px;
+}
+.monthContainer .navigation .arrowRight:hover,
+.monthContainer .navigation .arrowLeft:hover {
+  background-color: var(--backgroundColor);
+}
+.monthContainer .navigation .arrowLeft span {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+.monthContainer .navigation .monthYearSelection {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.monthContainer .navigation .monthYearSelection select {
+  border: 0px;
+  outline: 0px;
+}
+.monthContainer .navigation .monthYearSelection select:hover {
+  cursor: pointer;
+  background-color: var(--backgroundColor);
+}
+.monthContainer .navigation .monthYearSelection option {
+  background-color: #fff;
+}
+.monthContainer.isHebrew .navigation .arrowLeft span {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.monthContainer.isHebrew .navigation .arrowRight span {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+.monthContainer .month {
+  color: var(--color);
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  z-index: 2;
+  background-color: #fff;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  padding: 2px;
+  text-align: center;
+  box-sizing: border-box;
+}
+.monthContainer .weekdayWrapper {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: #001476;
+  padding: 2px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.monthContainer .weekday,
+.monthContainer .day {
+  display: grid;
+  margin: 1px;
+  padding: 1px 1px 0 0;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.monthContainer .day:hover {
+  background-color: var(--backgroundColor);
+}
+.monthContainer .day.selectedDay:hover {
+  background-color: #6494ed89;
+}
+.monthContainer .weekday {
+  color: #fff;
+  font-weight: 700;
+}
+.monthContainer .otherMonth {
+  background: #fff;
+  color: #777;
+}
+.monthContainer .selectedDay {
+  background: #6495ed;
+  color: #fff;
+}
+.monthContainer .startDay {
+  background: #6495ed;
+  border-radius: 7px 0 0 7px;
+  color: #fff;
+  margin: 1px 0;
+}
+.monthContainer .isInRange {
+  background-color: #91b6fa;
+  color: #fff;
+  border-radius: 0;
+  margin: 1px 0;
+}
+.monthContainer .endDay {
+  background: #6495ed;
+  border-radius: 0 7px 7px 0;
+  color: #fff;
+  margin: 1px 0;
+}
+.monthContainer .startDay:hover,
+.monthContainer .isInRange:hover,
+.reactJewishDatePicker .endDay:hover {
+  background: #6495ed;
+}
+.reactJewishDatePicker .noSelect {
+  cursor: not-allowed !important;
+  background-color: #f3f3f3;
+}
+.reactJewishDatePicker .noSelect:hover {
+  background-color: #f3f3f3;
+}
+.reactJewishDatePicker .noSelect:active {
+  pointer-events: none;
+}
+
 /* ../../.yarn/__virtual__/react-jewish-datepicker-virtual-93c1bf2ecc/1/packages/reactJewishDatePicker/dist/mjs/reactJewishDatePicker.css */
 .reactJewishDatePicker {
   --color: #333;
@@ -25,19 +202,18 @@
   top: 4px;
 }
 .reactJewishDatePicker .monthWrapper {
-  background-color: #fff;
-  border: 1px solid #d6d9dd;
-  border-radius: 5px;
   position: absolute;
   top: 32px;
   z-index: 1;
-  display: grid;
   transform: scaleY(0);
   transform-origin: top;
   transition: transform .26s ease;
   transition: max-height .5s ease-out;
   box-shadow: 0 6px 12px #0000002d;
   transition: all .4s ease-in-out;
+  width: 254px;
+  height: 243px;
+  border-radius: 5px;
 }
 .reactJewishDatePicker .monthWrapper.open {
   transform: scaleY(1);
@@ -56,144 +232,6 @@
   border-radius: 7px 0 0 7px;
   color: #fff;
   margin: 1px 0;
-}
-.reactJewishDatePicker.isHebrew .weekday,
-.reactJewishDatePicker.isHebrew .day {
-  font-size: 16px;
-  padding: 0;
-}
-.reactJewishDatePicker .navigation {
-  display: grid;
-  grid-template-columns: 22px 138px 22px;
-  justify-content: space-between;
-  height: 22px;
-  padding: 5px;
-}
-.reactJewishDatePicker .navigation .arrowRight,
-.reactJewishDatePicker .navigation .arrowLeft {
-  display: grid;
-  align-items: center;
-  justify-content: center;
-}
-.reactJewishDatePicker .navigation .arrowRight span,
-.reactJewishDatePicker .navigation .arrowLeft span {
-  border: solid black;
-  border-width: 0 2px 2px 0;
-  padding: 1px;
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-  cursor: pointer;
-  width: 6px;
-  height: 6px;
-}
-.reactJewishDatePicker .navigation .arrowRight:hover,
-.reactJewishDatePicker .navigation .arrowLeft:hover {
-  background-color: var(--backgroundColor);
-}
-.reactJewishDatePicker .navigation .arrowLeft span {
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
-}
-.reactJewishDatePicker .navigation .monthYearSelection {
-  display: grid;
-  grid-template-columns: auto auto;
-}
-.reactJewishDatePicker .navigation .monthYearSelection select {
-  border: 0px;
-  outline: 0px;
-}
-.reactJewishDatePicker .navigation .monthYearSelection select:hover {
-  cursor: pointer;
-  background-color: var(--backgroundColor);
-}
-.reactJewishDatePicker .navigation .monthYearSelection option {
-  background-color: #fff;
-}
-.reactJewishDatePicker.isHebrew .navigation .arrowLeft span {
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-}
-.reactJewishDatePicker.isHebrew .navigation .arrowRight span {
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
-}
-.reactJewishDatePicker .month {
-  color: var(--color);
-  grid-template-columns: repeat(7, 1fr);
-  z-index: 2;
-  background-color: #fff;
-  display: grid;
-  width: 250px;
-  height: 180px;
-  border-radius: 5px;
-  padding: 2px;
-  text-align: center;
-}
-.reactJewishDatePicker .weekdayWrapper {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  background-color: #001476;
-  padding: 2px;
-}
-.reactJewishDatePicker .weekday,
-.reactJewishDatePicker .day {
-  display: grid;
-  margin: 1px;
-  padding: 1px 1px 0 0;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  border-radius: 7px;
-  cursor: pointer;
-  font-size: 14px;
-}
-.reactJewishDatePicker .day:hover {
-  background-color: var(--backgroundColor);
-}
-.reactJewishDatePicker .weekday {
-  color: #fff;
-  font-weight: 700;
-}
-.reactJewishDatePicker .otherMonth {
-  background: #fff;
-  color: #777;
-}
-.reactJewishDatePicker .selectedDay {
-  background: #6495ed;
-  color: #fff;
-}
-.reactJewishDatePicker .startDay {
-  background: #6495ed;
-  border-radius: 7px 0 0 7px;
-  color: #fff;
-  margin: 1px 0;
-}
-.reactJewishDatePicker .isInRange {
-  background-color: #91b6fa;
-  color: #fff;
-  border-radius: 0;
-  margin: 1px 0;
-}
-.reactJewishDatePicker .endDay {
-  background: #6495ed;
-  border-radius: 0 7px 7px 0;
-  color: #fff;
-  margin: 1px 0;
-}
-.reactJewishDatePicker .startDay:hover,
-.reactJewishDatePicker .isInRange:hover,
-.reactJewishDatePicker .endDay:hover {
-  background: #6495ed;
-}
-.reactJewishDatePicker .noSelect {
-  cursor: not-allowed !important;
-  background-color: #f3f3f3;
-}
-.reactJewishDatePicker .noSelect:hover {
-  background-color: #f3f3f3;
-}
-.reactJewishDatePicker .noSelect:active {
-  pointer-events: none;
 }
 
 /* src/reactJewishDatePickerExample/ReactJewishDatePickerExample.css */
@@ -270,6 +308,10 @@ code,
 .pickerWrapper.isRange {
   max-width: 250px;
 }
+.inlineWrapper {
+  width: 300px;
+  height: 290px;
+}
 @media only screen and (max-width: 870px) {
   .demo {
     grid-template-columns: 100%;
@@ -285,6 +327,181 @@ code,
 }
 
 /* ../reactJewishDatePicker/dist/index.css */
+.monthContainer {
+  --color: #333;
+  --backgroundColor: #e6e6e6;
+  font-family: arial;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  grid-template-rows: auto auto 1fr;
+  background-color: #fff;
+  border: 1px solid #d6d9dd;
+  border-radius: 5px;
+  display: grid;
+}
+.monthContainer.isHebrew {
+  direction: rtl;
+}
+.monthContainer.isHebrew .startDay {
+  background: #6495ed;
+  border-radius: 0 7px 7px 0;
+  color: #fff;
+  margin: 1px 0;
+}
+.monthContainer.isHebrew .endDay {
+  background: #6495ed;
+  border-radius: 7px 0 0 7px;
+  color: #fff;
+  margin: 1px 0;
+}
+.monthContainer.isHebrew .weekday,
+.monthContainer.isHebrew .day {
+  font-size: 16px;
+  padding: 0;
+}
+.monthContainer .navigation {
+  display: grid;
+  grid-template-columns: 22px 138px 22px;
+  justify-content: space-between;
+  min-height: 32px;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.monthContainer .navigation .arrowRight,
+.monthContainer .navigation .arrowLeft {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+.monthContainer .navigation .arrowRight span,
+.monthContainer .navigation .arrowLeft span {
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  padding: 1px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  cursor: pointer;
+  width: 6px;
+  height: 6px;
+}
+.monthContainer .navigation .arrowRight:hover,
+.monthContainer .navigation .arrowLeft:hover {
+  background-color: var(--backgroundColor);
+}
+.monthContainer .navigation .arrowLeft span {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+.monthContainer .navigation .monthYearSelection {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.monthContainer .navigation .monthYearSelection select {
+  border: 0px;
+  outline: 0px;
+}
+.monthContainer .navigation .monthYearSelection select:hover {
+  cursor: pointer;
+  background-color: var(--backgroundColor);
+}
+.monthContainer .navigation .monthYearSelection option {
+  background-color: #fff;
+}
+.monthContainer.isHebrew .navigation .arrowLeft span {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.monthContainer.isHebrew .navigation .arrowRight span {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+.monthContainer .month {
+  color: var(--color);
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  z-index: 2;
+  background-color: #fff;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  padding: 2px;
+  text-align: center;
+  box-sizing: border-box;
+}
+.monthContainer .weekdayWrapper {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: #001476;
+  padding: 2px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.monthContainer .weekday,
+.monthContainer .day {
+  display: grid;
+  margin: 1px;
+  padding: 1px 1px 0 0;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.monthContainer .day:hover {
+  background-color: var(--backgroundColor);
+}
+.monthContainer .day.selectedDay:hover {
+  background-color: #6494ed89;
+}
+.monthContainer .weekday {
+  color: #fff;
+  font-weight: 700;
+}
+.monthContainer .otherMonth {
+  background: #fff;
+  color: #777;
+}
+.monthContainer .selectedDay {
+  background: #6495ed;
+  color: #fff;
+}
+.monthContainer .startDay {
+  background: #6495ed;
+  border-radius: 7px 0 0 7px;
+  color: #fff;
+  margin: 1px 0;
+}
+.monthContainer .isInRange {
+  background-color: #91b6fa;
+  color: #fff;
+  border-radius: 0;
+  margin: 1px 0;
+}
+.monthContainer .endDay {
+  background: #6495ed;
+  border-radius: 0 7px 7px 0;
+  color: #fff;
+  margin: 1px 0;
+}
+.monthContainer .startDay:hover,
+.monthContainer .isInRange:hover,
+.reactJewishDatePicker .endDay:hover {
+  background: #6495ed;
+}
+.reactJewishDatePicker .noSelect {
+  cursor: not-allowed !important;
+  background-color: #f3f3f3;
+}
+.reactJewishDatePicker .noSelect:hover {
+  background-color: #f3f3f3;
+}
+.reactJewishDatePicker .noSelect:active {
+  pointer-events: none;
+}
 .reactJewishDatePicker {
   --color: #333;
   --backgroundColor: #e6e6e6;
@@ -311,19 +528,18 @@ code,
   top: 4px;
 }
 .reactJewishDatePicker .monthWrapper {
-  background-color: #fff;
-  border: 1px solid #d6d9dd;
-  border-radius: 5px;
   position: absolute;
   top: 32px;
   z-index: 1;
-  display: grid;
   transform: scaleY(0);
   transform-origin: top;
   transition: transform .26s ease;
   transition: max-height .5s ease-out;
   box-shadow: 0 6px 12px #0000002d;
   transition: all .4s ease-in-out;
+  width: 254px;
+  height: 243px;
+  border-radius: 5px;
 }
 .reactJewishDatePicker .monthWrapper.open {
   transform: scaleY(1);
@@ -342,144 +558,6 @@ code,
   border-radius: 7px 0 0 7px;
   color: #fff;
   margin: 1px 0;
-}
-.reactJewishDatePicker.isHebrew .weekday,
-.reactJewishDatePicker.isHebrew .day {
-  font-size: 16px;
-  padding: 0;
-}
-.reactJewishDatePicker .navigation {
-  display: grid;
-  grid-template-columns: 22px 138px 22px;
-  justify-content: space-between;
-  height: 22px;
-  padding: 5px;
-}
-.reactJewishDatePicker .navigation .arrowRight,
-.reactJewishDatePicker .navigation .arrowLeft {
-  display: grid;
-  align-items: center;
-  justify-content: center;
-}
-.reactJewishDatePicker .navigation .arrowRight span,
-.reactJewishDatePicker .navigation .arrowLeft span {
-  border: solid black;
-  border-width: 0 2px 2px 0;
-  padding: 1px;
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-  cursor: pointer;
-  width: 6px;
-  height: 6px;
-}
-.reactJewishDatePicker .navigation .arrowRight:hover,
-.reactJewishDatePicker .navigation .arrowLeft:hover {
-  background-color: var(--backgroundColor);
-}
-.reactJewishDatePicker .navigation .arrowLeft span {
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
-}
-.reactJewishDatePicker .navigation .monthYearSelection {
-  display: grid;
-  grid-template-columns: auto auto;
-}
-.reactJewishDatePicker .navigation .monthYearSelection select {
-  border: 0px;
-  outline: 0px;
-}
-.reactJewishDatePicker .navigation .monthYearSelection select:hover {
-  cursor: pointer;
-  background-color: var(--backgroundColor);
-}
-.reactJewishDatePicker .navigation .monthYearSelection option {
-  background-color: #fff;
-}
-.reactJewishDatePicker.isHebrew .navigation .arrowLeft span {
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-}
-.reactJewishDatePicker.isHebrew .navigation .arrowRight span {
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
-}
-.reactJewishDatePicker .month {
-  color: var(--color);
-  grid-template-columns: repeat(7, 1fr);
-  z-index: 2;
-  background-color: #fff;
-  display: grid;
-  width: 250px;
-  height: 180px;
-  border-radius: 5px;
-  padding: 2px;
-  text-align: center;
-}
-.reactJewishDatePicker .weekdayWrapper {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  background-color: #001476;
-  padding: 2px;
-}
-.reactJewishDatePicker .weekday,
-.reactJewishDatePicker .day {
-  display: grid;
-  margin: 1px;
-  padding: 1px 1px 0 0;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  border-radius: 7px;
-  cursor: pointer;
-  font-size: 14px;
-}
-.reactJewishDatePicker .day:hover {
-  background-color: var(--backgroundColor);
-}
-.reactJewishDatePicker .weekday {
-  color: #fff;
-  font-weight: 700;
-}
-.reactJewishDatePicker .otherMonth {
-  background: #fff;
-  color: #777;
-}
-.reactJewishDatePicker .selectedDay {
-  background: #6495ed;
-  color: #fff;
-}
-.reactJewishDatePicker .startDay {
-  background: #6495ed;
-  border-radius: 7px 0 0 7px;
-  color: #fff;
-  margin: 1px 0;
-}
-.reactJewishDatePicker .isInRange {
-  background-color: #91b6fa;
-  color: #fff;
-  border-radius: 0;
-  margin: 1px 0;
-}
-.reactJewishDatePicker .endDay {
-  background: #6495ed;
-  border-radius: 0 7px 7px 0;
-  color: #fff;
-  margin: 1px 0;
-}
-.reactJewishDatePicker .startDay:hover,
-.reactJewishDatePicker .isInRange:hover,
-.reactJewishDatePicker .endDay:hover {
-  background: #6495ed;
-}
-.reactJewishDatePicker .noSelect {
-  cursor: not-allowed !important;
-  background-color: #f3f3f3;
-}
-.reactJewishDatePicker .noSelect:hover {
-  background-color: #f3f3f3;
-}
-.reactJewishDatePicker .noSelect:active {
-  pointer-events: none;
 }
 
 /* src/examples/examples.css */
