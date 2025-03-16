@@ -1,6 +1,6 @@
 {
   "name": "react-jewish-datepicker",
-  "version": "2.0.19",
+  "version": "2.0.20",
   "description": "React jewish datepicker",
   "main": "dist/index.js",
   "typings": "lib/index.d.ts",
@@ -42,13 +42,13 @@
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
     "dayjs": "^1.11.13",
-    "jewish-date": "^2.0.12",
+    "jewish-date": "^2.0.19",
     "jewish-dates-core": "workspace:*",
     "use-onclickoutside": "^0.4.1"
   },
   "devDependencies": {
-    "esbuild": "^0.24.0",
-    "typescript": "^5.6.2"
+    "esbuild": "^0.25.1",
+    "typescript": "^5.8.2"
   },
   "keywords": [
     "jewish",

@@ -110,38 +110,26 @@ export function Examples() {
         <span>
           <a href="https://www.npmjs.com/package/react-jewish-datepicker">
             <img
-              src="https://camo.githubusercontent.com/df2b275fd607a2b248dc1d7645f26cabf040c1afac1a2b8a50b24191635dcf8b/68747470733a2f2f62616467652e667572792e696f2f6a732f72656163742d6a65776973682d646174657069636b65722e737667"
+              src="https://badge.fury.io/js/react-jewish-datepicker.svg"
               alt=""
             />
           </a>
         </span>
         <span>
           <img
-            src="https://github.com/Shmulik-Kravitz/react-jewish-datepicker/workflows/CI/badge.svg?branch=master"
+            src="https://github.com/Shmulik-Kravitz/react-jewish-datepicker/workflows/CI_CD/badge.svg?branch=master"
             alt=""
           />
         </span>
         <span>
           <img
-            src="https://camo.githubusercontent.com/1490f940d6bc796efc2edad780bf33f3fd01b86b194b1ae009d9a28fd6ac1dd9/68747470733a2f2f62616467656e2e6e65742f6e706d2f64742f72656163742d6a65776973682d646174657069636b6572"
+            src="https://img.shields.io/bundlephobia/minzip/react-jewish-datepicker.svg"
             alt=""
           />
         </span>
         <span>
           <img
-            src="https://camo.githubusercontent.com/b61fde28036b7562db1cfc9091af9dab87a751a2d0f26fca916589d579f46a02/68747470733a2f2f62616467656e2e6e65742f6e706d2f6c6963656e73652f72656163742d6a65776973682d646174657069636b6572"
-            alt=""
-          />
-        </span>
-        <span>
-          <img
-            src="https://camo.githubusercontent.com/942251b8989beb0a7757bca463a583d192bccf4977a310543e954130b601a5e5/68747470733a2f2f62616467656e2e6e65742f62756e646c6570686f6269612f6d696e2f72656163742d6a65776973682d646174657069636b6572"
-            alt=""
-          />
-        </span>
-        <span>
-          <img
-            src="https://camo.githubusercontent.com/34f06db740d21cb30e977379926f55683184b380b2d4c7be1de21ffc029e30a8/68747470733a2f2f62616467656e2e6e65742f6769746875622f73746172732f53686d756c696b2d4b72617669747a2f72656163742d6a65776973682d646174657069636b6572"
+            src="https://badgen.net/github/stars/Shmulik-Kravitz/react-jewish-datepicker"
             alt=""
           />
         </span>

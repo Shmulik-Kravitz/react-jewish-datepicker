@@ -1,4 +1,4 @@
-name: CI/CD
+name: CI_CD
 
 on: [push, pull_request]
 
