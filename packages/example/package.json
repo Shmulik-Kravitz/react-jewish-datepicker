@@ -1,7 +1,7 @@
 {
   "name": "example",
   "private": true,
-  "version": "0.0.17",
+  "version": "0.0.18",
   "module": "true",
   "scripts": {
     "start": "yarn g:start-app",
@@ -16,18 +16,18 @@
     "@types/react-syntax-highlighter": "^15.5.13",
     "dayjs": "^1.11.13",
     "jewish-dates-core": "workspace:*",
-    "prism-react-renderer": "^2.4.0",
+    "prism-react-renderer": "^2.4.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-jewish-datepicker": "workspace:*",
-    "react-live": "^4.1.7",
-    "react-syntax-highlighter": "^15.5.0"
+    "react-live": "^4.1.8",
+    "react-syntax-highlighter": "^15.6.1"
   },
   "devDependencies": {
-    "esbuild": "^0.24.0",
-    "esbuild-node-externals": "^1.15.0",
+    "esbuild": "^0.25.1",
+    "esbuild-node-externals": "^1.18.0",
     "has-flag": "5.0.1",
     "tsc-prog": "^2.3.0",
-    "typescript": "^5.6.2"
+    "typescript": "^5.8.2"
   }
 }

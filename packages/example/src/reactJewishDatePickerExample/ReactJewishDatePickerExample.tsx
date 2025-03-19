@@ -52,6 +52,7 @@ export const ReactJewishDatePickerExample: React.FC<
     }, 1500);
   };
 
+  const isHebrew = !!props.isHebrew;
   // const scope = { ReactJewishDatePicker, BasicJewishDay, React };
   return (
     <div className="reactJewishDatePickerExample">
@@ -69,10 +70,10 @@ export const ReactJewishDatePickerExample: React.FC<
           )}
         </button>
         <Code code={props.code} />
-        <div className={`example${props.isHebrew ? " isHebrew" : ""}`}>
+        <div className={`example${isHebrew ? " isHebrew" : ""}`}>
           <div className={`pickerWrapper${props.isRange ? " isRange" : ""}`}>
             <ReactJewishDatePicker
-              isHebrew={!!props.isHebrew}
+              isHebrew={isHebrew}
               value={props.value}
               canSelect={props.canSelect}
               customizeDayStyle={props.customizeDayStyle}
@@ -108,8 +109,4 @@ export const ReactJewishDatePickerExample: React.FC<
       </div>
     </div>
   );
-};
-
-ReactJewishDatePickerExample.defaultProps = {
-  isHebrew: false,
 };

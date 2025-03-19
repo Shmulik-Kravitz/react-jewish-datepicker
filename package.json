@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "2.0.18",
+  "version": "2.0.21",
   "scripts": {
     "build": "yarn workspaces foreach --all -pt run build",
     "test": "yarn workspaces foreach --all -pt run test",
@@ -26,26 +26,27 @@
   ],
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.5.0",
-    "@testing-library/react": "^16.0.1",
-    "@types/node": "^20.16.10",
-    "@types/react": "^18.3.10",
-    "@types/react-dom": "^18.3.0",
-    "@vitejs/plugin-react": "^4.3.2",
-    "@vitest/coverage-v8": "2.1.1",
-    "esbuild": "^0.24.0",
-    "esbuild-node-externals": "^1.15.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@types/node": "^20.17.24",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/coverage-v8": "3.0.8",
+    "esbuild": "^0.25.1",
+    "esbuild-node-externals": "^1.18.0",
     "esbuild-runner": "^2.2.2",
     "esprima": "^4.0.1",
     "has-flag": "5.0.1",
-    "jsdom": "^25.0.1",
-    "prettier": "^3.3.3",
+    "jsdom": "^26.0.0",
+    "prettier": "^3.5.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "rimraf": "^6.0.1",
     "tsc-prog": "^2.3.0",
-    "typescript": "^5.6.2",
-    "vite": "^5.4.8",
-    "vitest": "^2.1.1"
-  }
+    "typescript": "^5.8.2",
+    "vite": "^6.2.2",
+    "vitest": "^3.0.8"
+  },
+  "packageManager": "yarn@4.7.0"
 }
