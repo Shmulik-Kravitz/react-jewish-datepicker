@@ -311,7 +311,7 @@
               try {
                 testStringCoercion(value);
                 return false;
-              } catch (e2) {
+              } catch (e3) {
                 return true;
               }
             }
@@ -2502,7 +2502,7 @@
               try {
                 testStringCoercion(value);
                 return false;
-              } catch (e2) {
+              } catch (e3) {
                 return true;
               }
             }
@@ -3818,7 +3818,7 @@
             }
             try {
               return doc.activeElement || doc.body;
-            } catch (e2) {
+            } catch (e3) {
               return doc.body;
             }
           }
@@ -4424,7 +4424,7 @@
             var warnedForNaNValue = false;
             var warnedForInfinityValue = false;
             var camelize = function(string) {
-              return string.replace(hyphenPattern, function(_, character) {
+              return string.replace(hyphenPattern, function(_2, character) {
                 return character.toUpperCase();
               });
             };
@@ -5548,11 +5548,11 @@
               });
               window.addEventListener("test", options, options);
               window.removeEventListener("test", options, options);
-            } catch (e2) {
+            } catch (e3) {
               passiveBrowserEventsSupported = false;
             }
           }
-          function invokeGuardedCallbackProd(name, func, context, a4, b2, c4, d3, e2, f4) {
+          function invokeGuardedCallbackProd(name, func, context, a4, b2, c3, d3, e3, f4) {
             var funcArgs = Array.prototype.slice.call(arguments, 3);
             try {
               func.apply(context, funcArgs);
@@ -5564,7 +5564,7 @@
           {
             if (typeof window !== "undefined" && typeof window.dispatchEvent === "function" && typeof document !== "undefined" && typeof document.createEvent === "function") {
               var fakeNode = document.createElement("react");
-              invokeGuardedCallbackImpl = function invokeGuardedCallbackDev(name, func, context, a4, b2, c4, d3, e2, f4) {
+              invokeGuardedCallbackImpl = function invokeGuardedCallbackDev(name, func, context, a4, b2, c3, d3, e3, f4) {
                 if (typeof document === "undefined" || document === null) {
                   throw new Error("The `document` global was defined when React was initialized, but is not defined anymore. This can happen in a test environment if a component schedules an update from an asynchronous callback, but the test has already finished running. To solve this, you can either unmount the component at the end of your test (and ensure that any asynchronous operations get canceled in `componentWillUnmount`), or you can change the test itself to be asynchronous.");
                 }
@@ -5639,12 +5639,12 @@
               caughtError = error2;
             }
           };
-          function invokeGuardedCallback(name, func, context, a4, b2, c4, d3, e2, f4) {
+          function invokeGuardedCallback(name, func, context, a4, b2, c3, d3, e3, f4) {
             hasError = false;
             caughtError = null;
             invokeGuardedCallbackImpl$1.apply(reporter, arguments);
           }
-          function invokeGuardedCallbackAndCatchFirstError(name, func, context, a4, b2, c4, d3, e2, f4) {
+          function invokeGuardedCallbackAndCatchFirstError(name, func, context, a4, b2, c3, d3, e3, f4) {
             invokeGuardedCallback.apply(this, arguments);
             if (hasError) {
               var error2 = clearCaughtError();
@@ -8394,8 +8394,8 @@
             }
             accumulateEnterLeaveTwoPhaseListeners(dispatchQueue, leave, enter, from, to);
           }
-          function is(x2, y) {
-            return x2 === y && (x2 !== 0 || 1 / x2 === 1 / y) || x2 !== x2 && y !== y;
+          function is(x2, y3) {
+            return x2 === y3 && (x2 !== 0 || 1 / x2 === 1 / y3) || x2 !== x2 && y3 !== y3;
           }
           var objectIs = typeof Object.is === "function" ? Object.is : is;
           function shallowEqual(objA, objB) {
@@ -8461,7 +8461,7 @@
             try {
               anchorNode.nodeType;
               focusNode.nodeType;
-            } catch (e2) {
+            } catch (e3) {
               return null;
             }
             return getModernOffsetsFromPoints(outerNode, anchorNode, anchorOffset, focusNode, focusOffset);
@@ -15987,9 +15987,9 @@
               } else {
                 console["error"](error2);
               }
-            } catch (e2) {
+            } catch (e3) {
               setTimeout(function() {
-                throw e2;
+                throw e3;
               });
             }
           }
@@ -22134,7 +22134,7 @@
               var nonExtensibleObject = Object.preventExtensions({});
               /* @__PURE__ */ new Map([[nonExtensibleObject, null]]);
               /* @__PURE__ */ new Set([nonExtensibleObject]);
-            } catch (e2) {
+            } catch (e3) {
               hasBadMapPolyfill = true;
             }
           }
@@ -24047,7 +24047,7 @@
               try {
                 testStringCoercion(value);
                 return false;
-              } catch (e2) {
+              } catch (e3) {
                 return true;
               }
             }
@@ -24435,8 +24435,8 @@
               {
                 if (hasOwnProperty.call(props, "key")) {
                   var componentName = getComponentNameFromType(type);
-                  var keys = Object.keys(props).filter(function(k2) {
-                    return k2 !== "key";
+                  var keys = Object.keys(props).filter(function(k3) {
+                    return k3 !== "key";
                   });
                   var beforeExample = keys.length > 0 ? "{key: someKey, " + keys.join(": ..., ") + ": ...}" : "{key: someKey}";
                   if (!didWarnAboutKeySpread[componentName + beforeExample]) {
@@ -24483,286 +24483,6 @@
       } else {
         module.exports = require_react_jsx_runtime_development();
       }
-    }
-  });
-
-  // ../../.yarn/cache/dayjs-npm-1.11.13-d478bb9479-7374d63ab1.zip/node_modules/dayjs/dayjs.min.js
-  var require_dayjs_min = __commonJS({
-    "../../.yarn/cache/dayjs-npm-1.11.13-d478bb9479-7374d63ab1.zip/node_modules/dayjs/dayjs.min.js"(exports, module) {
-      !function(t3, e2) {
-        "object" == typeof exports && "undefined" != typeof module ? module.exports = e2() : "function" == typeof define && define.amd ? define(e2) : (t3 = "undefined" != typeof globalThis ? globalThis : t3 || self).dayjs = e2();
-      }(exports, function() {
-        "use strict";
-        var t3 = 1e3, e2 = 6e4, n5 = 36e5, r4 = "millisecond", i2 = "second", s3 = "minute", u3 = "hour", a4 = "day", o5 = "week", c4 = "month", f4 = "quarter", h2 = "year", d3 = "date", l3 = "Invalid Date", $2 = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/, y = /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g, M2 = { name: "en", weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"), months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_"), ordinal: function(t4) {
-          var e3 = ["th", "st", "nd", "rd"], n6 = t4 % 100;
-          return "[" + t4 + (e3[(n6 - 20) % 10] || e3[n6] || e3[0]) + "]";
-        } }, m4 = function(t4, e3, n6) {
-          var r5 = String(t4);
-          return !r5 || r5.length >= e3 ? t4 : "" + Array(e3 + 1 - r5.length).join(n6) + t4;
-        }, v2 = { s: m4, z: function(t4) {
-          var e3 = -t4.utcOffset(), n6 = Math.abs(e3), r5 = Math.floor(n6 / 60), i3 = n6 % 60;
-          return (e3 <= 0 ? "+" : "-") + m4(r5, 2, "0") + ":" + m4(i3, 2, "0");
-        }, m: function t4(e3, n6) {
-          if (e3.date() < n6.date()) return -t4(n6, e3);
-          var r5 = 12 * (n6.year() - e3.year()) + (n6.month() - e3.month()), i3 = e3.clone().add(r5, c4), s4 = n6 - i3 < 0, u4 = e3.clone().add(r5 + (s4 ? -1 : 1), c4);
-          return +(-(r5 + (n6 - i3) / (s4 ? i3 - u4 : u4 - i3)) || 0);
-        }, a: function(t4) {
-          return t4 < 0 ? Math.ceil(t4) || 0 : Math.floor(t4);
-        }, p: function(t4) {
-          return { M: c4, y: h2, w: o5, d: a4, D: d3, h: u3, m: s3, s: i2, ms: r4, Q: f4 }[t4] || String(t4 || "").toLowerCase().replace(/s$/, "");
-        }, u: function(t4) {
-          return void 0 === t4;
-        } }, g4 = "en", D2 = {};
-        D2[g4] = M2;
-        var p4 = "$isDayjsObject", S2 = function(t4) {
-          return t4 instanceof _ || !(!t4 || !t4[p4]);
-        }, w2 = function t4(e3, n6, r5) {
-          var i3;
-          if (!e3) return g4;
-          if ("string" == typeof e3) {
-            var s4 = e3.toLowerCase();
-            D2[s4] && (i3 = s4), n6 && (D2[s4] = n6, i3 = s4);
-            var u4 = e3.split("-");
-            if (!i3 && u4.length > 1) return t4(u4[0]);
-          } else {
-            var a5 = e3.name;
-            D2[a5] = e3, i3 = a5;
-          }
-          return !r5 && i3 && (g4 = i3), i3 || !r5 && g4;
-        }, O = function(t4, e3) {
-          if (S2(t4)) return t4.clone();
-          var n6 = "object" == typeof e3 ? e3 : {};
-          return n6.date = t4, n6.args = arguments, new _(n6);
-        }, b2 = v2;
-        b2.l = w2, b2.i = S2, b2.w = function(t4, e3) {
-          return O(t4, { locale: e3.$L, utc: e3.$u, x: e3.$x, $offset: e3.$offset });
-        };
-        var _ = function() {
-          function M3(t4) {
-            this.$L = w2(t4.locale, null, true), this.parse(t4), this.$x = this.$x || t4.x || {}, this[p4] = true;
-          }
-          var m5 = M3.prototype;
-          return m5.parse = function(t4) {
-            this.$d = function(t5) {
-              var e3 = t5.date, n6 = t5.utc;
-              if (null === e3) return /* @__PURE__ */ new Date(NaN);
-              if (b2.u(e3)) return /* @__PURE__ */ new Date();
-              if (e3 instanceof Date) return new Date(e3);
-              if ("string" == typeof e3 && !/Z$/i.test(e3)) {
-                var r5 = e3.match($2);
-                if (r5) {
-                  var i3 = r5[2] - 1 || 0, s4 = (r5[7] || "0").substring(0, 3);
-                  return n6 ? new Date(Date.UTC(r5[1], i3, r5[3] || 1, r5[4] || 0, r5[5] || 0, r5[6] || 0, s4)) : new Date(r5[1], i3, r5[3] || 1, r5[4] || 0, r5[5] || 0, r5[6] || 0, s4);
-                }
-              }
-              return new Date(e3);
-            }(t4), this.init();
-          }, m5.init = function() {
-            var t4 = this.$d;
-            this.$y = t4.getFullYear(), this.$M = t4.getMonth(), this.$D = t4.getDate(), this.$W = t4.getDay(), this.$H = t4.getHours(), this.$m = t4.getMinutes(), this.$s = t4.getSeconds(), this.$ms = t4.getMilliseconds();
-          }, m5.$utils = function() {
-            return b2;
-          }, m5.isValid = function() {
-            return !(this.$d.toString() === l3);
-          }, m5.isSame = function(t4, e3) {
-            var n6 = O(t4);
-            return this.startOf(e3) <= n6 && n6 <= this.endOf(e3);
-          }, m5.isAfter = function(t4, e3) {
-            return O(t4) < this.startOf(e3);
-          }, m5.isBefore = function(t4, e3) {
-            return this.endOf(e3) < O(t4);
-          }, m5.$g = function(t4, e3, n6) {
-            return b2.u(t4) ? this[e3] : this.set(n6, t4);
-          }, m5.unix = function() {
-            return Math.floor(this.valueOf() / 1e3);
-          }, m5.valueOf = function() {
-            return this.$d.getTime();
-          }, m5.startOf = function(t4, e3) {
-            var n6 = this, r5 = !!b2.u(e3) || e3, f5 = b2.p(t4), l4 = function(t5, e4) {
-              var i3 = b2.w(n6.$u ? Date.UTC(n6.$y, e4, t5) : new Date(n6.$y, e4, t5), n6);
-              return r5 ? i3 : i3.endOf(a4);
-            }, $3 = function(t5, e4) {
-              return b2.w(n6.toDate()[t5].apply(n6.toDate("s"), (r5 ? [0, 0, 0, 0] : [23, 59, 59, 999]).slice(e4)), n6);
-            }, y2 = this.$W, M4 = this.$M, m6 = this.$D, v3 = "set" + (this.$u ? "UTC" : "");
-            switch (f5) {
-              case h2:
-                return r5 ? l4(1, 0) : l4(31, 11);
-              case c4:
-                return r5 ? l4(1, M4) : l4(0, M4 + 1);
-              case o5:
-                var g5 = this.$locale().weekStart || 0, D3 = (y2 < g5 ? y2 + 7 : y2) - g5;
-                return l4(r5 ? m6 - D3 : m6 + (6 - D3), M4);
-              case a4:
-              case d3:
-                return $3(v3 + "Hours", 0);
-              case u3:
-                return $3(v3 + "Minutes", 1);
-              case s3:
-                return $3(v3 + "Seconds", 2);
-              case i2:
-                return $3(v3 + "Milliseconds", 3);
-              default:
-                return this.clone();
-            }
-          }, m5.endOf = function(t4) {
-            return this.startOf(t4, false);
-          }, m5.$set = function(t4, e3) {
-            var n6, o6 = b2.p(t4), f5 = "set" + (this.$u ? "UTC" : ""), l4 = (n6 = {}, n6[a4] = f5 + "Date", n6[d3] = f5 + "Date", n6[c4] = f5 + "Month", n6[h2] = f5 + "FullYear", n6[u3] = f5 + "Hours", n6[s3] = f5 + "Minutes", n6[i2] = f5 + "Seconds", n6[r4] = f5 + "Milliseconds", n6)[o6], $3 = o6 === a4 ? this.$D + (e3 - this.$W) : e3;
-            if (o6 === c4 || o6 === h2) {
-              var y2 = this.clone().set(d3, 1);
-              y2.$d[l4]($3), y2.init(), this.$d = y2.set(d3, Math.min(this.$D, y2.daysInMonth())).$d;
-            } else l4 && this.$d[l4]($3);
-            return this.init(), this;
-          }, m5.set = function(t4, e3) {
-            return this.clone().$set(t4, e3);
-          }, m5.get = function(t4) {
-            return this[b2.p(t4)]();
-          }, m5.add = function(r5, f5) {
-            var d4, l4 = this;
-            r5 = Number(r5);
-            var $3 = b2.p(f5), y2 = function(t4) {
-              var e3 = O(l4);
-              return b2.w(e3.date(e3.date() + Math.round(t4 * r5)), l4);
-            };
-            if ($3 === c4) return this.set(c4, this.$M + r5);
-            if ($3 === h2) return this.set(h2, this.$y + r5);
-            if ($3 === a4) return y2(1);
-            if ($3 === o5) return y2(7);
-            var M4 = (d4 = {}, d4[s3] = e2, d4[u3] = n5, d4[i2] = t3, d4)[$3] || 1, m6 = this.$d.getTime() + r5 * M4;
-            return b2.w(m6, this);
-          }, m5.subtract = function(t4, e3) {
-            return this.add(-1 * t4, e3);
-          }, m5.format = function(t4) {
-            var e3 = this, n6 = this.$locale();
-            if (!this.isValid()) return n6.invalidDate || l3;
-            var r5 = t4 || "YYYY-MM-DDTHH:mm:ssZ", i3 = b2.z(this), s4 = this.$H, u4 = this.$m, a5 = this.$M, o6 = n6.weekdays, c5 = n6.months, f5 = n6.meridiem, h3 = function(t5, n7, i4, s5) {
-              return t5 && (t5[n7] || t5(e3, r5)) || i4[n7].slice(0, s5);
-            }, d4 = function(t5) {
-              return b2.s(s4 % 12 || 12, t5, "0");
-            }, $3 = f5 || function(t5, e4, n7) {
-              var r6 = t5 < 12 ? "AM" : "PM";
-              return n7 ? r6.toLowerCase() : r6;
-            };
-            return r5.replace(y, function(t5, r6) {
-              return r6 || function(t6) {
-                switch (t6) {
-                  case "YY":
-                    return String(e3.$y).slice(-2);
-                  case "YYYY":
-                    return b2.s(e3.$y, 4, "0");
-                  case "M":
-                    return a5 + 1;
-                  case "MM":
-                    return b2.s(a5 + 1, 2, "0");
-                  case "MMM":
-                    return h3(n6.monthsShort, a5, c5, 3);
-                  case "MMMM":
-                    return h3(c5, a5);
-                  case "D":
-                    return e3.$D;
-                  case "DD":
-                    return b2.s(e3.$D, 2, "0");
-                  case "d":
-                    return String(e3.$W);
-                  case "dd":
-                    return h3(n6.weekdaysMin, e3.$W, o6, 2);
-                  case "ddd":
-                    return h3(n6.weekdaysShort, e3.$W, o6, 3);
-                  case "dddd":
-                    return o6[e3.$W];
-                  case "H":
-                    return String(s4);
-                  case "HH":
-                    return b2.s(s4, 2, "0");
-                  case "h":
-                    return d4(1);
-                  case "hh":
-                    return d4(2);
-                  case "a":
-                    return $3(s4, u4, true);
-                  case "A":
-                    return $3(s4, u4, false);
-                  case "m":
-                    return String(u4);
-                  case "mm":
-                    return b2.s(u4, 2, "0");
-                  case "s":
-                    return String(e3.$s);
-                  case "ss":
-                    return b2.s(e3.$s, 2, "0");
-                  case "SSS":
-                    return b2.s(e3.$ms, 3, "0");
-                  case "Z":
-                    return i3;
-                }
-                return null;
-              }(t5) || i3.replace(":", "");
-            });
-          }, m5.utcOffset = function() {
-            return 15 * -Math.round(this.$d.getTimezoneOffset() / 15);
-          }, m5.diff = function(r5, d4, l4) {
-            var $3, y2 = this, M4 = b2.p(d4), m6 = O(r5), v3 = (m6.utcOffset() - this.utcOffset()) * e2, g5 = this - m6, D3 = function() {
-              return b2.m(y2, m6);
-            };
-            switch (M4) {
-              case h2:
-                $3 = D3() / 12;
-                break;
-              case c4:
-                $3 = D3();
-                break;
-              case f4:
-                $3 = D3() / 3;
-                break;
-              case o5:
-                $3 = (g5 - v3) / 6048e5;
-                break;
-              case a4:
-                $3 = (g5 - v3) / 864e5;
-                break;
-              case u3:
-                $3 = g5 / n5;
-                break;
-              case s3:
-                $3 = g5 / e2;
-                break;
-              case i2:
-                $3 = g5 / t3;
-                break;
-              default:
-                $3 = g5;
-            }
-            return l4 ? $3 : b2.a($3);
-          }, m5.daysInMonth = function() {
-            return this.endOf(c4).$D;
-          }, m5.$locale = function() {
-            return D2[this.$L];
-          }, m5.locale = function(t4, e3) {
-            if (!t4) return this.$L;
-            var n6 = this.clone(), r5 = w2(t4, e3, true);
-            return r5 && (n6.$L = r5), n6;
-          }, m5.clone = function() {
-            return b2.w(this.$d, this);
-          }, m5.toDate = function() {
-            return new Date(this.valueOf());
-          }, m5.toJSON = function() {
-            return this.isValid() ? this.toISOString() : null;
-          }, m5.toISOString = function() {
-            return this.$d.toISOString();
-          }, m5.toString = function() {
-            return this.$d.toUTCString();
-          }, M3;
-        }(), k2 = _.prototype;
-        return O.prototype = k2, [["$ms", r4], ["$s", i2], ["$m", s3], ["$H", u3], ["$W", a4], ["$M", c4], ["$y", h2], ["$D", d3]].forEach(function(t4) {
-          k2[t4[1]] = function(e3) {
-            return this.$g(e3, t4[0], t4[1]);
-          };
-        }), O.extend = function(t4, e3) {
-          return t4.$i || (t4(e3, _, O), t4.$i = true), O;
-        }, O.locale = w2, O.isDayjs = S2, O.unix = function(t4) {
-          return O(1e3 * t4);
-        }, O.en = D2[g4], O.Ls = D2, O.p = {}, O;
-      });
     }
   });
 
@@ -24952,14 +24672,14 @@
         };
         return __assign.apply(this, arguments);
       };
-      var __rest = exports && exports.__rest || function(s3, e2) {
+      var __rest = exports && exports.__rest || function(s3, e3) {
         var t3 = {};
-        for (var p4 in s3) if (Object.prototype.hasOwnProperty.call(s3, p4) && e2.indexOf(p4) < 0)
-          t3[p4] = s3[p4];
+        for (var p3 in s3) if (Object.prototype.hasOwnProperty.call(s3, p3) && e3.indexOf(p3) < 0)
+          t3[p3] = s3[p3];
         if (s3 != null && typeof Object.getOwnPropertySymbols === "function")
-          for (var i2 = 0, p4 = Object.getOwnPropertySymbols(s3); i2 < p4.length; i2++) {
-            if (e2.indexOf(p4[i2]) < 0 && Object.prototype.propertyIsEnumerable.call(s3, p4[i2]))
-              t3[p4[i2]] = s3[p4[i2]];
+          for (var i2 = 0, p3 = Object.getOwnPropertySymbols(s3); i2 < p3.length; i2++) {
+            if (e3.indexOf(p3[i2]) < 0 && Object.prototype.propertyIsEnumerable.call(s3, p3[i2]))
+              t3[p3[i2]] = s3[p3[i2]];
           }
         return t3;
       };
@@ -25006,14 +24726,14 @@
   var require_cjs = __commonJS({
     "../../.yarn/__virtual__/@react-icons-all-files-virtual-6ea34c960c/0/cache/@react-icons-all-files-npm-4.1.0-0c7fb4e7cd-56252b205b.zip/node_modules/@react-icons/all-files/lib/cjs/index.js"(exports) {
       "use strict";
-      var __createBinding = exports && exports.__createBinding || (Object.create ? function(o5, m4, k2, k22) {
-        if (k22 === void 0) k22 = k2;
+      var __createBinding = exports && exports.__createBinding || (Object.create ? function(o5, m4, k3, k22) {
+        if (k22 === void 0) k22 = k3;
         Object.defineProperty(o5, k22, { enumerable: true, get: function() {
-          return m4[k2];
+          return m4[k3];
         } });
-      } : function(o5, m4, k2, k22) {
-        if (k22 === void 0) k22 = k2;
-        o5[k22] = m4[k2];
+      } : function(o5, m4, k3, k22) {
+        if (k22 === void 0) k22 = k3;
+        o5[k22] = m4[k3];
       });
       var __exportStar = exports && exports.__exportStar || function(m4, exports2) {
         for (var p4 in m4) if (p4 !== "default" && !exports2.hasOwnProperty(p4)) __createBinding(exports2, m4, p4);
@@ -25032,6 +24752,286 @@
       module.exports.MdDateRange = function MdDateRange(props) {
         return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "d": "M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z" } }] })(props);
       };
+    }
+  });
+
+  // ../../.yarn/cache/dayjs-npm-1.11.13-d478bb9479-7374d63ab1.zip/node_modules/dayjs/dayjs.min.js
+  var require_dayjs_min = __commonJS({
+    "../../.yarn/cache/dayjs-npm-1.11.13-d478bb9479-7374d63ab1.zip/node_modules/dayjs/dayjs.min.js"(exports, module) {
+      !function(t3, e3) {
+        "object" == typeof exports && "undefined" != typeof module ? module.exports = e3() : "function" == typeof define && define.amd ? define(e3) : (t3 = "undefined" != typeof globalThis ? globalThis : t3 || self).dayjs = e3();
+      }(exports, function() {
+        "use strict";
+        var t3 = 1e3, e3 = 6e4, n5 = 36e5, r4 = "millisecond", i2 = "second", s3 = "minute", u3 = "hour", a4 = "day", o5 = "week", c3 = "month", f4 = "quarter", h2 = "year", d3 = "date", l2 = "Invalid Date", $2 = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/, y3 = /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g, M2 = { name: "en", weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"), months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_"), ordinal: function(t4) {
+          var e4 = ["th", "st", "nd", "rd"], n6 = t4 % 100;
+          return "[" + t4 + (e4[(n6 - 20) % 10] || e4[n6] || e4[0]) + "]";
+        } }, m4 = function(t4, e4, n6) {
+          var r5 = String(t4);
+          return !r5 || r5.length >= e4 ? t4 : "" + Array(e4 + 1 - r5.length).join(n6) + t4;
+        }, v4 = { s: m4, z: function(t4) {
+          var e4 = -t4.utcOffset(), n6 = Math.abs(e4), r5 = Math.floor(n6 / 60), i3 = n6 % 60;
+          return (e4 <= 0 ? "+" : "-") + m4(r5, 2, "0") + ":" + m4(i3, 2, "0");
+        }, m: function t4(e4, n6) {
+          if (e4.date() < n6.date()) return -t4(n6, e4);
+          var r5 = 12 * (n6.year() - e4.year()) + (n6.month() - e4.month()), i3 = e4.clone().add(r5, c3), s4 = n6 - i3 < 0, u4 = e4.clone().add(r5 + (s4 ? -1 : 1), c3);
+          return +(-(r5 + (n6 - i3) / (s4 ? i3 - u4 : u4 - i3)) || 0);
+        }, a: function(t4) {
+          return t4 < 0 ? Math.ceil(t4) || 0 : Math.floor(t4);
+        }, p: function(t4) {
+          return { M: c3, y: h2, w: o5, d: a4, D: d3, h: u3, m: s3, s: i2, ms: r4, Q: f4 }[t4] || String(t4 || "").toLowerCase().replace(/s$/, "");
+        }, u: function(t4) {
+          return void 0 === t4;
+        } }, g3 = "en", D3 = {};
+        D3[g3] = M2;
+        var p3 = "$isDayjsObject", S2 = function(t4) {
+          return t4 instanceof _2 || !(!t4 || !t4[p3]);
+        }, w3 = function t4(e4, n6, r5) {
+          var i3;
+          if (!e4) return g3;
+          if ("string" == typeof e4) {
+            var s4 = e4.toLowerCase();
+            D3[s4] && (i3 = s4), n6 && (D3[s4] = n6, i3 = s4);
+            var u4 = e4.split("-");
+            if (!i3 && u4.length > 1) return t4(u4[0]);
+          } else {
+            var a5 = e4.name;
+            D3[a5] = e4, i3 = a5;
+          }
+          return !r5 && i3 && (g3 = i3), i3 || !r5 && g3;
+        }, O = function(t4, e4) {
+          if (S2(t4)) return t4.clone();
+          var n6 = "object" == typeof e4 ? e4 : {};
+          return n6.date = t4, n6.args = arguments, new _2(n6);
+        }, b2 = v4;
+        b2.l = w3, b2.i = S2, b2.w = function(t4, e4) {
+          return O(t4, { locale: e4.$L, utc: e4.$u, x: e4.$x, $offset: e4.$offset });
+        };
+        var _2 = function() {
+          function M3(t4) {
+            this.$L = w3(t4.locale, null, true), this.parse(t4), this.$x = this.$x || t4.x || {}, this[p3] = true;
+          }
+          var m5 = M3.prototype;
+          return m5.parse = function(t4) {
+            this.$d = function(t5) {
+              var e4 = t5.date, n6 = t5.utc;
+              if (null === e4) return /* @__PURE__ */ new Date(NaN);
+              if (b2.u(e4)) return /* @__PURE__ */ new Date();
+              if (e4 instanceof Date) return new Date(e4);
+              if ("string" == typeof e4 && !/Z$/i.test(e4)) {
+                var r5 = e4.match($2);
+                if (r5) {
+                  var i3 = r5[2] - 1 || 0, s4 = (r5[7] || "0").substring(0, 3);
+                  return n6 ? new Date(Date.UTC(r5[1], i3, r5[3] || 1, r5[4] || 0, r5[5] || 0, r5[6] || 0, s4)) : new Date(r5[1], i3, r5[3] || 1, r5[4] || 0, r5[5] || 0, r5[6] || 0, s4);
+                }
+              }
+              return new Date(e4);
+            }(t4), this.init();
+          }, m5.init = function() {
+            var t4 = this.$d;
+            this.$y = t4.getFullYear(), this.$M = t4.getMonth(), this.$D = t4.getDate(), this.$W = t4.getDay(), this.$H = t4.getHours(), this.$m = t4.getMinutes(), this.$s = t4.getSeconds(), this.$ms = t4.getMilliseconds();
+          }, m5.$utils = function() {
+            return b2;
+          }, m5.isValid = function() {
+            return !(this.$d.toString() === l2);
+          }, m5.isSame = function(t4, e4) {
+            var n6 = O(t4);
+            return this.startOf(e4) <= n6 && n6 <= this.endOf(e4);
+          }, m5.isAfter = function(t4, e4) {
+            return O(t4) < this.startOf(e4);
+          }, m5.isBefore = function(t4, e4) {
+            return this.endOf(e4) < O(t4);
+          }, m5.$g = function(t4, e4, n6) {
+            return b2.u(t4) ? this[e4] : this.set(n6, t4);
+          }, m5.unix = function() {
+            return Math.floor(this.valueOf() / 1e3);
+          }, m5.valueOf = function() {
+            return this.$d.getTime();
+          }, m5.startOf = function(t4, e4) {
+            var n6 = this, r5 = !!b2.u(e4) || e4, f5 = b2.p(t4), l3 = function(t5, e5) {
+              var i3 = b2.w(n6.$u ? Date.UTC(n6.$y, e5, t5) : new Date(n6.$y, e5, t5), n6);
+              return r5 ? i3 : i3.endOf(a4);
+            }, $3 = function(t5, e5) {
+              return b2.w(n6.toDate()[t5].apply(n6.toDate("s"), (r5 ? [0, 0, 0, 0] : [23, 59, 59, 999]).slice(e5)), n6);
+            }, y4 = this.$W, M4 = this.$M, m6 = this.$D, v5 = "set" + (this.$u ? "UTC" : "");
+            switch (f5) {
+              case h2:
+                return r5 ? l3(1, 0) : l3(31, 11);
+              case c3:
+                return r5 ? l3(1, M4) : l3(0, M4 + 1);
+              case o5:
+                var g4 = this.$locale().weekStart || 0, D4 = (y4 < g4 ? y4 + 7 : y4) - g4;
+                return l3(r5 ? m6 - D4 : m6 + (6 - D4), M4);
+              case a4:
+              case d3:
+                return $3(v5 + "Hours", 0);
+              case u3:
+                return $3(v5 + "Minutes", 1);
+              case s3:
+                return $3(v5 + "Seconds", 2);
+              case i2:
+                return $3(v5 + "Milliseconds", 3);
+              default:
+                return this.clone();
+            }
+          }, m5.endOf = function(t4) {
+            return this.startOf(t4, false);
+          }, m5.$set = function(t4, e4) {
+            var n6, o6 = b2.p(t4), f5 = "set" + (this.$u ? "UTC" : ""), l3 = (n6 = {}, n6[a4] = f5 + "Date", n6[d3] = f5 + "Date", n6[c3] = f5 + "Month", n6[h2] = f5 + "FullYear", n6[u3] = f5 + "Hours", n6[s3] = f5 + "Minutes", n6[i2] = f5 + "Seconds", n6[r4] = f5 + "Milliseconds", n6)[o6], $3 = o6 === a4 ? this.$D + (e4 - this.$W) : e4;
+            if (o6 === c3 || o6 === h2) {
+              var y4 = this.clone().set(d3, 1);
+              y4.$d[l3]($3), y4.init(), this.$d = y4.set(d3, Math.min(this.$D, y4.daysInMonth())).$d;
+            } else l3 && this.$d[l3]($3);
+            return this.init(), this;
+          }, m5.set = function(t4, e4) {
+            return this.clone().$set(t4, e4);
+          }, m5.get = function(t4) {
+            return this[b2.p(t4)]();
+          }, m5.add = function(r5, f5) {
+            var d4, l3 = this;
+            r5 = Number(r5);
+            var $3 = b2.p(f5), y4 = function(t4) {
+              var e4 = O(l3);
+              return b2.w(e4.date(e4.date() + Math.round(t4 * r5)), l3);
+            };
+            if ($3 === c3) return this.set(c3, this.$M + r5);
+            if ($3 === h2) return this.set(h2, this.$y + r5);
+            if ($3 === a4) return y4(1);
+            if ($3 === o5) return y4(7);
+            var M4 = (d4 = {}, d4[s3] = e3, d4[u3] = n5, d4[i2] = t3, d4)[$3] || 1, m6 = this.$d.getTime() + r5 * M4;
+            return b2.w(m6, this);
+          }, m5.subtract = function(t4, e4) {
+            return this.add(-1 * t4, e4);
+          }, m5.format = function(t4) {
+            var e4 = this, n6 = this.$locale();
+            if (!this.isValid()) return n6.invalidDate || l2;
+            var r5 = t4 || "YYYY-MM-DDTHH:mm:ssZ", i3 = b2.z(this), s4 = this.$H, u4 = this.$m, a5 = this.$M, o6 = n6.weekdays, c4 = n6.months, f5 = n6.meridiem, h3 = function(t5, n7, i4, s5) {
+              return t5 && (t5[n7] || t5(e4, r5)) || i4[n7].slice(0, s5);
+            }, d4 = function(t5) {
+              return b2.s(s4 % 12 || 12, t5, "0");
+            }, $3 = f5 || function(t5, e5, n7) {
+              var r6 = t5 < 12 ? "AM" : "PM";
+              return n7 ? r6.toLowerCase() : r6;
+            };
+            return r5.replace(y3, function(t5, r6) {
+              return r6 || function(t6) {
+                switch (t6) {
+                  case "YY":
+                    return String(e4.$y).slice(-2);
+                  case "YYYY":
+                    return b2.s(e4.$y, 4, "0");
+                  case "M":
+                    return a5 + 1;
+                  case "MM":
+                    return b2.s(a5 + 1, 2, "0");
+                  case "MMM":
+                    return h3(n6.monthsShort, a5, c4, 3);
+                  case "MMMM":
+                    return h3(c4, a5);
+                  case "D":
+                    return e4.$D;
+                  case "DD":
+                    return b2.s(e4.$D, 2, "0");
+                  case "d":
+                    return String(e4.$W);
+                  case "dd":
+                    return h3(n6.weekdaysMin, e4.$W, o6, 2);
+                  case "ddd":
+                    return h3(n6.weekdaysShort, e4.$W, o6, 3);
+                  case "dddd":
+                    return o6[e4.$W];
+                  case "H":
+                    return String(s4);
+                  case "HH":
+                    return b2.s(s4, 2, "0");
+                  case "h":
+                    return d4(1);
+                  case "hh":
+                    return d4(2);
+                  case "a":
+                    return $3(s4, u4, true);
+                  case "A":
+                    return $3(s4, u4, false);
+                  case "m":
+                    return String(u4);
+                  case "mm":
+                    return b2.s(u4, 2, "0");
+                  case "s":
+                    return String(e4.$s);
+                  case "ss":
+                    return b2.s(e4.$s, 2, "0");
+                  case "SSS":
+                    return b2.s(e4.$ms, 3, "0");
+                  case "Z":
+                    return i3;
+                }
+                return null;
+              }(t5) || i3.replace(":", "");
+            });
+          }, m5.utcOffset = function() {
+            return 15 * -Math.round(this.$d.getTimezoneOffset() / 15);
+          }, m5.diff = function(r5, d4, l3) {
+            var $3, y4 = this, M4 = b2.p(d4), m6 = O(r5), v5 = (m6.utcOffset() - this.utcOffset()) * e3, g4 = this - m6, D4 = function() {
+              return b2.m(y4, m6);
+            };
+            switch (M4) {
+              case h2:
+                $3 = D4() / 12;
+                break;
+              case c3:
+                $3 = D4();
+                break;
+              case f4:
+                $3 = D4() / 3;
+                break;
+              case o5:
+                $3 = (g4 - v5) / 6048e5;
+                break;
+              case a4:
+                $3 = (g4 - v5) / 864e5;
+                break;
+              case u3:
+                $3 = g4 / n5;
+                break;
+              case s3:
+                $3 = g4 / e3;
+                break;
+              case i2:
+                $3 = g4 / t3;
+                break;
+              default:
+                $3 = g4;
+            }
+            return l3 ? $3 : b2.a($3);
+          }, m5.daysInMonth = function() {
+            return this.endOf(c3).$D;
+          }, m5.$locale = function() {
+            return D3[this.$L];
+          }, m5.locale = function(t4, e4) {
+            if (!t4) return this.$L;
+            var n6 = this.clone(), r5 = w3(t4, e4, true);
+            return r5 && (n6.$L = r5), n6;
+          }, m5.clone = function() {
+            return b2.w(this.$d, this);
+          }, m5.toDate = function() {
+            return new Date(this.valueOf());
+          }, m5.toJSON = function() {
+            return this.isValid() ? this.toISOString() : null;
+          }, m5.toISOString = function() {
+            return this.$d.toISOString();
+          }, m5.toString = function() {
+            return this.$d.toUTCString();
+          }, M3;
+        }(), k3 = _2.prototype;
+        return O.prototype = k3, [["$ms", r4], ["$s", i2], ["$m", s3], ["$H", u3], ["$W", a4], ["$M", c3], ["$y", h2], ["$D", d3]].forEach(function(t4) {
+          k3[t4[1]] = function(e4) {
+            return this.$g(e4, t4[0], t4[1]);
+          };
+        }), O.extend = function(t4, e4) {
+          return t4.$i || (t4(e4, _2, O), t4.$i = true), O;
+        }, O.locale = w3, O.isDayjs = S2, O.unix = function(t4) {
+          return O(1e3 * t4);
+        }, O.en = D3[g3], O.Ls = D3, O.p = {}, O;
+      });
     }
   });
 
@@ -25095,12 +25095,12 @@
           if (!str && limit) {
             num = num.slice(0, limit);
           }
-          num = num.map(function g4(n5, i3) {
+          num = num.map(function g3(n5, i3) {
             if (str) {
               return order && numbers[n5] < numbers[num[i3 - 1]] && numbers[n5] < 100 ? numbers[n5] * 1e3 : numbers[n5];
             } else {
               if (parseInt(n5, 10) * Math.pow(10, i3) > 1e3) {
-                return g4(n5, i3 - 3);
+                return g3(n5, i3 - 3);
               }
               return letters[parseInt(n5, 10) * Math.pow(10, i3)];
             }
@@ -25133,13 +25133,13 @@
   // ../../.yarn/cache/dayjs-npm-1.11.13-d478bb9479-7374d63ab1.zip/node_modules/dayjs/plugin/isBetween.js
   var require_isBetween = __commonJS({
     "../../.yarn/cache/dayjs-npm-1.11.13-d478bb9479-7374d63ab1.zip/node_modules/dayjs/plugin/isBetween.js"(exports, module) {
-      !function(e2, i2) {
-        "object" == typeof exports && "undefined" != typeof module ? module.exports = i2() : "function" == typeof define && define.amd ? define(i2) : (e2 = "undefined" != typeof globalThis ? globalThis : e2 || self).dayjs_plugin_isBetween = i2();
+      !function(e3, i2) {
+        "object" == typeof exports && "undefined" != typeof module ? module.exports = i2() : "function" == typeof define && define.amd ? define(i2) : (e3 = "undefined" != typeof globalThis ? globalThis : e3 || self).dayjs_plugin_isBetween = i2();
       }(exports, function() {
         "use strict";
-        return function(e2, i2, t3) {
-          i2.prototype.isBetween = function(e3, i3, s3, f4) {
-            var n5 = t3(e3), o5 = t3(i3), r4 = "(" === (f4 = f4 || "()")[0], u3 = ")" === f4[1];
+        return function(e3, i2, t3) {
+          i2.prototype.isBetween = function(e4, i3, s3, f4) {
+            var n5 = t3(e4), o5 = t3(i3), r4 = "(" === (f4 = f4 || "()")[0], u3 = ")" === f4[1];
             return (r4 ? this.isAfter(n5, s3) : !this.isBefore(n5, s3)) && (u3 ? this.isBefore(o5, s3) : !this.isAfter(o5, s3)) || (r4 ? this.isBefore(n5, s3) : !this.isAfter(n5, s3)) && (u3 ? this.isAfter(o5, s3) : !this.isBefore(o5, s3));
           };
         };
@@ -26709,7 +26709,7 @@
           return format.apply(null, [fmt].concat(replacements));
         }
         function format(fmt) {
-          var argIndex = 1, args = [].slice.call(arguments), i2 = 0, n5 = fmt.length, result = "", c4, escaped = false, arg, tmp, leadingZero = false, precision, nextArg = function() {
+          var argIndex = 1, args = [].slice.call(arguments), i2 = 0, n5 = fmt.length, result = "", c3, escaped = false, arg, tmp, leadingZero = false, precision, nextArg = function() {
             return args[argIndex++];
           }, slurpNumber = function() {
             var digits = "";
@@ -26720,7 +26720,7 @@
             return digits.length > 0 ? parseInt(digits) : null;
           };
           for (; i2 < n5; ++i2) {
-            c4 = fmt[i2];
+            c3 = fmt[i2];
             if (escaped) {
               escaped = false;
               if (c4 == ".") {
@@ -33960,7 +33960,7 @@
           "Element",
           "ElementList"
         ];
-        const NULLABLE_BUILT_IN_TYPES = BUILT_IN_TYPES.map((e2) => `${e2}?`);
+        const NULLABLE_BUILT_IN_TYPES = BUILT_IN_TYPES.map((e3) => `${e3}?`);
         const KEYWORDS = {
           keyword: "abstract as assert async await break case catch class const continue covariant default deferred do dynamic else enum export extends extension external factory false final finally for Function get hide if implements import in inferface is late library mixin new null on operator part required rethrow return set show static super switch sync this throw true try typedef var void while with yield",
           built_in: BUILT_IN_TYPES.concat(NULLABLE_BUILT_IN_TYPES).concat([
@@ -60417,7 +60417,7 @@
   var React5 = __toESM(require_react());
 
   // ../../.yarn/__virtual__/react-jewish-datepicker-virtual-93c1bf2ecc/1/packages/reactJewishDatePicker/dist/mjs/reactJewishDatePicker.js
-  var import_jsx_runtime4 = __toESM(require_jsx_runtime());
+  var import_jsx_runtime5 = __toESM(require_jsx_runtime());
   var import_react5 = __toESM(require_react());
 
   // ../../.yarn/__virtual__/use-onclickoutside-virtual-4650617bd3/0/cache/use-onclickoutside-npm-0.4.1-d85965f710-198b8ff9b9.zip/node_modules/use-onclickoutside/dist/use-onclickoutside.browser.esm.js
@@ -60498,10 +60498,14 @@
   }
 
   // ../../.yarn/__virtual__/react-jewish-datepicker-virtual-93c1bf2ecc/1/packages/reactJewishDatePicker/dist/mjs/reactJewishDatePicker.js
-  var import_dayjs3 = __toESM(require_dayjs_min());
   var import_MdDateRange = __toESM(require_MdDateRange());
 
-  // ../../.yarn/cache/jewish-date-npm-2.0.19-9bdd9215c6-ff5881db0b.zip/node_modules/jewish-date/dist/mjs/interfaces.js
+  // ../../.yarn/__virtual__/react-jewish-datepicker-virtual-93c1bf2ecc/1/packages/reactJewishDatePicker/dist/mjs/month.js
+  var import_jsx_runtime4 = __toESM(require_jsx_runtime());
+  var import_react4 = __toESM(require_react());
+  var import_dayjs3 = __toESM(require_dayjs_min());
+
+  // ../../.yarn/cache/jewish-date-npm-2.0.12-c86d521ebc-426befc672.zip/node_modules/jewish-date/dist/mjs/interfaces.js
   var e = { None: "None", Tishri: "Tishri", Cheshvan: "Cheshvan", Kislev: "Kislev", Tevet: "Tevet", Shevat: "Shevat", Adar: "Adar", Nisan: "Nisan", Iyyar: "Iyyar", Sivan: "Sivan", Tammuz: "Tammuz", Av: "Av", Elul: "Elul", AdarI: "AdarI", AdarII: "AdarII" };
 
   // ../../.yarn/cache/jewish-date-npm-2.0.19-9bdd9215c6-ff5881db0b.zip/node_modules/jewish-date/dist/mjs/utils/dateUtils/dateUtils.js
@@ -60517,7 +60521,7 @@
     return E - 1 + 365 * (n5 - 1) + Math.floor((n5 - 1) / 4) + -Math.floor((n5 - 1) / 100) + Math.floor((n5 - 1) / 400) + Math.floor((367 * r4 - 362) / 12 + (r4 <= 2 ? 0 : H(n5) ? -1 : -2) + t3);
   }
   function C(n5) {
-    let r4 = Math.floor(n5 - 0.5) + 0.5, t3 = r4 - E, e2 = Math.floor(t3 / 146097), o5 = c(t3, 146097), u3 = Math.floor(o5 / 36524), s3 = c(o5, 36524), i2 = Math.floor(s3 / 1461), b2 = c(s3, 1461), h2 = Math.floor(b2 / 365), f4 = e2 * 400 + u3 * 100 + i2 * 4 + h2;
+    let r4 = Math.floor(n5 - 0.5) + 0.5, t3 = r4 - E, e3 = Math.floor(t3 / 146097), o5 = c(t3, 146097), u3 = Math.floor(o5 / 36524), s3 = c(o5, 36524), i2 = Math.floor(s3 / 1461), b2 = c(s3, 1461), h2 = Math.floor(b2 / 365), f4 = e3 * 400 + u3 * 100 + i2 * 4 + h2;
     u3 === 4 || h2 === 4 || f4++;
     let x2 = r4 - d(f4, 1, 1), j3 = r4 < d(f4, 3, 1) ? 0 : H(f4) ? 1 : 2, M2 = Math.floor(((x2 + j3) * 12 + 373) / 367), O = r4 - d(f4, M2, 1) + 1;
     return [f4, M2, O];
@@ -60529,8 +60533,8 @@
     return w(n5) ? 13 : 12;
   }
   function l(n5) {
-    let r4 = Math.floor((235 * n5 - 234) / 19), t3 = 12084 + 13753 * r4, e2 = r4 * 29 + Math.floor(t3 / 25920);
-    return c(3 * (e2 + 1), 7) < 3 && e2++, e2;
+    let r4 = Math.floor((235 * n5 - 234) / 19), t3 = 12084 + 13753 * r4, e3 = r4 * 29 + Math.floor(t3 / 25920);
+    return c(3 * (e3 + 1), 7) < 3 && e3++, e3;
   }
   function q(n5) {
     let r4 = l(n5 - 1), t3 = l(n5);
@@ -60543,46 +60547,49 @@
     return r4 === 2 || r4 === 4 || r4 === 6 || r4 === 10 || r4 === 13 || r4 === 12 && !w(n5) || r4 === 8 && c(p(n5), 10) !== 5 || r4 === 9 && c(p(n5), 10) === 3 ? 29 : 30;
   }
   function m(n5, r4, t3) {
-    let e2, o5 = g(n5), u3 = R + l(n5) + q(n5) + t3 + 1;
+    let e3, o5 = g(n5), u3 = R + l(n5) + q(n5) + t3 + 1;
     if (r4 < 7) {
-      for (e2 = 7; e2 <= o5; e2++) u3 += a(n5, e2);
-      for (e2 = 1; e2 < r4; e2++) u3 += a(n5, e2);
-    } else for (e2 = 7; e2 < r4; e2++) u3 += a(n5, e2);
+      for (e3 = 7; e3 <= o5; e3++) u3 += a(n5, e3);
+      for (e3 = 1; e3 < r4; e3++) u3 += a(n5, e3);
+    } else for (e3 = 7; e3 < r4; e3++) u3 += a(n5, e3);
     return u3;
   }
   function D(n5) {
-    let t3, e2, o5 = Math.floor(n5) + 0.5, u3 = Math.floor((o5 - 347995.5) * 98496 / 35975351);
+    let t3, e3, o5 = Math.floor(n5) + 0.5, u3 = Math.floor((o5 - 347995.5) * 98496 / 35975351);
     t3 = u3 - 1;
     for (let b2 = u3; o5 >= m(b2, 7, 1); b2++) t3++;
     let s3 = o5 < m(t3, 1, 1) ? 7 : 1;
-    e2 = s3;
-    for (let b2 = s3; o5 > m(t3, b2, a(t3, b2)); b2++) e2++;
-    let i2 = o5 - m(t3, e2, 1) + 1;
-    return [t3, e2, i2];
+    e3 = s3;
+    for (let b2 = s3; o5 > m(t3, b2, a(t3, b2)); b2++) e3++;
+    let i2 = o5 - m(t3, e3, 1) + 1;
+    return [t3, e3, i2];
   }
 
-  // ../../.yarn/cache/jewish-date-npm-2.0.19-9bdd9215c6-ff5881db0b.zip/node_modules/jewish-date/dist/mjs/jewishDate.js
-  var c2 = (t3) => {
+  // ../../.yarn/cache/jewish-date-npm-2.0.12-c86d521ebc-426befc672.zip/node_modules/jewish-date/dist/mjs/utils/numberUtils/numberUtils.js
+  var n = (t3, r4) => t3.toString().padStart(r4, "0");
+
+  // ../../.yarn/cache/jewish-date-npm-2.0.12-c86d521ebc-426befc672.zip/node_modules/jewish-date/dist/mjs/jewishDate.js
+  var m2 = (t3) => {
     let n5 = t3 % 19;
     return n5 === 0 || n5 === 3 || n5 === 6 || n5 === 8 || n5 === 11 || n5 === 14 || n5 === 17;
   };
-  var m2 = (t3) => ({ [e.None]: 0, [e.Tishri]: 7, [e.Cheshvan]: 8, [e.Kislev]: 9, [e.Tevet]: 10, [e.Shevat]: 11, [e.Adar]: 12, [e.AdarI]: 12, [e.AdarII]: 13, [e.Nisan]: 1, [e.Iyyar]: 2, [e.Sivan]: 3, [e.Tammuz]: 4, [e.Av]: 5, [e.Elul]: 6 })[t3] || 0;
-  var p2 = (t3, n5) => {
+  var w2 = (t3) => ({ [e.None]: 0, [e.Tishri]: 7, [e.Cheshvan]: 8, [e.Kislev]: 9, [e.Tevet]: 10, [e.Shevat]: 11, [e.Adar]: 12, [e.AdarI]: 12, [e.AdarII]: 13, [e.Nisan]: 1, [e.Iyyar]: 2, [e.Sivan]: 3, [e.Tammuz]: 4, [e.Av]: 5, [e.Elul]: 6 })[t3] || 0;
+  var T = (t3, n5) => {
     let o5 = [e.None, e.Nisan, e.Iyyar, e.Sivan, e.Tammuz, e.Av, e.Elul, e.Tishri, e.Cheshvan, e.Kislev, e.Tevet, e.Shevat, e.Adar, e.AdarII][t3] || e.None;
-    return o5 === e.Adar && c2(n5) ? e.AdarI : o5;
+    return o5 === e.Adar && m2(n5) ? e.AdarI : o5;
   };
-  var T = (t3) => {
+  var v = (t3) => {
     let n5 = [e.None, e.Tishri, e.Cheshvan, e.Kislev, e.Tevet, e.Shevat, e.AdarI, e.AdarII, e.Nisan, e.Iyyar, e.Sivan, e.Tammuz, e.Av, e.Elul];
-    return c2(t3) ? n5 : n5.filter((r4) => r4 !== "AdarII").map((r4) => r4 === "AdarI" ? "Adar" : r4);
+    return m2(t3) ? n5 : n5.filter((r4) => r4 !== "AdarII").map((r4) => r4 === "AdarI" ? "Adar" : r4);
   };
-  var g2 = (t3) => `${t3.day} ${t3.monthName} ${t3.year}`;
-  var l2 = (t3) => {
-    let n5 = t3.getFullYear(), r4 = t3.getMonth() + 1, o5 = t3.getDate(), s3 = d(n5, r4, o5), a4 = D(s3), h2 = a4[0], i2 = p2(a4[1], h2), w2 = T(h2).findIndex((d3) => d3 === i2);
-    return { year: h2, monthName: i2, month: w2, day: a4[2] };
+  var x = (t3) => `${t3.day} ${t3.monthName} ${t3.year}`;
+  var N = (t3) => {
+    let n5 = t3.getFullYear(), r4 = t3.getMonth() + 1, o5 = t3.getDate(), a4 = d(n5, r4, o5), s3 = D(a4), h2 = s3[0], c3 = T(s3[1], h2), d3 = v(h2).findIndex((u3) => u3 === c3);
+    return { year: h2, monthName: c3, month: d3, day: s3[2] };
   };
-  var x = (t3) => {
-    let n5 = m2(t3.monthName), r4 = m(t3.year, n5, t3.day), o5 = C(r4), s3 = /* @__PURE__ */ new Date();
-    return s3.setFullYear(o5[0], o5[1] - 1, o5[2]), s3.getHours() > 0 && s3.setHours(0, 0, 0, 0), s3;
+  var f = (t3) => {
+    let n5 = w2(t3.monthName), r4 = m(t3.year, n5, t3.day), o5 = C(r4), a4 = `${n(o5[0], 4)}-${n(o5[1], 2)}-${n(o5[2], 2)}`, s3 = new Date(a4);
+    return s3.getHours() > 0 && s3.setHours(0, 0, 0, 0), s3;
   };
 
   // ../../.yarn/cache/jewish-date-npm-2.0.19-9bdd9215c6-ff5881db0b.zip/node_modules/jewish-date/dist/mjs/jewishDateHebrew.js
@@ -60602,77 +60609,77 @@
   }
   var f = () => ["\u05D0", "\u05D1", "\u05D2", "\u05D3", "\u05D4", "\u05D5", "\u05E9"];
   var M = () => ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
-  var G = (t3) => t3 ? f() : M();
-  var d2 = (t3, e2) => T(t3).slice(1).map((n5, s3) => ({ id: n5, text: e2 ? i(e[n5]) : n5 }));
+  var G = (t3) => t3 ? f2() : M();
+  var d2 = (t3, e3) => v(t3).slice(1).map((n5, s3) => ({ id: n5, text: e3 ? i(e[n5]) : n5 }));
   var F = (t3 = 5780) => {
-    const e2 = [];
+    const e3 = [];
     for (let a4 = 100; a4 > 0; a4--) {
       const n5 = t3 - a4;
-      e2.push(n5);
+      e3.push(n5);
     }
-    e2.push(t3);
+    e3.push(t3);
     for (let a4 = 1; a4 <= 100; a4++) {
       const n5 = t3 + a4;
-      e2.push(n5);
+      e3.push(n5);
     }
-    return e2;
+    return e3;
   };
   var L = (t3) => {
-    const e2 = { ...t3 }, a4 = d2(t3.year, t3.isHebrew), n5 = a4.map((s3) => s3.id).indexOf(t3.month);
-    return n5 !== -1 && (n5 === 0 ? (e2.month = e[a4[a4.length - 1].id], e2.year--) : e2.month = e[a4[n5 - 1].id]), e2;
+    const e3 = { ...t3 }, a4 = d2(t3.year, t3.isHebrew), n5 = a4.map((s3) => s3.id).indexOf(t3.month);
+    return n5 !== -1 && (n5 === 0 ? (e3.month = e[a4[a4.length - 1].id], e3.year--) : e3.month = e[a4[n5 - 1].id]), e3;
   };
   var P = (t3) => {
-    const e2 = { ...t3 }, a4 = d2(t3.year), n5 = a4.map((s3) => s3.id).indexOf(t3.month);
-    return n5 !== -1 && (n5 === a4.length - 1 ? (e2.month = e[a4[0].id], e2.year++) : e2.month = e[a4[n5 + 1].id]), e2;
+    const e3 = { ...t3 }, a4 = d2(t3.year), n5 = a4.map((s3) => s3.id).indexOf(t3.month);
+    return n5 !== -1 && (n5 === a4.length - 1 ? (e3.month = e[a4[0].id], e3.year++) : e3.month = e[a4[n5 + 1].id]), e3;
   };
   var c3 = (t3) => {
     if (!t3 || t3.monthName === e.None || t3.year < 1 || t3.day < 1) return /* @__PURE__ */ new Date();
-    const e2 = { day: t3.day, monthName: t3.monthName, year: t3.year };
-    return x(e2);
+    const e3 = { day: t3.day, monthName: t3.monthName, year: t3.year };
+    return f(e3);
   };
-  var g3 = (t3) => {
-    const e2 = u(t3), a4 = (0, import_dayjs.default)(t3).subtract(e2.day - 1, "day"), n5 = Number(a4.format("d")), s3 = a4.subtract(n5, "day");
-    return { jewishDate: e2, jewishMonth: e2.month, startOfJewishMonth: a4, sundayStartOfTheMonth: s3 };
+  var g2 = (t3) => {
+    const e3 = u(t3), a4 = (0, import_dayjs.default)(t3).subtract(e3.day - 1, "day"), n5 = Number(a4.format("d")), s3 = a4.subtract(n5, "day");
+    return { jewishDate: e3, jewishMonth: e3.month, startOfJewishMonth: a4, sundayStartOfTheMonth: s3 };
   };
-  var u = (t3) => l2(t3);
-  var b = (t3, e2) => t3 && e2 && t3.day === e2.day && t3.month === e2.month && t3.year === e2.year;
-  var p3 = (t3) => {
-    const e2 = u(t3.toDate());
-    return { day: e2.day, jewishDateStr: g2(e2), jewishDateStrHebrew: m3(e2), jewishDate: e2, dayjsDate: t3, date: t3.toDate(), isCurrentMonth: false };
+  var u = (t3) => N(t3);
+  var b = (t3, e3) => t3 && e3 && t3.day === e3.day && t3.month === e3.month && t3.year === e3.year;
+  var p2 = (t3) => {
+    const e3 = u(t3.toDate());
+    return { day: e3.day, jewishDateStr: x(e3), jewishDateStrHebrew: m3(e3), jewishDate: e3, dayjsDate: t3, date: t3.toDate(), isCurrentMonth: false };
   };
   var R2 = (t3) => {
-    const e2 = g3(t3), a4 = { selectedDay: null, jewishMonth: e2.jewishMonth, jewishYear: e2.jewishDate.year, jewishMonthString: e2.jewishDate.monthName, days: [] };
-    let n5 = e2.sundayStartOfTheMonth;
+    const e3 = g2(t3), a4 = { selectedDay: null, jewishMonth: e3.jewishMonth, jewishYear: e3.jewishDate.year, jewishMonthString: e3.jewishDate.monthName, days: [] };
+    let n5 = e3.sundayStartOfTheMonth;
     for (let s3 = 0; s3 < 42; s3++) {
-      const i2 = p3(n5);
-      i2.isCurrentMonth = a4.jewishMonth === i2.jewishDate.month, b(e2.jewishDate, i2.jewishDate) && (a4.selectedDay = i2), (s3 < 7 || i2.isCurrentMonth || i2.date.getDay() > 0) && (a4.days.push(i2), n5 = n5.add(1, "day"));
+      const i2 = p2(n5);
+      i2.isCurrentMonth = a4.jewishMonth === i2.jewishDate.month, b(e3.jewishDate, i2.jewishDate) && (a4.selectedDay = i2), (s3 < 7 || i2.isCurrentMonth || i2.date.getDay() > 0) && (a4.days.push(i2), n5 = n5.add(1, "day"));
     }
     return a4;
   };
   var I = (t3) => {
-    const e2 = ["1 Tishri", "2 Tishri", "10 Tishri", "15 Tishri", "22 Tishri", "15 Nisan", "21 Nisan", "6 Sivan"];
-    return t3 || e2.push("16 Tishri", "23 Tishri", "16 Nisan", "22 Nisan", "7 Sivan"), e2;
+    const e3 = ["1 Tishri", "2 Tishri", "10 Tishri", "15 Tishri", "22 Tishri", "15 Nisan", "21 Nisan", "6 Sivan"];
+    return t3 || e3.push("16 Tishri", "23 Tishri", "16 Nisan", "22 Nisan", "7 Sivan"), e3;
   };
   var T2 = (t3) => {
-    const e2 = I(t3);
-    return (a4) => !e2.includes(`${a4.jewishDate.day} ${a4.jewishDate.monthName}`);
+    const e3 = I(t3);
+    return (a4) => !e3.includes(`${a4.jewishDate.day} ${a4.jewishDate.monthName}`);
   };
-  var v = (t3) => t3.date.getDay() !== 6;
-  var V = (t3) => (e2) => v(e2) && T2(t3)(e2);
-  var Q = (t3, e2) => {
-    const a4 = t3 && (0, import_dayjs.default)(t3).subtract(1, "day").startOf("date"), n5 = e2 && (0, import_dayjs.default)(e2).add(1, "day").startOf("date");
+  var v2 = (t3) => t3.date.getDay() !== 6;
+  var V = (t3) => (e3) => v2(e3) && T2(t3)(e3);
+  var Q = (t3, e3) => {
+    const a4 = t3 && (0, import_dayjs.default)(t3).subtract(1, "day").startOf("date"), n5 = e3 && (0, import_dayjs.default)(e3).add(1, "day").startOf("date");
     return (s3) => {
       const i2 = (0, import_dayjs.default)(s3.date).startOf("date");
       return a4 && n5 ? i2.isAfter(a4) && i2.isBefore(n5) : a4 ? i2.isAfter(a4) : n5 ? i2.isBefore(n5) : false;
     };
   };
-  var U = (t3, e2) => {
-    const a4 = h(t3) ? t3 : c3(t3);
-    return (0, import_dayjs.default)(a4).add(e2, "day").toDate();
+  var U = (t3, e3) => {
+    const a4 = h(t3) ? t3 : c2(t3);
+    return (0, import_dayjs.default)(a4).add(e3, "day").toDate();
   };
-  var X = (t3, e2) => {
-    const a4 = h(t3) ? t3 : c3(t3);
-    return (0, import_dayjs.default)(a4).subtract(e2, "day").toDate();
+  var X = (t3, e3) => {
+    const a4 = h(t3) ? t3 : c2(t3);
+    return (0, import_dayjs.default)(a4).subtract(e3, "day").toDate();
   };
 
   // ../jewishDatesCore/dist/mjs/index.js
@@ -60682,111 +60689,127 @@
   var import_jsx_runtime = __toESM(require_jsx_runtime());
 
   // ../../.yarn/__virtual__/react-jewish-datepicker-virtual-93c1bf2ecc/1/packages/reactJewishDatePicker/dist/mjs/utils/testUtils.js
-  var n2 = () => typeof process < "u" && (process.env?.JEST_WORKER_ID !== void 0 || process.env?.VITEST_WORKER_ID !== void 0);
-  var s = (e2) => n2() ? e2 : void 0;
+  var n3 = () => typeof process < "u" && (process.env?.JEST_WORKER_ID !== void 0 || process.env?.VITEST_WORKER_ID !== void 0);
+  var s = (e3) => n3() ? e3 : void 0;
 
   // ../../.yarn/__virtual__/react-jewish-datepicker-virtual-93c1bf2ecc/1/packages/reactJewishDatePicker/dist/mjs/day.js
   var $ = __toESM(require_dayjs_min());
   var import_isBetween = __toESM(require_isBetween());
   var t2 = $.default;
   t2.extend(import_isBetween.default);
-  var j = (e2, a4, s3) => {
+  var j = (e3, a4, s3) => {
     if (a4 && s3) {
       const i2 = t2(a4.date), n5 = t2(s3.date);
-      return t2(e2).isBetween(i2, n5);
+      return t2(e3).isBetween(i2, n5);
     }
     return false;
   };
-  var k = (e2, a4) => {
+  var k = (e3, a4) => {
     if (a4) {
       const s3 = t2(a4.date).startOf("d");
-      return t2(e2).startOf("d").isSame(s3);
+      return t2(e3).startOf("d").isSame(s3);
     }
     return false;
   };
-  var H2 = (e2, a4, s3) => {
+  var H2 = (e3, a4, s3) => {
     if (s3 && a4) {
-      const i2 = t2(e2).startOf("d"), n5 = t2(a4.date).startOf("d"), r4 = t2(s3.date).startOf("d");
+      const i2 = t2(e3).startOf("d"), n5 = t2(a4.date).startOf("d"), r4 = t2(s3.date).startOf("d");
       return i2.isSame(r4) && !i2.isSame(n5);
     }
     return false;
   };
-  var L2 = (e2) => {
-    const { isHebrew: a4, selectedDay: s3, isCurrentMonth: i2, day: n5, dayjsDate: r4, isRange: x2, startDay: c4, endDay: d3, canSelect: y, onClick: E2, onMouseOver: N2, customizeDayStyle: D2, ...o5 } = e2, h2 = () => {
-      e2?.onClick(o5);
-    }, w2 = () => {
-      e2?.onMouseOver?.(o5);
-    }, f4 = a4 ? a2(n5, false, false) : n5, l3 = e2.isHebrew ? e2.jewishDateStrHebrew : e2.jewishDateStr, m4 = i2 ? "" : " otherMonth", u3 = s3 && (b(e2.jewishDate, s3.jewishDate) ? " selectedDay" : ""), J2 = y && !y(o5) ? " noSelect" : "", B = j(e2.date, c4, d3) ? " isInRange" : "", b2 = k(e2.date, c4) ? " startDay" : "", C3 = H2(e2.date, c4, d3) ? " endDay" : "", S2 = D2 ? ` ${D2(o5)}` : "", v2 = `day${m4}${u3 || ""}${J2}${B}${b2}${C3}${S2}`;
-    return (0, import_jsx_runtime.jsx)("div", { "data-testid": n2() ? l3 : void 0, "data-date": e2.date, className: v2, title: l3, onClick: h2, onMouseOver: w2, children: f4 });
+  var L2 = (e3) => {
+    const { isHebrew: a4, selectedDay: s3, isCurrentMonth: i2, day: n5, dayjsDate: r4, isRange: x2, startDay: c3, endDay: d3, canSelect: y3, onClick: E2, onMouseOver: N2, customizeDayStyle: D3, ...o5 } = e3, h2 = () => {
+      e3?.onClick(o5);
+    }, w3 = () => {
+      e3?.onMouseOver?.(o5);
+    }, f4 = a4 ? a2(n5, false, false) : n5, l2 = e3.isHebrew ? e3.jewishDateStrHebrew : e3.jewishDateStr, m4 = i2 ? "" : " otherMonth", u3 = s3 && (b(e3.jewishDate, s3.jewishDate) ? " selectedDay" : ""), J = y3 && !y3(o5) ? " noSelect" : "", B2 = j(e3.date, c3, d3) ? " isInRange" : "", b2 = k(e3.date, c3) ? " startDay" : "", C3 = H2(e3.date, c3, d3) ? " endDay" : "", S2 = D3 ? ` ${D3(o5)}` : "", v4 = `day${m4}${u3 || ""}${J}${B2}${b2}${C3}${S2}`;
+    return (0, import_jsx_runtime.jsx)("div", { "data-testid": n3() ? l2 : void 0, "data-date": e3.date, className: v4, title: l2, onClick: h2, onMouseOver: w3, children: f4 });
   };
 
   // ../../.yarn/__virtual__/react-jewish-datepicker-virtual-93c1bf2ecc/1/packages/reactJewishDatePicker/dist/mjs/weekday.js
   var import_jsx_runtime2 = __toESM(require_jsx_runtime());
-  var r = (e2) => (0, import_jsx_runtime2.jsx)("div", { className: "weekday", children: e2.value });
+  var r = (e3) => (0, import_jsx_runtime2.jsx)("div", { className: "weekday", children: e3.value });
 
   // ../../.yarn/__virtual__/react-jewish-datepicker-virtual-93c1bf2ecc/1/packages/reactJewishDatePicker/dist/mjs/navigation.js
   var import_jsx_runtime3 = __toESM(require_jsx_runtime());
-  var import_react4 = __toESM(require_react());
-  var f2 = (0, import_react4.memo)((e2) => {
-    const h2 = (0, import_react4.useCallback)(() => {
-      const t3 = L({ month: t[e2.month], year: e2.year, isHebrew: e2.isHebrew });
-      e2.onClick(t3.month, t3.year);
-    }, [e2, e2.month, e2.year, e2.isHebrew]), m4 = (0, import_react4.useCallback)(() => {
-      const t3 = P({ month: t[e2.month], year: e2.year, isHebrew: e2.isHebrew });
-      e2.onClick(t3.month, t3.year);
-    }, [e2, e2.month, e2.year, e2.isHebrew]), l3 = (0, import_react4.useCallback)((t3) => {
+  var import_react3 = __toESM(require_react());
+  var f3 = (0, import_react3.memo)((e3) => {
+    const h2 = (0, import_react3.useCallback)(() => {
+      const t3 = L({ month: t[e3.month], year: e3.year, isHebrew: e3.isHebrew });
+      e3.onClick(t3.month, t3.year);
+    }, [e3, e3.month, e3.year, e3.isHebrew]), m4 = (0, import_react3.useCallback)(() => {
+      const t3 = P({ month: t[e3.month], year: e3.year, isHebrew: e3.isHebrew });
+      e3.onClick(t3.month, t3.year);
+    }, [e3, e3.month, e3.year, e3.isHebrew]), l2 = (0, import_react3.useCallback)((t3) => {
       const i2 = t3.currentTarget.value;
-      e2.onClick(i2, e2.year);
-    }, [e2, e2.month, e2.year]), s3 = (0, import_react4.useCallback)((t3) => {
+      e3.onClick(i2, e3.year);
+    }, [e3, e3.month, e3.year]), s3 = (0, import_react3.useCallback)((t3) => {
       const i2 = Number(t3.currentTarget.value);
-      e2.onClick(e2.month, i2);
-    }, [e2, e2.month, e2.year]), d3 = d2(e2.year, e2.isHebrew), v2 = F(e2.year);
-    return (0, import_jsx_runtime3.jsxs)("div", { className: "navigation", children: [(0, import_jsx_runtime3.jsx)("div", { className: "arrowLeft", "data-testid": s("prev"), onClick: h2, children: (0, import_jsx_runtime3.jsx)("span", {}) }), (0, import_jsx_runtime3.jsxs)("div", { className: "monthYearSelection", children: [(0, import_jsx_runtime3.jsx)("select", { "data-testid": s("month"), value: e2.month, onChange: l3, children: d3.map((t3) => (0, import_jsx_runtime3.jsx)("option", { "data-testid": s(t3.text), value: t3.id, children: t3.text }, t3.id)) }), (0, import_jsx_runtime3.jsx)("select", { "data-testid": s("year"), value: e2.year, onChange: s3, children: v2.map((t3) => {
-      const i2 = e2.isHebrew ? a2(t3) : t3;
+      e3.onClick(e3.month, i2);
+    }, [e3, e3.month, e3.year]), d3 = d2(e3.year, e3.isHebrew), v4 = F(e3.year);
+    return (0, import_jsx_runtime3.jsxs)("div", { className: "navigation", children: [(0, import_jsx_runtime3.jsx)("div", { className: "arrowLeft", "data-testid": s("prev"), onClick: h2, children: (0, import_jsx_runtime3.jsx)("span", {}) }), (0, import_jsx_runtime3.jsxs)("div", { className: "monthYearSelection", children: [(0, import_jsx_runtime3.jsx)("select", { "data-testid": s("month"), value: e3.month, onChange: l2, children: d3.map((t3) => (0, import_jsx_runtime3.jsx)("option", { "data-testid": s(t3.text), value: t3.id, children: t3.text }, t3.id)) }), (0, import_jsx_runtime3.jsx)("select", { "data-testid": s("year"), value: e3.year, onChange: s3, children: v4.map((t3) => {
+      const i2 = e3.isHebrew ? a2(t3) : t3;
       return (0, import_jsx_runtime3.jsx)("option", { "data-testid": s(t3.toString()), value: t3, children: i2 }, t3);
     }) })] }), (0, import_jsx_runtime3.jsx)("div", { className: "arrowRight", "data-testid": s("next"), onClick: m4, children: (0, import_jsx_runtime3.jsx)("span", {}) })] });
   });
 
   // ../../.yarn/__virtual__/react-jewish-datepicker-virtual-93c1bf2ecc/1/packages/reactJewishDatePicker/dist/mjs/utils/dateUtils.js
   var import_dayjs2 = __toESM(require_dayjs_min());
-  var j2 = (e2, t3) => e2 && t3 ? (0, import_dayjs2.default)(e2.date).isBefore((0, import_dayjs2.default)(t3.date)) ? [e2, t3] : [t3, e2] : [];
-  var u2 = (e2, t3, a4, i2, r4) => e2 ? i2?.jewishDateStrHebrew ? t3 ? `${i2?.jewishDateStrHebrew} - ${r4?.jewishDateStrHebrew || ""}` : `${i2?.jewishDateStr} - ${r4?.jewishDateStr || ""}` : t3 ? "\u05D1\u05D7\u05E8 \u05EA\u05D0\u05E8\u05D9\u05DB\u05D9\u05DD" : "Pick Dates" : a4 ? t3 ? a4.jewishDateStrHebrew : a4.jewishDateStr : t3 ? "\u05D1\u05D7\u05E8 \u05EA\u05D0\u05E8\u05D9\u05DA" : "Pick Date";
-  var o4 = (e2 = {}) => "startDate" in e2;
-  var S = (e2) => o4(e2) ? h(e2.startDate) ? e2.startDate : c3(e2.startDate) : h(e2) ? e2 : c3(e2);
+  var j2 = (e3, t3) => e3 && t3 ? (0, import_dayjs2.default)(e3.date).isBefore((0, import_dayjs2.default)(t3.date)) ? [e3, t3] : [t3, e3] : [];
+  var u2 = (e3, t3, a4, i2, r4) => e3 ? i2?.jewishDateStrHebrew ? t3 ? `${i2?.jewishDateStrHebrew} - ${r4?.jewishDateStrHebrew || ""}` : `${i2?.jewishDateStr} - ${r4?.jewishDateStr || ""}` : t3 ? "\u05D1\u05D7\u05E8 \u05EA\u05D0\u05E8\u05D9\u05DB\u05D9\u05DD" : "Pick Dates" : a4 ? t3 ? a4.jewishDateStrHebrew : a4.jewishDateStr : t3 ? "\u05D1\u05D7\u05E8 \u05EA\u05D0\u05E8\u05D9\u05DA" : "Pick Date";
+  var o4 = (e3 = {}) => "startDate" in e3;
+  var S = (e3) => o4(e3) ? h(e3.startDate) ? e3.startDate : c2(e3.startDate) : h(e3) ? e3 : c2(e3);
+
+  // ../../.yarn/__virtual__/react-jewish-datepicker-virtual-93c1bf2ecc/1/packages/reactJewishDatePicker/dist/mjs/month.js
+  var we = ({ value: a4, isHebrew: d3 = false, isRange: n5, onClick: S2, canSelect: N2, customizeDayStyle: j3, isOpen: m4, setOpen: D3, ...t3 }) => {
+    if (typeof a4 == "string") throw new Error("ReactJewishDatePicker: The value can be BasicJewishDate or Date. for Dates use 'value={new Date()}' not 'value={Date()}");
+    const I3 = a4 ? S(a4) : /* @__PURE__ */ new Date(), P3 = o4(a4) && S(a4.endDate), [W, g3] = (0, import_react4.useState)(I3), o5 = R2(W), [x2, u3] = (0, import_react4.useState)(!n5 && a4 && o5.selectedDay), [c3, J] = (0, import_react4.useState)(n5 && o4(a4) && o5.selectedDay), [h2, f4] = (0, import_react4.useState)(n5 && o4(a4) && p2((0, import_dayjs3.default)(P3))), [z, F2] = (0, import_react4.useState)(null), H4 = (0, import_react4.useRef)(null);
+    (0, import_react4.useEffect)(() => {
+      const e3 = S(a4);
+      g3(e3);
+      const s3 = R2(e3).selectedDay;
+      if (n5 && o4(a4)) {
+        J(s3), t3.setStartDay && t3.setStartDay(s3);
+        const q2 = S(a4.endDate), M2 = p2((0, import_dayjs3.default)(q2));
+        f4(M2), t3.setEndDay && t3.setEndDay(M2);
+      } else u3(s3), t3.setSelectedDay && t3.setSelectedDay(s3);
+    }, [a4]), useOnClickOutside(H4, () => {
+      D3(false);
+    });
+    const O = (0, import_react4.useCallback)((e3) => {
+      if (n5) if (!c3 || h2) J(e3), f4(null), t3.setStartDay && t3.setStartDay(e3), t3.setEndDay && t3.setEndDay(null);
+      else {
+        const [i2, s3] = j2(c3, e3);
+        J(i2), f4(s3), t3.setStartDay && t3.setStartDay(i2), t3.setEndDay && t3.setEndDay(s3), S2?.call(null, i2, s3), D3 && D3(!m4);
+      }
+      else u3(e3), t3.setSelectedDay && t3.setSelectedDay(e3), S2?.call(null, e3, void 0), D3 && D3(!m4);
+    }, [n5, c3, h2, m4]), R5 = (0, import_react4.useCallback)((e3) => {
+      F2(e3);
+    }, []), G2 = (e3) => {
+      const i2 = c2(e3);
+      g3(i2);
+    }, T3 = (0, import_react4.useCallback)((e3, i2) => {
+      const s3 = { year: i2, monthName: t[e3], day: o5.selectedDay.day };
+      G2(s3);
+    }, [t]), [Y, $2] = j2(c3, z);
+    return (0, import_jsx_runtime4.jsxs)("div", { className: `monthContainer${d3 ? " isHebrew" : ""}`, children: [(0, import_jsx_runtime4.jsx)(f3, { month: o5.jewishMonthString, year: o5.jewishYear, isHebrew: d3, onClick: T3 }), (0, import_jsx_runtime4.jsx)("div", { className: "weekdayWrapper", children: G(d3).map((e3) => (0, import_jsx_runtime4.jsx)(r, { value: e3 }, e3)) }), (0, import_jsx_runtime4.jsx)("div", { className: "month", children: o5.days.map((e3, i2) => (0, import_jsx_runtime4.jsx)(L2, { ...e3, canSelect: N2, customizeDayStyle: j3, onClick: O, onMouseOver: n5 && R5, selectedDay: x2, isRange: n5, isHebrew: d3, startDay: h2 ? c3 : Y, endDay: h2 || $2 }, e3.jewishDateStr)) })] });
+  };
 
   // ../../.yarn/__virtual__/react-jewish-datepicker-virtual-93c1bf2ecc/1/packages/reactJewishDatePicker/dist/mjs/reactJewishDatePicker.js
-  var Je = ({ className: b2, value: t3, isHebrew: D2 = false, isRange: s3, onClick: g4, canSelect: I3, customizeDayStyle: O }) => {
-    if (typeof t3 == "string") throw new Error("ReactJewishDatePicker: The value can be BasicJewishDate or Date. for Dates use 'value={new Date()}' not 'value={Date()}");
-    const R4 = t3 ? S(t3) : /* @__PURE__ */ new Date(), j3 = o4(t3) && S(t3.endDate), [W, B] = (0, import_react5.useState)(R4), i2 = R2(W), [k2, u3] = (0, import_react5.useState)(!s3 && t3 && i2.selectedDay), [c4, w2] = (0, import_react5.useState)(s3 && o4(t3) && i2.selectedDay), [d3, p4] = (0, import_react5.useState)(s3 && o4(t3) && p3((0, import_dayjs3.default)(j3))), [l3, h2] = (0, import_react5.useState)(false), [x2, E2] = (0, import_react5.useState)(null), v2 = (0, import_react5.useRef)(null);
+  var H3 = ({ className: m4, value: n5, isHebrew: a4 = false, isRange: t3, onClick: d3, canSelect: p3, customizeDayStyle: h2 }) => {
+    if (typeof n5 == "string") throw new Error("ReactJewishDatePicker: The value can be BasicJewishDate or Date. for Dates use 'value={new Date()}' not 'value={Date()}");
+    const [s3, f4] = (0, import_react5.useState)(), [i2, w3] = (0, import_react5.useState)(), [c3, J] = (0, import_react5.useState)(), [o5, r4] = (0, import_react5.useState)(false), l2 = (0, import_react5.useRef)(null), [u3, B2] = (0, import_react5.useState)("");
     (0, import_react5.useEffect)(() => {
-      const e2 = S(t3);
-      B(e2);
-      const a4 = R2(e2);
-      if (s3 && o4(t3)) {
-        w2(a4.selectedDay);
-        const o5 = S(t3.endDate);
-        p4(p3((0, import_dayjs3.default)(o5)));
-      } else u3(a4.selectedDay);
-    }, [t3]), useOnClickOutside(v2, () => {
-      h2(false);
+      const g3 = setTimeout(() => {
+        (s3 || i2 || c3) && B2(u2(t3, a4, s3, i2, c3));
+      }, 0);
+      return () => clearTimeout(g3);
+    }, [t3, a4, s3, i2, c3]), useOnClickOutside(l2, () => {
+      r4(false);
     });
-    const F2 = (0, import_react5.useCallback)((e2) => {
-      if (s3) if (!c4 || d3) w2(e2), p4(null);
-      else {
-        const [a4, o5] = j2(c4, e2);
-        w2(a4), p4(o5), g4?.call(null, a4, o5), h2(!l3);
-      }
-      else u3(e2), g4?.call(null, e2, void 0), h2(!l3);
-    }, [s3, c4, d3, l3]), T3 = (0, import_react5.useCallback)((e2) => {
-      E2(e2);
-    }, []), $2 = (e2) => {
-      const a4 = c3(e2);
-      B(a4);
-    }, z = (0, import_react5.useCallback)((e2, a4) => {
-      const o5 = { year: a4, monthName: t[e2], day: i2.selectedDay.day };
-      $2(o5);
-    }, [t]), [G2, H3] = j2(c4, x2), Y = `reactJewishDatePicker${D2 ? " isHebrew" : ""} ${b2 || ""}`, q2 = u2(s3, D2, k2, c4, d3);
-    return (0, import_jsx_runtime4.jsxs)("div", { ref: v2, className: Y, children: [(0, import_jsx_runtime4.jsxs)("div", { "data-testid": s("selectedDate"), onClick: () => h2(!l3), className: "selectedDate", children: [(0, import_jsx_runtime4.jsx)(import_MdDateRange.MdDateRange, { className: "calendarIcon" }), q2] }), (0, import_jsx_runtime4.jsxs)("div", { className: `monthWrapper ${l3 ? "open" : ""}`, children: [(0, import_jsx_runtime4.jsx)(f2, { month: i2.jewishMonthString, year: i2.jewishYear, isHebrew: D2, onClick: z }), (0, import_jsx_runtime4.jsx)("div", { className: "weekdayWrapper", children: G(D2).map((e2, a4) => (0, import_jsx_runtime4.jsx)(r, { value: e2 }, e2)) }), (0, import_jsx_runtime4.jsx)("div", { className: "month", children: i2.days.map((e2, a4) => (0, import_jsx_runtime4.jsx)(L2, { ...e2, canSelect: I3, customizeDayStyle: O, onClick: F2, onMouseOver: s3 && T3, selectedDay: k2, isRange: s3, isHebrew: D2, startDay: d3 ? c4 : G2, endDay: d3 || H3 }, e2.jewishDateStr)) })] })] });
+    const S2 = `reactJewishDatePicker${a4 ? " isHebrew" : ""} ${m4 || ""}`;
+    return (0, import_jsx_runtime5.jsxs)("div", { ref: l2, className: S2, children: [(0, import_jsx_runtime5.jsxs)("div", { "data-testid": s("selectedDate"), onClick: () => r4(!o5), className: "selectedDate", children: [(0, import_jsx_runtime5.jsx)(import_MdDateRange.MdDateRange, { className: "calendarIcon" }), u3] }), (0, import_jsx_runtime5.jsx)("div", { className: `monthWrapper ${o5 ? "open" : ""}`, children: (0, import_jsx_runtime5.jsx)(we, { onClick: d3, value: n5, isHebrew: a4, isRange: t3, canSelect: p3, customizeDayStyle: h2, isOpen: o5, setOpen: r4, setSelectedDay: f4, setStartDay: w3, setEndDay: J }) })] });
   };
 
   // src/reactJewishDatePickerExample/ReactJewishDatePickerExample.tsx
@@ -60796,24 +60819,24 @@
   // src/reactJewishDatePickerExample/code.tsx
   var import_react8 = __toESM(require_react());
 
-  // ../../.yarn/cache/@babel-runtime-npm-7.26.10-d01a90d446-9d7ff8e96a.zip/node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
-  function _objectWithoutPropertiesLoose(r4, e2) {
+  // ../../.yarn/cache/@babel-runtime-npm-7.25.6-6725f0979a-0c4134734d.zip/node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
+  function _objectWithoutPropertiesLoose(r4, e3) {
     if (null == r4) return {};
     var t3 = {};
     for (var n5 in r4) if ({}.hasOwnProperty.call(r4, n5)) {
-      if (-1 !== e2.indexOf(n5)) continue;
+      if (e3.includes(n5)) continue;
       t3[n5] = r4[n5];
     }
     return t3;
   }
 
-  // ../../.yarn/cache/@babel-runtime-npm-7.26.10-d01a90d446-9d7ff8e96a.zip/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js
-  function _objectWithoutProperties(e2, t3) {
-    if (null == e2) return {};
-    var o5, r4, i2 = _objectWithoutPropertiesLoose(e2, t3);
+  // ../../.yarn/cache/@babel-runtime-npm-7.25.6-6725f0979a-0c4134734d.zip/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js
+  function _objectWithoutProperties(e3, t3) {
+    if (null == e3) return {};
+    var o5, r4, i2 = _objectWithoutPropertiesLoose(e3, t3);
     if (Object.getOwnPropertySymbols) {
-      var n5 = Object.getOwnPropertySymbols(e2);
-      for (r4 = 0; r4 < n5.length; r4++) o5 = n5[r4], -1 === t3.indexOf(o5) && {}.propertyIsEnumerable.call(e2, o5) && (i2[o5] = e2[o5]);
+      var s3 = Object.getOwnPropertySymbols(e3);
+      for (r4 = 0; r4 < s3.length; r4++) o5 = s3[r4], t3.includes(o5) || {}.propertyIsEnumerable.call(e3, o5) && (i2[o5] = e3[o5]);
     }
     return i2;
   }
@@ -60821,7 +60844,7 @@
   // ../../.yarn/cache/@babel-runtime-npm-7.26.10-d01a90d446-9d7ff8e96a.zip/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js
   function _arrayLikeToArray(r4, a4) {
     (null == a4 || a4 > r4.length) && (a4 = r4.length);
-    for (var e2 = 0, n5 = Array(a4); e2 < a4; e2++) n5[e2] = r4[e2];
+    for (var e3 = 0, n5 = Array(a4); e3 < a4; e3++) n5[e3] = r4[e3];
     return n5;
   }
 
@@ -60867,9 +60890,9 @@
   // ../../.yarn/cache/@babel-runtime-npm-7.26.10-d01a90d446-9d7ff8e96a.zip/node_modules/@babel/runtime/helpers/esm/toPrimitive.js
   function toPrimitive(t3, r4) {
     if ("object" != _typeof(t3) || !t3) return t3;
-    var e2 = t3[Symbol.toPrimitive];
-    if (void 0 !== e2) {
-      var i2 = e2.call(t3, r4 || "default");
+    var e3 = t3[Symbol.toPrimitive];
+    if (void 0 !== e3) {
+      var i2 = e3.call(t3, r4 || "default");
       if ("object" != _typeof(i2)) return i2;
       throw new TypeError("@@toPrimitive must return a primitive value.");
     }
@@ -60882,34 +60905,34 @@
     return "symbol" == _typeof(i2) ? i2 : i2 + "";
   }
 
-  // ../../.yarn/cache/@babel-runtime-npm-7.26.10-d01a90d446-9d7ff8e96a.zip/node_modules/@babel/runtime/helpers/esm/defineProperty.js
-  function _defineProperty(e2, r4, t3) {
-    return (r4 = toPropertyKey(r4)) in e2 ? Object.defineProperty(e2, r4, {
+  // ../../.yarn/cache/@babel-runtime-npm-7.25.6-6725f0979a-0c4134734d.zip/node_modules/@babel/runtime/helpers/esm/defineProperty.js
+  function _defineProperty(e3, r4, t3) {
+    return (r4 = toPropertyKey(r4)) in e3 ? Object.defineProperty(e3, r4, {
       value: t3,
       enumerable: true,
       configurable: true,
       writable: true
-    }) : e2[r4] = t3, e2;
+    }) : e3[r4] = t3, e3;
   }
 
-  // ../../.yarn/__virtual__/react-syntax-highlighter-virtual-0519ac08e2/0/cache/react-syntax-highlighter-npm-15.6.1-f0ce0bfa5f-9a89c81f7d.zip/node_modules/react-syntax-highlighter/dist/esm/highlight.js
+  // ../../.yarn/__virtual__/react-syntax-highlighter-virtual-8b597516f2/0/cache/react-syntax-highlighter-npm-15.5.0-da5363373b-14291a9267.zip/node_modules/react-syntax-highlighter/dist/esm/highlight.js
   var import_react7 = __toESM(require_react());
 
   // ../../.yarn/cache/@babel-runtime-npm-7.26.10-d01a90d446-9d7ff8e96a.zip/node_modules/@babel/runtime/helpers/esm/extends.js
   function _extends() {
     return _extends = Object.assign ? Object.assign.bind() : function(n5) {
-      for (var e2 = 1; e2 < arguments.length; e2++) {
-        var t3 = arguments[e2];
+      for (var e3 = 1; e3 < arguments.length; e3++) {
+        var t3 = arguments[e3];
         for (var r4 in t3) ({}).hasOwnProperty.call(t3, r4) && (n5[r4] = t3[r4]);
       }
       return n5;
     }, _extends.apply(null, arguments);
   }
 
-  // ../../.yarn/__virtual__/react-syntax-highlighter-virtual-0519ac08e2/0/cache/react-syntax-highlighter-npm-15.6.1-f0ce0bfa5f-9a89c81f7d.zip/node_modules/react-syntax-highlighter/dist/esm/create-element.js
+  // ../../.yarn/__virtual__/react-syntax-highlighter-virtual-8b597516f2/0/cache/react-syntax-highlighter-npm-15.5.0-da5363373b-14291a9267.zip/node_modules/react-syntax-highlighter/dist/esm/create-element.js
   var import_react6 = __toESM(require_react());
-  function ownKeys(e2, r4) {
-    var t3 = Object.keys(e2);
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
     if (Object.getOwnPropertySymbols) {
       var o5 = Object.getOwnPropertySymbols(e2);
       r4 && (o5 = o5.filter(function(r5) {
@@ -61049,7 +61072,7 @@
   }
   function getAllLineNumbers(_ref) {
     var lines = _ref.lines, startingLineNumber = _ref.startingLineNumber, style = _ref.style;
-    return lines.map(function(_, i2) {
+    return lines.map(function(_2, i2) {
       var number = i2 + startingLineNumber;
       return /* @__PURE__ */ import_react7.default.createElement("span", {
         key: "line-".concat(i2),
@@ -61266,7 +61289,7 @@
       } : {
         value: defaultCodeValue
       };
-    } catch (e2) {
+    } catch (e3) {
       return {
         value: defaultCodeValue
       };
@@ -61606,8 +61629,8 @@
         setIsCopied(false);
       }, 1500);
     };
-    return /* @__PURE__ */ React5.createElement("div", { className: "reactJewishDatePickerExample" }, /* @__PURE__ */ React5.createElement("div", { className: "demo" }, /* @__PURE__ */ React5.createElement("button", { className: "copy", onClick: copyToClipboard }, isCopied ? /* @__PURE__ */ React5.createElement(import_HiOutlineClipboardCheck.HiOutlineClipboardCheck, { size: 23 }) : /* @__PURE__ */ React5.createElement(import_HiOutlineClipboard.HiOutlineClipboard, { size: 23 })), /* @__PURE__ */ React5.createElement(Code, { code: props.code }), /* @__PURE__ */ React5.createElement("div", { className: `example${props.isHebrew ? " isHebrew" : ""}` }, /* @__PURE__ */ React5.createElement("div", { className: `pickerWrapper${props.isRange ? " isRange" : ""}` }, /* @__PURE__ */ React5.createElement(
-      Je,
+    return /* @__PURE__ */ React5.createElement("div", { className: "reactJewishDatePickerExample" }, /* @__PURE__ */ React5.createElement("div", { className: "demo" }, /* @__PURE__ */ React5.createElement("button", { className: "copy", onClick: copyToClipboard }, isCopied ? /* @__PURE__ */ React5.createElement(import_HiOutlineClipboardCheck.HiOutlineClipboardCheck, { size: 23 }) : /* @__PURE__ */ React5.createElement(import_HiOutlineClipboard.HiOutlineClipboard, { size: 23 })), /* @__PURE__ */ React5.createElement(Code, { code: props.code }), /* @__PURE__ */ React5.createElement("div", { className: `example${props.isHebrew ? " isHebrew" : ""}` }, /* @__PURE__ */ React5.createElement("div", { className: `pickerWrapper${props.isRange ? " isRange" : ""}` }, !props.isInline ? /* @__PURE__ */ React5.createElement(
+      H3,
       {
         isHebrew: !!props.isHebrew,
         value: props.value,
@@ -61621,7 +61644,22 @@
           setEndDay(endDay2);
         }
       }
-    ), props.children), /* @__PURE__ */ React5.createElement("div", { className: "basicJewishDayInfo" }, basicJewishDay ? /* @__PURE__ */ React5.createElement("h5", null, "Day value:") : null, startDay ? /* @__PURE__ */ React5.createElement("h5", null, "Range value:") : null, startDay ? /* @__PURE__ */ React5.createElement("pre", null, /* @__PURE__ */ React5.createElement("h4", null, "start day:"), JSON.stringify(startDay, null, 2), /* @__PURE__ */ React5.createElement("h4", null, "end day:"), JSON.stringify(endDay, null, 2)) : /* @__PURE__ */ React5.createElement("pre", null, JSON.stringify(basicJewishDay, null, 2))))));
+    ) : /* @__PURE__ */ React5.createElement("div", { className: "inlineWrapper" }, /* @__PURE__ */ React5.createElement(
+      we,
+      {
+        value: props.value,
+        isHebrew: props.isHebrew,
+        isRange: props.isRange,
+        onClick: !props.isRange ? (day) => {
+          setBasicJewishDay(day);
+        } : (startDay2, endDay2) => {
+          setStartDay(startDay2);
+          setEndDay(endDay2);
+        },
+        canSelect: props.canSelect,
+        customizeDayStyle: props.customizeDayStyle
+      }
+    )), props.children), /* @__PURE__ */ React5.createElement("div", { className: "basicJewishDayInfo" }, basicJewishDay ? /* @__PURE__ */ React5.createElement("h5", null, "Day value:") : null, startDay ? /* @__PURE__ */ React5.createElement("h5", null, "Range value:") : null, startDay ? /* @__PURE__ */ React5.createElement("pre", null, /* @__PURE__ */ React5.createElement("h4", null, "start day:"), JSON.stringify(startDay, null, 2), /* @__PURE__ */ React5.createElement("h4", null, "end day:"), JSON.stringify(endDay, null, 2)) : /* @__PURE__ */ React5.createElement("pre", null, JSON.stringify(basicJewishDay, null, 2))))));
   };
   ReactJewishDatePickerExample.defaultProps = {
     isHebrew: false
@@ -61897,6 +61935,29 @@ export default function App() {
       </div>
   );
 }`;
+  var inlineVersionCode = `import * as React from "react";
+  import {
+    Month,
+    BasicJewishDay,
+  } from "react-jewish-datepicker";
+  import "react-jewish-datepicker/dist/index.css";
+  
+  export default function App() {
+    const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
+    const date: Date = new Date();
+  
+    return (
+        <div style={{ width: "300px", height: "290px" }}>
+          <Month
+            value={date}
+            isHebrew
+            onClick={(day: BasicJewishDay) => {
+              setBasicJewishDay(day);
+            }}
+          />
+        </div>
+    );
+  }`;
 
   // src/examples/examples.tsx
   var dontSelectTuesdays = (day) => {
@@ -61931,8 +61992,8 @@ export default function App() {
         year: 5788
       }
     });
-    const handleAnchorClick = (e2, id) => {
-      e2.preventDefault();
+    const handleAnchorClick = (e3, id) => {
+      e3.preventDefault();
       window.history.replaceState(null, document.title, `#${id}`);
       document.getElementById(id).scrollIntoView({ behavior: "smooth", block: "start" });
     };
@@ -62018,63 +62079,63 @@ export default function App() {
       "a",
       {
         href: "#english",
-        onClick: (e2) => handleAnchorClick(e2, "english")
+        onClick: (e3) => handleAnchorClick(e3, "english")
       },
       "English View"
     )), /* @__PURE__ */ React6.createElement("li", null, /* @__PURE__ */ React6.createElement(
       "a",
       {
         href: "#hebrew",
-        onClick: (e2) => handleAnchorClick(e2, "hebrew")
+        onClick: (e3) => handleAnchorClick(e3, "hebrew")
       },
       "Hebrew View"
     )), /* @__PURE__ */ React6.createElement("li", null, /* @__PURE__ */ React6.createElement(
       "a",
       {
         href: "#disableHolidays",
-        onClick: (e2) => handleAnchorClick(e2, "disableHolidays")
+        onClick: (e3) => handleAnchorClick(e3, "disableHolidays")
       },
       "Holidays Selection Disabled"
     )), /* @__PURE__ */ React6.createElement("li", null, /* @__PURE__ */ React6.createElement(
       "a",
       {
         href: "#disableShabat",
-        onClick: (e2) => handleAnchorClick(e2, "disableShabat")
+        onClick: (e3) => handleAnchorClick(e3, "disableShabat")
       },
       "Shabat Selection Disabled"
     )), /* @__PURE__ */ React6.createElement("li", null, /* @__PURE__ */ React6.createElement(
       "a",
       {
         href: "#disableShabatAndHolidays",
-        onClick: (e2) => handleAnchorClick(e2, "disableShabatAndHolidays")
+        onClick: (e3) => handleAnchorClick(e3, "disableShabatAndHolidays")
       },
       "Shabat and Holidays Selection Disabled"
     )), /* @__PURE__ */ React6.createElement("li", null, /* @__PURE__ */ React6.createElement(
       "a",
       {
         href: "#selectionWithinRange",
-        onClick: (e2) => handleAnchorClick(e2, "selectionWithinRange")
+        onClick: (e3) => handleAnchorClick(e3, "selectionWithinRange")
       },
       "Selection Within Range"
     )), /* @__PURE__ */ React6.createElement("li", null, /* @__PURE__ */ React6.createElement(
       "a",
       {
         href: "#disableWithCustomFunction",
-        onClick: (e2) => handleAnchorClick(e2, "disableWithCustomFunction")
+        onClick: (e3) => handleAnchorClick(e3, "disableWithCustomFunction")
       },
       "Disable Days With Custom Function"
     )), /* @__PURE__ */ React6.createElement("li", null, /* @__PURE__ */ React6.createElement(
       "a",
       {
         href: "#customizeDayStyle",
-        onClick: (e2) => handleAnchorClick(e2, "customizeDayStyle")
+        onClick: (e3) => handleAnchorClick(e3, "customizeDayStyle")
       },
       "Customize Day Style"
     )), /* @__PURE__ */ React6.createElement("li", null, /* @__PURE__ */ React6.createElement(
       "a",
       {
         href: "#rangePicker",
-        onClick: (e2) => handleAnchorClick(e2, "rangePicker")
+        onClick: (e3) => handleAnchorClick(e3, "rangePicker")
       },
       "Range datepicker"
     )))), /* @__PURE__ */ React6.createElement("div", null, /* @__PURE__ */ React6.createElement("div", { id: "english" }, /* @__PURE__ */ React6.createElement("h3", null, "English View"), /* @__PURE__ */ React6.createElement(
@@ -62209,6 +62270,14 @@ export default function App() {
         },
         "Set date to 13-Elul-5788 - 18-Elul-5788"
       )
+    )), /* @__PURE__ */ React6.createElement("div", { id: "inlineVersionCode" }, /* @__PURE__ */ React6.createElement("h3", null, "Inline Version"), /* @__PURE__ */ React6.createElement(
+      ReactJewishDatePickerExample,
+      {
+        value: selectedDate,
+        isHebrew: true,
+        isInline: true,
+        code: inlineVersionCode
+      }
     ))))));
   }
 

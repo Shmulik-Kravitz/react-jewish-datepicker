@@ -1,6 +1,7 @@
 import * as React from "react";
 import {
   ReactJewishDatePicker,
+  Month,
   BasicJewishDay,
   BasicJewishDate,
   BasicJewishDateRange,
@@ -21,6 +22,7 @@ export interface ReactJewishDatePickerExampleProps {
   customizeDayStyle?: (day: BasicJewishDay) => string;
   isRange?: boolean;
   code: string;
+  isInline?: boolean;
   children?: JSX.Element | JSX.Element[];
 }
 
@@ -72,8 +74,8 @@ export const ReactJewishDatePickerExample: React.FC<
         <Code code={props.code} />
         <div className={`example${isHebrew ? " isHebrew" : ""}`}>
           <div className={`pickerWrapper${props.isRange ? " isRange" : ""}`}>
-            <ReactJewishDatePicker
-              isHebrew={isHebrew}
+            {!props.isInline ? <ReactJewishDatePicker
+              isHebrew={!!props.isHebrew}
               value={props.value}
               canSelect={props.canSelect}
               customizeDayStyle={props.customizeDayStyle}
@@ -88,7 +90,27 @@ export const ReactJewishDatePickerExample: React.FC<
                       setEndDay(endDay);
                     }
               }
-            ></ReactJewishDatePicker>
+            ></ReactJewishDatePicker> :
+            <div className="inlineWrapper">
+              <Month
+                value={props.value}
+                isHebrew={props.isHebrew}
+                isRange={props.isRange}
+                onClick={
+                  !props.isRange
+                    ? (day: BasicJewishDay) => {
+                        setBasicJewishDay(day);
+                      }
+                    : (startDay: BasicJewishDay, endDay: BasicJewishDay) => {
+                        setStartDay(startDay);
+                        setEndDay(endDay);
+                      }
+                }
+                canSelect={props.canSelect}
+                customizeDayStyle={props.customizeDayStyle}
+              ></Month>
+            </div>
+            }
             {props.children}
           </div>
           <div className={"basicJewishDayInfo"}>
