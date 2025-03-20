@@ -1,7 +1,7 @@
 # react-jewish-datepicker
 
 [![npm](https://badge.fury.io/js/react-jewish-datepicker.svg)](https://www.npmjs.com/package/react-jewish-datepicker)
-[![CI](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/workflows/CI/badge.svg?branch=master)](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/)
+[![CI](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/workflows/CI_CD/badge.svg?branch=master)](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/)
 ![license](https://badgen.net/npm/license/react-jewish-datepicker)
 [![size minzip](https://img.shields.io/bundlephobia/minzip/react-jewish-datepicker.svg)](https://bundlephobia.com/package/react-jewish-datepicker)
 ![downloads](https://badgen.net/npm/dt/react-jewish-datepicker)
