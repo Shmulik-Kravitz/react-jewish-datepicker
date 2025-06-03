@@ -1,6 +1,6 @@
 {
   "name": "react-jewish-datepicker",
-  "version": "2.0.21",
+  "version": "2.0.22",
   "description": "React jewish datepicker",
   "main": "dist/index.js",
   "typings": "lib/index.d.ts",
