@@ -273,3 +273,27 @@ export default function App() {
       </div>
   );
 }`);
+
+export const inlineVersionCode = (`import * as React from "react";
+  import {
+    Month,
+    BasicJewishDay,
+  } from "react-jewish-datepicker";
+  import "react-jewish-datepicker/dist/index.css";
+  
+  export default function App() {
+    const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
+    const date: Date = new Date();
+  
+    return (
+        <div style={{ width: "300px", height: "290px" }}>
+          <Month
+            value={date}
+            isHebrew
+            onClick={(day: BasicJewishDay) => {
+              setBasicJewishDay(day);
+            }}
+          />
+        </div>
+    );
+  }`);

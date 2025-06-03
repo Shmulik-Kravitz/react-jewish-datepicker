@@ -6,6 +6,7 @@ import {
   BasicJewishDay,
   BasicJewishDateRange,
   DateRange,
+  Month,
 } from "react-jewish-datepicker";
 import { HiOutlineClipboard } from "@react-icons/all-files/hi/HiOutlineClipboard";
 import { HiOutlineClipboardCheck } from "@react-icons/all-files/hi/HiOutlineClipboardCheck";
@@ -30,6 +31,7 @@ import {
   disableWithCustomFunctionCode,
   rangeCode,
   customizeDayStyleCode,
+  inlineVersionCode,
 } from "../code";
 
 const dontSelectTuesdays = (day: BasicJewishDay): boolean => {
@@ -45,6 +47,19 @@ const highlightTuesday = (day: BasicJewishDay): string => {
   }
   return '';
 };
+
+const ExampleLinkList = [ 
+  { id: "english", title: "English View" },
+  { id: "hebrew", title: "Hebrew View" },
+  { id: "disableHolidays", title: "Holidays Selection Disabled" },
+  { id: "disableShabat", title: "Shabat Selection Disabled" },
+  { id: "disableShabatAndHolidays", title: "Shabat and Holidays Selection Disabled" },
+  { id: "selectionWithinRange", title: "Selection Within Range" },
+  { id: "disableWithCustomFunction", title: "Disable Days With Custom Function" },
+  { id: "customizeDayStyle", title: "Customize Day Style" },
+  { id: "rangePicker", title: "Range datepicker" },
+  { id: "inlineVersion", title: "Inline Version" },
+];
 
 export function Examples() {
   const date = new Date();
@@ -197,84 +212,16 @@ export function Examples() {
         <div className="examples">
           <div>
             <ul>
-              <li>
-                <a
-                  href="#english"
-                  onClick={(e) => handleAnchorClick(e, "english")}
-                >
-                  English View
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#hebrew"
-                  onClick={(e) => handleAnchorClick(e, "hebrew")}
-                >
-                  Hebrew View
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#disableHolidays"
-                  onClick={(e) => handleAnchorClick(e, "disableHolidays")}
-                >
-                  Holidays Selection Disabled
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#disableShabat"
-                  onClick={(e) => handleAnchorClick(e, "disableShabat")}
-                >
-                  Shabat Selection Disabled
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#disableShabatAndHolidays"
-                  onClick={(e) =>
-                    handleAnchorClick(e, "disableShabatAndHolidays")
-                  }
-                >
-                  Shabat and Holidays Selection Disabled
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#selectionWithinRange"
-                  onClick={(e) => handleAnchorClick(e, "selectionWithinRange")}
-                >
-                  Selection Within Range
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#disableWithCustomFunction"
-                  onClick={(e) =>
-                    handleAnchorClick(e, "disableWithCustomFunction")
-                  }
-                >
-                  Disable Days With Custom Function
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#customizeDayStyle"
-                  onClick={(e) =>
-                    handleAnchorClick(e, "customizeDayStyle")
-                  }
-                >
-                  Customize Day Style
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#rangePicker"
-                  onClick={(e) => handleAnchorClick(e, "rangePicker")}
-                >
-                  Range datepicker
-                </a>
-              </li>
+              {ExampleLinkList.map((example) => (
+                <li key={example.id}>
+                  <a
+                    href={`#${example.id}`}
+                    onClick={(e) => handleAnchorClick(e, example.id)}
+                  >
+                    {example.title}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
           <div>
@@ -414,6 +361,15 @@ export function Examples() {
                   Set date to 13-Elul-5788 - 18-Elul-5788
                 </button>
               </ReactJewishDatePickerExample>
+            </div>
+            <div id="inlineVersion">
+              <h3>Inline Version</h3>
+              <ReactJewishDatePickerExample
+                value={selectedDate}
+                isHebrew
+                isInline
+                code={inlineVersionCode}
+              />
             </div>
           </div>
         </div>

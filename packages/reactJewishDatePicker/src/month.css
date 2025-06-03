@@ -1,0 +1,176 @@
+.monthContainer {
+  --color: #333;
+  --backgroundColor: #e6e6e6;
+  display: grid;
+  font-family: arial;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  grid-template-rows: auto auto 1fr;
+  background-color: #fff;
+  border: 1px solid #d6d9dd;
+  border-radius: 5px;
+  display: grid;
+}
+.monthContainer.isHebrew {
+  direction: rtl;
+}
+.monthContainer.isHebrew .startDay {
+  background: cornflowerblue;
+  border-radius: 0 7px 7px 0;
+  color: #fff;
+  margin: 1px 0;
+}
+.monthContainer.isHebrew .endDay {
+  background: cornflowerblue;
+  border-radius: 7px 0 0 7px;
+  color: #fff;
+  margin: 1px 0;
+}
+.monthContainer.isHebrew .weekday,
+.monthContainer.isHebrew .day {
+  font-size: 16px;
+  padding: 0;
+}
+.monthContainer .navigation {
+  display: grid;
+  grid-template-columns: 22px 138px 22px;
+  justify-content: space-between;
+  min-height: 32px;
+  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.monthContainer .navigation .arrowRight,
+.monthContainer .navigation .arrowLeft {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+.monthContainer .navigation .arrowRight span,
+.monthContainer .navigation .arrowLeft span {
+  border: solid black;
+  border-width: 0 2px 2px 0;
+  padding: 1px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  cursor: pointer;
+  width: 6px;
+  height: 6px;
+}
+.monthContainer .navigation .arrowRight:hover,
+.monthContainer .navigation .arrowLeft:hover {
+  background-color: var(--backgroundColor);
+}
+.monthContainer .navigation .arrowLeft span {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+.monthContainer .navigation .monthYearSelection {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.monthContainer .navigation .monthYearSelection select {
+  border: 0px;
+  outline: 0px;
+}
+.monthContainer .navigation .monthYearSelection select:hover {
+  cursor: pointer;
+  background-color: var(--backgroundColor);
+}
+.monthContainer .navigation .monthYearSelection option {
+  background-color: #fff;
+}
+.monthContainer.isHebrew .navigation .arrowLeft span {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.monthContainer.isHebrew .navigation .arrowRight span {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+.monthContainer .month {
+  color: var(--color);
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  z-index: 2;
+  background-color: white;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  padding: 2px;
+  text-align: center;
+  box-sizing: border-box;
+}
+.monthContainer .weekdayWrapper {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: #001476;
+  padding: 2px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.monthContainer .weekday,
+.monthContainer .day {
+  display: grid;
+  margin: 1px;
+  padding: 1px 1px 0 0;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.monthContainer .day:hover {
+  background-color: var(--backgroundColor);
+}
+.monthContainer .day.selectedDay:hover{
+  background-color: rgba(100, 148, 237, 0.539);
+}
+.monthContainer .weekday {
+  color: #fff;
+  font-weight: bold;
+}
+.monthContainer .otherMonth {
+  background: #fff;
+  color: #777;
+}
+.monthContainer .selectedDay {
+  background: cornflowerblue;
+  color: #fff;
+}
+.monthContainer .startDay {
+  background: cornflowerblue;
+  border-radius: 7px 0 0 7px;
+  color: #fff;
+  margin: 1px 0;
+}
+.monthContainer .isInRange {
+  background-color: #91b6fa;
+  color: #fff;
+  border-radius: 0;
+  margin: 1px 0;
+}
+.monthContainer .endDay {
+  background: cornflowerblue;
+  border-radius: 0 7px 7px 0;
+  color: #fff;
+  margin: 1px 0;
+}
+.monthContainer .startDay:hover,
+.monthContainer .isInRange:hover,
+.reactJewishDatePicker .endDay:hover {
+  background: cornflowerblue;
+}
+.reactJewishDatePicker .noSelect {
+  cursor: not-allowed !important;
+  background-color: #f3f3f3;
+}
+.reactJewishDatePicker .noSelect:hover {
+  background-color: #f3f3f3;
+}
+.reactJewishDatePicker .noSelect:active {
+  pointer-events: none;
+}
