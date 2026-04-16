@@ -47,7 +47,7 @@ export const ReactJewishDatePicker: FC<ReactJewishDatePickerProps> = (
   useEffect(() => {
     const handler = setTimeout(() => {
       if (selectedDay || startDay || endDay) {
-        setSelectedDaysToDisplay(getDateStringForSelectedDay(isRange, isHebrew, selectedDay, startDay, endDay));
+        setSelectedDaysToDisplay(getDateStringForSelectedDay(isRange, isHebrew, selectedDay, startDay, endDay, dateDisplay));
       }
     }, 0);
 
