@@ -6,6 +6,7 @@ import {
   IsJewishDatesEqual,
 } from "jewish-dates-core";
 import { isFromTest } from "./utils";
+import { DateDisplay } from "./interfaces";
 import * as Dayjs from "dayjs";
 import isBetween from "dayjs/plugin/isBetween";
 import { convertNumberToHebrew } from "jewish-date";
@@ -22,6 +23,7 @@ export interface DayProps extends JewishDay {
   isRange?: boolean;
   startDay: BasicJewishDay;
   endDay: BasicJewishDay;
+  dateDisplay?: DateDisplay;
 }
 
 const isInRange = (
@@ -73,6 +75,7 @@ export const Day: React.FC<DayProps> = (props: DayProps) => {
     onClick,
     onMouseOver,
     customizeDayStyle,
+    dateDisplay,
     ...basicJewishDay
   } = props;
 
@@ -84,12 +87,32 @@ export const Day: React.FC<DayProps> = (props: DayProps) => {
     props?.onMouseOver?.(basicJewishDay);
   };
 
-  const dayToDisplay = isHebrew
-    ? convertNumberToHebrew(day, false, false)
-    : day;
+  const resolvedDisplay: DateDisplay = dateDisplay ?? (isHebrew ? "hebrew" : "english");
+  const hebrewNumeral = convertNumberToHebrew(day, false, false);
+
+  let dayContent: React.ReactNode;
+  if (resolvedDisplay === "hebrew") {
+    dayContent = hebrewNumeral;
+  } else if (resolvedDisplay === "english") {
+    dayContent = day;
+  } else {
+    dayContent = (
+      <span className="dayBoth">
+        <span className="dayHebrew">{hebrewNumeral}</span>
+        <span className="dayGregorian">{day}</span>
+      </span>
+    );
+  }
+
   const title = props.isHebrew
     ? props.jewishDateStrHebrew
     : props.jewishDateStr;
+
+  const today = new Date();
+  const isToday =
+    props.date.getFullYear() === today.getFullYear() &&
+    props.date.getMonth() === today.getMonth() &&
+    props.date.getDate() === today.getDate();
 
   const otherMonthClass = !isCurrentMonth ? " otherMonth" : "";
   const selectedDayClass =
@@ -105,9 +128,10 @@ export const Day: React.FC<DayProps> = (props: DayProps) => {
   const isStartDayClass = isStartDay(props.date, startDay) ? " startDay" : "";
   const isEndDayClass = isEndDay(props.date, startDay, endDay) ? " endDay" : "";
   const customDayClass = customizeDayStyle ? ` ${customizeDayStyle(basicJewishDay)}` : "";
+  const isTodayClass = isToday ? " isToday" : "";
   const classNames = `day${otherMonthClass}${
     selectedDayClass || ""
-  }${disableSelectClass}${isInRangClass}${isStartDayClass}${isEndDayClass}${customDayClass}`;
+  }${disableSelectClass}${isInRangClass}${isStartDayClass}${isEndDayClass}${customDayClass}${isTodayClass}`;
   return (
     <div
       data-testid={isFromTest() ? title : undefined}
@@ -117,7 +141,7 @@ export const Day: React.FC<DayProps> = (props: DayProps) => {
       onClick={handleClick}
       onMouseOver={handleMouseOver}
     >
-      {dayToDisplay}
+      {dayContent}
     </div>
   );
 };
