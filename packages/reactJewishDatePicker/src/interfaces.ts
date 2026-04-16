@@ -15,3 +15,5 @@ export interface BasicJewishDateRange {
 
 export type BasicJewishDate = BasicJewishDateCore;
 export type BasicJewishDay = BasicJewishDayCore;
+
+export type DateDisplay = "hebrew" | "english" | "both";

@@ -43,8 +43,7 @@
     "@react-icons/all-files": "^4.1.0",
     "dayjs": "^1.11.13",
     "jewish-date": "^2.0.19",
-    "jewish-dates-core": "workspace:*",
-    "use-onclickoutside": "^0.4.1"
+    "jewish-dates-core": "workspace:*"
   },
   "devDependencies": {
     "esbuild": "^0.25.1",

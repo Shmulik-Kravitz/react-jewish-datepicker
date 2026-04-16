@@ -1221,13 +1221,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"are-passive-events-supported@npm:^1.1.1":
-  version: 1.1.1
-  resolution: "are-passive-events-supported@npm:1.1.1"
-  checksum: 10/3295a7b3aeb026d26c1b256decdb5ded8bf26f6c02fd0b37c63c7dc9affd57b7474ee9b6230b5d5ac4f0fc624a19acdcfdd76c5155025d97cc7d8bb5dc83e61b
-  languageName: node
-  linkType: hard
-
 "aria-query@npm:5.3.0":
   version: 5.3.0
   resolution: "aria-query@npm:5.3.0"
@@ -2990,7 +2983,6 @@ __metadata:
     jewish-date: "npm:^2.0.19"
     jewish-dates-core: "workspace:*"
     typescript: "npm:^5.8.2"
-    use-onclickoutside: "npm:^0.4.1"
   peerDependencies:
     react: "*"
     react-dom: "*"
@@ -3748,44 +3740,6 @@ __metadata:
   peerDependencies:
     react: ">= 16.8.0"
   checksum: 10/626ae826f0d1258d71026d0fc8cc96613f0b8f38b7bb489d6376f678cddc7e37db008cf87e0653c40116be984266dbc93bd9603e55413b38de8ad91ec8882545
-  languageName: node
-  linkType: hard
-
-"use-isomorphic-layout-effect@npm:^1.1.1":
-  version: 1.2.0
-  resolution: "use-isomorphic-layout-effect@npm:1.2.0"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: 10/84fc1074b4e3ee2886fde944baef4ec210453fc78861429fe50ae97be8209e492f18c059c6b2ff1a21df231d72d1638707dabca889bd9d7bee36f21c196a0d19
-  languageName: node
-  linkType: hard
-
-"use-latest@npm:^1.2.1":
-  version: 1.3.0
-  resolution: "use-latest@npm:1.3.0"
-  dependencies:
-    use-isomorphic-layout-effect: "npm:^1.1.1"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  peerDependenciesMeta:
-    "@types/react":
-      optional: true
-  checksum: 10/913e95c272b67743ff1a0df61375058ae6ead368fd5631748e33699b2341aa89b07be03aa4cde4140a856adae70a6e0f299920cc1ad326f4afd310ba250604bd
-  languageName: node
-  linkType: hard
-
-"use-onclickoutside@npm:^0.4.1":
-  version: 0.4.1
-  resolution: "use-onclickoutside@npm:0.4.1"
-  dependencies:
-    are-passive-events-supported: "npm:^1.1.1"
-    use-latest: "npm:^1.2.1"
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-  checksum: 10/198b8ff9b9239c75728d13795c7c641e6e3db8d1f751ff23d20a8f40914c715c1f265c593847292ef173a94d9aa2190a28b09f1856c48ef5dbe0631e54d0a586
   languageName: node
   linkType: hard
 

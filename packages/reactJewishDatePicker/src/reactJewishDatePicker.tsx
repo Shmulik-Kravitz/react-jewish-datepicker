@@ -1,12 +1,12 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import type { FC } from "react";
-import useOnClickOutside from "use-onclickoutside";
+import { useOnClickOutside } from "./useOnClickOutside";
 import { MdDateRange } from "@react-icons/all-files/md/MdDateRange";
 import {
   BasicJewishDay,
   BasicJewishDate,
 } from "jewish-dates-core";
-import { BasicJewishDateRange, DateRange } from "./interfaces";
+import { BasicJewishDateRange, DateRange, DateDisplay } from "./interfaces";
 import { Month } from "./month";
 import { getTestID } from "./utils";
 
@@ -23,10 +23,12 @@ export interface ReactJewishDatePickerProps {
   canSelect?: (day: BasicJewishDay) => boolean;
   customizeDayStyle?: (day: BasicJewishDay) => string;
   isRange?: boolean;
+  slidingMonths?: boolean;
+  dateDisplay?: DateDisplay;
 }
 
 export const ReactJewishDatePicker: FC<ReactJewishDatePickerProps> = (
-  { className, value, isHebrew = false, isRange, onClick, canSelect, customizeDayStyle }: ReactJewishDatePickerProps
+  { className, value, isHebrew = false, isRange, onClick, canSelect, customizeDayStyle, slidingMonths, dateDisplay }: ReactJewishDatePickerProps
 ) => {
   if (typeof value === "string") {
     throw new Error(
@@ -52,11 +54,10 @@ export const ReactJewishDatePicker: FC<ReactJewishDatePickerProps> = (
     return () => clearTimeout(handler);
   }, [isRange, isHebrew, selectedDay, startDay, endDay]);
 
-  useOnClickOutside(ref, () => {
-    setOpen(false);
-  });
+  const handleClickOutside = useCallback(() => setOpen(false), []);
+  useOnClickOutside(ref, handleClickOutside);
 
-  const classNames = `reactJewishDatePicker${isHebrew ? " isHebrew" : ""} ${
+  const classNames = `reactJewishDatePicker${isHebrew ? " isHebrew" : ""}${isOpen ? " backdropActive" : ""} ${
     className || ""
   }`;
 
@@ -70,20 +71,22 @@ export const ReactJewishDatePicker: FC<ReactJewishDatePickerProps> = (
         <MdDateRange className="calendarIcon" />
         {selectedDaysToDisplay}
       </div>
-      <div className={`monthWrapper ${isOpen ? "open" : ``}`}>
-      <Month 
-        onClick={onClick}
-        value={value}
-        isHebrew={isHebrew}
-        isRange={isRange}
-        canSelect={canSelect}
-        customizeDayStyle={customizeDayStyle}
-        isOpen={isOpen}
-        setOpen={setOpen}
-        setSelectedDay={setSelectedDay}
-        setStartDay={setStartDay}
-        setEndDay={setEndDay}
-      />
+      <div className={`monthWrapper ${isOpen ? "open" : ""}${slidingMonths ? " slidingMonths" : ""}`}>
+        <Month
+          onClick={onClick}
+          value={value}
+          isHebrew={isHebrew}
+          isRange={isRange}
+          canSelect={canSelect}
+          customizeDayStyle={customizeDayStyle}
+          isOpen={isOpen}
+          setOpen={setOpen}
+          setSelectedDay={setSelectedDay}
+          setStartDay={setStartDay}
+          setEndDay={setEndDay}
+          slidingMonths={slidingMonths}
+          dateDisplay={dateDisplay}
+        />
       </div>
     </div>
   );
