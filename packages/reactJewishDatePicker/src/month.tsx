@@ -203,7 +203,7 @@ export const Month: FC<MonthProps> = (
   }, [slideDirection, isAnimating, date, isHebrew]);
 
   const [start, end] = getDatesInOrder(startDay, hoveredDay);
-  const resolvedDisplay = dateDisplay ?? (isHebrew ? "hebrew" : "english");
+  const resolvedDisplay = dateDisplay ?? "jewish";
   const classNames = `monthContainer${isHebrew ? " isHebrew" : ""}${resolvedDisplay === "both" ? " displayBoth" : ""}${effectiveSlidingMonths ? " slidingMonths" : ""}`;
 
   // Render a month grid (weekdays + days) for a given JewishMonthInfo

@@ -4,8 +4,12 @@ import {
 	BasicJewishDate,
 	BasicJewishDateRange,
 	BasicJewishDay,
+	DateDisplay,
 	DateRange,
 } from "../interfaces";
+
+const formatGregorian = (date: Date): string =>
+	Dayjs(date).format("D MMM YYYY");
 
 export const getDatesInOrder = (
 	day1: BasicJewishDay,
@@ -26,24 +30,40 @@ export const getDateStringForSelectedDay = (
 	selectedDay: BasicJewishDay,
 	startDay: BasicJewishDay,
 	endDay: BasicJewishDay,
+	dateDisplay?: DateDisplay,
 ): string => {
+	const display = dateDisplay ?? "jewish";
+
 	if (isRange) {
-		if (startDay?.jewishDateStrHebrew) {
-			return isHebrew
-				? `${startDay?.jewishDateStrHebrew} - ${
-						endDay?.jewishDateStrHebrew || ""
-				  }`
-				: `${startDay?.jewishDateStr} - ${endDay?.jewishDateStr || ""}`;
-		} else {
-			return isHebrew ? "בחר תאריכים" : "Pick Dates";
+		if (!startDay?.jewishDateStr) {
+			return display === "gregorian" ? "Pick Dates" : isHebrew ? "בחר תאריכים" : "Pick Dates";
 		}
-	} else if (selectedDay) {
+		if (display === "gregorian") {
+			const s = formatGregorian(startDay.date);
+			const e = endDay ? ` - ${formatGregorian(endDay.date)}` : "";
+			return `${s}${e}`;
+		}
+		if (display === "both") {
+			const jS = isHebrew ? startDay.jewishDateStrHebrew : startDay.jewishDateStr;
+			const jE = endDay ? ` - ${isHebrew ? endDay.jewishDateStrHebrew : endDay.jewishDateStr}` : "";
+			const gS = formatGregorian(startDay.date);
+			const gE = endDay ? ` - ${formatGregorian(endDay.date)}` : "";
+			return `${jS}${jE}  ·  ${gS}${gE}`;
+		}
 		return isHebrew
-			? selectedDay.jewishDateStrHebrew
-			: selectedDay.jewishDateStr;
-	} else {
-		return isHebrew ? "בחר תאריך" : "Pick Date";
+			? `${startDay.jewishDateStrHebrew} - ${endDay?.jewishDateStrHebrew || ""}`
+			: `${startDay.jewishDateStr} - ${endDay?.jewishDateStr || ""}`;
 	}
+
+	if (!selectedDay) {
+		return display === "gregorian" ? "Pick Date" : isHebrew ? "בחר תאריך" : "Pick Date";
+	}
+	if (display === "gregorian") return formatGregorian(selectedDay.date);
+	if (display === "both") {
+		const jewish = isHebrew ? selectedDay.jewishDateStrHebrew : selectedDay.jewishDateStr;
+		return `${jewish}  ·  ${formatGregorian(selectedDay.date)}`;
+	}
+	return isHebrew ? selectedDay.jewishDateStrHebrew : selectedDay.jewishDateStr;
 };
 
 export const isDateRange = (

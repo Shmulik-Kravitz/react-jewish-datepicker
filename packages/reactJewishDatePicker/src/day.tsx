@@ -87,21 +87,22 @@ export const Day: React.FC<DayProps> = (props: DayProps) => {
     props?.onMouseOver?.(basicJewishDay);
   };
 
-  const resolvedDisplay: DateDisplay = dateDisplay ?? (isHebrew ? "hebrew" : "english");
-  const hebrewNumeral = convertNumberToHebrew(day, false, false);
+  const resolvedDisplay: DateDisplay = dateDisplay ?? "jewish";
+  const jewishNumeral = isHebrew ? convertNumberToHebrew(day, false, false) : day;
+  const gregorianDay = props.date.getDate();
 
   let dayContent: React.ReactNode;
-  if (resolvedDisplay === "hebrew") {
-    dayContent = hebrewNumeral;
-  } else if (resolvedDisplay === "english") {
-    dayContent = day;
-  } else {
+  if (resolvedDisplay === "gregorian") {
+    dayContent = gregorianDay;
+  } else if (resolvedDisplay === "both") {
     dayContent = (
       <span className="dayBoth">
-        <span className="dayHebrew">{hebrewNumeral}</span>
-        <span className="dayGregorian">{day}</span>
+        <span className="dayJewish">{jewishNumeral}</span>
+        <span className="dayGregorian">{gregorianDay}</span>
       </span>
     );
+  } else {
+    dayContent = jewishNumeral;
   }
 
   const title = props.isHebrew
