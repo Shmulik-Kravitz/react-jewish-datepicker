@@ -45,8 +45,8 @@
     "rimraf": "^6.0.1",
     "tsc-prog": "^2.3.0",
     "typescript": "^5.8.2",
-    "vite": "^6.4.1",
-    "vitest": "^3.0.8"
+    "vite": "^6.4.3",
+    "vitest": "^3.2.6"
   },
   "packageManager": "yarn@4.7.0"
 }
