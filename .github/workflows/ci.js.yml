@@ -9,12 +9,12 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
-    
+      uses: actions/checkout@v7
+
     - name: Use Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v7
       with:
-        node-version: 20
+        node-version: 24
         cache: 'yarn'
 
     - name: Install
@@ -40,32 +40,32 @@ jobs:
     #     thresholds: '60 80'
 
     # - name: Add Coverage PR Comment
-    #   uses: marocchino/sticky-pull-request-comment@v2
+    #   uses: marocchino/sticky-pull-request-comment@v3
     #   if: github.event_name == 'pull_request'
     #   with:
     #     recreate: true
     #     path: code-coverage-results.md
 
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v4
+    - name: Upload build artifact lib_core
+      uses: actions/upload-artifact@v7
       with:
        name: lib_core
        path: packages/jewishDatesCore/lib
 
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v4
+    - name: Upload build artifact dist_core
+      uses: actions/upload-artifact@v7
       with:
         name: dist_core
         path: packages/jewishDatesCore/dist
-    
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v4
+
+    - name: Upload build artifact lib_picker
+      uses: actions/upload-artifact@v7
       with:
        name: lib_picker
        path: packages/reactJewishDatePicker/lib
 
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v4
+    - name: Upload build artifact dist_picker
+      uses: actions/upload-artifact@v7
       with:
         name: dist_picker
         path: packages/reactJewishDatePicker/dist
@@ -80,39 +80,42 @@ jobs:
       id-token: write
     needs: [build-and-test]
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    concurrency:
+      group: release-${{ github.ref }}
+      cancel-in-progress: false
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-      
+        uses: actions/checkout@v7
+
       - name: Use Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version: 24
           cache: 'yarn'
 
       - name: Install
         run: yarn
-      
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
+
+      - name: Download build artifact lib_core
+        uses: actions/download-artifact@v8
         with:
           name: lib_core
           path: packages/jewishDatesCore/lib
-      
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
+
+      - name: Download build artifact dist_core
+        uses: actions/download-artifact@v8
         with:
           name: dist_core
           path: packages/jewishDatesCore/dist
 
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
+      - name: Download build artifact lib_picker
+        uses: actions/download-artifact@v8
         with:
           name: lib_picker
           path: packages/reactJewishDatePicker/lib
-      
-      - name: Download build artifact
-        uses: actions/download-artifact@v4
+
+      - name: Download build artifact dist_picker
+        uses: actions/download-artifact@v8
         with:
           name: dist_picker
           path: packages/reactJewishDatePicker/dist
@@ -121,42 +124,28 @@ jobs:
       - run: yarn inc-version
       - name: Set env $VERSION_TAG
         run: echo "VERSION_TAG=$(yarn get-version)" >> $GITHUB_ENV
-        
-      - run: git tag v$VERSION_TAG
-      - name: Commit version
+
+      # The tag must be created *after* the version commit, otherwise it points
+      # at the parent commit and labels the previous version's tree.
+      - name: Commit and tag version
         run: |
           git config --global user.name 'Shmulik-Kravitz'
           git config --global user.email '29735690+Shmulik-Kravitz@users.noreply.github.com'
           git commit -am v$VERSION_TAG
+          git tag v$VERSION_TAG
           git push
           git push origin v$VERSION_TAG
-      # - run: yarn npm publish --access public
-      # - run: yarn pub
-      #   env:
-      #     YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      #     NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      # we use yarn to pack due to yarn workspaces issue with workspace:* in published package in npm
-      - name: pack jewish-dates-core
+      # yarn npm publish packs the workspace itself, which resolves the
+      # workspace:* ranges to real versions in the published manifest.
+      - name: Publish jewish-dates-core
         working-directory: packages/jewishDatesCore/
-        run: yarn pack
-        
-      - name: pack jewish-dates-core
-        working-directory: packages/reactJewishDatePicker/
-        run: yarn pack
+        run: yarn npm publish --access public --provenance --tolerate-republish
+        env:
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: npm-publish jewish-dates-core
-        uses: JS-DevTools/npm-publish@v3
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          package: packages/jewishDatesCore/package.tgz
-          provenance: true
-          
-      - name: npm-publish react-jewish-datepicker
-        uses: JS-DevTools/npm-publish@v3
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-          package: packages/reactJewishDatePicker/package.tgz
-          provenance: true
-     
+      - name: Publish react-jewish-datepicker
+        working-directory: packages/reactJewishDatePicker/
+        run: yarn npm publish --access public --provenance --tolerate-republish
+        env:
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
