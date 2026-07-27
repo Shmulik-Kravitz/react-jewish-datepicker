@@ -1,69 +1,93 @@
 .reactJewishDatePicker {
-  --color: #1e293b;
-  --backgroundColor: #f1f5f9;
-  --primary: #4f7ae8;
-  --primary-light: rgba(79, 122, 232, 0.15);
-  --border: #cbd5e1;
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 10px 28px -4px rgba(0, 0, 0, 0.12);
+  --color: #0f172a;
+  --backgroundColor: #f8fafc;
+  --primary: #1e3a8a;
+  --primary-light: rgba(30, 58, 138, 0.08);
+  --border: #e2e8f0;
+  --shadow: 0 12px 32px -4px rgba(15, 23, 42, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.06);
   position: relative;
   display: grid;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-family: inherit;
   margin-bottom: 5px;
   cursor: pointer;
 }
 
 .reactJewishDatePicker .selectedDate {
-  padding: 8px 36px 8px 12px;
-  border: 1.5px solid var(--border);
-  border-radius: 8px;
+  padding: 10px 42px 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
   user-select: none;
-  min-height: 20px;
+  min-height: 24px;
   text-align: left;
   position: relative;
   font-size: 14px;
   font-weight: 500;
   color: var(--color);
   background: #fff;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 2px 0 rgba(15, 23, 42, 0.04);
 }
 
 .reactJewishDatePicker .selectedDate:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 4px 0 rgba(15, 23, 42, 0.06);
+}
+
+.reactJewishDatePicker .selectedDate:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.reactJewishDatePicker.isOpen .selectedDate {
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px var(--primary-light);
+  box-shadow: 0 0 0 3px var(--primary-light), 0 1px 2px 0 rgba(15, 23, 42, 0.04);
 }
 
 .reactJewishDatePicker .calendarIcon {
   font-size: 18px;
   position: absolute;
-  right: 10px;
+  right: 14px;
   top: 50%;
   transform: translateY(-50%);
+  color: #64748b;
+  transition: color 0.2s ease;
+}
+
+.reactJewishDatePicker.isOpen .calendarIcon,
+.reactJewishDatePicker:hover .calendarIcon {
   color: var(--primary);
 }
 
 .reactJewishDatePicker .monthWrapper {
   position: absolute;
-  top: calc(100% + 6px);
+  top: calc(100% + 8px);
   z-index: 100;
-  transform: scaleY(0);
-  transform-origin: top;
+  transform: scaleY(0.95) translateY(-5px);
+  transform-origin: top center;
   opacity: 0;
-  transition: transform 0.22s ease, opacity 0.22s ease;
+  /* visibility (not just opacity) keeps the closed calendar's selects and day
+     cells out of the tab order and the accessibility tree. Transitioning it
+     holds the element visible for the duration of the close animation. */
+  visibility: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s;
   box-shadow: var(--shadow);
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
-  width: 280px;
+  width: 320px;
   pointer-events: none;
+  background: #fff;
+  border: 1px solid rgba(226, 232, 240, 0.8);
 }
 
 .reactJewishDatePicker .monthWrapper.open {
-  transform: scaleY(1);
+  transform: scaleY(1) translateY(0);
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
 }
 
 .reactJewishDatePicker .monthWrapper.slidingMonths {
-  width: 560px;
+  width: 640px;
 }
 
 /* Hebrew RTL */
@@ -73,12 +97,12 @@
 
 .reactJewishDatePicker.isHebrew .selectedDate {
   text-align: right;
-  padding: 8px 12px 8px 36px;
+  padding: 10px 16px 10px 42px;
 }
 
 .reactJewishDatePicker.isHebrew .calendarIcon {
   right: auto;
-  left: 10px;
+  left: 14px;
 }
 
 .reactJewishDatePicker.isHebrew .startDay {
@@ -110,7 +134,7 @@
     border-radius: 16px 16px 0 0;
     transform: translateY(100%);
     opacity: 1;
-    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+    transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1), visibility 0.3s;
   }
 
   .reactJewishDatePicker .monthWrapper.open {

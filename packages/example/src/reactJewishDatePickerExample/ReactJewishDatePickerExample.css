@@ -2,101 +2,169 @@
   text-align: start;
 }
 
-.switch {
-  display: grid;
-  grid-template-columns: 24px auto;
-  margin-bottom: 20px;
-  align-items: end;
-}
-
-.basicJewishDayInfo {
-  margin-top: 5%;
-  direction: ltr;
-}
-
+/* ─── Demo Panel ──────────────────────────────────────────── */
 .demo {
   display: grid;
-  grid-template-columns: 58% 42%;
-  justify-content: space-between;
-  line-height: 20px;
-  background-color: #ffffff;
-  border: 1px solid #d3d3d3;
-  border-radius: 0 0 5px 5px;
+  grid-template-columns: 1fr 50%;
+  align-items: stretch;
+  background-color: #1e1e2e;
+  border-radius: 10px;
   position: relative;
-  margin-bottom: 40px;
-
+  margin-top: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0, 35, 111, 0.1);
 }
+
+/* Grid items default to min-width:auto, so a wide code line or a fixed-width
+   demo would push the whole page grid past the viewport. */
+.demo>* {
+  min-width: 0;
+}
+
+/* Code pane. Capped so a long snippet (e.g. the range example) doesn't stretch
+   the row to ~1000px and leave the demo beside it in a tall empty gutter. */
 .demo pre {
   margin: 0;
-  border-left: 1px solid #d3e2ff;
-  padding: 10px 15px !important;
-  border-radius: 0 0 0 5px;
-}
-.demo pre:empty {
-  border-left: 1px solid transparent;
-}
-code, .exsample pre {
-  font-family: monospace !important;
-  font-size: 14px;
-  font-weight: 100;
+  padding: 16px 18px !important;
+  max-height: 540px;
+  overflow: auto;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+.demo pre:empty {
+  border-right: 1px solid transparent;
+}
+
+code,
+.demo pre {
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', monospace !important;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #cdd6f4;
+  font-weight: 400;
+}
+
+/* ─── Copy Button ─────────────────────────────────────────── */
 .copy {
   position: absolute;
-  top: 1%;
-  right: 43%;
-  padding: 5px 1px 2px 2px;
+  top: 8px;
+  right: calc(50% + 6px);
+  padding: 6px 8px;
   cursor: pointer;
-  border: 1px solid #fafafa;
-  border-radius: 3px;
-  transition: 0.2s ease-in-out;
-  color: #858585;
-  background-color: #fafafa;
-
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  color: rgba(205, 214, 244, 0.45);
+  background-color: rgba(255, 255, 255, 0.04);
+  display: flex;
+  align-items: center;
+  line-height: 1;
 }
 
 .copy:hover {
-  color: #505050;
+  color: #cdd6f4;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.22);
 }
 
 .copy:active {
-  transform: scale(1.01);
+  transform: scale(0.96);
 }
 
+/* ─── Live Example Pane ───────────────────────────────────── */
 .example {
-  padding: 15px;
-  min-height: 280px; 
+  padding: 20px 20px 20px;
+  min-height: 240px;
+  background-color: #f7f9fb;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
+
 .example.isHebrew {
   direction: rtl;
 }
 
 .example h4 {
-  margin: 5px;
-}
-.pickerWrapper {
-  max-width: 145px;
+  margin: 0 0 4px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #5157a6;
+  font-family: 'Inter', sans-serif;
 }
 
-.pickerWrapper.isRange {
-  max-width: 250px;
-}
 
 .inlineWrapper {
   width: 300px;
+  max-width: 100%;
   height: 290px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 35, 111, 0.1);
 }
 
+/* ─── Selected Day Info ───────────────────────────────────── */
+.basicJewishDayInfo {
+  margin-top: 8px;
+  direction: ltr;
+}
+
+.basicJewishDayInfo h5 {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #5157a6;
+  font-family: 'Inter', sans-serif;
+}
+
+.basicJewishDayInfo pre {
+  margin: 0;
+  background: rgba(0, 35, 111, 0.06);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-family: 'JetBrains Mono', Consolas, monospace;
+  font-size: 11.5px;
+  color: #00236f;
+  line-height: 1.5;
+  max-width: 280px;
+  overflow-x: auto;
+}
+
+/* Shown before anything is picked, in place of an unexplained empty box. */
+.basicJewishDayInfo .emptyHint {
+  margin: 0;
+  max-width: 280px;
+  padding: 10px 12px;
+  border: 1px dashed rgba(0, 35, 111, 0.18);
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  /* 4.6:1 on the #f7f9fb example pane. */
+  color: #5a6683;
+}
+
+/* ─── Responsive ──────────────────────────────────────────── */
 @media only screen and (max-width: 870px) {
   .demo {
-    grid-template-columns: 100%;
+    grid-template-columns: 1fr;
   }
-  .demo > pre {
+
+  .demo>pre {
     border-right: none;
-    border-bottom: 1px solid #d3e2ff;
-    border-radius: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    max-height: 200px;
   }
+
   .copy {
-    right: 1%;
+    right: 8px;
+  }
+
+  .example {
+    min-height: auto;
   }
 }

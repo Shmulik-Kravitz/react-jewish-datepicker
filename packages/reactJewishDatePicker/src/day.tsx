@@ -15,21 +15,23 @@ dayjs.extend(isBetween);
 
 export interface DayProps extends JewishDay {
   isHebrew?: boolean;
-  selectedDay: BasicJewishDay;
+  selectedDay?: BasicJewishDay;
   onClick: (day: BasicJewishDay) => void;
   onMouseOver?: (day: BasicJewishDay) => void;
   canSelect?: (day: BasicJewishDay) => boolean;
   customizeDayStyle?: (day: BasicJewishDay) => string;
   isRange?: boolean;
-  startDay: BasicJewishDay;
-  endDay: BasicJewishDay;
+  startDay?: BasicJewishDay;
+  endDay?: BasicJewishDay;
   dateDisplay?: DateDisplay;
+  /** Roving tabindex: 0 for the one entry point into the grid, -1 elsewhere. */
+  tabIndex?: number;
 }
 
 const isInRange = (
   date: Date,
-  startDay: BasicJewishDay,
-  endDay: BasicJewishDay
+  startDay?: BasicJewishDay,
+  endDay?: BasicJewishDay
 ): boolean => {
   if (startDay && endDay) {
     const start = dayjs(startDay.date);
@@ -39,7 +41,7 @@ const isInRange = (
   return false;
 };
 
-const isStartDay = (date: Date, startDay: BasicJewishDay): boolean => {
+const isStartDay = (date: Date, startDay?: BasicJewishDay): boolean => {
   if (startDay) {
     const start = dayjs(startDay.date).startOf("d");
     return dayjs(date).startOf("d").isSame(start);
@@ -49,8 +51,8 @@ const isStartDay = (date: Date, startDay: BasicJewishDay): boolean => {
 
 const isEndDay = (
   date: Date,
-  startDay: BasicJewishDay,
-  endDay: BasicJewishDay
+  startDay?: BasicJewishDay,
+  endDay?: BasicJewishDay
 ): boolean => {
   if (endDay && startDay) {
     const day = dayjs(date).startOf("d");
@@ -76,10 +78,22 @@ export const Day: React.FC<DayProps> = (props: DayProps) => {
     onMouseOver,
     customizeDayStyle,
     dateDisplay,
+    tabIndex,
     ...basicJewishDay
   } = props;
 
+  const isSelectable = canSelect ? canSelect(basicJewishDay) : true;
+
   const handleClick = () => {
+    if (!isSelectable) return;
+    props?.onClick(basicJewishDay);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    // Space would otherwise scroll the calendar's scroll container.
+    e.preventDefault();
+    if (!isSelectable) return;
     props?.onClick(basicJewishDay);
   };
 
@@ -116,13 +130,10 @@ export const Day: React.FC<DayProps> = (props: DayProps) => {
     props.date.getDate() === today.getDate();
 
   const otherMonthClass = !isCurrentMonth ? " otherMonth" : "";
-  const selectedDayClass =
-    selectedDay &&
-    (IsJewishDatesEqual(props.jewishDate, selectedDay.jewishDate)
-      ? " selectedDay"
-      : "");
-  const disableSelectClass =
-    canSelect && !canSelect(basicJewishDay) ? " noSelect" : "";
+  const isSelected = !!selectedDay &&
+    IsJewishDatesEqual(props.jewishDate, selectedDay.jewishDate);
+  const selectedDayClass = selectedDay && (isSelected ? " selectedDay" : "");
+  const disableSelectClass = !isSelectable ? " noSelect" : "";
   const isInRangClass = isInRange(props.date, startDay, endDay)
     ? " isInRange"
     : "";
@@ -139,7 +150,14 @@ export const Day: React.FC<DayProps> = (props: DayProps) => {
       data-date={props.date}
       className={classNames}
       title={title}
+      role="option"
+      tabIndex={tabIndex ?? -1}
+      aria-label={title}
+      aria-selected={isSelected}
+      aria-disabled={!isSelectable || undefined}
+      aria-current={isToday ? "date" : undefined}
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
       onMouseOver={handleMouseOver}
     >
       {dayContent}

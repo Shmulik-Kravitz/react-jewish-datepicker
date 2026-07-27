@@ -1,21 +1,25 @@
 .monthContainer {
-  --color: #1e293b;
-  --backgroundColor: #f1f5f9;
-  --primary: #4f7ae8;
-  --primary-dark: #3b63c9;
-  --primary-light: rgba(79, 122, 232, 0.18);
-  --range-bg: rgba(79, 122, 232, 0.12);
-  --border: #e2e8f0;
+  --color: #0f172a;
+  --backgroundColor: #f8fafc;
+  --primary: #1e3a8a;
+  --primary-dark: #1e3a8a;
+  --primary-light: rgba(30, 58, 138, 0.08);
+  --range-bg: rgba(30, 58, 138, 0.05);
+  --border: #f1f5f9;
   --header-bg: #1e3a8a;
-  --text-muted: #94a3b8;
+  /* 4.76:1 on white — adjacent-month days are clickable, so their text has to
+     clear WCAG AA, and the nav chevrons have to clear 3:1 as UI components. */
+  --text-muted: #64748b;
+  /* Disabled days are exempt from the AA text rule, but #cbd5e1 was invisible. */
+  --text-disabled: #94a3b8;
   display: grid;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-family: inherit;
   cursor: pointer;
   height: 100%;
   width: 100%;
   grid-template-rows: auto auto 1fr;
   background-color: #fff;
-  border-radius: 12px;
+  border-radius: 14px;
 }
 
 .monthContainer.isHebrew {
@@ -47,13 +51,14 @@
 .monthContainer .navigation {
   display: grid;
   grid-template-columns: 36px 1fr 36px;
-  align-items: center;
-  min-height: 44px;
-  padding: 8px 6px;
+  align-items: start;
+  min-height: 48px;
+  padding: 8px 12px;
   width: 100%;
   box-sizing: border-box;
   background: #fff;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 2px solid var(--backgroundColor);
+  border-radius: 14px 14px 0 0;
 }
 
 .monthContainer .navigation .arrowRight,
@@ -64,14 +69,22 @@
   width: 32px;
   height: 32px;
   border-radius: 8px;
-  transition: background-color 0.15s ease;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+  /* The arrows are <button> for keyboard access; strip the UA chrome. */
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
 }
 
 .monthContainer .navigation .arrowRight span,
 .monthContainer .navigation .arrowLeft span {
-  border: solid var(--color);
+  border: solid currentColor;
   border-width: 0 2px 2px 0;
-  padding: 4px;
+  padding: 3.5px;
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
   cursor: pointer;
@@ -83,6 +96,17 @@
 .monthContainer .navigation .arrowRight:hover,
 .monthContainer .navigation .arrowLeft:hover {
   background-color: var(--backgroundColor);
+  color: var(--color);
+}
+
+/* Keyboard focus indicators */
+.monthContainer .navigation .arrowLeft:focus-visible,
+.monthContainer .navigation .arrowRight:focus-visible,
+.monthContainer .navigation .monthYearSelection select:focus-visible,
+.monthContainer .day:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  z-index: 3;
 }
 
 .monthContainer .navigation .arrowLeft span {
@@ -91,7 +115,8 @@
 }
 
 .monthContainer .navigation .monthYearSelection {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   justify-content: center;
   gap: 4px;
@@ -100,23 +125,44 @@
 .monthContainer .navigation .monthYearSelection select {
   border: 0;
   outline: 0;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--color);
   cursor: pointer;
   background: transparent;
   border-radius: 6px;
-  padding: 2px 4px;
-  transition: background-color 0.15s ease;
+  padding: 4px 8px;
+  transition: all 0.2s ease;
+  font-family: inherit;
 }
 
 .monthContainer .navigation .monthYearSelection select:hover {
   background-color: var(--backgroundColor);
+  color: var(--primary);
 }
 
 .monthContainer .navigation .monthYearSelection option {
   background-color: #fff;
   font-weight: normal;
+}
+
+/* Gregorian subtitle in "both" mode */
+.monthContainer .navigation .gregSubLabel {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 0 0 2px;
+  line-height: 1;
+}
+
+.monthContainer .slidingMonthLabels .gregSlidingSubLabel {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-top: 1px;
 }
 
 /* RTL arrow flip */
@@ -134,10 +180,11 @@
 .monthContainer .weekdayWrapper {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  background-color: var(--header-bg);
-  padding: 4px 6px;
+  background-color: var(--backgroundColor);
+  padding: 6px 6px;
   width: 100%;
   box-sizing: border-box;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 /* Day grid */
@@ -150,10 +197,11 @@
   display: grid;
   width: 100%;
   height: 100%;
-  border-radius: 0 0 12px 12px;
-  padding: 4px 6px 6px;
+  border-radius: 0 0 14px 14px;
+  padding: 8px;
   text-align: center;
   box-sizing: border-box;
+  gap: 2px;
 }
 
 .monthContainer .weekday,
@@ -161,32 +209,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2px;
+  margin: 0;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   user-select: none;
-  transition: background-color 0.12s ease, color 0.12s ease;
-  min-height: 32px;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 36px;
 }
 
 .monthContainer .weekday {
-  color: rgba(255, 255, 255, 0.9);
+  color: #64748b;
   font-weight: 700;
   font-size: 11px;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   border-radius: 0;
-  min-height: 28px;
+  min-height: 26px;
   margin: 1px 2px;
 }
 
 .monthContainer .day:hover {
   background-color: var(--backgroundColor);
+  color: var(--primary);
+  transform: scale(1.05);
 }
 
 .monthContainer .day.selectedDay:hover {
   background-color: var(--primary-dark);
+  color: #fff;
+  transform: scale(1);
 }
 
 /* Day states */
@@ -195,10 +247,15 @@
   color: var(--text-muted);
 }
 
+.monthContainer .otherMonth:hover {
+  color: var(--color);
+}
+
 .monthContainer .selectedDay {
   background: var(--primary);
   color: #fff;
   font-weight: 600;
+  box-shadow: 0 4px 10px rgba(30, 58, 138, 0.25);
 }
 
 .monthContainer .startDay {
@@ -206,14 +263,19 @@
   border-radius: 8px 0 0 8px;
   color: #fff;
   font-weight: 600;
-  margin: 2px 0;
+  margin: 0;
+  box-shadow: 0 4px 10px rgba(30, 58, 138, 0.25);
 }
 
 .monthContainer .isInRange {
   background-color: var(--range-bg);
   color: var(--primary-dark);
   border-radius: 0;
-  margin: 2px 0;
+  margin: 0;
+}
+
+.monthContainer .isInRange:hover {
+  transform: scale(1);
 }
 
 .monthContainer .endDay {
@@ -221,7 +283,8 @@
   border-radius: 0 8px 8px 0;
   color: #fff;
   font-weight: 600;
-  margin: 2px 0;
+  margin: 0;
+  box-shadow: 0 4px 10px rgba(30, 58, 138, 0.25);
 }
 
 .monthContainer .startDay:hover,
@@ -237,16 +300,16 @@
 
 /* Today indicator */
 .monthContainer .day.isToday:not(.selectedDay):not(.startDay):not(.endDay) {
-  border: 2px solid var(--primary);
+  border: 1.5px solid var(--primary);
   color: var(--primary);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 /* Disabled days */
 .monthContainer .noSelect {
   cursor: not-allowed !important;
   background-color: #f8fafc;
-  color: #cbd5e1;
+  color: var(--text-disabled);
 }
 
 .monthContainer .noSelect:hover {
@@ -285,10 +348,27 @@
   overflow: hidden;
   position: relative;
   grid-template-rows: auto 1fr;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .monthContainer .navigation.slidingNav {
   grid-template-columns: 36px 1fr 36px;
+}
+
+/* Sliding nav uses LTR layout even in Hebrew so labels line up with the
+   horizontally-scrolling panel order (which is also forced to LTR). */
+.monthContainer.isHebrew .navigation.slidingNav {
+  direction: ltr;
+}
+
+.monthContainer.isHebrew .navigation.slidingNav .arrowLeft span {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+
+.monthContainer.isHebrew .navigation.slidingNav .arrowRight span {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
 }
 
 .monthContainer .slidingMonthLabels {
@@ -308,28 +388,45 @@
 
 .monthContainer .slidingTrack {
   display: flex;
-  width: 300%;
-  transform: translateX(-33.3333%);
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-.monthContainer .slidingTrack.slide-left {
-  transform: translateX(-66.6666%);
+.monthContainer .slidingTrack::-webkit-scrollbar {
+  display: none;
 }
 
-.monthContainer .slidingTrack.slide-right {
-  transform: translateX(0%);
+/* In RTL, force the scroll axis to LTR so scrollLeft math is consistent
+   across browsers; restore RTL on the inner grids so weekday order stays
+   right-to-left. */
+.monthContainer.isHebrew .slidingTrack {
+  direction: ltr;
+}
+
+.monthContainer.isHebrew .slidingTrack .monthGrid {
+  direction: rtl;
 }
 
 .monthContainer .slidePanel {
-  width: calc(100% / 3);
+  width: 100%;
+  min-width: 100%;
   flex-shrink: 0;
   display: flex;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 /* Each inner grid inside a slide panel */
 .monthContainer .slidePanel .monthGrid {
   flex: 1;
+  min-width: 0;
   display: grid;
   grid-template-rows: auto 1fr;
 }
@@ -338,12 +435,13 @@
   border-radius: 0;
 }
 
-.monthContainer .slidePanel + .slidePanel .monthGrid:first-child {
+.monthContainer .slidePanel+.slidePanel .monthGrid:first-child {
   border-left: 1px solid var(--border);
 }
 
 /* Mobile touch targets */
 @media (max-width: 600px) {
+
   .monthContainer .day,
   .monthContainer .weekday {
     min-height: 40px;
