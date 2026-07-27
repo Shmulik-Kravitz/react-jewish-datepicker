@@ -121,9 +121,21 @@ jobs:
           path: packages/reactJewishDatePicker/dist
 
 
-      - run: yarn inc-version
-      - name: Set env $VERSION_TAG
-        run: echo "VERSION_TAG=$(yarn get-version)" >> $GITHUB_ENV
+      # Release the committed version when it hasn't been published yet, so a
+      # deliberate major/minor bump lands as written (a patch bump could never
+      # produce x.0.0). Otherwise patch-bump, which is the routine case.
+      - name: Resolve release version
+        run: |
+          VERSION=$(yarn get-version)
+          if npm view jewish-dates-core@$VERSION version > /dev/null 2>&1; then
+            echo "$VERSION is already on npm; patch-bumping"
+            yarn inc-version
+            VERSION=$(yarn get-version)
+          else
+            echo "$VERSION is not on npm; releasing it as-is"
+          fi
+          echo "Releasing $VERSION"
+          echo "VERSION_TAG=$VERSION" >> $GITHUB_ENV
 
       # Trusted publishing (OIDC) needs npm >= 11.5.1; don't rely on whichever
       # npm happens to ship with the Node release.
@@ -157,7 +169,13 @@ jobs:
         run: |
           git config --global user.name 'Shmulik-Kravitz'
           git config --global user.email '29735690+Shmulik-Kravitz@users.noreply.github.com'
-          git commit -am v$VERSION_TAG
+          # No bump happened when the committed version was released as-is,
+          # and 'git commit' fails on an empty index.
+          if git diff --quiet; then
+            echo "Version already committed; tagging only"
+          else
+            git commit -am v$VERSION_TAG
+            git push
+          fi
           git tag v$VERSION_TAG
-          git push
           git push origin v$VERSION_TAG
