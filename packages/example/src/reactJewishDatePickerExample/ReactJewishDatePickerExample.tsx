@@ -11,6 +11,7 @@ import {
 import { HiOutlineClipboard } from "@react-icons/all-files/hi/HiOutlineClipboard";
 import { HiOutlineClipboardCheck } from "@react-icons/all-files/hi/HiOutlineClipboardCheck";
 import { Code } from "./code";
+import type { DateDisplay } from "react-jewish-datepicker";
 
 import "./ReactJewishDatePickerExample.css";
 import "../../../reactJewishDatePicker/dist/index.css";
@@ -23,7 +24,9 @@ export interface ReactJewishDatePickerExampleProps {
   isRange?: boolean;
   code: string;
   isInline?: boolean;
-  children?: JSX.Element | JSX.Element[];
+  slidingMonths?: boolean;
+  dateDisplay?: DateDisplay;
+  children?: React.ReactNode;
 }
 
 export const ReactJewishDatePickerExample: React.FC<
@@ -80,6 +83,8 @@ export const ReactJewishDatePickerExample: React.FC<
               canSelect={props.canSelect}
               customizeDayStyle={props.customizeDayStyle}
               isRange={props.isRange}
+              slidingMonths={props.slidingMonths}
+              dateDisplay={props.dateDisplay}
               onClick={
                 !props.isRange
                   ? (day: BasicJewishDay) => {
@@ -123,8 +128,14 @@ export const ReactJewishDatePickerExample: React.FC<
                 <h4>end day:</h4>
                 {JSON.stringify(endDay, null, 2)}
               </pre>
-            ) : (
+            ) : basicJewishDay ? (
               <pre>{JSON.stringify(basicJewishDay, null, 2)}</pre>
+            ) : (
+              <p className="emptyHint">
+                {props.isRange
+                  ? "Pick a start and end date to see the value here."
+                  : "Pick a date to see the value here."}
+              </p>
             )}
           </div>
         </div>

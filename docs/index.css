@@ -1,66 +1,97 @@
 /* ../../.yarn/__virtual__/react-jewish-datepicker-virtual-93c1bf2ecc/1/packages/reactJewishDatePicker/dist/mjs/month.css */
 .monthContainer {
-  --color: #333;
-  --backgroundColor: #e6e6e6;
-  font-family: arial;
+  --color: #0f172a;
+  --backgroundColor: #f8fafc;
+  --primary: #1e3a8a;
+  --primary-dark: #1e3a8a;
+  --primary-light: rgba(30, 58, 138, .08);
+  --range-bg: rgba(30, 58, 138, .05);
+  --border: #f1f5f9;
+  --header-bg: #1e3a8a;
+  --text-muted: #64748b;
+  --text-disabled: #94a3b8;
+  display: grid;
+  font-family: inherit;
   cursor: pointer;
   height: 100%;
   width: 100%;
   grid-template-rows: auto auto 1fr;
   background-color: #fff;
-  border: 1px solid #d6d9dd;
-  border-radius: 5px;
-  display: grid;
+  border-radius: 14px;
 }
 .monthContainer.isHebrew {
   direction: rtl;
 }
 .monthContainer.isHebrew .startDay {
-  background: #6495ed;
-  border-radius: 0 7px 7px 0;
+  background: var(--primary);
+  border-radius: 0 8px 8px 0;
   color: #fff;
-  margin: 1px 0;
+  margin: 2px 0;
 }
 .monthContainer.isHebrew .endDay {
-  background: #6495ed;
-  border-radius: 7px 0 0 7px;
+  background: var(--primary);
+  border-radius: 8px 0 0 8px;
   color: #fff;
-  margin: 1px 0;
+  margin: 2px 0;
 }
 .monthContainer.isHebrew .weekday,
 .monthContainer.isHebrew .day {
-  font-size: 16px;
+  font-size: 15px;
   padding: 0;
 }
 .monthContainer .navigation {
   display: grid;
-  grid-template-columns: 22px 138px 22px;
-  justify-content: space-between;
-  min-height: 32px;
-  padding: 5px;
+  grid-template-columns: 36px 1fr 36px;
+  align-items: start;
+  min-height: 48px;
+  padding: 8px 12px;
   width: 100%;
   box-sizing: border-box;
+  background: #fff;
+  border-bottom: 2px solid var(--backgroundColor);
+  border-radius: 14px 14px 0 0;
 }
 .monthContainer .navigation .arrowRight,
 .monthContainer .navigation .arrowLeft {
-  display: grid;
+  display: flex;
   align-items: center;
   justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: var(--text-muted);
+  transition: all .2s ease;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
 }
 .monthContainer .navigation .arrowRight span,
 .monthContainer .navigation .arrowLeft span {
-  border: solid black;
+  border: solid currentColor;
   border-width: 0 2px 2px 0;
-  padding: 1px;
+  padding: 3.5px;
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
   cursor: pointer;
   width: 6px;
   height: 6px;
+  display: block;
 }
 .monthContainer .navigation .arrowRight:hover,
 .monthContainer .navigation .arrowLeft:hover {
   background-color: var(--backgroundColor);
+  color: var(--color);
+}
+.monthContainer .navigation .arrowLeft:focus-visible,
+.monthContainer .navigation .arrowRight:focus-visible,
+.monthContainer .navigation .monthYearSelection select:focus-visible,
+.monthContainer .day:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  z-index: 3;
 }
 .monthContainer .navigation .arrowLeft span {
   transform: rotate(135deg);
@@ -68,18 +99,47 @@
 }
 .monthContainer .navigation .monthYearSelection {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
 }
 .monthContainer .navigation .monthYearSelection select {
-  border: 0px;
-  outline: 0px;
+  border: 0;
+  outline: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color);
+  cursor: pointer;
+  background: transparent;
+  border-radius: 6px;
+  padding: 4px 8px;
+  transition: all .2s ease;
+  font-family: inherit;
 }
 .monthContainer .navigation .monthYearSelection select:hover {
-  cursor: pointer;
   background-color: var(--backgroundColor);
+  color: var(--primary);
 }
 .monthContainer .navigation .monthYearSelection option {
   background-color: #fff;
+  font-weight: 400;
+}
+.monthContainer .navigation .gregSubLabel {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 0 0 2px;
+  line-height: 1;
+}
+.monthContainer .slidingMonthLabels .gregSlidingSubLabel {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-top: 1px;
 }
 .monthContainer.isHebrew .navigation .arrowLeft span {
   transform: rotate(-45deg);
@@ -89,306 +149,615 @@
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
 }
+.monthContainer .weekdayWrapper {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: var(--backgroundColor);
+  padding: 6px;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e2e8f0;
+}
 .monthContainer .month {
   color: var(--color);
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(6, 1fr);
   z-index: 2;
   background-color: #fff;
   display: grid;
   width: 100%;
   height: 100%;
-  border-radius: 5px;
-  padding: 2px;
+  border-radius: 0 0 14px 14px;
+  padding: 8px;
   text-align: center;
   box-sizing: border-box;
-}
-.monthContainer .weekdayWrapper {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  background-color: #001476;
-  padding: 2px;
-  width: 100%;
-  box-sizing: border-box;
+  gap: 2px;
 }
 .monthContainer .weekday,
 .monthContainer .day {
-  display: grid;
-  margin: 1px;
-  padding: 1px 1px 0 0;
+  display: flex;
   align-items: center;
   justify-content: center;
-  user-select: none;
-  border-radius: 7px;
+  margin: 0;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
+  user-select: none;
+  transition: all .15s cubic-bezier(.4, 0, .2, 1);
+  min-height: 36px;
+}
+.monthContainer .weekday {
+  color: #64748b;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  border-radius: 0;
+  min-height: 26px;
+  margin: 1px 2px;
 }
 .monthContainer .day:hover {
   background-color: var(--backgroundColor);
+  color: var(--primary);
+  transform: scale(1.05);
 }
 .monthContainer .day.selectedDay:hover {
-  background-color: #6494ed89;
-}
-.monthContainer .weekday {
+  background-color: var(--primary-dark);
   color: #fff;
-  font-weight: 700;
+  transform: scale(1);
 }
 .monthContainer .otherMonth {
-  background: #fff;
-  color: #777;
+  background: transparent;
+  color: var(--text-muted);
+}
+.monthContainer .otherMonth:hover {
+  color: var(--color);
 }
 .monthContainer .selectedDay {
-  background: #6495ed;
+  background: var(--primary);
   color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 10px #1e3a8a40;
 }
 .monthContainer .startDay {
-  background: #6495ed;
-  border-radius: 7px 0 0 7px;
+  background: var(--primary);
+  border-radius: 8px 0 0 8px;
   color: #fff;
-  margin: 1px 0;
+  font-weight: 600;
+  margin: 0;
+  box-shadow: 0 4px 10px #1e3a8a40;
 }
 .monthContainer .isInRange {
-  background-color: #91b6fa;
-  color: #fff;
+  background-color: var(--range-bg);
+  color: var(--primary-dark);
   border-radius: 0;
-  margin: 1px 0;
+  margin: 0;
+}
+.monthContainer .isInRange:hover {
+  transform: scale(1);
 }
 .monthContainer .endDay {
-  background: #6495ed;
-  border-radius: 0 7px 7px 0;
+  background: var(--primary);
+  border-radius: 0 8px 8px 0;
   color: #fff;
-  margin: 1px 0;
+  font-weight: 600;
+  margin: 0;
+  box-shadow: 0 4px 10px #1e3a8a40;
 }
 .monthContainer .startDay:hover,
 .monthContainer .isInRange:hover,
-.reactJewishDatePicker .endDay:hover {
-  background: #6495ed;
+.monthContainer .endDay:hover {
+  background-color: var(--primary-dark);
+  color: #fff;
 }
-.reactJewishDatePicker .noSelect {
+.monthContainer .endDay:hover {
+  border-radius: 0 8px 8px 0;
+}
+.monthContainer .day.isToday:not(.selectedDay):not(.startDay):not(.endDay) {
+  border: 1.5px solid var(--primary);
+  color: var(--primary);
+  font-weight: 600;
+}
+.monthContainer .noSelect {
   cursor: not-allowed !important;
-  background-color: #f3f3f3;
+  background-color: #f8fafc;
+  color: var(--text-disabled);
 }
-.reactJewishDatePicker .noSelect:hover {
-  background-color: #f3f3f3;
+.monthContainer .noSelect:hover {
+  background-color: #f8fafc;
 }
-.reactJewishDatePicker .noSelect:active {
+.monthContainer .noSelect:active {
   pointer-events: none;
+}
+.monthContainer.displayBoth .day {
+  min-height: 38px;
+}
+.monthContainer .day .dayBoth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  gap: 1px;
+}
+.monthContainer .day .dayJewish {
+  font-size: 11px;
+  font-weight: 600;
+}
+.monthContainer .day .dayGregorian {
+  font-size: 10px;
+  opacity: .8;
+}
+.monthContainer.slidingMonths {
+  overflow: hidden;
+  position: relative;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: minmax(0, 1fr);
+}
+.monthContainer .navigation.slidingNav {
+  grid-template-columns: 36px 1fr 36px;
+}
+.monthContainer.isHebrew .navigation.slidingNav {
+  direction: ltr;
+}
+.monthContainer.isHebrew .navigation.slidingNav .arrowLeft span {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+.monthContainer.isHebrew .navigation.slidingNav .arrowRight span {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.monthContainer .slidingMonthLabels {
+  display: flex;
+  justify-content: space-around;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color);
+  padding: 0 4px;
+}
+.monthContainer .slidingMonthLabels span {
+  flex: 1;
+  text-align: center;
+}
+.monthContainer .slidingTrack {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.monthContainer .slidingTrack::-webkit-scrollbar {
+  display: none;
+}
+.monthContainer.isHebrew .slidingTrack {
+  direction: ltr;
+}
+.monthContainer.isHebrew .slidingTrack .monthGrid {
+  direction: rtl;
+}
+.monthContainer .slidePanel {
+  width: 100%;
+  min-width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+.monthContainer .slidePanel .monthGrid {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.monthContainer .slidePanel .monthGrid .month {
+  border-radius: 0;
+}
+.monthContainer .slidePanel + .slidePanel .monthGrid:first-child {
+  border-left: 1px solid var(--border);
+}
+@media (max-width: 600px) {
+  .monthContainer .day,
+  .monthContainer .weekday {
+    min-height: 40px;
+    touch-action: manipulation;
+  }
+  .monthContainer .navigation .arrowLeft,
+  .monthContainer .navigation .arrowRight {
+    min-width: 44px;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  .monthContainer .navigation {
+    grid-template-columns: 44px 1fr 44px;
+  }
+  .monthContainer .weekday {
+    font-size: 10px;
+    min-height: 32px;
+  }
 }
 
 /* ../../.yarn/__virtual__/react-jewish-datepicker-virtual-93c1bf2ecc/1/packages/reactJewishDatePicker/dist/mjs/reactJewishDatePicker.css */
 .reactJewishDatePicker {
-  --color: #333;
-  --backgroundColor: #e6e6e6;
+  --color: #0f172a;
+  --backgroundColor: #f8fafc;
+  --primary: #1e3a8a;
+  --primary-light: rgba(30, 58, 138, .08);
+  --border: #e2e8f0;
+  --shadow: 0 12px 32px -4px rgba(15, 23, 42, .12), 0 4px 12px -2px rgba(15, 23, 42, .06);
   position: relative;
   display: grid;
-  font-family: arial;
+  font-family: inherit;
   margin-bottom: 5px;
   cursor: pointer;
 }
 .reactJewishDatePicker .selectedDate {
-  padding: 2px 15px 2px 5px;
-  border: 1px solid var(--color);
-  border-radius: 4px;
+  padding: 10px 42px 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
   user-select: none;
-  min-height: 20px;
-  text-align: center;
+  min-height: 24px;
+  text-align: left;
   position: relative;
-  font-size: smaller;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color);
+  background: #fff;
+  transition: all .2s cubic-bezier(.4, 0, .2, 1);
+  box-shadow: 0 1px 2px #0f172a0a;
+}
+.reactJewishDatePicker .selectedDate:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 4px #0f172a0f;
+}
+.reactJewishDatePicker .selectedDate:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.reactJewishDatePicker.isOpen .selectedDate {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light), 0 1px 2px #0f172a0a;
 }
 .reactJewishDatePicker .calendarIcon {
-  font-size: 16px;
+  font-size: 18px;
   position: absolute;
-  right: 5px;
-  top: 4px;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  transition: color .2s ease;
+}
+.reactJewishDatePicker.isOpen .calendarIcon,
+.reactJewishDatePicker:hover .calendarIcon {
+  color: var(--primary);
 }
 .reactJewishDatePicker .monthWrapper {
   position: absolute;
-  top: 32px;
-  z-index: 1;
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform .26s ease;
-  transition: max-height .5s ease-out;
-  box-shadow: 0 6px 12px #0000002d;
-  transition: all .4s ease-in-out;
-  width: 254px;
-  height: 243px;
-  border-radius: 5px;
+  top: calc(100% + 8px);
+  z-index: 100;
+  transform: scaleY(.95) translateY(-5px);
+  transform-origin: top center;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    transform .25s cubic-bezier(.16, 1, .3, 1),
+    opacity .25s cubic-bezier(.16, 1, .3, 1),
+    visibility .25s;
+  box-shadow: var(--shadow);
+  border-radius: 14px;
+  overflow: hidden;
+  width: 320px;
+  pointer-events: none;
+  background: #fff;
+  border: 1px solid rgba(226, 232, 240, .8);
 }
 .reactJewishDatePicker .monthWrapper.open {
-  transform: scaleY(1);
+  transform: scaleY(1) translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.reactJewishDatePicker .monthWrapper.slidingMonths {
+  width: 640px;
 }
 .reactJewishDatePicker.isHebrew {
   direction: rtl;
 }
+.reactJewishDatePicker.isHebrew .selectedDate {
+  text-align: right;
+  padding: 10px 16px 10px 42px;
+}
+.reactJewishDatePicker.isHebrew .calendarIcon {
+  right: auto;
+  left: 14px;
+}
 .reactJewishDatePicker.isHebrew .startDay {
-  background: #6495ed;
+  background: var(--primary);
   border-radius: 0 7px 7px 0;
   color: #fff;
   margin: 1px 0;
 }
 .reactJewishDatePicker.isHebrew .endDay {
-  background: #6495ed;
+  background: var(--primary);
   border-radius: 7px 0 0 7px;
   color: #fff;
   margin: 1px 0;
+}
+@media (max-width: 600px) {
+  .reactJewishDatePicker .monthWrapper,
+  .reactJewishDatePicker .monthWrapper.slidingMonths {
+    position: fixed;
+    inset: auto 0 0;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    border-radius: 16px 16px 0 0;
+    transform: translateY(100%);
+    opacity: 1;
+    transition: transform .3s cubic-bezier(.32, .72, 0, 1), visibility .3s;
+  }
+  .reactJewishDatePicker .monthWrapper.open {
+    transform: translateY(0);
+  }
+  .reactJewishDatePicker.backdropActive:before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: #00000073;
+    z-index: 99;
+  }
 }
 
 /* src/reactJewishDatePickerExample/ReactJewishDatePickerExample.css */
 .reactJewishDatePickerExample {
   text-align: start;
 }
-.switch {
-  display: grid;
-  grid-template-columns: 24px auto;
-  margin-bottom: 20px;
-  align-items: end;
-}
-.basicJewishDayInfo {
-  margin-top: 5%;
-  direction: ltr;
-}
 .demo {
   display: grid;
-  grid-template-columns: 58% 42%;
-  justify-content: space-between;
-  line-height: 20px;
-  background-color: #ffffff;
-  border: 1px solid #d3d3d3;
-  border-radius: 0 0 5px 5px;
+  grid-template-columns: 1fr 50%;
+  align-items: stretch;
+  background-color: #1e1e2e;
+  border-radius: 10px;
   position: relative;
-  margin-bottom: 40px;
+  margin-top: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0, 35, 111, 0.1);
+}
+.demo > * {
+  min-width: 0;
 }
 .demo pre {
   margin: 0;
-  border-left: 1px solid #d3e2ff;
-  padding: 10px 15px !important;
-  border-radius: 0 0 0 5px;
+  padding: 16px 18px !important;
+  max-height: 540px;
+  overflow: auto;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
 }
 .demo pre:empty {
-  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
 }
 code,
-.exsample pre {
-  font-family: monospace !important;
-  font-size: 14px;
-  font-weight: 100;
+.demo pre {
+  font-family:
+    "JetBrains Mono",
+    "Fira Code",
+    Consolas,
+    "Liberation Mono",
+    monospace !important;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #cdd6f4;
+  font-weight: 400;
 }
 .copy {
   position: absolute;
-  top: 1%;
-  right: 43%;
-  padding: 5px 1px 2px 2px;
+  top: 8px;
+  right: calc(50% + 6px);
+  padding: 6px 8px;
   cursor: pointer;
-  border: 1px solid #fafafa;
-  border-radius: 3px;
-  transition: 0.2s ease-in-out;
-  color: #858585;
-  background-color: #fafafa;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+  color: rgba(205, 214, 244, 0.45);
+  background-color: rgba(255, 255, 255, 0.04);
+  display: flex;
+  align-items: center;
+  line-height: 1;
 }
 .copy:hover {
-  color: #505050;
+  color: #cdd6f4;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.22);
 }
 .copy:active {
-  transform: scale(1.01);
+  transform: scale(0.96);
 }
 .example {
-  padding: 15px;
-  min-height: 280px;
+  padding: 20px 20px 20px;
+  min-height: 240px;
+  background-color: #f7f9fb;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 .example.isHebrew {
   direction: rtl;
 }
 .example h4 {
-  margin: 5px;
-}
-.pickerWrapper {
-  max-width: 145px;
-}
-.pickerWrapper.isRange {
-  max-width: 250px;
+  margin: 0 0 4px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #5157a6;
+  font-family: "Inter", sans-serif;
 }
 .inlineWrapper {
   width: 300px;
+  max-width: 100%;
   height: 290px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 35, 111, 0.1);
+}
+.basicJewishDayInfo {
+  margin-top: 8px;
+  direction: ltr;
+}
+.basicJewishDayInfo h5 {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #5157a6;
+  font-family: "Inter", sans-serif;
+}
+.basicJewishDayInfo pre {
+  margin: 0;
+  background: rgba(0, 35, 111, 0.06);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-family:
+    "JetBrains Mono",
+    Consolas,
+    monospace;
+  font-size: 11.5px;
+  color: #00236f;
+  line-height: 1.5;
+  max-width: 280px;
+  overflow-x: auto;
+}
+.basicJewishDayInfo .emptyHint {
+  margin: 0;
+  max-width: 280px;
+  padding: 10px 12px;
+  border: 1px dashed rgba(0, 35, 111, 0.18);
+  border-radius: 6px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #5a6683;
 }
 @media only screen and (max-width: 870px) {
   .demo {
-    grid-template-columns: 100%;
+    grid-template-columns: 1fr;
   }
   .demo > pre {
     border-right: none;
-    border-bottom: 1px solid #d3e2ff;
-    border-radius: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    max-height: 200px;
   }
   .copy {
-    right: 1%;
+    right: 8px;
+  }
+  .example {
+    min-height: auto;
   }
 }
 
 /* ../reactJewishDatePicker/dist/index.css */
 .monthContainer {
-  --color: #333;
-  --backgroundColor: #e6e6e6;
-  font-family: arial;
+  --color: #0f172a;
+  --backgroundColor: #f8fafc;
+  --primary: #1e3a8a;
+  --primary-dark: #1e3a8a;
+  --primary-light: rgba(30, 58, 138, .08);
+  --range-bg: rgba(30, 58, 138, .05);
+  --border: #f1f5f9;
+  --header-bg: #1e3a8a;
+  --text-muted: #64748b;
+  --text-disabled: #94a3b8;
+  display: grid;
+  font-family: inherit;
   cursor: pointer;
   height: 100%;
   width: 100%;
   grid-template-rows: auto auto 1fr;
   background-color: #fff;
-  border: 1px solid #d6d9dd;
-  border-radius: 5px;
-  display: grid;
+  border-radius: 14px;
 }
 .monthContainer.isHebrew {
   direction: rtl;
 }
 .monthContainer.isHebrew .startDay {
-  background: #6495ed;
-  border-radius: 0 7px 7px 0;
+  background: var(--primary);
+  border-radius: 0 8px 8px 0;
   color: #fff;
-  margin: 1px 0;
+  margin: 2px 0;
 }
 .monthContainer.isHebrew .endDay {
-  background: #6495ed;
-  border-radius: 7px 0 0 7px;
+  background: var(--primary);
+  border-radius: 8px 0 0 8px;
   color: #fff;
-  margin: 1px 0;
+  margin: 2px 0;
 }
 .monthContainer.isHebrew .weekday,
 .monthContainer.isHebrew .day {
-  font-size: 16px;
+  font-size: 15px;
   padding: 0;
 }
 .monthContainer .navigation {
   display: grid;
-  grid-template-columns: 22px 138px 22px;
-  justify-content: space-between;
-  min-height: 32px;
-  padding: 5px;
+  grid-template-columns: 36px 1fr 36px;
+  align-items: start;
+  min-height: 48px;
+  padding: 8px 12px;
   width: 100%;
   box-sizing: border-box;
+  background: #fff;
+  border-bottom: 2px solid var(--backgroundColor);
+  border-radius: 14px 14px 0 0;
 }
 .monthContainer .navigation .arrowRight,
 .monthContainer .navigation .arrowLeft {
-  display: grid;
+  display: flex;
   align-items: center;
   justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: var(--text-muted);
+  transition: all .2s ease;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
 }
 .monthContainer .navigation .arrowRight span,
 .monthContainer .navigation .arrowLeft span {
-  border: solid black;
+  border: solid currentColor;
   border-width: 0 2px 2px 0;
-  padding: 1px;
+  padding: 3.5px;
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
   cursor: pointer;
   width: 6px;
   height: 6px;
+  display: block;
 }
 .monthContainer .navigation .arrowRight:hover,
 .monthContainer .navigation .arrowLeft:hover {
   background-color: var(--backgroundColor);
+  color: var(--color);
+}
+.monthContainer .navigation .arrowLeft:focus-visible,
+.monthContainer .navigation .arrowRight:focus-visible,
+.monthContainer .navigation .monthYearSelection select:focus-visible,
+.monthContainer .day:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  z-index: 3;
 }
 .monthContainer .navigation .arrowLeft span {
   transform: rotate(135deg);
@@ -396,18 +765,47 @@ code,
 }
 .monthContainer .navigation .monthYearSelection {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
 }
 .monthContainer .navigation .monthYearSelection select {
-  border: 0px;
-  outline: 0px;
+  border: 0;
+  outline: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color);
+  cursor: pointer;
+  background: transparent;
+  border-radius: 6px;
+  padding: 4px 8px;
+  transition: all .2s ease;
+  font-family: inherit;
 }
 .monthContainer .navigation .monthYearSelection select:hover {
-  cursor: pointer;
   background-color: var(--backgroundColor);
+  color: var(--primary);
 }
 .monthContainer .navigation .monthYearSelection option {
   background-color: #fff;
+  font-weight: 400;
+}
+.monthContainer .navigation .gregSubLabel {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 0 0 2px;
+  line-height: 1;
+}
+.monthContainer .slidingMonthLabels .gregSlidingSubLabel {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-top: 1px;
 }
 .monthContainer.isHebrew .navigation .arrowLeft span {
   transform: rotate(-45deg);
@@ -417,395 +815,747 @@ code,
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
 }
+.monthContainer .weekdayWrapper {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background-color: var(--backgroundColor);
+  padding: 6px;
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e2e8f0;
+}
 .monthContainer .month {
   color: var(--color);
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(6, 1fr);
   z-index: 2;
   background-color: #fff;
   display: grid;
   width: 100%;
   height: 100%;
-  border-radius: 5px;
-  padding: 2px;
+  border-radius: 0 0 14px 14px;
+  padding: 8px;
   text-align: center;
   box-sizing: border-box;
-}
-.monthContainer .weekdayWrapper {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  background-color: #001476;
-  padding: 2px;
-  width: 100%;
-  box-sizing: border-box;
+  gap: 2px;
 }
 .monthContainer .weekday,
 .monthContainer .day {
-  display: grid;
-  margin: 1px;
-  padding: 1px 1px 0 0;
+  display: flex;
   align-items: center;
   justify-content: center;
-  user-select: none;
-  border-radius: 7px;
+  margin: 0;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
+  user-select: none;
+  transition: all .15s cubic-bezier(.4, 0, .2, 1);
+  min-height: 36px;
+}
+.monthContainer .weekday {
+  color: #64748b;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  border-radius: 0;
+  min-height: 26px;
+  margin: 1px 2px;
 }
 .monthContainer .day:hover {
   background-color: var(--backgroundColor);
+  color: var(--primary);
+  transform: scale(1.05);
 }
 .monthContainer .day.selectedDay:hover {
-  background-color: #6494ed89;
-}
-.monthContainer .weekday {
+  background-color: var(--primary-dark);
   color: #fff;
-  font-weight: 700;
+  transform: scale(1);
 }
 .monthContainer .otherMonth {
-  background: #fff;
-  color: #777;
+  background: transparent;
+  color: var(--text-muted);
+}
+.monthContainer .otherMonth:hover {
+  color: var(--color);
 }
 .monthContainer .selectedDay {
-  background: #6495ed;
+  background: var(--primary);
   color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 10px #1e3a8a40;
 }
 .monthContainer .startDay {
-  background: #6495ed;
-  border-radius: 7px 0 0 7px;
+  background: var(--primary);
+  border-radius: 8px 0 0 8px;
   color: #fff;
-  margin: 1px 0;
+  font-weight: 600;
+  margin: 0;
+  box-shadow: 0 4px 10px #1e3a8a40;
 }
 .monthContainer .isInRange {
-  background-color: #91b6fa;
-  color: #fff;
+  background-color: var(--range-bg);
+  color: var(--primary-dark);
   border-radius: 0;
-  margin: 1px 0;
+  margin: 0;
+}
+.monthContainer .isInRange:hover {
+  transform: scale(1);
 }
 .monthContainer .endDay {
-  background: #6495ed;
-  border-radius: 0 7px 7px 0;
+  background: var(--primary);
+  border-radius: 0 8px 8px 0;
   color: #fff;
-  margin: 1px 0;
+  font-weight: 600;
+  margin: 0;
+  box-shadow: 0 4px 10px #1e3a8a40;
 }
 .monthContainer .startDay:hover,
 .monthContainer .isInRange:hover,
-.reactJewishDatePicker .endDay:hover {
-  background: #6495ed;
+.monthContainer .endDay:hover {
+  background-color: var(--primary-dark);
+  color: #fff;
 }
-.reactJewishDatePicker .noSelect {
+.monthContainer .endDay:hover {
+  border-radius: 0 8px 8px 0;
+}
+.monthContainer .day.isToday:not(.selectedDay):not(.startDay):not(.endDay) {
+  border: 1.5px solid var(--primary);
+  color: var(--primary);
+  font-weight: 600;
+}
+.monthContainer .noSelect {
   cursor: not-allowed !important;
-  background-color: #f3f3f3;
+  background-color: #f8fafc;
+  color: var(--text-disabled);
 }
-.reactJewishDatePicker .noSelect:hover {
-  background-color: #f3f3f3;
+.monthContainer .noSelect:hover {
+  background-color: #f8fafc;
 }
-.reactJewishDatePicker .noSelect:active {
+.monthContainer .noSelect:active {
   pointer-events: none;
 }
+.monthContainer.displayBoth .day {
+  min-height: 38px;
+}
+.monthContainer .day .dayBoth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  gap: 1px;
+}
+.monthContainer .day .dayJewish {
+  font-size: 11px;
+  font-weight: 600;
+}
+.monthContainer .day .dayGregorian {
+  font-size: 10px;
+  opacity: .8;
+}
+.monthContainer.slidingMonths {
+  overflow: hidden;
+  position: relative;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: minmax(0, 1fr);
+}
+.monthContainer .navigation.slidingNav {
+  grid-template-columns: 36px 1fr 36px;
+}
+.monthContainer.isHebrew .navigation.slidingNav {
+  direction: ltr;
+}
+.monthContainer.isHebrew .navigation.slidingNav .arrowLeft span {
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}
+.monthContainer.isHebrew .navigation.slidingNav .arrowRight span {
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+.monthContainer .slidingMonthLabels {
+  display: flex;
+  justify-content: space-around;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color);
+  padding: 0 4px;
+}
+.monthContainer .slidingMonthLabels span {
+  flex: 1;
+  text-align: center;
+}
+.monthContainer .slidingTrack {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.monthContainer .slidingTrack::-webkit-scrollbar {
+  display: none;
+}
+.monthContainer.isHebrew .slidingTrack {
+  direction: ltr;
+}
+.monthContainer.isHebrew .slidingTrack .monthGrid {
+  direction: rtl;
+}
+.monthContainer .slidePanel {
+  width: 100%;
+  min-width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+.monthContainer .slidePanel .monthGrid {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.monthContainer .slidePanel .monthGrid .month {
+  border-radius: 0;
+}
+.monthContainer .slidePanel + .slidePanel .monthGrid:first-child {
+  border-left: 1px solid var(--border);
+}
+@media (max-width: 600px) {
+  .monthContainer .day,
+  .monthContainer .weekday {
+    min-height: 40px;
+    touch-action: manipulation;
+  }
+  .monthContainer .navigation .arrowLeft,
+  .monthContainer .navigation .arrowRight {
+    min-width: 44px;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  .monthContainer .navigation {
+    grid-template-columns: 44px 1fr 44px;
+  }
+  .monthContainer .weekday {
+    font-size: 10px;
+    min-height: 32px;
+  }
+}
 .reactJewishDatePicker {
-  --color: #333;
-  --backgroundColor: #e6e6e6;
+  --color: #0f172a;
+  --backgroundColor: #f8fafc;
+  --primary: #1e3a8a;
+  --primary-light: rgba(30, 58, 138, .08);
+  --border: #e2e8f0;
+  --shadow: 0 12px 32px -4px rgba(15, 23, 42, .12), 0 4px 12px -2px rgba(15, 23, 42, .06);
   position: relative;
   display: grid;
-  font-family: arial;
+  font-family: inherit;
   margin-bottom: 5px;
   cursor: pointer;
 }
 .reactJewishDatePicker .selectedDate {
-  padding: 2px 15px 2px 5px;
-  border: 1px solid var(--color);
-  border-radius: 4px;
+  padding: 10px 42px 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
   user-select: none;
-  min-height: 20px;
-  text-align: center;
+  min-height: 24px;
+  text-align: left;
   position: relative;
-  font-size: smaller;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color);
+  background: #fff;
+  transition: all .2s cubic-bezier(.4, 0, .2, 1);
+  box-shadow: 0 1px 2px #0f172a0a;
+}
+.reactJewishDatePicker .selectedDate:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 4px #0f172a0f;
+}
+.reactJewishDatePicker .selectedDate:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+.reactJewishDatePicker.isOpen .selectedDate {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-light), 0 1px 2px #0f172a0a;
 }
 .reactJewishDatePicker .calendarIcon {
-  font-size: 16px;
+  font-size: 18px;
   position: absolute;
-  right: 5px;
-  top: 4px;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #64748b;
+  transition: color .2s ease;
+}
+.reactJewishDatePicker.isOpen .calendarIcon,
+.reactJewishDatePicker:hover .calendarIcon {
+  color: var(--primary);
 }
 .reactJewishDatePicker .monthWrapper {
   position: absolute;
-  top: 32px;
-  z-index: 1;
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform .26s ease;
-  transition: max-height .5s ease-out;
-  box-shadow: 0 6px 12px #0000002d;
-  transition: all .4s ease-in-out;
-  width: 254px;
-  height: 243px;
-  border-radius: 5px;
+  top: calc(100% + 8px);
+  z-index: 100;
+  transform: scaleY(.95) translateY(-5px);
+  transform-origin: top center;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    transform .25s cubic-bezier(.16, 1, .3, 1),
+    opacity .25s cubic-bezier(.16, 1, .3, 1),
+    visibility .25s;
+  box-shadow: var(--shadow);
+  border-radius: 14px;
+  overflow: hidden;
+  width: 320px;
+  pointer-events: none;
+  background: #fff;
+  border: 1px solid rgba(226, 232, 240, .8);
 }
 .reactJewishDatePicker .monthWrapper.open {
-  transform: scaleY(1);
+  transform: scaleY(1) translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.reactJewishDatePicker .monthWrapper.slidingMonths {
+  width: 640px;
 }
 .reactJewishDatePicker.isHebrew {
   direction: rtl;
 }
+.reactJewishDatePicker.isHebrew .selectedDate {
+  text-align: right;
+  padding: 10px 16px 10px 42px;
+}
+.reactJewishDatePicker.isHebrew .calendarIcon {
+  right: auto;
+  left: 14px;
+}
 .reactJewishDatePicker.isHebrew .startDay {
-  background: #6495ed;
+  background: var(--primary);
   border-radius: 0 7px 7px 0;
   color: #fff;
   margin: 1px 0;
 }
 .reactJewishDatePicker.isHebrew .endDay {
-  background: #6495ed;
+  background: var(--primary);
   border-radius: 7px 0 0 7px;
   color: #fff;
   margin: 1px 0;
 }
+@media (max-width: 600px) {
+  .reactJewishDatePicker .monthWrapper,
+  .reactJewishDatePicker .monthWrapper.slidingMonths {
+    position: fixed;
+    inset: auto 0 0;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    border-radius: 16px 16px 0 0;
+    transform: translateY(100%);
+    opacity: 1;
+    transition: transform .3s cubic-bezier(.32, .72, 0, 1), visibility .3s;
+  }
+  .reactJewishDatePicker .monthWrapper.open {
+    transform: translateY(0);
+  }
+  .reactJewishDatePicker.backdropActive:before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: #00000073;
+    z-index: 99;
+  }
+}
 
 /* src/examples/examples.css */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+}
 body {
   min-height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #fdfff4;
-}
-html {
-  height: 100%;
+  background-color: #f7f9fb;
+  color: #191c1e;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .main {
   display: grid;
+  min-height: 100vh;
 }
 header {
-  min-height: 80px;
-  padding: 10px 10px 30px;
-  background-color: #03045e;
-  color: #fdfff4;
+  background:
+    linear-gradient(
+      135deg,
+      #03045e 0%,
+      #1e3a8a 60%,
+      #264191 100%);
+  color: #ffffff;
+  padding: 28px 40px 32px;
+  position: relative;
+  overflow: hidden;
+}
+header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 60% 80% at 90% 50%,
+      rgba(79, 122, 232, 0.18) 0%,
+      transparent 70%),
+    radial-gradient(
+      ellipse 40% 60% at 10% 80%,
+      rgba(0, 35, 111, 0.3) 0%,
+      transparent 70%);
+  pointer-events: none;
+}
+header > * {
+  position: relative;
+  z-index: 1;
 }
 header span {
-  font-size: 13px;
-  color: #fdfff4;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  padding: 3px 8px;
+  margin-bottom: 12px;
 }
 h1 {
-  margin: 8px 0 0;
-  text-align: center;
+  margin: 0 0 16px;
+  text-align: left;
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #ffffff;
 }
 .meta {
-  padding: 10px;
-  text-align: center;
+  padding: 14px 40px;
+  text-align: left;
+  background: rgba(0, 35, 111, 0.04);
+  border-bottom: 1px solid rgba(197, 197, 211, 0.35);
 }
 .meta span {
   display: inline-block;
-  margin: 0 5px 5px;
+  margin: 0 6px 4px 0;
 }
 .meta a {
   padding: 0;
   display: inline;
+  color: inherit;
 }
 .meta a:hover {
   background-color: unset;
+  text-decoration: none;
 }
 .examplesContainer {
-  margin: auto;
-  padding: 0 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 40px 80px;
+  width: 100%;
+}
+h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #00236f;
+  margin: 36px 0 12px;
+  letter-spacing: -0.01em;
+}
+.examples-h2 {
+  margin: 48px 0 4px;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #191c1e;
+  letter-spacing: -0.02em;
+}
+p {
+  color: #444651;
+  margin: 6px 0 8px;
+  font-size: 14px;
 }
 .install {
-  padding: 3px 22px 3px 6px;
-  border: 1px solid #ccc;
-  margin: 0;
-  font-size: 13px;
-  background-color: #e8e7e7;
-  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border: none;
+  margin: 0 0 10px;
+  font-size: 13.5px;
   font-family:
+    "JetBrains Mono",
+    "Fira Code",
     Consolas,
     "Liberation Mono",
     Menlo,
-    Courier,
     monospace;
+  background-color: #1e1e2e;
+  color: #cdd6f4;
+  border-radius: 8px;
   position: relative;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 12px rgba(0, 35, 111, 0.08);
 }
 .installCopy {
-  font-size: 14px;
-  background-color: unset;
+  font-size: 16px;
+  background: none;
   border: none;
-  position: absolute;
-  top: -5px;
-  right: -13px;
+  position: static;
   cursor: pointer;
-  color: #8d8d8d;
+  color: rgba(205, 214, 244, 0.5);
+  padding: 4px 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s ease, background 0.15s ease;
+  flex-shrink: 0;
+  margin-left: 12px;
 }
 .installCopy:hover {
-  color: #616161;
-  transform: scale(1.1);
-}
-.examples-h2 {
-  margin: 45px 0 0;
-  font-weight: 400;
-  font-size: 30px;
+  color: #cdd6f4;
+  background: rgba(255, 255, 255, 0.1);
+  transform: none;
 }
 .examples {
   display: grid;
-  grid-template-columns: 18% 80%;
-  justify-content: space-between;
+  grid-template-columns: 220px 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-top: 20px;
 }
 ul {
   list-style: none;
-  padding: 0;
-  margin-top: 20px;
-  font-size: small;
-  border: 1px solid rgb(226, 226, 226);
-  background-color: whitesmoke;
-  border-radius: 5px;
-  max-height: 100vh;
+  padding: 8px;
+  margin: 0;
+  font-size: 13.5px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  max-height: calc(100vh - 80px);
   position: sticky;
-  top: 10px;
+  top: 20px;
+  box-shadow: 0 2px 16px rgba(0, 35, 111, 0.07);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #c5c5d3 transparent;
 }
 li {
-  border-bottom: 1px solid rgb(226, 226, 226);
+  border-bottom: none;
 }
 a {
   text-decoration: none;
-  padding: 10px;
+  padding: 9px 12px;
   display: block;
-  color: #03045e;
+  color: #444651;
+  font-weight: 500;
+  border-radius: 8px;
+  transition:
+    background-color 0.14s ease,
+    color 0.14s ease,
+    padding-left 0.14s ease;
+  position: relative;
 }
 a:hover {
-  text-decoration: underline;
-  background-color: #ccc;
+  text-decoration: none;
+  background-color: #f2f4f6;
+  color: #00236f;
+  padding-left: 16px;
 }
-.button {
-  background-color: #e7e7e7;
-  border: none;
-  color: black;
-  padding: 5px 20px;
-  margin-bottom: 5px;
-  text-align: center;
-  cursor: pointer;
-  width: 200px;
+a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  width: 3px;
+  height: 60%;
+  background: #1e3a8a;
+  border-radius: 0 3px 3px 0;
+  transition: transform 0.14s ease;
+}
+a:hover::before {
+  transform: translateY(-50%) scaleY(1);
+}
+.examples > div:last-child > div {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 16px rgba(0, 35, 111, 0.06);
+  transition: box-shadow 0.2s ease;
+}
+.examples > div:last-child > div:hover {
+  box-shadow: 0 6px 28px rgba(0, 35, 111, 0.1);
 }
 .examples h3 {
-  color: #000746;
-  margin-bottom: 5px;
-  padding: 2px 10px 5px;
-  font-weight: 500;
-  border-bottom: 1px solid #f0bfff;
+  color: #00236f;
+  margin: 0 0 18px;
+  padding: 0 0 14px;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  border-bottom: 2px solid #f2f4f6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.examples h3::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 16px;
+  background:
+    linear-gradient(
+      180deg,
+      #1e3a8a,
+      #5157a6);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  background:
+    linear-gradient(
+      135deg,
+      #00236f,
+      #1e3a8a);
+  border: none;
+  color: #ffffff;
+  padding: 8px 18px;
+  margin: 4px 6px 4px 0;
+  text-align: center;
+  cursor: pointer;
+  width: auto;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: 9999px;
+  letter-spacing: 0.01em;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.15s ease,
+    filter 0.15s ease;
+  box-shadow: 0 2px 8px rgba(0, 35, 111, 0.25);
+}
+.button:hover {
+  filter: brightness(1.12);
+  box-shadow: 0 4px 16px rgba(0, 35, 111, 0.35);
+  transform: translateY(-1px);
+}
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0, 35, 111, 0.25);
 }
 .tuesday {
-  background-color: #faf733;
+  background-color: #f0f4ff !important;
+  color: #1e3a8a !important;
+  font-weight: 700 !important;
+  outline: 2px solid rgba(30, 58, 138, 0.35);
+  outline-offset: -2px;
 }
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 768px) {
+  header {
+    padding: 20px 20px 24px;
+  }
+  h1 {
+    font-size: 1.8rem;
+  }
+  .meta {
+    padding: 12px 20px;
+  }
+  .examplesContainer {
+    padding: 20px 16px 60px;
+  }
   .examples {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  ul {
+    position: static;
+    max-height: none;
     display: grid;
-    grid-template-columns: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
   }
   .install {
-    font-size: 12px;
+    font-size: 11.5px;
+  }
+  .examples > div:last-child > div {
+    padding: 18px 16px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  ul {
+    grid-template-columns: 1fr;
   }
 }
 
 /* src/app.css */
 #root {
-  width: 100vw;
-  display: grid;
+  width: 100%;
+  display: block;
 }
 .app {
-  display: grid;
-}
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-.card {
-  padding: 2em;
-}
-.read-the-docs {
-  color: #888;
+  display: block;
+  min-height: 100vh;
 }
 
 /* src/index.css */
 :root {
   font-family:
-    Inter,
-    Avenir,
-    Helvetica,
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
     Arial,
     sans-serif;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 15px;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: #191c1e;
+  background-color: #f7f9fb;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
-}
-h1 {
-  font-size: 2.2em;
-  line-height: 1.1;
-}
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  background-color: #f7f9fb;
 }
 /*# sourceMappingURL=index.css.map */

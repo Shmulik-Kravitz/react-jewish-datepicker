@@ -14,6 +14,14 @@ import {
 } from "jewish-dates-core";
 import { it, expect, describe } from "vitest";
 
+// The dropdown's calendar is only mounted from the first open onward, so tests
+// that inspect the grid have to open the picker the way a user would.
+const renderOpen = (ui: React.ReactElement) => {
+  const result = render(ui);
+  fireEvent.click(screen.getByTestId("selectedDate"));
+  return result;
+};
+
 describe("jewishDatesCore", () => {
   it("change month", async () => {
     const basicJewishDate: BasicJewishDate = {
@@ -22,7 +30,7 @@ describe("jewishDatesCore", () => {
       year: 5781,
     };
 
-    const { container, getByText } = render(
+    const { container, getByText } = renderOpen(
       <ReactJewishDatePicker
         isHebrew={false}
         value={basicJewishDate}
@@ -44,7 +52,7 @@ describe("jewishDatesCore", () => {
       monthName: "Cheshvan",
       year: 5781,
     };
-    render(
+    renderOpen(
       <ReactJewishDatePicker
         isHebrew={false}
         value={basicJewishDate}
@@ -64,7 +72,7 @@ describe("jewishDatesCore", () => {
       monthName: "Cheshvan",
       year: 5781,
     };
-    render(
+    renderOpen(
       <ReactJewishDatePicker
         isHebrew={false}
         value={basicJewishDate}
@@ -84,7 +92,7 @@ describe("jewishDatesCore", () => {
       monthName: "Cheshvan",
       year: 5781,
     };
-    render(
+    renderOpen(
       <ReactJewishDatePicker
         isHebrew={false}
         value={basicJewishDate}
@@ -104,7 +112,7 @@ describe("jewishDatesCore", () => {
       monthName: "Cheshvan",
       year: 5781,
     };
-    render(
+    renderOpen(
       <ReactJewishDatePicker
         isHebrew={false}
         value={basicJewishDate}
@@ -127,7 +135,7 @@ describe("jewishDatesCore", () => {
       monthName: "Nisan",
       year: 5782,
     };
-    render(
+    renderOpen(
       <ReactJewishDatePicker
         isHebrew={false}
         value={basicJewishDate}
@@ -145,7 +153,7 @@ describe("jewishDatesCore", () => {
       monthName: "Shevat",
       year: 5782,
     };
-    render(
+    renderOpen(
       <ReactJewishDatePicker
         isHebrew={false}
         value={basicJewishDate}
@@ -169,7 +177,7 @@ describe("jewishDatesCore", () => {
       }
       return "";  
     }
-    render(
+    renderOpen(
       <ReactJewishDatePicker
         isHebrew={false}
         value={basicJewishDate}
@@ -194,7 +202,7 @@ describe("jewishDatesCore", () => {
         year: 5788,
       },
     };
-    render(
+    renderOpen(
       <ReactJewishDatePicker
         isHebrew={false}
         isRange={true}
