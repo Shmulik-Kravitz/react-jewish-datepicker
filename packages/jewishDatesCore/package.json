@@ -1,6 +1,6 @@
 {
   "name": "jewish-dates-core",
-  "version": "2.0.25",
+  "version": "3.0.0",
   "description": "Jewish dates core",
   "main": "dist/index.js",
   "typings": "lib/index.d.ts",
@@ -33,11 +33,11 @@
     "np": "np patch"
   },
   "dependencies": {
-    "dayjs": "^1.11.20",
-    "jewish-date": "^2.0.23"
+    "dayjs": "^1.11.21",
+    "jewish-date": "^2.0.26"
   },
   "devDependencies": {
-    "esbuild": "^0.28.0",
+    "esbuild": "^0.28.1",
     "typescript": "^6.0.3"
   },
   "keywords": [
