@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "2.0.25",
+  "version": "2.0.24",
   "scripts": {
     "build": "yarn workspaces foreach --all -pt run build",
     "test": "yarn workspaces foreach --all -pt run test",
@@ -17,7 +17,7 @@
     "g:build": "cd $INIT_CWD && yarn g:clean && esr ../../config/build.ts",
     "g:build-app": "cd $INIT_CWD && yarn g:clean && esr ../../config/buildApp.ts",
     "g:test": "cd $INIT_CWD && vitest --config ./config/vitest.config.ts  --coverage",
-    "g:clean": "cd $INIT_CWD && rm -rf dist"
+    "g:clean": "cd $INIT_CWD && rimraf dist"
   },
   "workspaces": [
     "packages/jewishDatesCore",
@@ -25,28 +25,29 @@
     "packages/example"
   ],
   "devDependencies": {
-    "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.2.0",
-    "@types/node": "^20.17.24",
-    "@types/react": "^18.3.18",
-    "@types/react-dom": "^18.3.5",
-    "@vitejs/plugin-react": "^4.3.4",
-    "@vitest/coverage-v8": "3.0.8",
-    "esbuild": "^0.25.1",
-    "esbuild-node-externals": "^1.18.0",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^20.19.39",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "@vitest/coverage-v8": "4.1.4",
+    "esbuild": "^0.28.0",
+    "esbuild-node-externals": "^1.22.0",
     "esbuild-runner": "^2.2.2",
     "esprima": "^4.0.1",
     "has-flag": "5.0.1",
-    "jsdom": "^26.0.0",
-    "prettier": "^3.5.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "rimraf": "^6.0.1",
+    "jsdom": "^29.0.2",
+    "prettier": "^3.8.3",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "rimraf": "^6.1.3",
+    "supports-color": "^10.2.2",
     "tsc-prog": "^2.3.0",
-    "typescript": "^5.8.2",
-    "vite": "^6.4.1",
-    "vitest": "^3.0.8"
+    "typescript": "^6.0.3",
+    "vite": "^8.0.9",
+    "vitest": "^4.1.4"
   },
-  "packageManager": "yarn@4.7.0"
+  "packageManager": "yarn@4.14.1"
 }

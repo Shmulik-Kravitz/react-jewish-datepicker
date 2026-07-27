@@ -155,10 +155,10 @@ export const getEngJewishMonths = (): IdText[] => {
 
 export const getJewishMonths = (year: number, isHebrew?: boolean): IdText[] => {
   const months = getJewishMonthsInOrder(year);
-  return months.slice(1).map((month, i) => {
+  return months.slice(1).map((month: string, i: number) => {
     return {
-      id: month,
-      text: isHebrew ? getJewishMonthInHebrew(JewishMonth[month]) : month,
+      id: month as JewishMonthType,
+      text: isHebrew ? getJewishMonthInHebrew(JewishMonth[month as JewishMonthType]) : month,
     };
   });
 };
@@ -314,7 +314,7 @@ export const getJewishMonth = (date: Date): JewishMonthInfo => {
   return jewishMonth;
 };
 
-export const getHolidays = (isIsrael: boolean): string[] => {
+export const getHolidays = (isIsrael?: boolean): string[] => {
   const holidays = [
     "1 Tishri",
     "2 Tishri",

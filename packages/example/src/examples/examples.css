@@ -1,156 +1,360 @@
-body {
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #fdfff4;
+/* ─── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 html {
   height: 100%;
+  scroll-behavior: smooth;
 }
 
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f9fb;
+  color: #191c1e;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Layout ──────────────────────────────────────────────── */
 .main {
   display: grid;
+  min-height: 100vh;
 }
+
+/* ─── Header ──────────────────────────────────────────────── */
 header {
-  min-height: 80px;
-  padding: 10px 10px 30px;
-  background-color: #03045e;
-  color: #fdfff4;
+  background: linear-gradient(135deg, #03045e 0%, #1e3a8a 60%, #264191 100%);
+  color: #ffffff;
+  padding: 28px 40px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 90% 50%, rgba(79, 122, 232, 0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(0, 35, 111, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+header > * {
+  position: relative;
+  z-index: 1;
 }
 
 header span {
-  font-size: 13px;
-  color: #fdfff4;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 6px;
+  padding: 3px 8px;
+  margin-bottom: 12px;
 }
 
 h1 {
-  margin: 8px 0 0;
-  text-align: center;
+  margin: 0 0 16px;
+  text-align: left;
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #ffffff;
 }
 
+/* ─── Meta Badges ─────────────────────────────────────────── */
 .meta {
-  padding: 10px;
-  text-align: center;
+  padding: 14px 40px;
+  text-align: left;
+  background: rgba(0, 35, 111, 0.04);
+  border-bottom: 1px solid rgba(197, 197, 211, 0.35);
 }
 
 .meta span {
   display: inline-block;
-  margin: 0 5px 5px;
+  margin: 0 6px 4px 0;
 }
 
 .meta a {
   padding: 0;
   display: inline;
+  color: inherit;
 }
 
 .meta a:hover {
   background-color: unset;
+  text-decoration: none;
 }
 
+/* ─── Examples Container ──────────────────────────────────── */
 .examplesContainer {
-  margin: auto;
-  padding: 0 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 40px 80px;
+  width: 100%;
 }
 
-.install {
-  padding: 3px 22px 3px 6px;
-  border: 1px solid #ccc;
-  margin: 0;
-  font-size: 13px;
-  background-color: #e8e7e7;
-  border-radius: 3px;
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  position: relative;
-}
-
-.installCopy {
-  font-size: 14px;
-  background-color: unset;
-  border: none;
-  position: absolute;
-  top: -5px;
-  right: -13px;
-  cursor: pointer;
-  color: #8d8d8d;
-}
-
-.installCopy:hover {
-  color: #616161;
-  transform: scale(1.1);
+/* ─── Section Titles ──────────────────────────────────────── */
+h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #00236f;
+  margin: 36px 0 12px;
+  letter-spacing: -0.01em;
 }
 
 .examples-h2 {
-  margin: 45px 0 0;
-  font-weight: 400;
-  font-size: 30px;
+  margin: 48px 0 4px;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #191c1e;
+  letter-spacing: -0.02em;
 }
 
+/* ─── Install Code Blocks ─────────────────────────────────── */
+p {
+  color: #444651;
+  margin: 6px 0 8px;
+  font-size: 14px;
+}
+
+.install {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border: none;
+  margin: 0 0 10px;
+  font-size: 13.5px;
+  font-family: 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', Menlo, monospace;
+  background-color: #1e1e2e;
+  color: #cdd6f4;
+  border-radius: 8px;
+  position: relative;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 12px rgba(0, 35, 111, 0.08);
+}
+
+.installCopy {
+  font-size: 16px;
+  background: none;
+  border: none;
+  position: static;
+  cursor: pointer;
+  color: rgba(205, 214, 244, 0.5);
+  padding: 4px 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s ease, background 0.15s ease;
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+.installCopy:hover {
+  color: #cdd6f4;
+  background: rgba(255, 255, 255, 0.1);
+  transform: none;
+}
+
+/* ─── Two-Column Examples Layout ─────────────────────────── */
 .examples {
   display: grid;
-  grid-template-columns: 18% 80%;
-  justify-content: space-between;
+  grid-template-columns: 220px 1fr;
+  gap: 32px;
+  align-items: start;
+  margin-top: 20px;
 }
 
+/* ─── Sidebar Navigation ──────────────────────────────────── */
 ul {
   list-style: none;
-  padding: 0;
-  margin-top: 20px;
-  font-size: small;
-  border: 1px solid rgb(226, 226, 226);
-  background-color: whitesmoke;
-  border-radius: 5px;
-  max-height: 100vh;
+  padding: 8px;
+  margin: 0;
+  font-size: 13.5px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  max-height: calc(100vh - 80px);
   position: sticky;
-  top: 10px;
+  top: 20px;
+  box-shadow: 0 2px 16px rgba(0, 35, 111, 0.07);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #c5c5d3 transparent;
 }
 
 li {
-  border-bottom: 1px solid rgb(226, 226, 226);
+  border-bottom: none;
 }
 
 a {
   text-decoration: none;
-  padding: 10px;
+  padding: 9px 12px;
   display: block;
-  color: #03045e;
+  color: #444651;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background-color 0.14s ease, color 0.14s ease, padding-left 0.14s ease;
+  position: relative;
 }
 
 a:hover {
-  text-decoration: underline;
-  background-color: #ccc;
+  text-decoration: none;
+  background-color: #f2f4f6;
+  color: #00236f;
+  padding-left: 16px;
 }
 
-.button {
-  background-color: #e7e7e7; /* Green */
-  border: none;
-  color: black;
-  padding: 5px 20px;
-  margin-bottom: 5px;
-  text-align: center;
-  cursor: pointer;
-  width: 200px;
+a::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) scaleY(0);
+  width: 3px;
+  height: 60%;
+  background: #1e3a8a;
+  border-radius: 0 3px 3px 0;
+  transition: transform 0.14s ease;
+}
+
+a:hover::before {
+  transform: translateY(-50%) scaleY(1);
+}
+
+/* ─── Example Cards ───────────────────────────────────────── */
+.examples > div:last-child > div {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 16px rgba(0, 35, 111, 0.06);
+  transition: box-shadow 0.2s ease;
+}
+
+.examples > div:last-child > div:hover {
+  box-shadow: 0 6px 28px rgba(0, 35, 111, 0.1);
 }
 
 .examples h3 {
-  color: #000746;
-  margin-bottom: 5px;
-  padding: 2px 10px 5px;
-  font-weight: 500;
-  border-bottom: 1px solid #f0bfff;
+  color: #00236f;
+  margin: 0 0 18px;
+  padding: 0 0 14px;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  border-bottom: 2px solid #f2f4f6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
+.examples h3::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 16px;
+  background: linear-gradient(180deg, #1e3a8a, #5157a6);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ─── Action Buttons ──────────────────────────────────────── */
+.button {
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, #00236f, #1e3a8a);
+  border: none;
+  color: #ffffff;
+  padding: 8px 18px;
+  margin: 4px 6px 4px 0;
+  text-align: center;
+  cursor: pointer;
+  width: auto;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: 9999px;
+  letter-spacing: 0.01em;
+  transition: box-shadow 0.2s ease, transform 0.15s ease, filter 0.15s ease;
+  box-shadow: 0 2px 8px rgba(0, 35, 111, 0.25);
+}
+
+.button:hover {
+  filter: brightness(1.12);
+  box-shadow: 0 4px 16px rgba(0, 35, 111, 0.35);
+  transform: translateY(-1px);
+}
+
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(0, 35, 111, 0.25);
+}
+
+/* ─── Custom Day Style (Tuesday highlight) ────────────────── */
 .tuesday {
-  background-color: #faf733;
+  background-color: #f0f4ff !important;
+  color: #1e3a8a !important;
+  font-weight: 700 !important;
+  outline: 2px solid rgba(30, 58, 138, 0.35);
+  outline-offset: -2px;
 }
 
-@media only screen and (max-width: 650px) {
+/* ─── Responsive ──────────────────────────────────────────── */
+@media only screen and (max-width: 768px) {
+  header {
+    padding: 20px 20px 24px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .meta {
+    padding: 12px 20px;
+  }
+
+  .examplesContainer {
+    padding: 20px 16px 60px;
+  }
+
   .examples {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  ul {
+    position: static;
+    max-height: none;
     display: grid;
-    grid-template-columns: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
   }
 
   .install {
-    font-size: 12px;
+    font-size: 11.5px;
+  }
+
+  .examples > div:last-child > div {
+    padding: 18px 16px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  ul {
+    grid-template-columns: 1fr;
   }
 }

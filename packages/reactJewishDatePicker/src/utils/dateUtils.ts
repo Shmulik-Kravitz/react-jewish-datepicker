@@ -8,12 +8,24 @@ import {
 	DateRange,
 } from "../interfaces";
 
-const formatGregorian = (date: Date): string =>
-	Dayjs(date).format("D MMM YYYY");
+const hebrewGregorianMonths = [
+	"ינואר", "פברואר", "מרץ", "אפריל", "מאי", "יוני",
+	"יולי", "אוגוסט", "ספטמבר", "אוקטובר", "נובמבר", "דצמבר"
+];
+
+const formatGregorian = (date: Date, isHebrew: boolean = false): string => {
+	if (isHebrew) {
+		const d = date.getDate();
+		const m = hebrewGregorianMonths[date.getMonth()];
+		const y = date.getFullYear();
+		return `${d} ${m} ${y}`;
+	}
+	return Dayjs(date).format("D MMM YYYY");
+};
 
 export const getDatesInOrder = (
-	day1: BasicJewishDay,
-	day2: BasicJewishDay,
+	day1?: BasicJewishDay,
+	day2?: BasicJewishDay,
 ): BasicJewishDay[] => {
 	if (day1 && day2) {
 		return Dayjs(day1.date).isBefore(Dayjs(day2.date))
@@ -27,27 +39,27 @@ export const getDatesInOrder = (
 export const getDateStringForSelectedDay = (
 	isRange: boolean,
 	isHebrew: boolean,
-	selectedDay: BasicJewishDay,
-	startDay: BasicJewishDay,
-	endDay: BasicJewishDay,
+	selectedDay?: BasicJewishDay,
+	startDay?: BasicJewishDay,
+	endDay?: BasicJewishDay,
 	dateDisplay?: DateDisplay,
 ): string => {
 	const display = dateDisplay ?? "jewish";
 
 	if (isRange) {
 		if (!startDay?.jewishDateStr) {
-			return display === "gregorian" ? "Pick Dates" : isHebrew ? "בחר תאריכים" : "Pick Dates";
+			return isHebrew ? "בחר תאריכים" : "Pick Dates";
 		}
 		if (display === "gregorian") {
-			const s = formatGregorian(startDay.date);
-			const e = endDay ? ` - ${formatGregorian(endDay.date)}` : "";
+			const s = formatGregorian(startDay.date, isHebrew);
+			const e = endDay ? ` - ${formatGregorian(endDay.date, isHebrew)}` : "";
 			return `${s}${e}`;
 		}
 		if (display === "both") {
 			const jS = isHebrew ? startDay.jewishDateStrHebrew : startDay.jewishDateStr;
 			const jE = endDay ? ` - ${isHebrew ? endDay.jewishDateStrHebrew : endDay.jewishDateStr}` : "";
-			const gS = formatGregorian(startDay.date);
-			const gE = endDay ? ` - ${formatGregorian(endDay.date)}` : "";
+			const gS = formatGregorian(startDay.date, isHebrew);
+			const gE = endDay ? ` - ${formatGregorian(endDay.date, isHebrew)}` : "";
 			return `${jS}${jE}  ·  ${gS}${gE}`;
 		}
 		return isHebrew
@@ -56,12 +68,12 @@ export const getDateStringForSelectedDay = (
 	}
 
 	if (!selectedDay) {
-		return display === "gregorian" ? "Pick Date" : isHebrew ? "בחר תאריך" : "Pick Date";
+		return isHebrew ? "בחר תאריך" : "Pick Date";
 	}
-	if (display === "gregorian") return formatGregorian(selectedDay.date);
+	if (display === "gregorian") return formatGregorian(selectedDay.date, isHebrew);
 	if (display === "both") {
 		const jewish = isHebrew ? selectedDay.jewishDateStrHebrew : selectedDay.jewishDateStr;
-		return `${jewish}  ·  ${formatGregorian(selectedDay.date)}`;
+		return `${jewish}  ·  ${formatGregorian(selectedDay.date, isHebrew)}`;
 	}
 	return isHebrew ? selectedDay.jewishDateStrHebrew : selectedDay.jewishDateStr;
 };

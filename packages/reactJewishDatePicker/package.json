@@ -41,13 +41,14 @@
   },
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
-    "dayjs": "^1.11.13",
-    "jewish-date": "^2.0.19",
-    "jewish-dates-core": "workspace:*"
+    "dayjs": "^1.11.20",
+    "jewish-date": "^2.0.23",
+    "jewish-dates-core": "workspace:*",
+    "jewish-holidays": "^1.2.1"
   },
   "devDependencies": {
-    "esbuild": "^0.25.1",
-    "typescript": "^5.8.2"
+    "esbuild": "^0.28.0",
+    "typescript": "^6.0.3"
   },
   "keywords": [
     "jewish",

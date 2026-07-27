@@ -233,6 +233,106 @@ export const customizeDayStyleCode = (`import * as React from "react";
   }`);
   
 
+export const slidingMonthsCode = (`import * as React from "react";
+import {
+  ReactJewishDatePicker,
+  BasicJewishDay,
+} from "react-jewish-datepicker";
+import "react-jewish-datepicker/dist/index.css";
+
+export default function App() {
+  const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
+  const date: Date = new Date();
+
+  return (
+      <div>
+        <ReactJewishDatePicker
+          value={date}
+          isHebrew
+          slidingMonths
+          onClick={(day: BasicJewishDay) => {
+            setBasicJewishDay(day);
+          }}
+        />
+      </div>
+  );
+}`);
+
+export const dateDisplayJewishCode = (`import * as React from "react";
+import {
+  ReactJewishDatePicker,
+  BasicJewishDay,
+} from "react-jewish-datepicker";
+import "react-jewish-datepicker/dist/index.css";
+
+export default function App() {
+  const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
+  const date: Date = new Date();
+
+  return (
+      <div>
+        <ReactJewishDatePicker
+          value={date}
+          isHebrew
+          dateDisplay="jewish"
+          onClick={(day: BasicJewishDay) => {
+            setBasicJewishDay(day);
+          }}
+        />
+      </div>
+  );
+}`);
+
+export const dateDisplayGregorianCode = (`import * as React from "react";
+import {
+  ReactJewishDatePicker,
+  BasicJewishDay,
+} from "react-jewish-datepicker";
+import "react-jewish-datepicker/dist/index.css";
+
+export default function App() {
+  const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
+  const date: Date = new Date();
+
+  return (
+      <div>
+        <ReactJewishDatePicker
+          value={date}
+          isHebrew
+          dateDisplay="gregorian"
+          onClick={(day: BasicJewishDay) => {
+            setBasicJewishDay(day);
+          }}
+        />
+      </div>
+  );
+}`);
+
+export const dateDisplayBothCode = (`import * as React from "react";
+import {
+  ReactJewishDatePicker,
+  BasicJewishDay,
+} from "react-jewish-datepicker";
+import "react-jewish-datepicker/dist/index.css";
+
+export default function App() {
+  const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
+  const date: Date = new Date();
+
+  return (
+      <div>
+        <ReactJewishDatePicker
+          value={date}
+          isHebrew
+          dateDisplay="both"
+          onClick={(day: BasicJewishDay) => {
+            setBasicJewishDay(day);
+          }}
+        />
+      </div>
+  );
+}`);
+
 export const rangeCode = (`import * as React from "react";
 import {
   ReactJewishDatePicker,

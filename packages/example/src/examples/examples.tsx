@@ -32,6 +32,10 @@ import {
   rangeCode,
   customizeDayStyleCode,
   inlineVersionCode,
+  slidingMonthsCode,
+  dateDisplayJewishCode,
+  dateDisplayGregorianCode,
+  dateDisplayBothCode,
 } from "../code";
 
 const dontSelectTuesdays = (day: BasicJewishDay): boolean => {
@@ -57,6 +61,10 @@ const ExampleLinkList = [
   { id: "selectionWithinRange", title: "Selection Within Range" },
   { id: "disableWithCustomFunction", title: "Disable Days With Custom Function" },
   { id: "customizeDayStyle", title: "Customize Day Style" },
+  { id: "slidingMonths", title: "Sliding Months" },
+  { id: "dateDisplayJewish", title: "Date Display - Jewish" },
+  { id: "dateDisplayGregorian", title: "Date Display - Gregorian" },
+  { id: "dateDisplayBoth", title: "Date Display - Both" },
   { id: "rangePicker", title: "Range datepicker" },
   { id: "inlineVersion", title: "Inline Version" },
 ];
@@ -314,6 +322,42 @@ export function Examples() {
                 isHebrew
                 customizeDayStyle={highlightTuesday}
                 code={customizeDayStyleCode}
+              />
+            </div>
+            <div id="slidingMonths">
+              <h3>Sliding Months</h3>
+              <ReactJewishDatePickerExample
+                value={selectedDate}
+                isHebrew
+                slidingMonths
+                code={slidingMonthsCode}
+              />
+            </div>
+            <div id="dateDisplayJewish">
+              <h3>Date Display - Jewish</h3>
+              <ReactJewishDatePickerExample
+                value={selectedDate}
+                isHebrew
+                dateDisplay="jewish"
+                code={dateDisplayJewishCode}
+              />
+            </div>
+            <div id="dateDisplayGregorian">
+              <h3>Date Display - Gregorian</h3>
+              <ReactJewishDatePickerExample
+                value={selectedDate}
+                isHebrew
+                dateDisplay="gregorian"
+                code={dateDisplayGregorianCode}
+              />
+            </div>
+            <div id="dateDisplayBoth">
+              <h3>Date Display - Both</h3>
+              <ReactJewishDatePickerExample
+                value={selectedDate}
+                isHebrew
+                dateDisplay="both"
+                code={dateDisplayBothCode}
               />
             </div>
             <div id="rangePicker">
