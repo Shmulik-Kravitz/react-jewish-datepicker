@@ -125,8 +125,34 @@ jobs:
       - name: Set env $VERSION_TAG
         run: echo "VERSION_TAG=$(yarn get-version)" >> $GITHUB_ENV
 
-      # The tag must be created *after* the version commit, otherwise it points
-      # at the parent commit and labels the previous version's tree.
+      # Trusted publishing (OIDC) needs npm >= 11.5.1; don't rely on whichever
+      # npm happens to ship with the Node release.
+      - name: Update npm
+        run: npm install -g npm@latest
+
+      # yarn pack resolves the workspace:* ranges to real versions in the
+      # packed manifest, then npm publishes that tarball -- npm is used for the
+      # upload because only the npm CLI supports OIDC trusted publishing.
+      - name: Pack jewish-dates-core
+        working-directory: packages/jewishDatesCore/
+        run: yarn pack
+
+      - name: Pack react-jewish-datepicker
+        working-directory: packages/reactJewishDatePicker/
+        run: yarn pack
+
+      - name: Publish jewish-dates-core
+        working-directory: packages/jewishDatesCore/
+        run: npm publish package.tgz --access public --provenance
+
+      - name: Publish react-jewish-datepicker
+        working-directory: packages/reactJewishDatePicker/
+        run: npm publish package.tgz --access public --provenance
+
+      # Commit and tag only after publishing succeeds, so a failed run doesn't
+      # burn a version number or leave a tag for a release that isn't on npm.
+      # The tag must also come after the commit, otherwise it points at the
+      # parent commit and labels the previous version's tree.
       - name: Commit and tag version
         run: |
           git config --global user.name 'Shmulik-Kravitz'
@@ -135,17 +161,3 @@ jobs:
           git tag v$VERSION_TAG
           git push
           git push origin v$VERSION_TAG
-
-      # yarn npm publish packs the workspace itself, which resolves the
-      # workspace:* ranges to real versions in the published manifest.
-      - name: Publish jewish-dates-core
-        working-directory: packages/jewishDatesCore/
-        run: yarn npm publish --access public --provenance --tolerate-republish
-        env:
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Publish react-jewish-datepicker
-        working-directory: packages/reactJewishDatePicker/
-        run: yarn npm publish --access public --provenance --tolerate-republish
-        env:
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
