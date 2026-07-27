@@ -42,7 +42,7 @@ export interface JewishMonthMetadata {
 }
 
 export interface JewishMonthInfo {
-  selectedDay: JewishDay;
+  selectedDay: JewishDay | null | undefined;
   jewishYear: number;
   jewishMonth: number;
   jewishMonthString: string;
@@ -50,6 +50,6 @@ export interface JewishMonthInfo {
 }
 
 export interface IdText {
-  id: string;
+  id: JewishMonthType;
   text: string;
 }
