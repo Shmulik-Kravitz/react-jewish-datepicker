@@ -121,19 +121,51 @@ jobs:
           path: packages/reactJewishDatePicker/dist
 
 
-      # Release the committed version when it hasn't been published yet, so a
-      # deliberate major/minor bump lands as written (a patch bump could never
-      # produce x.0.0). Otherwise patch-bump, which is the routine case.
       - name: Resolve release version
         run: |
-          VERSION=$(yarn get-version)
-          if npm view jewish-dates-core@$VERSION version > /dev/null 2>&1; then
+          set -euo pipefail
+
+          # Fetch each package's full version list up front. `npm view pkg@ver`
+          # exits non-zero both for a version that isn't published and for a
+          # lookup that failed (network, registry, rate limit), so asking it the
+          # per-version question turns every hiccup into "not published yet" and
+          # then tries to republish a live version. Here a failed lookup fails
+          # the job instead of quietly corrupting the decision.
+          CORE_VERSIONS=$(npm view jewish-dates-core versions --json)
+          PICKER_VERSIONS=$(npm view react-jewish-datepicker versions --json)
+
+          # A version counts as taken if *either* package already has it, so a
+          # run that published core and then died doesn't leave the picker
+          # pinned to a number it can never publish. (npm returns a bare string
+          # rather than an array when a package has exactly one version.)
+          is_taken() {
+            node -e '
+              const [version, ...lists] = process.argv.slice(1);
+              const published = lists.flatMap((list) => [].concat(JSON.parse(list)));
+              process.exit(published.includes(version) ? 0 : 1);
+            ' "$1" "$CORE_VERSIONS" "$PICKER_VERSIONS"
+          }
+
+          # Release the committed version when it hasn't been published yet, so a
+          # deliberate major/minor bump lands as written (a patch bump could never
+          # produce x.0.0). Otherwise patch-bump, which is the routine case --
+          # in a loop, because a half-finished earlier release can have burned
+          # more than one number.
+          VERSION=$(yarn get-version | tr -d '[:space:]')
+          for _ in $(seq 20); do
+            if ! is_taken "$VERSION"; then
+              break
+            fi
             echo "$VERSION is already on npm; patch-bumping"
             yarn inc-version
-            VERSION=$(yarn get-version)
-          else
-            echo "$VERSION is not on npm; releasing it as-is"
+            VERSION=$(yarn get-version | tr -d '[:space:]')
+          done
+
+          if is_taken "$VERSION"; then
+            echo "Gave up looking for an unpublished version; stopped at $VERSION" >&2
+            exit 1
           fi
+
           echo "Releasing $VERSION"
           echo "VERSION_TAG=$VERSION" >> $GITHUB_ENV
 
