@@ -20,7 +20,7 @@ export const start = async (entryPoints: string[], outdir: string) => {
     entryPoints: entryPoints,
     outdir: outdir
   });
-  const { host, port } = await ctx.serve({
+  const { hosts, port } = await ctx.serve({
     port: 3000,
     servedir: "./config/static",
     onRequest: (args) => {
@@ -28,8 +28,8 @@ export const start = async (entryPoints: string[], outdir: string) => {
     },
 
   });
-  console.log(`http://${host}:${port}/`);
-  console.log(`http://127.0.0.1:${port}/`);
+  // esbuild returns `hosts` (an array); the old singular `host` logged undefined.
+  hosts.forEach((host) => console.log(`http://${host}:${port}/`));
 
   const end = new Date().getTime();
   const time = end - start;

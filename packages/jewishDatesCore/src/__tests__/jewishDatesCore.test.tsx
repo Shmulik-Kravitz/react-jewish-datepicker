@@ -22,6 +22,13 @@ import {
   dontSelectOutOfRange,
   addDates,
   subtractDates,
+  getHolidayInfo,
+  getHolidayNames,
+  getHolidayClassNames,
+  getTzomInfo,
+  getShabbatClassNames,
+  isShabbatDay,
+  isErevShabbatDay,
   BasicJewishDate,
   BasicJewishDay,
   JewishMonth
@@ -228,6 +235,22 @@ describe("jewishDatesCore", () => {
     expect(getGregDate(basicJewishDate)).toEqual(new Date(2021, 7, 21));
   });
 
+  // A jewish date has no time of day. The underlying conversion leaves the
+  // clock time on the result, which made the same input convert to a different
+  // Date on every call - and made the assertion above pass or fail depending on
+  // what time the suite ran.
+  it("get greg date - is start of day and does not drift", async () => {
+    const date = getGregDate(basicJewishDate);
+
+    expect([
+      date.getHours(),
+      date.getMinutes(),
+      date.getSeconds(),
+      date.getMilliseconds(),
+    ]).toEqual([0, 0, 0, 0]);
+    expect(getGregDate(basicJewishDate)).toEqual(date);
+  });
+
   it("get jewish month info", async () => {
     const jewishMonthInfo = {
       jewishDate: { year: 5782, month: 5, day: 25, monthName: "Shevat" },
@@ -421,5 +444,110 @@ describe("jewishDatesCore", () => {
     expect(subtractDates(new Date(2022, 3, 17), 3)).toEqual(
       new Date(2022, 3, 14)
     );
+  });
+
+  // jewish-holidays takes isChutzLaaretz; getHolidayInfo takes isIsrael. These
+  // pin the inversion — 16 Tishri is yom tov only outside Israel.
+  it("holiday info - second day of sukkot is not yom tov in israel", async () => {
+    const info = getHolidayInfo({ day: 16, monthName: "Tishri", year: 5785 }, true);
+    expect(info.isYomTov).toBeFalsy();
+    expect(info.isCholHaMoed).toBeTruthy();
+  });
+
+  it("holiday info - second day of sukkot is yom tov in chul", async () => {
+    const info = getHolidayInfo({ day: 16, monthName: "Tishri", year: 5785 }, false);
+    expect(info.isYomTov).toBeTruthy();
+    expect(info.holidays).toContain("Sukkot");
+  });
+
+  it("holiday info - defaults to israel", async () => {
+    expect(
+      getHolidayInfo({ day: 16, monthName: "Tishri", year: 5785 }).isYomTov
+    ).toBeFalsy();
+  });
+
+  it("holiday names in english", async () => {
+    const info = getHolidayInfo({ day: 15, monthName: "Nisan", year: 5785 });
+    expect(getHolidayNames(info)).toEqual(["Pesach"]);
+  });
+
+  // The language is asked of jewish-holidays up front, not translated here.
+  it("holiday names in hebrew", async () => {
+    const info = getHolidayInfo(
+      { day: 15, monthName: "Nisan", year: 5785 },
+      true,
+      true
+    );
+    expect(getHolidayNames(info)).toEqual(["פסח"]);
+  });
+
+  // Names this package could not have known about - specific fasts and the two
+  // Purims - come back translated too, which a lookup table here would miss.
+  it("holiday names - specific fast names are translated", async () => {
+    const tishaBeav = { day: 9, monthName: "Av", year: 5785 } as const;
+    expect(getHolidayNames(getHolidayInfo(tishaBeav))).toEqual(["Tisha BeAv"]);
+    expect(getHolidayNames(getHolidayInfo(tishaBeav, true, true))).toEqual([
+      "תשעה באב",
+    ]);
+  });
+
+  it("holiday names - no info yields no names", async () => {
+    expect(getHolidayNames(undefined)).toEqual([]);
+    expect(getHolidayClassNames(undefined)).toEqual([]);
+    expect(getTzomInfo(undefined)).toBeUndefined();
+  });
+
+  // A fast that lands on shabat is observed on another day; the shift says
+  // which way it moved to get here.
+  it("tzom info - names the fast and how it shifted", async () => {
+    const onItsOwnDate = getTzomInfo(getHolidayInfo(new Date(2025, 2, 13)));
+    expect(onItsOwnDate?.name).toBe("Taanit Esther");
+    expect(onItsOwnDate?.shift).toBeNull();
+
+    const postponed = getTzomInfo(getHolidayInfo(new Date(2029, 6, 22)));
+    expect(postponed?.name).toBe("Tisha BeAv");
+    expect(postponed?.shift).toBe("postponed");
+  });
+
+  it("tzom info - absent on a day with no fast", async () => {
+    expect(getTzomInfo(getHolidayInfo(new Date(2025, 0, 7)))).toBeUndefined();
+  });
+
+  it("holiday class names - yom tov", async () => {
+    const classNames = getHolidayClassNames(
+      getHolidayInfo({ day: 15, monthName: "Nisan", year: 5785 })
+    );
+    expect(classNames).toContain("hasHoliday");
+    expect(classNames).toContain("isYomTov");
+  });
+
+  // Shabat is its own concern - getShabbatClassNames - so it must not leak in
+  // here, or the two would emit the same class and duplicate it on the cell.
+  it("holiday class names - plain shabat yields nothing", async () => {
+    expect(getHolidayClassNames(getHolidayInfo(new Date(2025, 0, 11)))).toEqual([]);
+  });
+
+  it("holiday class names - ordinary weekday has none", async () => {
+    expect(getHolidayClassNames(getHolidayInfo(new Date(2025, 0, 7)))).toEqual([]);
+  });
+
+  it("shabat class names - saturday", async () => {
+    expect(getShabbatClassNames(new Date(2025, 0, 11))).toEqual(["isShabbat"]);
+  });
+
+  it("shabat class names - friday is erev shabat", async () => {
+    expect(getShabbatClassNames(new Date(2025, 0, 10))).toEqual(["isErevShabbat"]);
+  });
+
+  it("shabat class names - ordinary weekday has none", async () => {
+    expect(getShabbatClassNames(new Date(2025, 0, 7))).toEqual([]);
+  });
+
+  // Keyed off getDay() so it agrees with dontSelectShabat, which does the same.
+  it("shabat predicates agree with dontSelectShabat", async () => {
+    expect(isShabbatDay(nisan_22_5782.date)).toBeTruthy();
+    expect(dontSelectShabat(nisan_22_5782)).toBeFalsy();
+    expect(isShabbatDay(nisan_21_5782.date)).toBeFalsy();
+    expect(isErevShabbatDay(nisan_21_5782.date)).toBeTruthy();
   });
 });

@@ -25,10 +25,14 @@ export interface ReactJewishDatePickerProps {
   isRange?: boolean;
   slidingMonths?: boolean;
   dateDisplay?: DateDisplay;
+  showHolidays?: boolean;
+  /** Marks Shabbat (and tags Friday as `isErevShabbat`). On by default. */
+  showShabbat?: boolean;
+  isIsrael?: boolean;
 }
 
 export const ReactJewishDatePicker: FC<ReactJewishDatePickerProps> = (
-  { className, value, isHebrew = false, isRange, onClick, canSelect, customizeDayStyle, slidingMonths, dateDisplay }: ReactJewishDatePickerProps
+  { className, value, isHebrew = false, isRange, onClick, canSelect, customizeDayStyle, slidingMonths, dateDisplay, showHolidays, showShabbat, isIsrael = true }: ReactJewishDatePickerProps
 ) => {
   if (typeof value === "string") {
     throw new Error(
@@ -154,6 +158,9 @@ export const ReactJewishDatePicker: FC<ReactJewishDatePickerProps> = (
           setEndDay={setEndDay}
           slidingMonths={slidingMonths}
           dateDisplay={dateDisplay}
+          showHolidays={showHolidays}
+          showShabbat={showShabbat}
+          isIsrael={isIsrael}
         />
       </div>
     </div>

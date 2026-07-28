@@ -82,6 +82,84 @@ export default function App() {
   );
 }`);
 
+export const showHolidaysCode = (`import * as React from "react";
+import {
+  ReactJewishDatePicker,
+  BasicJewishDay,
+} from "react-jewish-datepicker";
+import "react-jewish-datepicker/dist/index.css";
+
+export default function App() {
+  const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
+  const date: Date = new Date();
+
+  return (
+      <div>
+        <ReactJewishDatePicker
+          value={date}
+          showHolidays
+          onClick={(day: BasicJewishDay) => {
+            setBasicJewishDay(day);
+          }}
+        />
+      </div>
+  );
+}`);
+
+export const hideShabbatCode = (`import * as React from "react";
+import {
+  ReactJewishDatePicker,
+  BasicJewishDay,
+} from "react-jewish-datepicker";
+import "react-jewish-datepicker/dist/index.css";
+
+export default function App() {
+  const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
+  const date: Date = new Date();
+
+  // showShabbat defaults to true - Shabbat is tinted and Friday carries an
+  // .isErevShabbat class for your own styling. Pass false to turn it all off.
+  return (
+      <div>
+        <ReactJewishDatePicker
+          value={date}
+          showShabbat={false}
+          onClick={(day: BasicJewishDay) => {
+            setBasicJewishDay(day);
+          }}
+        />
+      </div>
+  );
+}`);
+
+export const showHolidaysHebrewCode = (`import * as React from "react";
+import {
+  ReactJewishDatePicker,
+  BasicJewishDay,
+} from "react-jewish-datepicker";
+import "react-jewish-datepicker/dist/index.css";
+
+export default function App() {
+  const [basicJewishDay, setBasicJewishDay] = React.useState<BasicJewishDay>();
+  const date: Date = new Date();
+
+  // isIsrael defaults to true. Pass false for the diaspora, which adds the
+  // second day of yom tov (16 Tishri, 16 Nisan, 7 Sivan...).
+  return (
+      <div>
+        <ReactJewishDatePicker
+          value={date}
+          isHebrew
+          showHolidays
+          isIsrael={false}
+          onClick={(day: BasicJewishDay) => {
+            setBasicJewishDay(day);
+          }}
+        />
+      </div>
+  );
+}`);
+
 export const dontSelectShabatCode = (`import * as React from "react";
 import {
   ReactJewishDatePicker,

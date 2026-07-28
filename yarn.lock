@@ -2094,16 +2094,17 @@ __metadata:
     dayjs: "npm:^1.11.21"
     esbuild: "npm:^0.28.1"
     jewish-date: "npm:^2.0.26"
+    jewish-holidays: "npm:^2.0.1"
     typescript: "npm:^6.0.3"
   languageName: unknown
   linkType: soft
 
-"jewish-holidays@npm:^1.2.3":
-  version: 1.2.3
-  resolution: "jewish-holidays@npm:1.2.3"
+"jewish-holidays@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "jewish-holidays@npm:2.0.1"
   dependencies:
     jewish-date: "npm:^2.0.23"
-  checksum: 10/d9cb262f7f830683cb4aac5326b51a14114ea4f695e5e92ddf253ce8ea86f965d07a62b506fd9219f6da6907592c757ddf8cb2677a9e33d44aa32cbc46d610a0
+  checksum: 10/d51934d8ee19912683c25fbcd1502b5bc78f4c073f07fa3ade4fa29037bf91d014bf3b7ab93f9f34d4384a7875e7153c9acedc1a6ecd011ec54cc8afd1613119
   languageName: node
   linkType: hard
 
@@ -2809,7 +2810,6 @@ __metadata:
     esbuild: "npm:^0.28.1"
     jewish-date: "npm:^2.0.26"
     jewish-dates-core: "workspace:*"
-    jewish-holidays: "npm:^1.2.3"
     typescript: "npm:^6.0.3"
   peerDependencies:
     react: "*"

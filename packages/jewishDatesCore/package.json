@@ -34,7 +34,8 @@
   },
   "dependencies": {
     "dayjs": "^1.11.21",
-    "jewish-date": "^2.0.26"
+    "jewish-date": "^2.0.26",
+    "jewish-holidays": "^2.0.1"
   },
   "devDependencies": {
     "esbuild": "^0.28.1",

@@ -320,6 +320,58 @@
   pointer-events: none;
 }
 
+/* Holidays (showHolidays) */
+
+/* The cell is a centered flex box; the marker is positioned so it never shifts
+   the day number, including in dateDisplay="both". */
+.monthContainer .day {
+  position: relative;
+}
+
+.monthContainer .day .holidayMarker {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  /* currentColor keeps the dot visible on the primary-blue selected/range
+     backgrounds, where a fixed accent would disappear. */
+  background: currentColor;
+  pointer-events: none;
+}
+
+/* Guarded like .isToday so the accent never fights the selected/range fills. */
+.monthContainer .day.hasHoliday:not(.selectedDay):not(.startDay):not(.endDay):not(.noSelect) {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* Fasts read as somber rather than festive. 4.6:1 on white. */
+.monthContainer .day.isTzom:not(.selectedDay):not(.startDay):not(.endDay):not(.noSelect) {
+  color: #a1543a;
+}
+
+/* A holiday is often also blocked by dontSelectHolidays — keep the marker, but
+   let the disabled styling win so the day still reads as unavailable. */
+.monthContainer .day.hasHoliday.noSelect .holidayMarker {
+  opacity: 0.6;
+}
+
+/* Shabbat (showShabbat, on by default) */
+
+/* A wash rather than an accent: Shabbat comes round every week, so it should
+   read as a background rhythm and never compete with .hasHoliday or .isToday.
+   Guarded like those so it never fights the selected/range fills. */
+.monthContainer
+  .day.isShabbat:not(.selectedDay):not(.startDay):not(.endDay):not(.isInRange):not(.noSelect) {
+  background-color: var(--primary-light);
+}
+
+/* .isErevShabbat is emitted as a styling hook but deliberately left unstyled —
+   tinting two days in seven turns the wash into noise. */
+
 /* dateDisplay="both" — stacked Hebrew + Gregorian */
 .monthContainer.displayBoth .day {
   min-height: 38px;

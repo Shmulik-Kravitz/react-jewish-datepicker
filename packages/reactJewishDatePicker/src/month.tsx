@@ -42,6 +42,9 @@ export interface MonthProps {
   setEndDay?: (day: BasicJewishDay) => void;
   slidingMonths?: boolean;
   dateDisplay?: DateDisplay;
+  showHolidays?: boolean;
+  showShabbat?: boolean;
+  isIsrael?: boolean;
 }
 
 function getAdjacentMonthDate(
@@ -89,7 +92,7 @@ function getGregorianLabel(info: JewishMonthInfo, isHebrew: boolean): string {
 }
 
 export const Month: FC<MonthProps> = (
-  { value, isHebrew = false, isRange, onClick, canSelect, customizeDayStyle, isOpen, setOpen, slidingMonths, dateDisplay, ...props }: MonthProps
+  { value, isHebrew = false, isRange, onClick, canSelect, customizeDayStyle, isOpen, setOpen, slidingMonths, dateDisplay, showHolidays, showShabbat, isIsrael = true, ...props }: MonthProps
 ) => {
   if (typeof value === "string") {
     throw new Error(
@@ -454,6 +457,9 @@ export const Month: FC<MonthProps> = (
               startDay={!endDay ? start : startDay}
               endDay={endDay || end}
               dateDisplay={resolvedDisplay}
+              showHolidays={showHolidays}
+              showShabbat={showShabbat}
+              isIsrael={isIsrael}
             />
           ))}
         </div>

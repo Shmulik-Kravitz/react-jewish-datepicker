@@ -238,6 +238,12 @@ export const getGregDate = (props: BasicJewishDate): Date => {
     year: props.year,
   };
   const date = toGregorianDate(jewishDate);
+  // `toGregorianDate` sets the calendar date but leaves the time of day at
+  // whatever the clock reads, so the same jewish date converted twice returns
+  // two different Dates. A jewish date has no time component, so normalize it:
+  // callers compare these for equality and feed them to `isInRange`, both of
+  // which need the conversion to be deterministic.
+  date.setHours(0, 0, 0, 0);
   return date;
 };
 

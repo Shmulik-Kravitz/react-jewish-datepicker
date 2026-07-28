@@ -5,7 +5,7 @@
   "module": "true",
   "scripts": {
     "start": "yarn g:start-app",
-    "build": "yarn g:build-app && cp -R -a -f ./config/static/. ./dist/ &&  yarn copy-to-docs",
+    "build": "yarn g:build-app && cp -a -f ./config/static/index.html ./dist/ && yarn copy-to-docs",
     "copy-to-docs": "cp -R -a -f ./dist/. ../../docs/ && echo copy to docs done",
     "test": "echo test",
     "inc": "echo inc",

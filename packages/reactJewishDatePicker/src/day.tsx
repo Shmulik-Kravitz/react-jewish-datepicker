@@ -4,6 +4,10 @@ import {
   BasicJewishDay,
   JewishDate,
   IsJewishDatesEqual,
+  getHolidayInfo,
+  getHolidayNames,
+  getHolidayClassNames,
+  getShabbatClassNames,
 } from "jewish-dates-core";
 import { isFromTest } from "./utils";
 import { DateDisplay } from "./interfaces";
@@ -24,6 +28,10 @@ export interface DayProps extends JewishDay {
   startDay?: BasicJewishDay;
   endDay?: BasicJewishDay;
   dateDisplay?: DateDisplay;
+  showHolidays?: boolean;
+  /** Marks Shabbat (and tags Friday as `isErevShabbat`). On by default. */
+  showShabbat?: boolean;
+  isIsrael?: boolean;
   /** Roving tabindex: 0 for the one entry point into the grid, -1 elsewhere. */
   tabIndex?: number;
 }
@@ -78,6 +86,9 @@ export const Day: React.FC<DayProps> = (props: DayProps) => {
     onMouseOver,
     customizeDayStyle,
     dateDisplay,
+    showHolidays,
+    showShabbat = true,
+    isIsrael = true,
     tabIndex,
     ...basicJewishDay
   } = props;
@@ -119,9 +130,30 @@ export const Day: React.FC<DayProps> = (props: DayProps) => {
     dayContent = jewishNumeral;
   }
 
+  // `getDateInfo` rebuilds several holiday lists per call and a grid is 42
+  // cells, so this stays behind the opt-in prop and is memoized per date.
+  const dateTime = props.date.getTime();
+  const holidayInfo = React.useMemo(
+    () =>
+      showHolidays ? getHolidayInfo(props.date, isIsrael, isHebrew) : undefined,
+    [showHolidays, isIsrael, isHebrew, dateTime]
+  );
+  const holidayNames = getHolidayNames(holidayInfo);
+  const holidayClasses = [
+    ...getHolidayClassNames(holidayInfo),
+    // A plain `getDay()` check, so this is cheap enough to run unguarded by the
+    // holiday memo — and the two helpers never emit the same class.
+    ...(showShabbat ? getShabbatClassNames(props.date) : []),
+  ];
+
+  // `title` stays the bare date — it is also the test id. The holiday names go
+  // on a separate label used for the tooltip and the accessible name.
   const title = props.isHebrew
     ? props.jewishDateStrHebrew
     : props.jewishDateStr;
+  const label = holidayNames.length
+    ? `${title} — ${holidayNames.join(", ")}`
+    : title;
 
   const today = new Date();
   const isToday =
@@ -141,18 +173,19 @@ export const Day: React.FC<DayProps> = (props: DayProps) => {
   const isEndDayClass = isEndDay(props.date, startDay, endDay) ? " endDay" : "";
   const customDayClass = customizeDayStyle ? ` ${customizeDayStyle(basicJewishDay)}` : "";
   const isTodayClass = isToday ? " isToday" : "";
+  const holidayClass = holidayClasses.length ? ` ${holidayClasses.join(" ")}` : "";
   const classNames = `day${otherMonthClass}${
     selectedDayClass || ""
-  }${disableSelectClass}${isInRangClass}${isStartDayClass}${isEndDayClass}${customDayClass}${isTodayClass}`;
+  }${disableSelectClass}${isInRangClass}${isStartDayClass}${isEndDayClass}${customDayClass}${isTodayClass}${holidayClass}`;
   return (
     <div
       data-testid={isFromTest() ? title : undefined}
       data-date={props.date}
       className={classNames}
-      title={title}
+      title={label}
       role="option"
       tabIndex={tabIndex ?? -1}
-      aria-label={title}
+      aria-label={label}
       aria-selected={isSelected}
       aria-disabled={!isSelectable || undefined}
       aria-current={isToday ? "date" : undefined}
@@ -161,6 +194,9 @@ export const Day: React.FC<DayProps> = (props: DayProps) => {
       onMouseOver={handleMouseOver}
     >
       {dayContent}
+      {holidayClasses.includes("hasHoliday") && (
+        <span className="holidayMarker" aria-hidden="true" />
+      )}
     </div>
   );
 };

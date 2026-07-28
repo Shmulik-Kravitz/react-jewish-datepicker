@@ -26,6 +26,9 @@ export interface ReactJewishDatePickerExampleProps {
   isInline?: boolean;
   slidingMonths?: boolean;
   dateDisplay?: DateDisplay;
+  showHolidays?: boolean;
+  showShabbat?: boolean;
+  isIsrael?: boolean;
   children?: React.ReactNode;
 }
 
@@ -85,6 +88,9 @@ export const ReactJewishDatePickerExample: React.FC<
               isRange={props.isRange}
               slidingMonths={props.slidingMonths}
               dateDisplay={props.dateDisplay}
+              showHolidays={props.showHolidays}
+              showShabbat={props.showShabbat}
+              isIsrael={props.isIsrael}
               onClick={
                 !props.isRange
                   ? (day: BasicJewishDay) => {
@@ -113,6 +119,9 @@ export const ReactJewishDatePickerExample: React.FC<
                 }
                 canSelect={props.canSelect}
                 customizeDayStyle={props.customizeDayStyle}
+                showHolidays={props.showHolidays}
+                showShabbat={props.showShabbat}
+                isIsrael={props.isIsrael}
               ></Month>
             </div>
             }

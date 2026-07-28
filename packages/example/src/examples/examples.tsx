@@ -25,6 +25,9 @@ import {
   englishCode,
   hebrewCode,
   dontSelectHolidayCode,
+  showHolidaysCode,
+  showHolidaysHebrewCode,
+  hideShabbatCode,
   dontSelectShabatCode,
   dontSelectShabatAndHolidaysCode,
   selectionWithinRangeCode,
@@ -55,6 +58,9 @@ const highlightTuesday = (day: BasicJewishDay): string => {
 const ExampleLinkList = [ 
   { id: "english", title: "English View" },
   { id: "hebrew", title: "Hebrew View" },
+  { id: "showHolidays", title: "Show Holidays" },
+  { id: "showHolidaysHebrew", title: "Show Holidays - Hebrew, Chutz Laaretz" },
+  { id: "hideShabbat", title: "Shabbat Highlight Turned Off" },
   { id: "disableHolidays", title: "Holidays Selection Disabled" },
   { id: "disableShabat", title: "Shabat Selection Disabled" },
   { id: "disableShabatAndHolidays", title: "Shabat and Holidays Selection Disabled" },
@@ -268,6 +274,34 @@ export function Examples() {
                 value={basicJewishDate}
                 isHebrew
                 code={hebrewCode}
+              />
+            </div>
+            {/* Nisan and Tishri are used here rather than today's date so the
+                markers are visible without navigating. */}
+            <div id="showHolidays">
+              <h3>Show Holidays</h3>
+              <ReactJewishDatePickerExample
+                value={{ day: 1, monthName: "Nisan", year: 5786 }}
+                showHolidays
+                code={showHolidaysCode}
+              />
+            </div>
+            <div id="showHolidaysHebrew">
+              <h3>Show Holidays - Hebrew, Chutz Laaretz</h3>
+              <ReactJewishDatePickerExample
+                value={{ day: 1, monthName: "Tishri", year: 5787 }}
+                isHebrew
+                showHolidays
+                isIsrael={false}
+                code={showHolidaysHebrewCode}
+              />
+            </div>
+            <div id="hideShabbat">
+              <h3>Shabbat Highlight Turned Off</h3>
+              <ReactJewishDatePickerExample
+                value={selectedDate}
+                showShabbat={false}
+                code={hideShabbatCode}
               />
             </div>
             <div id="disableHolidays">

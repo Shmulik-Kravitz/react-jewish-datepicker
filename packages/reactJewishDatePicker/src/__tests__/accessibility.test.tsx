@@ -185,6 +185,14 @@ describe("day grid", () => {
     expect(document.activeElement).toBe(trigger);
   });
 
+  it("leaves the day label as the bare date when showHolidays is off", () => {
+    renderOpenPicker();
+    const day = screen.getByTestId("20 Elul 5781");
+
+    expect(day).toHaveAttribute("aria-label", "20 Elul 5781");
+    expect(day.className).not.toContain("hasHoliday");
+  });
+
   it("marks unselectable days aria-disabled and refuses to select them", () => {
     let picked: BasicJewishDay | undefined;
     renderOpenPicker({
@@ -198,5 +206,130 @@ describe("day grid", () => {
     fireEvent.click(blocked);
     fireEvent.keyDown(blocked, { key: "Enter" });
     expect(picked).toBeUndefined();
+  });
+});
+
+describe("showHolidays", () => {
+  const pesach: BasicJewishDate = { day: 15, monthName: "Nisan", year: 5785 };
+
+  const renderHolidayPicker = (props = {}) => {
+    const result = render(
+      <ReactJewishDatePicker
+        isHebrew={false}
+        value={pesach}
+        showHolidays
+        onClick={(_day: BasicJewishDay) => {}}
+        {...props}
+      />
+    );
+    fireEvent.click(screen.getByTestId("selectedDate"));
+    return result;
+  };
+
+  it("classes a yom tov and keeps the test id as the bare date", () => {
+    renderHolidayPicker();
+    const day = screen.getByTestId("15 Nisan 5785");
+
+    expect(day.className).toContain("hasHoliday");
+    expect(day.className).toContain("isYomTov");
+  });
+
+  it("puts the holiday name in the accessible name and the tooltip", () => {
+    renderHolidayPicker();
+    const day = screen.getByTestId("15 Nisan 5785");
+
+    expect(day).toHaveAttribute("aria-label", "15 Nisan 5785 — Pesach");
+    expect(day).toHaveAttribute("title", "15 Nisan 5785 — Pesach");
+  });
+
+  it("names the holiday in Hebrew when isHebrew", () => {
+    renderHolidayPicker({ isHebrew: true });
+    const day = screen.getByTestId("ט״ו ניסן התשפ״ה");
+
+    expect(day.getAttribute("aria-label")).toContain("פסח");
+  });
+
+  // isIsrael flips which days are yom tov; 16 Nisan is chol hamoed in Israel.
+  it("treats the second day as yom tov only outside israel", () => {
+    const { unmount } = renderHolidayPicker();
+    expect(screen.getByTestId("16 Nisan 5785").className).toContain("isCholHaMoed");
+    expect(screen.getByTestId("16 Nisan 5785").className).not.toContain("isYomTov");
+    unmount();
+
+    renderHolidayPicker({ isIsrael: false });
+    expect(screen.getByTestId("16 Nisan 5785").className).toContain("isYomTov");
+  });
+
+  it("renders a marker only on holidays, not on every shabat", () => {
+    const { container } = renderHolidayPicker();
+    const shabat = container.querySelector(".day.isShabbat:not(.hasHoliday)");
+
+    expect(shabat).not.toBeNull();
+    expect(shabat!.querySelector(".holidayMarker")).toBeNull();
+    expect(
+      screen.getByTestId("15 Nisan 5785").querySelector(".holidayMarker")
+    ).not.toBeNull();
+  });
+});
+
+describe("showShabbat", () => {
+  // 15 Nisan 5785 is Sun 13 Apr 2025, so 21 Nisan is a Saturday and 20 a Friday.
+  const nisan: BasicJewishDate = { day: 15, monthName: "Nisan", year: 5785 };
+  const shabatTestId = "21 Nisan 5785";
+  const erevShabatTestId = "20 Nisan 5785";
+
+  const renderPicker = (props = {}) => {
+    const result = render(
+      <ReactJewishDatePicker
+        isHebrew={false}
+        value={nisan}
+        onClick={(_day: BasicJewishDay) => {}}
+        {...props}
+      />
+    );
+    fireEvent.click(screen.getByTestId("selectedDate"));
+    return result;
+  };
+
+  it("marks shabat and erev shabat by default", () => {
+    renderPicker();
+
+    expect(screen.getByTestId(shabatTestId).className).toContain("isShabbat");
+    expect(screen.getByTestId(erevShabatTestId).className).toContain(
+      "isErevShabbat"
+    );
+  });
+
+  it("does not need showHolidays - the two are independent", () => {
+    const { container } = renderPicker();
+
+    expect(container.querySelector(".day.isShabbat")).not.toBeNull();
+    expect(container.querySelector(".day.hasHoliday")).toBeNull();
+    expect(container.querySelector(".holidayMarker")).toBeNull();
+  });
+
+  it("drops both classes when turned off", () => {
+    const { container } = renderPicker({ showShabbat: false });
+
+    expect(container.querySelector(".day.isShabbat")).toBeNull();
+    expect(container.querySelector(".day.isErevShabbat")).toBeNull();
+  });
+
+  // The two class sources are separate helpers; if either ever emitted isShabbat
+  // as well, the cell would carry it twice.
+  it("emits the class once when showHolidays is also on", () => {
+    renderPicker({ showHolidays: true });
+    const classes = screen.getByTestId(shabatTestId).className.split(/\s+/);
+
+    expect(classes.filter((c) => c === "isShabbat")).toHaveLength(1);
+  });
+
+  it("leaves the accessible name alone", () => {
+    renderPicker();
+
+    expect(screen.getByTestId(shabatTestId)).toHaveAttribute(
+      "aria-label",
+      "21 Nisan 5785"
+    );
   });
 });

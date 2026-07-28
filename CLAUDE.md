@@ -15,8 +15,12 @@ yarn build
 # Run all tests with coverage
 yarn test
 
-# Dev server for the example app
-cd packages/example && yarn g:start
+# Dev server (any workspace). Each workspace's own `start` script picks the right
+# harness: the example builds src/index.tsx, the libraries build their app/index.tsx.
+# Don't call g:start / g:start-app directly — the wrong one for a workspace fails.
+# Output goes to <workspace>/config/static/, which is tracked, so running the dev
+# server shows up in git status.
+cd packages/<workspace> && yarn start
 
 # Dev build with watch (any workspace)
 cd packages/<workspace> && yarn g:dev

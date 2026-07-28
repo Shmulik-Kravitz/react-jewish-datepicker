@@ -76,6 +76,27 @@ npm i jewish-dates-core --save
 <dt><a href="#getHolidays">getHolidays</a></dt>
 <dd><p>Returns an array of jewish holiday dates corresponding with the isIsrael param</p>
 </dd>
+<dt><a href="#getHolidayInfo">getHolidayInfo</a></dt>
+<dd><p>Returns the full holiday/observance summary for a date</p>
+</dd>
+<dt><a href="#getHolidayNames">getHolidayNames</a></dt>
+<dd><p>Returns the holiday names for a date</p>
+</dd>
+<dt><a href="#getTzomInfo">getTzomInfo</a></dt>
+<dd><p>Returns the fast observed on a date, and how it shifted off shabat</p>
+</dd>
+<dt><a href="#getHolidayClassNames">getHolidayClassNames</a></dt>
+<dd><p>Returns class names describing a date's observances, for styling day cells</p>
+</dd>
+<dt><a href="#getShabbatClassNames">getShabbatClassNames</a></dt>
+<dd><p>Returns class names for shabat and erev shabat, for styling day cells</p>
+</dd>
+<dt><a href="#isShabbatDay">isShabbatDay</a></dt>
+<dd><p>Whether the date is a saturday</p>
+</dd>
+<dt><a href="#isErevShabbatDay">isErevShabbatDay</a></dt>
+<dd><p>Whether the date is a friday</p>
+</dd>
 <dt><a href="#dontSelectHolidays">dontSelectHolidays</a></dt>
 <dd><p>Returns a function which can be passed to the `canSelect` prop, in order to prevent holidays selection</p>
 </dd>
@@ -454,6 +475,102 @@ Returns an array of jewish holiday dates corresponding with the isIsrael param.
 getHolidays(true); // ==> ['1 Tishri', '2 Tishri', '10 Tishri', '15 Tishri', '22 Tishri', '15 Nisan', '21 Nisan', '6 Sivan']
 getHolidays(false); // ==> ['1 Tishri', '2 Tishri', '10 Tishri', '15 Tishri', '22 Tishri', '15 Nisan', '21 Nisan', '6 Sivan', '16 Tishri', '23 Tishri', '16 Nisan', '22 Nisan', '7 Sivan']
 ```
+
+<a name="getHolidayInfo"></a>
+
+### getHolidayInfo(date: `Date` | `BasicJewishDate`, [isIsrael: `boolean`], [isHebrew: `boolean`]) ⇒ `JewishHolidayInfo`
+
+Returns the full holiday/observance summary for a date, from the [`jewish-holidays`](https://www.npmjs.com/package/jewish-holidays) package: `isYomTov`, `isErevYomTov`, `isCholHaMoed`, `isShabbat`, `isErevShabbat`, `isRoshChodesh`, `isChanukah`, `isPurim`, `isTzom`, `tzom` (the fast observed, when there is one) and `holidays` (the matched names).
+
+Note that `jewish-holidays` itself takes an `isChutzLaaretz` flag and a language code; this wrapper takes `isIsrael` and `isHebrew`, to stay consistent with `getHolidays`, `dontSelectHolidays` and the datepicker props.
+
+| Param | Type   | Default |
+| ----- | ------ | ----- |
+| date  | `Date` \| `BasicJewishDate` | |
+| isIsrael  | `boolean` | `true` |
+| isHebrew  | `boolean` | `false` |
+
+**example:**
+```js
+getHolidayInfo({ day: 15, monthName: 'Nisan', year: 5785 }).holidays; // ==> ['Pesach']
+getHolidayInfo({ day: 15, monthName: 'Nisan', year: 5785 }, true, true).holidays; // ==> ['פסח']
+getHolidayInfo({ day: 16, monthName: 'Tishri', year: 5785 }, true).isYomTov;  // ==> false
+getHolidayInfo({ day: 16, monthName: 'Tishri', year: 5785 }, false).isYomTov; // ==> true
+```
+
+<a name="getHolidayNames"></a>
+
+### getHolidayNames(info: `JewishHolidayInfo`) ⇒ `string[]`
+
+Returns the holiday names for a date, already in the language `getHolidayInfo` was asked for. Returns `[]` when passed `undefined`.
+
+| Param | Type   |
+| ----- | ------ |
+| info  | `JewishHolidayInfo` \| `undefined` |
+
+**example:**
+```js
+getHolidayNames(getHolidayInfo({ day: 15, monthName: 'Nisan', year: 5785 }));             // ==> ['Pesach']
+getHolidayNames(getHolidayInfo({ day: 15, monthName: 'Nisan', year: 5785 }, true, true)); // ==> ['פסח']
+```
+
+<a name="getTzomInfo"></a>
+
+### getTzomInfo(info: `JewishHolidayInfo`) ⇒ `JewishTzomInfo` | `undefined`
+
+Returns the fast observed on a date, or `undefined` when it is not a fast day. Carries the specific fast `name` and a `shift`: `null` when the fast falls on its own calendar date, or `"postponed"` / `"advanced"` when it moved off shabat.
+
+| Param | Type   |
+| ----- | ------ |
+| info  | `JewishHolidayInfo` \| `undefined` |
+
+**example:**
+```js
+getTzomInfo(getHolidayInfo(new Date(2025, 2, 13))); // ==> { name: 'Taanit Esther', shift: null }
+getTzomInfo(getHolidayInfo(new Date(2029, 6, 22))); // ==> { name: 'Tisha BeAv', shift: 'postponed' }
+getTzomInfo(getHolidayInfo(new Date(2025, 0, 7)));  // ==> undefined
+```
+
+<a name="getHolidayClassNames"></a>
+
+### getHolidayClassNames(info: `JewishHolidayInfo`) ⇒ `string[]`
+
+Returns class names describing a date's observances, for styling day cells: `hasHoliday`, `isYomTov`, `isErevYomTov`, `isCholHaMoed`, `isRoshChodesh`, `isChanukah`, `isPurim`, `isTzom`.
+
+`hasHoliday` covers the observances above but not a plain shabat, so it stays a meaningful marker. Shabat is not reported here at all — use `getShabbatClassNames`, so the two can be toggled independently and neither can emit a class the other already did. This is what the datepicker's `showHolidays` prop uses.
+
+| Param | Type   |
+| ----- | ------ |
+| info  | `JewishHolidayInfo` \| `undefined` |
+
+<a name="getShabbatClassNames"></a>
+
+### getShabbatClassNames(date: `Date`) ⇒ `string[]`
+
+Returns `['isShabbat']` for a saturday, `['isErevShabbat']` for a friday, and `[]` otherwise. Unlike `getHolidayClassNames` this is a plain day-of-week check with no holiday lookup, which is why the datepicker's `showShabbat` prop can default to `true`.
+
+| Param | Type   |
+| ----- | ------ |
+| date  | `Date` |
+
+**example:**
+```js
+getShabbatClassNames(new Date(2025, 0, 11)); // ==> ['isShabbat']
+getShabbatClassNames(new Date(2025, 0, 10)); // ==> ['isErevShabbat']
+getShabbatClassNames(new Date(2025, 0, 7));  // ==> []
+```
+
+<a name="isShabbatDay"></a>
+
+### isShabbatDay(date: `Date`) ⇒ `boolean`
+
+Whether the date is a saturday. Keyed off `getDay()`, the same check [`dontSelectShabat`](#dontSelectShabat) uses.
+
+<a name="isErevShabbatDay"></a>
+
+### isErevShabbatDay(date: `Date`) ⇒ `boolean`
+
+Whether the date is a friday.
 
 <a name="dontSelectHolidays"></a>
 

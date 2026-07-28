@@ -269,6 +269,33 @@
 .monthContainer .noSelect:active {
   pointer-events: none;
 }
+.monthContainer .day {
+  position: relative;
+}
+.monthContainer .day .holidayMarker {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translate(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  pointer-events: none;
+}
+.monthContainer .day.hasHoliday:not(.selectedDay):not(.startDay):not(.endDay):not(.noSelect) {
+  color: var(--primary);
+  font-weight: 600;
+}
+.monthContainer .day.isTzom:not(.selectedDay):not(.startDay):not(.endDay):not(.noSelect) {
+  color: #a1543a;
+}
+.monthContainer .day.hasHoliday.noSelect .holidayMarker {
+  opacity: .6;
+}
+.monthContainer .day.isShabbat:not(.selectedDay):not(.startDay):not(.endDay):not(.isInRange):not(.noSelect) {
+  background-color: var(--primary-light);
+}
 .monthContainer.displayBoth .day {
   min-height: 38px;
 }
@@ -934,6 +961,33 @@ code,
 }
 .monthContainer .noSelect:active {
   pointer-events: none;
+}
+.monthContainer .day {
+  position: relative;
+}
+.monthContainer .day .holidayMarker {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translate(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  pointer-events: none;
+}
+.monthContainer .day.hasHoliday:not(.selectedDay):not(.startDay):not(.endDay):not(.noSelect) {
+  color: var(--primary);
+  font-weight: 600;
+}
+.monthContainer .day.isTzom:not(.selectedDay):not(.startDay):not(.endDay):not(.noSelect) {
+  color: #a1543a;
+}
+.monthContainer .day.hasHoliday.noSelect .holidayMarker {
+  opacity: .6;
+}
+.monthContainer .day.isShabbat:not(.selectedDay):not(.startDay):not(.endDay):not(.isInRange):not(.noSelect) {
+  background-color: var(--primary-light);
 }
 .monthContainer.displayBoth .day {
   min-height: 38px;

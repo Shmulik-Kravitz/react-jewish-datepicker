@@ -114,9 +114,73 @@ export default function App() {
 | --------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | canSelect | Accepts a function which determines whether a day is selectable              | `(day: BasicJewishDay) => condition ? false : true`                                                                                  |
 | isHebrew  | Optional. Whether the view language is hebrew or english, Default is `false` | `false` \| `true`                                                                                                                    |
+| isIsrael  | Optional. Whether holidays follow the Israeli calendar rather than the diaspora one. Only affects `showHolidays`. Default is `true` | `false` \| `true`                                              |
 | isRange   | Optional. Allow to select date ranges. Default is `false`                    | `false` \| `true`                                                                                                                    |
 | onClick   | Callback when a date is selected                                             | `(day: BasicJewishDay) => console.log(day)` \| `(startDay: BasicJewishDay, endDay: BasicJewishDay) => console.log(startDay, endDay)` |
+| showHolidays | Optional. Mark holidays in the calendar. Default is `false`               | `false` \| `true`                                                                                                                    |
+| showShabbat | Optional. Highlight shabbat in the calendar. Default is `true`             | `false` \| `true`                                                                                                                    |
 | value     | Optional. Initial selected date                                              | `Date` \| `BasicJewishDate` \| `BasicJewishDateRange` \| `DateRange`                                                                 |
+
+### `showHolidays` prop
+
+Marks yom tov, chol hamoed, rosh chodesh, chanukah, purim and fast days in the
+calendar. Each day cell gets a marker dot, the holiday name is added to its tooltip
+and accessible name (in Hebrew when `isHebrew`), and class names are added so you can
+restyle them.
+
+Fast days are named specifically — `Tisha BeAv`, `Taanit Esther`, `תשעה באב` — and a
+fast that falls on shabbat is marked on the day it is actually observed, not on the
+shabbat. Purim and Shushan Purim are distinguished likewise.
+
+The classes:
+
+`hasHoliday`, `isYomTov`, `isErevYomTov`, `isCholHaMoed`, `isRoshChodesh`,
+`isChanukah`, `isPurim`, `isTzom`.
+
+`hasHoliday` is set for the observances above but not for a plain shabbat, so the
+marker stays meaningful — shabbat has its own `showShabbat` prop. Pass
+`isIsrael={false}` for the diaspora, which adds the second day of yom tov.
+
+```jsx
+<ReactJewishDatePicker
+  value={new Date()}
+  isHebrew
+  showHolidays
+  onClick={(day) => setBasicJewishDay(day)}
+/>
+```
+
+Holiday data comes from the [`jewish-holidays`](https://www.npmjs.com/package/jewish-holidays)
+package, which resolves the names in both languages itself. For finer control,
+`jewish-dates-core` exports `getHolidayInfo`, `getHolidayNames`, `getTzomInfo` and
+`getHolidayClassNames` directly.
+
+### `showShabbat` prop
+
+**On by default.** Shabbat is given a light background tint, and gets an `isShabbat`
+class; friday gets an `isErevShabbat` class, which ships unstyled so you can decide
+what to do with it. Restyle either through those classes:
+
+```css
+.monthContainer .day.isErevShabbat {
+  font-style: italic;
+}
+```
+
+This is independent of `showHolidays` — shabbat only needs a day-of-week check, no
+holiday lookup, which is why it can be on by default at no cost. A shabbat that is
+also yom tov carries both sets of classes. The accessible name is left as the plain
+date, since the marked column already conveys it visually.
+
+Pass `showShabbat={false}` to drop both classes entirely:
+
+```jsx
+<ReactJewishDatePicker
+  value={new Date()}
+  showShabbat={false}
+  onClick={(day) => setBasicJewishDay(day)}
+/>
+```
 
 ### `canSelect` prop
 
