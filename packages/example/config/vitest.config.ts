@@ -1,3 +1,3 @@
-import {getConfig} from "../../../config/vitest.config";
+import { getConfig } from "../../../config/vitest.config.ts";
 const config = getConfig();
 export default config;

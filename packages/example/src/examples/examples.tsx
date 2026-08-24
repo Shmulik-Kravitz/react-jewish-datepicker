@@ -140,26 +140,20 @@ export function Examples() {
           <a href="https://www.npmjs.com/package/react-jewish-datepicker">
             <img
               src="https://badge.fury.io/js/react-jewish-datepicker.svg"
-              alt=""
+              alt="npm version"
             />
           </a>
         </span>
         <span>
           <img
-            src="https://github.com/Shmulik-Kravitz/react-jewish-datepicker/workflows/CI_CD/badge.svg?branch=master"
-            alt=""
-          />
-        </span>
-        <span>
-          <img
-            src="https://img.shields.io/bundlephobia/minzip/react-jewish-datepicker.svg"
-            alt=""
+            src="https://github.com/Shmulik-Kravitz/react-jewish-datepicker/actions/workflows/ci.js.yml/badge.svg?branch=master"
+            alt="CI build status"
           />
         </span>
         <span>
           <img
             src="https://badgen.net/github/stars/Shmulik-Kravitz/react-jewish-datepicker"
-            alt=""
+            alt="GitHub stars"
           />
         </span>
       </div>

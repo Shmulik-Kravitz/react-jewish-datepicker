@@ -1,11 +1,10 @@
 # react-jewish-datepicker
 
 [![npm](https://badge.fury.io/js/react-jewish-datepicker.svg)](https://www.npmjs.com/package/react-jewish-datepicker)
-[![CI](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/workflows/CI_CD/badge.svg?branch=master)](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/)
-![license](https://badgen.net/npm/license/react-jewish-datepicker)
-[![size minzip](https://img.shields.io/bundlephobia/minzip/react-jewish-datepicker.svg)](https://bundlephobia.com/package/react-jewish-datepicker)
-![downloads](https://badgen.net/npm/dt/react-jewish-datepicker)
-[![stars](https://badgen.net/github/stars/Shmulik-Kravitz/react-jewish-datepicker)](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/)
+[![CI](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/actions/workflows/ci.js.yml/badge.svg?branch=master)](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/actions/workflows/ci.js.yml)
+[![license](https://badgen.net/npm/license/react-jewish-datepicker)](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/blob/master/LICENSE)
+[![downloads](https://badgen.net/npm/dt/react-jewish-datepicker)](https://www.npmjs.com/package/react-jewish-datepicker)
+[![stars](https://badgen.net/github/stars/Shmulik-Kravitz/react-jewish-datepicker)](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/stargazers)
 
 
 ![npm](https://raw.githubusercontent.com/Shmulik-Kravitz/react-jewish-datepicker/master/images/snapshot.png)
@@ -15,6 +14,8 @@
 General Jewish Date Picker component that works with react and supports hebrew and english.
 
 See also [demo and documentation](https://react-jewish-datepicker.js.org/) page.
+
+See the [changelog](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/blob/master/CHANGELOG.md) for release notes.
 
 ## Installation
 

@@ -2,9 +2,9 @@
 import * as esbuild from "esbuild";
 import nodeExternalsPlugin from "esbuild-node-externals";
 import path from "path";
-import { Colors } from "./colorsUtils";
-import { buildDeclarations } from "./tsUtils";
-import { getFiles } from "./filesUtils";
+import { Colors } from "./colorsUtils.ts";
+import { buildDeclarations } from "./tsUtils.ts";
+import { getFiles } from "./filesUtils.ts";
 
 export const baseConfig: esbuild.BuildOptions = {
   bundle: true,

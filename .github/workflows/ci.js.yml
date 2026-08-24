@@ -193,6 +193,67 @@ jobs:
         working-directory: packages/reactJewishDatePicker/
         run: npm publish package.tgz --access public --provenance
 
+      # CI resolves the version at release time, so an automatic patch bump can
+      # ship a version the changelog never names. Stamp it on before the commit
+      # below, so the entry travels with the version bump in one commit and the
+      # release step downstream can read its notes.
+      - name: Stamp release version onto CHANGELOG
+        run: |
+          set -euo pipefail
+
+          if [ ! -f CHANGELOG.md ]; then
+            echo "No CHANGELOG.md to stamp"
+            exit 0
+          fi
+
+          # The highest tag that exists so far -- this release isn't tagged yet,
+          # so that's the previous release. Read from the tag list rather than
+          # 'git describe', which needs history a shallow checkout doesn't have.
+          git fetch --tags --quiet || true
+          PREVIOUS_TAG=$(git tag --list 'v*' --sort=-v:refname | head -n 1)
+
+          node - "$VERSION_TAG" "$PREVIOUS_TAG" <<'NODE'
+          const fs = require('fs');
+          const [version, previousTag] = process.argv.slice(2);
+          const date = new Date().toISOString().slice(0, 10);
+          const heading = `## ${version} \u2014 ${date}`;
+          const lines = fs.readFileSync('CHANGELOG.md', 'utf8').split('\n');
+
+          const isHeading = (line) => line.startsWith('## ');
+          // "## [3.0.1] - 2026-07-28" and "## 3.0.1 - 2026-07-28" both yield 3.0.1.
+          const versionOf = (line) => line.slice(3).trim().split(/\s/)[0].replace(/^\[|\]$/g, '');
+
+          // Already written by hand for exactly this version: leave it alone,
+          // date included -- the author's is likelier right than today's.
+          if (lines.some((line) => isHeading(line) && versionOf(line) === version)) {
+            console.log(`CHANGELOG.md already documents ${version}`);
+            process.exit(0);
+          }
+
+          // "Unreleased" is where notes accumulate between releases; stamping
+          // that heading turns them into this version's entry.
+          const unreleased = lines.findIndex(
+            (line) => isHeading(line) && /^\[?unreleased\]?$/i.test(versionOf(line))
+          );
+
+          if (unreleased !== -1) {
+            lines[unreleased] = heading;
+          } else {
+            // Nothing was written for this release. Record that it shipped and
+            // point at the commits, rather than leaving a hole in the file.
+            const repo = process.env.GITHUB_REPOSITORY;
+            const compare = previousTag
+              ? `[the commits since ${previousTag}](https://github.com/${repo}/compare/${previousTag}...v${version})`
+              : `[the commit log](https://github.com/${repo}/commits/v${version})`;
+            const entry = [heading, '', `Maintenance release with no separately documented changes. See ${compare}.`, ''];
+            const first = lines.findIndex(isHeading);
+            lines.splice(first === -1 ? lines.length : first, 0, ...entry);
+          }
+
+          fs.writeFileSync('CHANGELOG.md', lines.join('\n'));
+          console.log(`Stamped ${version} onto CHANGELOG.md`);
+          NODE
+
       # Commit and tag only after publishing succeeds, so a failed run doesn't
       # burn a version number or leave a tag for a release that isn't on npm.
       # The tag must also come after the commit, otherwise it points at the
@@ -201,9 +262,14 @@ jobs:
         run: |
           git config --global user.name 'Shmulik-Kravitz'
           git config --global user.email '29735690+Shmulik-Kravitz@users.noreply.github.com'
+          # Staged explicitly because 'commit -a' only picks up tracked files,
+          # and the changelog may not be one yet.
+          if [ -f CHANGELOG.md ]; then
+            git add CHANGELOG.md
+          fi
           # No bump happened when the committed version was released as-is,
           # and 'git commit' fails on an empty index.
-          if git diff --quiet; then
+          if git diff --quiet && git diff --cached --quiet; then
             echo "Version already committed; tagging only"
           else
             git commit -am v$VERSION_TAG
@@ -211,3 +277,53 @@ jobs:
           fi
           git tag v$VERSION_TAG
           git push origin v$VERSION_TAG
+
+      # Publish a GitHub release for the tag that was just pushed, with the
+      # CHANGELOG section stamped above as its body -- so the release notes and
+      # the changelog entry are the same text. Falls back to GitHub's generated
+      # notes if there's no changelog to read, rather than shipping an empty body.
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          if gh release view "v$VERSION_TAG" >/dev/null 2>&1; then
+            echo "Release v$VERSION_TAG already exists; nothing to do"
+            exit 0
+          fi
+
+          # Everything between this version's "## <version>" heading and the
+          # next "## " heading. The version is compared as a literal string so
+          # its dots can't match arbitrary characters, and the heading may
+          # carry a trailing date ("## 3.0.1 - 2026-07-28").
+          NOTES_FILE=$(mktemp)
+          if [ -f CHANGELOG.md ]; then
+            awk -v version="$VERSION_TAG" '
+              index($0, "## ") == 1 {
+                if (collecting) exit
+                heading = substr($0, 4)
+                if (heading == version || index(heading, version " ") == 1) collecting = 1
+                next
+              }
+              collecting { print }
+            ' CHANGELOG.md > "$NOTES_FILE"
+          fi
+
+          # Both packages pack to package.tgz and release assets are keyed by
+          # filename, so give each one a name of its own before attaching.
+          cp packages/jewishDatesCore/package.tgz "jewish-dates-core-$VERSION_TAG.tgz"
+          cp packages/reactJewishDatePicker/package.tgz "react-jewish-datepicker-$VERSION_TAG.tgz"
+
+          if grep -q '[^[:space:]]' "$NOTES_FILE"; then
+            NOTES_ARGS=(--notes-file "$NOTES_FILE")
+          else
+            echo "No CHANGELOG entry for $VERSION_TAG; using generated notes"
+            NOTES_ARGS=(--generate-notes)
+          fi
+
+          gh release create "v$VERSION_TAG" \
+            --title "v$VERSION_TAG" \
+            "${NOTES_ARGS[@]}" \
+            "jewish-dates-core-$VERSION_TAG.tgz" \
+            "react-jewish-datepicker-$VERSION_TAG.tgz"

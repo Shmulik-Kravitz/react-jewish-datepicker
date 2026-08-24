@@ -4,6 +4,8 @@ This package is core functionality of <a href="https://www.npmjs.com/package/rea
 
 If you want to create a jewish date picker in vue.js or angular, this is the core dependency.
 
+See the [changelog](https://github.com/Shmulik-Kravitz/react-jewish-datepicker/blob/master/CHANGELOG.md) for release notes.
+
 ## Installation
 
 ```console

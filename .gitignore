@@ -116,3 +116,6 @@ lib
 
 .history/
 .claude/settings.local.json
+
+# Copied into each package at build time from the root CHANGELOG.md
+packages/*/CHANGELOG.md

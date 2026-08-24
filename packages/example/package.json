@@ -14,7 +14,7 @@
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
     "@types/react-syntax-highlighter": "^15.5.13",
-    "dayjs": "^1.11.21",
+    "dayjs": "^1.11.23",
     "jewish-dates-core": "workspace:*",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.2.8",
@@ -25,8 +25,8 @@
   },
   "devDependencies": {
     "@types/react-syntax-highlighter": "^15.5.13",
-    "esbuild": "^0.28.1",
-    "esbuild-node-externals": "^1.23.1",
+    "esbuild": "^0.28.2",
+    "esbuild-node-externals": "^2.0.0",
     "has-flag": "5.0.1",
     "tsc-prog": "^2.3.0",
     "typescript": "^6.0.3"

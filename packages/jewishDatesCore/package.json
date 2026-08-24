@@ -14,7 +14,8 @@
   "files": [
     "dist",
     "lib",
-    "README.md"
+    "README.md",
+    "CHANGELOG.md"
   ],
   "repository": {
     "type": "git",
@@ -26,19 +27,20 @@
   "scripts": {
     "start": "yarn g:start",
     "dev": "yarn g:dev",
-    "build": "yarn g:build",
+    "build": "yarn g:build && yarn copy-changelog",
+    "copy-changelog": "cp ../../CHANGELOG.md .",
     "test": "yarn g:test",
     "inc": "yarn version patch",
     "pub": "npm publish --provenance --access public",
     "np": "np patch"
   },
   "dependencies": {
-    "dayjs": "^1.11.21",
-    "jewish-date": "^2.0.26",
+    "dayjs": "^1.11.23",
+    "jewish-date": "^2.0.29",
     "jewish-holidays": "^2.0.1"
   },
   "devDependencies": {
-    "esbuild": "^0.28.1",
+    "esbuild": "^0.28.2",
     "typescript": "^6.0.3"
   },
   "keywords": [

@@ -1,6 +1,6 @@
 import path from "path";
-import { build } from "./utils/esbuildUtils";
-import filterConsole from "./utils/filterConsoleUtils";
+import { build } from "./utils/esbuildUtils.ts";
+import filterConsole from "./utils/filterConsoleUtils.ts";
 
 const disableFilter = filterConsole(["MODULE_NOT_FOUND"]);
 
@@ -11,4 +11,4 @@ const srcPath = path.resolve(".", "src/");
 const tsconfigPath = path.resolve(".", "tsconfig.json");
 // console.log({ outDir, tsconfig });
 
-build(__dirname, tsconfigPath, srcPath, outPath, declarationPath);
+build(import.meta.dirname, tsconfigPath, srcPath, outPath, declarationPath);

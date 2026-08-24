@@ -1,5 +1,5 @@
 import path from "path";
-import { start } from "./utils/esbuildUtils";
+import { start } from "./utils/esbuildUtils.ts";
 
 
 const rootPath = path.resolve(`.`,);

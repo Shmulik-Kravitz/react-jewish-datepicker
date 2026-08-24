@@ -59336,36 +59336,36 @@
   var f = () => ["\u05D0", "\u05D1", "\u05D2", "\u05D3", "\u05D4", "\u05D5", "\u05E9"];
   var M2 = () => ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
   var G = (t3) => t3 ? f() : M2();
-  var d4 = (t3, e3) => g3(t3).slice(1).map((n7, s5) => ({ id: n7, text: e3 ? s(e[n7]) : n7 }));
+  var d4 = (t3, e3) => g3(t3).slice(1).map((n7, a7) => ({ id: n7, text: e3 ? s(e[n7]) : n7 }));
   var F = (t3 = 5780) => {
     const e3 = [];
-    for (let a7 = 100; a7 > 0; a7--) {
-      const n7 = t3 - a7;
+    for (let s5 = 100; s5 > 0; s5--) {
+      const n7 = t3 - s5;
       e3.push(n7);
     }
     e3.push(t3);
-    for (let a7 = 1; a7 <= 100; a7++) {
-      const n7 = t3 + a7;
+    for (let s5 = 1; s5 <= 100; s5++) {
+      const n7 = t3 + s5;
       e3.push(n7);
     }
     return e3;
   };
   var L = (t3) => {
-    const e3 = { ...t3 }, a7 = d4(t3.year, t3.isHebrew), n7 = a7.map((s5) => s5.id).indexOf(t3.month);
-    return n7 !== -1 && (n7 === 0 ? (e3.month = e[a7[a7.length - 1].id], e3.year--) : e3.month = e[a7[n7 - 1].id]), e3;
+    const e3 = { ...t3 }, s5 = d4(t3.year, t3.isHebrew), n7 = s5.map((a7) => a7.id).indexOf(t3.month);
+    return n7 !== -1 && (n7 === 0 ? (e3.month = e[s5[s5.length - 1].id], e3.year--) : e3.month = e[s5[n7 - 1].id]), e3;
   };
   var P = (t3) => {
-    const e3 = { ...t3 }, a7 = d4(t3.year), n7 = a7.map((s5) => s5.id).indexOf(t3.month);
-    return n7 !== -1 && (n7 === a7.length - 1 ? (e3.month = e[a7[0].id], e3.year++) : e3.month = e[a7[n7 + 1].id]), e3;
+    const e3 = { ...t3 }, s5 = d4(t3.year), n7 = s5.map((a7) => a7.id).indexOf(t3.month);
+    return n7 !== -1 && (n7 === s5.length - 1 ? (e3.month = e[s5[0].id], e3.year++) : e3.month = e[s5[n7 + 1].id]), e3;
   };
   var c3 = (t3) => {
     if (!t3 || t3.monthName === e.None || t3.year < 1 || t3.day < 1) return /* @__PURE__ */ new Date();
-    const e3 = { day: t3.day, monthName: t3.monthName, year: t3.year };
-    return b(e3);
+    const e3 = { day: t3.day, monthName: t3.monthName, year: t3.year }, s5 = b(e3);
+    return s5.setHours(0, 0, 0, 0), s5;
   };
   var g4 = (t3) => {
-    const e3 = u(t3), a7 = (0, import_dayjs.default)(t3).subtract(e3.day - 1, "day"), n7 = Number(a7.format("d")), s5 = a7.subtract(n7, "day");
-    return { jewishDate: e3, jewishMonth: e3.month, startOfJewishMonth: a7, sundayStartOfTheMonth: s5 };
+    const e3 = u(t3), s5 = (0, import_dayjs.default)(t3).subtract(e3.day - 1, "day"), n7 = Number(s5.format("d")), a7 = s5.subtract(n7, "day");
+    return { jewishDate: e3, jewishMonth: e3.month, startOfJewishMonth: s5, sundayStartOfTheMonth: a7 };
   };
   var u = (t3) => x(t3);
   var p3 = (t3, e3) => t3 && e3 && t3.day === e3.day && t3.month === e3.month && t3.year === e3.year;
@@ -59374,13 +59374,13 @@
     return { day: e3.day, jewishDateStr: N(e3), jewishDateStrHebrew: T2(e3), jewishDate: e3, dayjsDate: t3, date: t3.toDate(), isCurrentMonth: false };
   };
   var R2 = (t3) => {
-    const e3 = g4(t3), a7 = { selectedDay: null, jewishMonth: e3.jewishMonth, jewishYear: e3.jewishDate.year, jewishMonthString: e3.jewishDate.monthName, days: [] };
+    const e3 = g4(t3), s5 = { selectedDay: null, jewishMonth: e3.jewishMonth, jewishYear: e3.jewishDate.year, jewishMonthString: e3.jewishDate.monthName, days: [] };
     let n7 = e3.sundayStartOfTheMonth;
-    for (let s5 = 0; s5 < 42; s5++) {
+    for (let a7 = 0; a7 < 42; a7++) {
       const i3 = b2(n7);
-      i3.isCurrentMonth = a7.jewishMonth === i3.jewishDate.month, p3(e3.jewishDate, i3.jewishDate) && (a7.selectedDay = i3), (s5 < 7 || i3.isCurrentMonth || i3.date.getDay() > 0) && (a7.days.push(i3), n7 = n7.add(1, "day"));
+      i3.isCurrentMonth = s5.jewishMonth === i3.jewishDate.month, p3(e3.jewishDate, i3.jewishDate) && (s5.selectedDay = i3), (a7 < 7 || i3.isCurrentMonth || i3.date.getDay() > 0) && (s5.days.push(i3), n7 = n7.add(1, "day"));
     }
-    return a7;
+    return s5;
   };
   var T3 = (t3) => {
     const e3 = ["1 Tishri", "2 Tishri", "10 Tishri", "15 Tishri", "22 Tishri", "15 Nisan", "21 Nisan", "6 Sivan"];
@@ -59388,24 +59388,24 @@
   };
   var I = (t3) => {
     const e3 = T3(t3);
-    return (a7) => !e3.includes(`${a7.jewishDate.day} ${a7.jewishDate.monthName}`);
+    return (s5) => !e3.includes(`${s5.jewishDate.day} ${s5.jewishDate.monthName}`);
   };
   var v = (t3) => t3.date.getDay() !== 6;
   var V = (t3) => (e3) => v(e3) && I(t3)(e3);
   var Q = (t3, e3) => {
-    const a7 = t3 && (0, import_dayjs.default)(t3).subtract(1, "day").startOf("date"), n7 = e3 && (0, import_dayjs.default)(e3).add(1, "day").startOf("date");
-    return (s5) => {
-      const i3 = (0, import_dayjs.default)(s5.date).startOf("date");
-      return a7 && n7 ? i3.isAfter(a7) && i3.isBefore(n7) : a7 ? i3.isAfter(a7) : n7 ? i3.isBefore(n7) : false;
+    const s5 = t3 && (0, import_dayjs.default)(t3).subtract(1, "day").startOf("date"), n7 = e3 && (0, import_dayjs.default)(e3).add(1, "day").startOf("date");
+    return (a7) => {
+      const i3 = (0, import_dayjs.default)(a7.date).startOf("date");
+      return s5 && n7 ? i3.isAfter(s5) && i3.isBefore(n7) : s5 ? i3.isAfter(s5) : n7 ? i3.isBefore(n7) : false;
     };
   };
   var U = (t3, e3) => {
-    const a7 = h2(t3) ? t3 : c3(t3);
-    return (0, import_dayjs.default)(a7).add(e3, "day").toDate();
+    const s5 = h2(t3) ? t3 : c3(t3);
+    return (0, import_dayjs.default)(s5).add(e3, "day").toDate();
   };
   var X = (t3, e3) => {
-    const a7 = h2(t3) ? t3 : c3(t3);
-    return (0, import_dayjs.default)(a7).subtract(e3, "day").toDate();
+    const s5 = h2(t3) ? t3 : c3(t3);
+    return (0, import_dayjs.default)(s5).subtract(e3, "day").toDate();
   };
 
   // ../../.yarn/cache/jewish-date-npm-2.0.23-d5a1260451-42331d79a2.zip/node_modules/jewish-date/dist/mjs/interfaces.js

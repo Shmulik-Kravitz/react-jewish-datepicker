@@ -41,8 +41,8 @@
 }
 .monthContainer .navigation {
   display: grid;
-  grid-template-columns: 36px 1fr 36px;
-  align-items: start;
+  grid-template-columns: 36px minmax(0, 1fr) 36px;
+  align-items: center;
   min-height: 48px;
   padding: 8px 12px;
   width: 100%;
@@ -99,9 +99,10 @@
 }
 .monthContainer .navigation .monthYearSelection {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, auto) minmax(0, auto);
   align-items: center;
   justify-content: center;
+  min-width: 0;
   gap: 4px;
 }
 .monthContainer .navigation .monthYearSelection select {
@@ -116,6 +117,10 @@
   padding: 4px 8px;
   transition: all .2s ease;
   font-family: inherit;
+  text-align: center;
+  text-align-last: center;
+  min-width: 0;
+  max-width: 100%;
 }
 .monthContainer .navigation .monthYearSelection select:hover {
   background-color: var(--backgroundColor);
@@ -152,8 +157,9 @@
 .monthContainer .weekdayWrapper {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
   background-color: var(--backgroundColor);
-  padding: 6px;
+  padding: 6px 8px;
   width: 100%;
   box-sizing: border-box;
   border-bottom: 1px solid #e2e8f0;
@@ -194,7 +200,7 @@
   text-transform: uppercase;
   border-radius: 0;
   min-height: 26px;
-  margin: 1px 2px;
+  margin: 1px 0;
 }
 .monthContainer .day:hover {
   background-color: var(--backgroundColor);
@@ -401,7 +407,15 @@
     touch-action: manipulation;
   }
   .monthContainer .navigation {
-    grid-template-columns: 44px 1fr 44px;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    padding: 6px 8px;
+  }
+  .monthContainer .navigation.slidingNav {
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+  }
+  .monthContainer .navigation .monthYearSelection select {
+    font-size: 16px;
+    padding: 4px 6px;
   }
   .monthContainer .weekday {
     font-size: 10px;
@@ -734,8 +748,8 @@ code,
 }
 .monthContainer .navigation {
   display: grid;
-  grid-template-columns: 36px 1fr 36px;
-  align-items: start;
+  grid-template-columns: 36px minmax(0, 1fr) 36px;
+  align-items: center;
   min-height: 48px;
   padding: 8px 12px;
   width: 100%;
@@ -792,9 +806,10 @@ code,
 }
 .monthContainer .navigation .monthYearSelection {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, auto) minmax(0, auto);
   align-items: center;
   justify-content: center;
+  min-width: 0;
   gap: 4px;
 }
 .monthContainer .navigation .monthYearSelection select {
@@ -809,6 +824,10 @@ code,
   padding: 4px 8px;
   transition: all .2s ease;
   font-family: inherit;
+  text-align: center;
+  text-align-last: center;
+  min-width: 0;
+  max-width: 100%;
 }
 .monthContainer .navigation .monthYearSelection select:hover {
   background-color: var(--backgroundColor);
@@ -845,8 +864,9 @@ code,
 .monthContainer .weekdayWrapper {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
   background-color: var(--backgroundColor);
-  padding: 6px;
+  padding: 6px 8px;
   width: 100%;
   box-sizing: border-box;
   border-bottom: 1px solid #e2e8f0;
@@ -887,7 +907,7 @@ code,
   text-transform: uppercase;
   border-radius: 0;
   min-height: 26px;
-  margin: 1px 2px;
+  margin: 1px 0;
 }
 .monthContainer .day:hover {
   background-color: var(--backgroundColor);
@@ -1094,7 +1114,15 @@ code,
     touch-action: manipulation;
   }
   .monthContainer .navigation {
-    grid-template-columns: 44px 1fr 44px;
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+    padding: 6px 8px;
+  }
+  .monthContainer .navigation.slidingNav {
+    grid-template-columns: 44px minmax(0, 1fr) 44px;
+  }
+  .monthContainer .navigation .monthYearSelection select {
+    font-size: 16px;
+    padding: 4px 6px;
   }
   .monthContainer .weekday {
     font-size: 10px;
