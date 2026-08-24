@@ -1,6 +1,6 @@
 {
   "name": "jewish-dates-core",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Jewish dates core",
   "main": "dist/index.js",
   "typings": "lib/index.d.ts",

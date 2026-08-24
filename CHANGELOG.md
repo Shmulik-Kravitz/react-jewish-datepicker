@@ -17,7 +17,7 @@ on the [demo site](https://react-jewish-datepicker.js.org/).
 
 ---
 
-## Unreleased
+## 3.0.2 — 2026-08-24
 
 ### Fixed
 
